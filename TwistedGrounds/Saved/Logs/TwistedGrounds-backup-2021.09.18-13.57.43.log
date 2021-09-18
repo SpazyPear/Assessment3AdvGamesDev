@@ -1,0 +1,1283 @@
+﻿Log file open, 09/18/21 23:47:21
+LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
+LogWindows: File 'aqProf.dll' does not exist
+LogWindows: Failed to load 'VtuneApi.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi.dll' does not exist
+LogWindows: Failed to load 'VtuneApi32e.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi32e.dll' does not exist
+LogConsoleResponse: Display: Failed to find resolution value strings in scalability ini. Falling back to default.
+LogInit: Display: Running engine for game: TwistedGrounds
+LogPlatformFile: Not using cached read wrapper
+LogTaskGraph: Started task graph with 5 named threads and 23 total threads with 3 sets of task threads.
+LogStats: Stats thread started at 0.145287
+LogD3D11RHI: Loaded GFSDK_Aftermath_Lib.x64.dll
+LogICUInternationalization: ICU TimeZone Detection - Raw Offset: +10:00, Platform Override: ''
+LogPluginManager: Mounting plugin Paper2D
+LogPluginManager: Mounting plugin AISupport
+LogPluginManager: Mounting plugin LightPropagationVolume
+LogPluginManager: Mounting plugin ActorLayerUtilities
+LogPluginManager: Mounting plugin AnimationSharing
+LogPluginManager: Mounting plugin CLionSourceCodeAccess
+LogPluginManager: Mounting plugin CodeLiteSourceCodeAccess
+LogPluginManager: Mounting plugin GitSourceControl
+LogPluginManager: Mounting plugin KDevelopSourceCodeAccess
+LogPluginManager: Mounting plugin NullSourceCodeAccess
+LogPluginManager: Mounting plugin PerforceSourceControl
+LogPluginManager: Mounting plugin PlasticSourceControl
+LogPluginManager: Mounting plugin SubversionSourceControl
+LogPluginManager: Mounting plugin UObjectPlugin
+LogPluginManager: Mounting plugin VisualStudioCodeSourceCodeAccess
+LogPluginManager: Mounting plugin VisualStudioSourceCodeAccess
+LogPluginManager: Mounting plugin XCodeSourceCodeAccess
+LogPluginManager: Mounting plugin AssetManagerEditor
+LogPluginManager: Mounting plugin CryptoKeys
+LogPluginManager: Mounting plugin CurveEditorTools
+LogPluginManager: Mounting plugin DataValidation
+LogPluginManager: Mounting plugin FacialAnimation
+LogPluginManager: Mounting plugin GameplayTagsEditor
+LogPluginManager: Mounting plugin MacGraphicsSwitching
+LogPluginManager: Mounting plugin MaterialAnalyzer
+LogPluginManager: Mounting plugin MobileLauncherProfileWizard
+LogPluginManager: Mounting plugin PluginBrowser
+LogPluginManager: Mounting plugin SpeedTreeImporter
+LogPluginManager: Mounting plugin DatasmithContent
+LogPluginManager: Mounting plugin VariantManagerContent
+LogPluginManager: Mounting plugin AlembicImporter
+LogPluginManager: Mounting plugin AutomationUtils
+LogPluginManager: Mounting plugin BackChannel
+LogPluginManager: Mounting plugin CharacterAI
+LogPluginManager: Mounting plugin GeometryCache
+LogPluginManager: Mounting plugin PlatformCrypto
+LogPluginManager: Mounting plugin ProxyLODPlugin
+LogPluginManager: Mounting plugin SkeletalReduction
+LogPluginManager: Mounting plugin MagicLeap
+LogPluginManager: Mounting plugin MagicLeapMedia
+LogPluginManager: Mounting plugin MLSDK
+LogPluginManager: Mounting plugin AndroidMedia
+LogPluginManager: Mounting plugin AvfMedia
+LogPluginManager: Mounting plugin ImgMedia
+LogPluginManager: Mounting plugin MediaCompositing
+LogPluginManager: Mounting plugin MediaPlayerEditor
+LogPluginManager: Mounting plugin WebMMedia
+LogPluginManager: Mounting plugin WmfMedia
+LogPluginManager: Mounting plugin TcpMessaging
+LogPluginManager: Mounting plugin UdpMessaging
+LogPluginManager: Mounting plugin ActorSequence
+LogPluginManager: Mounting plugin LevelSequenceEditor
+LogPluginManager: Mounting plugin MatineeToLevelSequence
+LogPluginManager: Mounting plugin NetcodeUnitTest
+LogPluginManager: Mounting plugin NUTUnrealEngine4
+LogPluginManager: Mounting plugin OnlineSubsystemGooglePlay
+LogPluginManager: Mounting plugin OnlineSubsystemIOS
+LogPluginManager: Mounting plugin OnlineSubsystem
+LogPluginManager: Mounting plugin OnlineSubsystemNull
+LogPluginManager: Mounting plugin OnlineSubsystemUtils
+LogPluginManager: Mounting plugin LauncherChunkInstaller
+LogPluginManager: Mounting plugin AndroidDeviceProfileSelector
+LogPluginManager: Mounting plugin AndroidMoviePlayer
+LogPluginManager: Mounting plugin AndroidPermission
+LogPluginManager: Mounting plugin AppleImageUtils
+LogPluginManager: Mounting plugin AppleMoviePlayer
+LogPluginManager: Mounting plugin ArchVisCharacter
+LogPluginManager: Mounting plugin AssetTags
+LogPluginManager: Mounting plugin AudioCapture
+LogPluginManager: Mounting plugin CableComponent
+LogPluginManager: Mounting plugin CustomMeshComponent
+LogPluginManager: Mounting plugin EditableMesh
+LogPluginManager: Mounting plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting plugin GoogleCloudMessaging
+LogPluginManager: Mounting plugin IOSDeviceProfileSelector
+LogPluginManager: Mounting plugin LinuxDeviceProfileSelector
+LogPluginManager: Mounting plugin LocationServicesBPLibrary
+LogPluginManager: Mounting plugin MobilePatchingUtils
+LogPluginManager: Mounting plugin OculusVR
+LogPluginManager: Mounting plugin PhysXVehicles
+LogPluginManager: Mounting plugin PostSplashScreen
+LogPluginManager: Mounting plugin ProceduralMeshComponent
+LogPluginManager: Mounting plugin RuntimePhysXCooking
+LogPluginManager: Mounting plugin SignificanceManager
+LogPluginManager: Mounting plugin SteamVR
+LogPluginManager: Mounting plugin WebMMoviePlayer
+LogPluginManager: Mounting plugin WindowsMoviePlayer
+LogPluginManager: Mounting plugin ScreenshotTools
+LogInit: Using libcurl 7.55.1-DEV
+LogInit:  - built for x86_64-pc-win32
+LogInit:  - supports SSL with OpenSSL/1.1.1
+LogInit:  - supports HTTP deflate (compression) using libz 1.2.8
+LogInit:  - other features:
+LogInit:      CURL_VERSION_SSL
+LogInit:      CURL_VERSION_LIBZ
+LogInit:      CURL_VERSION_IPV6
+LogInit:      CURL_VERSION_ASYNCHDNS
+LogInit:      CURL_VERSION_LARGEFILE
+LogInit:      CURL_VERSION_IDN
+LogInit:  CurlRequestOptions (configurable via config and command line):
+LogInit:  - bVerifyPeer = true  - Libcurl will verify peer certificate
+LogInit:  - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+LogInit:  - bDontReuseConnections = false  - Libcurl will reuse connections
+LogInit:  - MaxHostConnections = 16  - Libcurl will limit the number of connections to a host
+LogInit:  - LocalHostAddr = Default
+LogInit:  - BufferSize = 65536
+LogOnline: OSS: Creating online subsystem instance for: NULL
+LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for module [NULL]
+LogInit: Build: ++UE4+Release-4.24-CL-11590370
+LogInit: Engine Version: 4.24.3-11590370+++UE4+Release-4.24
+LogInit: Compatible Engine Version: 4.24.0-10570792+++UE4+Release-4.24
+LogInit: Net CL: 10570792
+LogInit: OS: Windows 10 (Release 2009) (), CPU: Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz, GPU: Intel(R) Iris(R) Plus Graphics
+LogInit: Compiled (64-bit): Feb 24 2020 15:39:18
+LogInit: Compiled with Visual C++: 19.16.27032.01
+LogInit: Build Configuration: Development
+LogInit: Branch Name: ++UE4+Release-4.24
+LogInit: Command Line: 
+LogInit: Base Directory: C:/Program Files/Epic Games/UE_4.24/Engine/Binaries/Win64/
+LogInit: Installed Engine Build: 1
+LogDevObjectVersion: Number of dev versions registered: 25
+LogDevObjectVersion:   Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+LogDevObjectVersion:   Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+LogDevObjectVersion:   Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 3
+LogDevObjectVersion:   Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 37
+LogDevObjectVersion:   Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 36
+LogDevObjectVersion:   Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 2
+LogDevObjectVersion:   Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+LogDevObjectVersion:   Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+LogDevObjectVersion:   Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 2
+LogDevObjectVersion:   Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+LogDevObjectVersion:   Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 36
+LogDevObjectVersion:   Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 11
+LogDevObjectVersion:   Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 2
+LogDevObjectVersion:   Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+LogDevObjectVersion:   Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 3
+LogDevObjectVersion:   Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 17
+LogDevObjectVersion:   Dev-Anim (AF43A65D-7FD3-4947-9873-3E8ED9C1BB05): 2
+LogDevObjectVersion:   Dev-ReflectionCapture (6B266CEC-1EC7-4B8F-A30B-E4D90942FC07): 1
+LogDevObjectVersion:   Dev-Automation (0DF73D61-A23F-47EA-B727-89E90C41499A): 1
+LogDevObjectVersion:   FortniteMain (601D1886-AC64-4F84-AA16-D3DE0DEAC7D6): 31
+LogDevObjectVersion:   Dev-Enterprise (9DFFBCD6-494F-0158-E221-12823C92A888): 8
+LogDevObjectVersion:   Dev-Niagara (F2AED0AC-9AFE-416F-8664-AA7FFA26D6FC): 1
+LogDevObjectVersion:   Dev-Destruction (174F1F0B-B4C6-45A5-B13F-2EE8D0FB917D): 9
+LogDevObjectVersion:   Dev-Physics-Ext (35F94A83-E258-406C-A318-09F59610247C): 8
+LogDevObjectVersion:   Dev-CineCamera (B2E18506-4273-CFC2-A54E-F4BB758BBA07): 1
+LogInit: Presizing for max 25165824 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
+LogInit: Object subsystem initialized
+LogConfig: Setting CVar [[con.DebugEarlyDefault:1]]
+LogConfig: Setting CVar [[r.setres:1280x720]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[r.VSync:0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[r.RHICmdBypass:0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererSettings] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[r.GPUCrashDebugging:0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererOverrideSettings] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-13.47.22:026][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.StreamingSettings] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.MinBulkDataSizeForAsyncLoading:131072]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.AsyncLoadingThreadEnabled:0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.EventDrivenLoaderEnabled:1]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.WarnIfTimeLimitExceeded:0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMultiplier:1.5]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMinTime:0.005]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.UseBackgroundLevelStreaming:1]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.PriorityAsyncLoadingExtraTime:15.0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.LevelStreamingActorsUpdateTimeLimit:5.0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.PriorityLevelStreamingActorsUpdateExtraTime:5.0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsRegistrationGranularity:10]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.UnregisterComponentsTimeLimit:1.0]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsUnregistrationGranularity:5]]
+[2021.09.18-13.47.22:026][  0]LogConfig: Setting CVar [[s.FlushStreamingOnExit:1]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.GarbageCollectionSettings] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.MaxObjectsNotConsideredByGC:1]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.SizeOfPermanentObjectPool:0]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.FlushStreamingOnGC:0]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.NumRetriesBeforeForcingGC:10]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.AllowParallelGC:1]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.TimeBetweenPurgingPendingKillObjects:61.1]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.MaxObjectsInEditor:25165824]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.IncrementalBeginDestroyEnabled:1]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.CreateGCClusters:1]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.MinGCClusterSize:5]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.ActorClusteringEnabled:0]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.BlueprintClusteringEnabled:0]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Setting CVar [[gc.UseDisregardForGCOnDedicatedServers:0]]
+[2021.09.18-13.47.22:027][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.NetworkSettings] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-13.47.22:027][  0]LogConfig: Applying CVar settings from Section [/Script/UnrealEd.CookerSettings] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-13.47.22:035][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2021.09.18-13.47.22:035][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2021.09.18-13.47.22:036][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:1]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
+[2021.09.18-13.47.22:037][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
+[2021.09.18-13.47.22:037][  0]LogInit: Selected Device Profile: [Windows]
+[2021.09.18-13.47.22:037][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
+[2021.09.18-13.47.22:040][  0]LogHAL: Display: Platform has ~ 16 GB [16745943040 / 17179869184 / 16], which maps to Larger [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2021.09.18-13.47.22:040][  0]LogInit: Going up to parent DeviceProfile []
+[2021.09.18-13.47.22:040][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2021.09.18-13.47.22:040][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:1]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Applying CVar settings from Section [Startup] File [../../../Engine/Config/ConsoleVariables.ini]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[net.UseAdaptiveNetUpdateFrequency:0]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Setting CVar [[p.chaos.AllowCreatePhysxBodies:1]]
+[2021.09.18-13.47.22:041][  0]LogConfig: Applying CVar settings from Section [ConsoleVariables] File [C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-13.47.22:041][  0]LogInit: Computer: ZELNONMON-PRO-7
+[2021.09.18-13.47.22:041][  0]LogInit: User: zelno
+[2021.09.18-13.47.22:041][  0]LogInit: CPU Page size=4096, Cores=4
+[2021.09.18-13.47.22:041][  0]LogInit: High frequency timer resolution =10.000000 MHz
+[2021.09.18-13.47.22:042][  0]LogMemory: Memory total: Physical=15.6GB (16GB approx)
+[2021.09.18-13.47.22:042][  0]LogMemory: Platform Memory Stats for Windows
+[2021.09.18-13.47.22:042][  0]LogMemory: Process Physical Memory: 110.25 MB used, 110.25 MB peak
+[2021.09.18-13.47.22:042][  0]LogMemory: Process Virtual Memory: 100.84 MB used, 100.84 MB peak
+[2021.09.18-13.47.22:042][  0]LogMemory: Physical Memory: 7067.07 MB used,  8903.11 MB free, 15970.18 MB total
+[2021.09.18-13.47.22:042][  0]LogMemory: Virtual Memory: 5140.18 MB used,  134212584.00 MB free, 134217728.00 MB total
+[2021.09.18-13.47.22:046][  0]LogWindows: WindowsPlatformFeatures enabled
+[2021.09.18-13.47.22:075][  0]LogInit: Using OS detected language (en-GB).
+[2021.09.18-13.47.22:076][  0]LogInit: Using OS detected locale (en-AU).
+[2021.09.18-13.47.22:076][  0]LogTextLocalizationManager: No specific localization for 'en-GB' exists, so the 'en' localization will be used.
+[2021.09.18-13.47.22:237][  0]LogInit: Setting process to per monitor DPI aware
+[2021.09.18-13.47.22:266][  0]LogSlate: New Slate User Created.  User Index 0, Is Virtual User: 0
+[2021.09.18-13.47.22:266][  0]LogSlate: Slate User Registered.  User Index 0, Is Virtual User: 0
+[2021.09.18-13.47.22:407][  0]LogHMD: Failed to initialize OpenVR with code 110
+[2021.09.18-13.47.22:407][  0]LogD3D11RHI: D3D11 min allowed feature level: 11_0
+[2021.09.18-13.47.22:407][  0]LogD3D11RHI: D3D11 max allowed feature level: 11_0
+[2021.09.18-13.47.22:407][  0]LogD3D11RHI: D3D11 adapters:
+[2021.09.18-13.47.22:613][  0]LogD3D11RHI:    0. 'Intel(R) Iris(R) Plus Graphics' (Feature Level 11_0)
+[2021.09.18-13.47.22:613][  0]LogD3D11RHI:       128/0/7985 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:1, VendorId:0x8086
+[2021.09.18-13.47.22:616][  0]LogD3D11RHI:    1. 'Microsoft Basic Render Driver' (Feature Level 11_0)
+[2021.09.18-13.47.22:616][  0]LogD3D11RHI:       0/0/7985 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
+[2021.09.18-13.47.22:616][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2021.09.18-13.47.22:621][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2021.09.18-13.47.22:629][  0]LogD3D11RHI:     GPU DeviceId: 0x8a52 (for the marketing name, search the web for "GPU Device Id")
+[2021.09.18-13.47.22:629][  0]LogWindows: EnumDisplayDevices:
+[2021.09.18-13.47.22:630][  0]LogWindows:    0. 'Intel(R) Iris(R) Plus Graphics' (P:1 D:1)
+[2021.09.18-13.47.22:630][  0]LogWindows:    1. 'Intel(R) Iris(R) Plus Graphics' (P:0 D:0)
+[2021.09.18-13.47.22:630][  0]LogWindows:    2. 'Intel(R) Iris(R) Plus Graphics' (P:0 D:0)
+[2021.09.18-13.47.22:630][  0]LogWindows: DebugString: FoundDriverCount:3 
+[2021.09.18-13.47.22:630][  0]LogD3D11RHI:     Adapter Name: Intel(R) Iris(R) Plus Graphics
+[2021.09.18-13.47.22:630][  0]LogD3D11RHI:   Driver Version: 27.20.100.8681 (internal:27.20.100.8681, unified:27.20.100.8681)
+[2021.09.18-13.47.22:630][  0]LogD3D11RHI:      Driver Date: 9-5-2020
+[2021.09.18-13.47.22:630][  0]LogRHI: Texture pool is 1523 MB (70% of 2176 MB)
+[2021.09.18-13.47.22:934][  0]LogD3D11RHI: RHI does not have support for 64 bit atomics
+[2021.09.18-13.47.22:934][  0]LogD3D11RHI: [IntelMetricsDiscovery] Started
+[2021.09.18-13.47.22:934][  0]LogD3D11RHI: Async texture creation enabled
+[2021.09.18-13.47.22:940][  0]LogD3D11RHI: GPU Timing Frequency: 19.200000 (Debug: 2 0)
+[2021.09.18-13.47.23:277][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AllDesktop'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTC'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ATC'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXT'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1a'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_PVRTC'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AndroidClient'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTCClient'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ATCClient'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXTClient'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1Client'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1aClient'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2Client'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_PVRTCClient'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_Multi'
+[2021.09.18-13.47.23:313][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_MultiClient'
+[2021.09.18-13.47.23:335][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOSClient'
+[2021.09.18-13.47.23:335][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOS'
+[2021.09.18-13.47.23:344][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxNoEditor'
+[2021.09.18-13.47.23:352][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxClient'
+[2021.09.18-13.47.23:363][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxServer'
+[2021.09.18-13.47.23:372][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64NoEditor'
+[2021.09.18-13.47.23:381][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Client'
+[2021.09.18-13.47.23:391][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Server'
+[2021.09.18-13.47.23:415][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Lumin'
+[2021.09.18-13.47.23:415][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LuminClient'
+[2021.09.18-13.47.23:432][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOSClient'
+[2021.09.18-13.47.23:432][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOS'
+[2021.09.18-13.47.23:441][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsNoEditor'
+[2021.09.18-13.47.23:453][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2021.09.18-13.47.23:460][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2021.09.18-13.47.23:470][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2021.09.18-13.47.23:470][  0]LogTargetPlatformManager: Display: Building Assets For Windows
+[2021.09.18-13.47.23:473][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2021.09.18-13.47.23:523][  0]LogShaderCompilers: Guid format shader working directory is -64 characters bigger than the processId version (../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Intermediate/Shaders/WorkingDirectory/9764/).
+[2021.09.18-13.47.23:524][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/zelno/AppData/Local/Temp/UnrealShaderWorkingDir/ACAD73824E9180509710D49DC343B249/'.
+[2021.09.18-13.47.23:526][  0]LogXGEController: Cleaning working directory: C:/Users/zelno/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2021.09.18-13.47.23:526][  0]LogXGEController: Cannot use XGE Controller as Incredibuild is not installed on this machine.
+[2021.09.18-13.47.23:526][  0]LogShaderCompilers: Cannot use XGE Shader Compiler as Incredibuild is not installed on this machine.
+[2021.09.18-13.47.23:526][  0]LogShaderCompilers: Display: Using Local Shader Compiler.
+[2021.09.18-13.47.24:296][  0]LogDerivedDataCache: Display: Max Cache Size: 512 MB
+[2021.09.18-13.47.24:349][  0]LogDerivedDataCache: Loaded boot cache 0.05s 78MB C:/Users/zelno/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc.
+[2021.09.18-13.47.24:349][  0]LogDerivedDataCache: Display: Loaded Boot cache: C:/Users/zelno/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc
+[2021.09.18-13.47.24:349][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file ../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+[2021.09.18-13.47.24:349][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
+[2021.09.18-13.47.24:350][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file ../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2021.09.18-13.47.24:350][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
+[2021.09.18-13.47.24:363][  0]LogDerivedDataCache: Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
+[2021.09.18-13.47.24:363][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  EnterprisePak pak cache file ../../../Enterprise/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2021.09.18-13.47.24:363][  0]LogDerivedDataCache: Unable to find inner node EnterprisePak for hierarchical cache Hierarchy.
+[2021.09.18-13.47.24:365][  0]LogDerivedDataCache: Using Local data cache path C:/Users/zelno/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+[2021.09.18-13.47.24:365][  0]LogDerivedDataCache: Shared data cache path not found in *engine.ini, will not use an Shared cache.
+[2021.09.18-13.47.24:365][  0]LogDerivedDataCache: Unable to find inner node Shared for hierarchical cache Hierarchy.
+[2021.09.18-13.47.24:390][  0]LogMaterial: Verifying Global Shaders for PCD3D_SM5
+[2021.09.18-13.47.24:392][  0]LogSlate: Using FreeType 2.10.0
+[2021.09.18-13.47.24:392][  0]LogSlate: SlateFontServices - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2021.09.18-13.47.24:456][  0]LogAssetRegistry: FAssetRegistry took 0.0035 seconds to start up
+[2021.09.18-13.47.24:747][  0]LogInit: Selected Device Profile: [Windows]
+[2021.09.18-13.47.24:927][  0]LogMeshReduction: Using QuadricMeshReduction for automatic static mesh reduction
+[2021.09.18-13.47.24:927][  0]LogMeshReduction: Using SimplygonMeshReduction for automatic skeletal mesh reduction
+[2021.09.18-13.47.24:927][  0]LogMeshReduction: Using ProxyLODMeshReduction for automatic mesh merging
+[2021.09.18-13.47.24:927][  0]LogMeshReduction: No distributed automatic mesh merging module available
+[2021.09.18-13.47.24:927][  0]LogMeshMerging: No distributed automatic mesh merging module available
+[2021.09.18-13.47.24:941][  0]LogNetVersion: TwistedGrounds 1.0.0, NetCL: 10570792, EngineNetVer: 13, GameNetVer: 0 (Checksum: 1880475918)
+[2021.09.18-13.47.26:055][  0]LogPackageLocalizationCache: Processed 10 localized package path(s) for 1 prioritized culture(s) in 0.041402 seconds
+[2021.09.18-13.47.26:067][  0]LogUObjectArray: 46750 objects as part of root set at end of initial load.
+[2021.09.18-13.47.26:067][  0]LogUObjectAllocator: 8137160 out of 0 bytes used by permanent object pool.
+[2021.09.18-13.47.26:067][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2021.09.18-13.47.26:548][  0]LogTcpMessaging: Initializing TcpMessaging bridge
+[2021.09.18-13.47.26:551][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
+[2021.09.18-13.47.26:620][  0]SourceControl: Source control is disabled
+[2021.09.18-13.47.26:620][  0]SourceControl: Source control is disabled
+[2021.09.18-13.47.26:623][  0]SourceControl: Source control is disabled
+[2021.09.18-13.47.26:626][  0]SourceControl: Source control is disabled
+[2021.09.18-13.47.26:629][  0]SourceControl: Source control is disabled
+[2021.09.18-13.47.26:745][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2021.09.18-13.47.26:757][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2021.09.18-13.47.26:758][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2021.09.18-13.47.26:845][  0]LogOcInput: OculusInput pre-init called
+[2021.09.18-13.47.26:854][  0]LogWindows: Failed to load 'OVRPlugin.dll' (GetLastError=126)
+[2021.09.18-13.47.26:854][  0]LogWindows: File 'OVRPlugin.dll' does not exist
+[2021.09.18-13.47.26:927][  0]LogEngine: Initializing Engine...
+[2021.09.18-13.47.26:928][  0]LogHMD: Failed to initialize OpenVR with code 110
+[2021.09.18-13.47.26:929][  0]LogStats: UGameplayTagsManager::InitializeManager -  0.000 s
+[2021.09.18-13.47.27:261][  0]LogInit: Initializing FReadOnlyCVARCache
+[2021.09.18-13.47.27:278][  0]LogAIModule: Creating AISystem for world Untitled
+[2021.09.18-13.47.27:293][  0]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.47.27:293][  0]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.47.27:293][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.47.27:293][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.47.27:293][  0]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.47.27:293][  0]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.47.27:293][  0]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.47.27:293][  0]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.47.27:293][  0]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.47.27:293][  0]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.47.27:304][  0]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.47.27:333][  0]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.47.27:339][  0]LogInit: FAudioDevice initialized.
+[2021.09.18-13.47.27:340][  0]LogNetVersion: Set ProjectVersion to 1.0.0.0. Version Checksum will be recalculated on next use.
+[2021.09.18-13.47.27:408][  0]LogDerivedDataCache: Saved boot cache 0.07s 78MB C:/Users/zelno/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc.
+[2021.09.18-13.47.27:409][  0]LogInit: Texture streaming: Enabled
+[2021.09.18-13.47.27:419][  0]LogEngineSessionManager: EngineSessionManager initialized
+[2021.09.18-13.47.27:419][  0]LogEditorSessionSummary: Verbose: Initializing EditorSessionSummaryWriter for editor session tracking
+[2021.09.18-13.47.27:423][  0]LogEditorSessionSummary: EditorSessionSummaryWriter initialized
+[2021.09.18-13.47.27:477][  0]LogInit: Transaction tracking system initialized
+[2021.09.18-13.47.27:489][  0]BlueprintLog: New page: Editor Load
+[2021.09.18-13.47.27:529][  0]LocalizationService: Localization service is disabled
+[2021.09.18-13.47.27:571][  0]LogLinker: Warning: Failed to load '/Game/ThirdPersonBP/ThirdPersonOverview': Can't find file.
+[2021.09.18-13.47.27:571][  0]LogLinker: Warning: Failed to load '/Game/ThirdPersonBP/ThirdPersonOverview': Can't find file.
+[2021.09.18-13.47.27:571][  0]LogUObjectGlobals: Warning: Failed to find object 'Class /Game/ThirdPersonBP/ThirdPersonOverview.ThirdPersonOverview_C'
+[2021.09.18-13.47.27:804][  0]LogFileCache: Scanning file cache for directory 'C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/' took 0.01s
+[2021.09.18-13.47.27:804][  0]LogCook: Display: Max memory allowance for cook 16384mb min free memory 0mb
+[2021.09.18-13.47.27:804][  0]LogCook: Display: Mobile HDR setting 1
+[2021.09.18-13.47.28:544][  0]SourceControl: Source control is disabled
+[2021.09.18-13.47.28:544][  0]LogEditorServer: Warning: Can't find file '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/FirstPersonCPP/Maps/FirstPersonExampleMap.umap'
+[2021.09.18-13.47.28:544][  0]Cmd: MAP CHECKDEP NOCLEARLOG
+[2021.09.18-13.47.28:545][  0]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.176ms to complete.
+[2021.09.18-13.47.28:545][  0]LogFileHelpers: Loading map 'FirstPersonExampleMap' took 0.001
+[2021.09.18-13.47.28:690][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.47.28:696][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.47.28:703][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.47.28:710][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.47.28:720][  0]LogCollectionManager: Loaded 0 collections in 0.001715 seconds
+[2021.09.18-13.47.28:734][  0]LogFileCache: Scanning file cache for directory 'C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Collections/' took 0.00s
+[2021.09.18-13.47.28:734][  0]LogFileCache: Scanning file cache for directory 'C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/Developers/zelno/Collections/' took 0.00s
+[2021.09.18-13.47.28:734][  0]LogFileCache: Scanning file cache for directory 'C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/Collections/' took 0.00s
+[2021.09.18-13.47.28:734][  0]LogContentBrowser: Native class hierarchy populated in 0.0077 seconds. Added 3025 classes and 722 folders.
+[2021.09.18-13.47.28:739][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0008 seconds. Added 0 classes and 0 folders.
+[2021.09.18-13.47.28:798][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0003 seconds. Added 0 classes and 0 folders.
+[2021.09.18-13.47.29:607][  0]LogSlate: Took 0.000223 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2021.09.18-13.47.29:611][  0]LogSlate: Took 0.000230 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Bold.ttf' (160K)
+[2021.09.18-13.47.29:613][  0]LogSlate: Took 0.000268 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
+[2021.09.18-13.47.29:676][  0]LogRenderer: Reallocating scene render targets to support 728x504 Format 10 NumSamples 1 (Frame:1).
+[2021.09.18-13.47.29:740][  0]LogSlate: Took 0.000185 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2021.09.18-13.47.29:782][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0004 seconds. Added 0 classes and 0 folders.
+[2021.09.18-13.47.29:782][  0]LogLoad: (Engine Initialization) Total time: 9.61 seconds
+[2021.09.18-13.47.29:782][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.00 seconds
+[2021.09.18-13.47.29:943][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2021.09.18-13.47.29:986][  1]LogAssetRegistry: Asset discovery search completed in 5.5320 seconds
+[2021.09.18-13.47.29:990][  1]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000042 seconds (updated 0 objects)
+[2021.09.18-13.47.41:731][646]LogSlate: Took 0.000170 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2021.09.18-13.47.41:916][646]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.47.41:923][646]LogAssetEditorSubsystem: Opening Asset editor for World /Game/Maps/Level_1.Level_1
+[2021.09.18-13.47.41:952][646]LogUObjectHash: Compacting FUObjectHashTables data took   2.61ms
+[2021.09.18-13.47.41:954][646]Cmd: MAP LOAD FILE="../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/Maps/Level_1.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2021.09.18-13.47.41:954][646]LightingResults: New page: Lighting Build
+[2021.09.18-13.47.41:956][646]LogContentBrowser: Native class hierarchy updated for 'StatsViewer' in 0.0004 seconds. Added 5 classes and 0 folders.
+[2021.09.18-13.47.41:957][646]LoadErrors: New page: Loading map: Level_1.umap
+[2021.09.18-13.47.41:957][646]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.47.41:957][646]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.47.41:958][646]MapCheck: New page: Map Check
+[2021.09.18-13.47.41:958][646]LightingResults: New page: Lighting Build
+[2021.09.18-13.47.41:983][646]LogUObjectHash: Compacting FUObjectHashTables data took   1.39ms
+[2021.09.18-13.47.41:998][646]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2021.09.18-13.47.42:028][646]LogUObjectHash: Compacting FUObjectHashTables data took   1.23ms
+[2021.09.18-13.47.42:046][646]Cmd: MAP CHECKDEP NOCLEARLOG
+[2021.09.18-13.47.42:046][646]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.124ms to complete.
+[2021.09.18-13.47.42:046][646]LogFileHelpers: Loading map 'Level_1' took 0.093
+[2021.09.18-13.47.44:826][799]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.47.44:836][799]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.47.44:836][799]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:47:44 am)
+[2021.09.18-13.47.44:838][799]LogOnline: OSS: Creating online subsystem instance for: NULL
+[2021.09.18-13.47.44:839][799]LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for module [NULL]
+[2021.09.18-13.47.44:839][799]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.47.44:842][799]LogPlayLevel: PIE: StaticDuplicateObject took: (0.001988s)
+[2021.09.18-13.47.44:842][799]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.47.44:842][799]LogPlayLevel: PIE: World Init took: (0.000773s)
+[2021.09.18-13.47.44:842][799]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.003054s)
+[2021.09.18-13.47.44:865][799]LogUObjectHash: Compacting FUObjectHashTables data took   1.02ms
+[2021.09.18-13.47.44:866][799]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.47.44:866][799]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.47.44:866][799]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.47.44:866][799]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.47.44:866][799]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.47.44:866][799]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.47.44:866][799]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.47.44:866][799]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.47.44:866][799]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.47.44:866][799]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.47.44:870][799]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.47.44:885][799]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.47.44:887][799]LogInit: FAudioDevice initialized.
+[2021.09.18-13.47.44:896][799]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.47.44:898][799]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.47.44
+[2021.09.18-13.47.44:899][799]LogWorld: Bringing up level for play took: 0.001451
+[2021.09.18-13.47.44:899][799]LogOnline: OSS: Creating online subsystem instance for: :Context_2
+[2021.09.18-13.47.44:908][799]LogContentBrowser: Native class hierarchy updated for 'MovieSceneCapture' in 0.0004 seconds. Added 20 classes and 0 folders.
+[2021.09.18-13.47.44:910][799]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 -0.716
+[2021.09.18-13.48.10:831][348]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.10:831][348]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.10:831][348]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.48.10:831][348]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.48.10:831][348]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.10:831][348]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.48.10:831][348]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.48.10:844][348]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.48.10:846][348]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.48.10:872][348]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.10:879][348]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.48.10:882][348]LogUObjectHash: Compacting FUObjectHashTables data took   1.33ms
+[2021.09.18-13.48.10:940][350]LogPlayLevel: Display: Destroying online subsystem :Context_2
+[2021.09.18-13.48.27:338][321]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.48.27:348][321]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.48.27:348][321]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:48:27 am)
+[2021.09.18-13.48.27:348][321]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.48.27:351][321]LogPlayLevel: PIE: StaticDuplicateObject took: (0.003949s)
+[2021.09.18-13.48.27:352][321]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.48.27:354][321]LogPlayLevel: PIE: World Init took: (0.001149s)
+[2021.09.18-13.48.27:354][321]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.005249s)
+[2021.09.18-13.48.27:375][321]LogUObjectHash: Compacting FUObjectHashTables data took   1.15ms
+[2021.09.18-13.48.27:376][321]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.48.27:376][321]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.48.27:376][321]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.48.27:376][321]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.48.27:376][321]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.48.27:376][321]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.48.27:376][321]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.48.27:376][321]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.48.27:377][321]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.48.27:377][321]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.48.27:379][321]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.48.27:394][321]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.48.27:395][321]LogInit: FAudioDevice initialized.
+[2021.09.18-13.48.27:406][321]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.48.27:408][321]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.48.27
+[2021.09.18-13.48.27:408][321]LogWorld: Bringing up level for play took: 0.000734
+[2021.09.18-13.48.27:408][321]LogOnline: OSS: Creating online subsystem instance for: :Context_3
+[2021.09.18-13.48.27:411][321]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 -0.215
+[2021.09.18-13.48.31:472][559]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.31:491][559]LogAudioMixer: Display: Flush succeeded in the source manager command queue (1).
+[2021.09.18-13.48.31:511][559]LogAudioMixer: Display: Flush succeeded the source manager command queue (2).
+[2021.09.18-13.48.31:512][559]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.48.31:512][559]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.48.31:512][559]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.31:512][559]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.48.31:512][559]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.48.31:522][559]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.48.31:525][559]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.48.31:549][559]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.31:557][559]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.48.31:560][559]LogUObjectHash: Compacting FUObjectHashTables data took   1.46ms
+[2021.09.18-13.48.31:578][560]LogPlayLevel: Display: Destroying online subsystem :Context_3
+[2021.09.18-13.48.32:692][624]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.48.32:701][624]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.48.32:702][624]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:48:32 am)
+[2021.09.18-13.48.32:702][624]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.48.32:704][624]LogPlayLevel: PIE: StaticDuplicateObject took: (0.002576s)
+[2021.09.18-13.48.32:705][624]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.48.32:705][624]LogPlayLevel: PIE: World Init took: (0.000870s)
+[2021.09.18-13.48.32:705][624]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.003599s)
+[2021.09.18-13.48.32:730][624]LogUObjectHash: Compacting FUObjectHashTables data took   1.05ms
+[2021.09.18-13.48.32:731][624]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.48.32:731][624]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.48.32:731][624]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.48.32:731][624]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.48.32:731][624]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.48.32:731][624]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.48.32:731][624]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.48.32:731][624]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.48.32:731][624]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.48.32:731][624]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.48.32:734][624]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.48.32:748][624]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.48.32:750][624]LogInit: FAudioDevice initialized.
+[2021.09.18-13.48.32:757][624]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.48.32:758][624]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.48.32
+[2021.09.18-13.48.32:758][624]LogWorld: Bringing up level for play took: 0.000687
+[2021.09.18-13.48.32:759][624]LogOnline: OSS: Creating online subsystem instance for: :Context_4
+[2021.09.18-13.48.32:761][624]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 -0.865
+[2021.09.18-13.48.45:551][383]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.45:572][383]LogAudioMixer: Display: Flush succeeded in the source manager command queue (1).
+[2021.09.18-13.48.45:591][383]LogAudioMixer: Display: Flush succeeded the source manager command queue (2).
+[2021.09.18-13.48.45:592][383]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.48.45:592][383]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.48.45:592][383]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.45:592][383]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.48.45:592][383]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.48.45:602][383]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.48.45:605][383]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.48.45:634][383]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.45:639][383]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.48.45:641][383]LogUObjectHash: Compacting FUObjectHashTables data took   1.11ms
+[2021.09.18-13.48.45:659][384]LogPlayLevel: Display: Destroying online subsystem :Context_4
+[2021.09.18-13.48.47:268][477]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.48.47:277][477]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.48.47:277][477]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:48:47 am)
+[2021.09.18-13.48.47:277][477]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.48.47:279][477]LogPlayLevel: PIE: StaticDuplicateObject took: (0.001905s)
+[2021.09.18-13.48.47:280][477]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.48.47:280][477]LogPlayLevel: PIE: World Init took: (0.001185s)
+[2021.09.18-13.48.47:280][477]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.003246s)
+[2021.09.18-13.48.47:303][477]LogUObjectHash: Compacting FUObjectHashTables data took   1.06ms
+[2021.09.18-13.48.47:304][477]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.48.47:304][477]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.48.47:304][477]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.48.47:304][477]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.48.47:304][477]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.48.47:304][477]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.48.47:304][477]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.48.47:304][477]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.48.47:304][477]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.48.47:304][477]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.48.47:307][477]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.48.47:324][477]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.48.47:325][477]LogInit: FAudioDevice initialized.
+[2021.09.18-13.48.47:330][477]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.48.47:332][477]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.48.47
+[2021.09.18-13.48.47:332][477]LogWorld: Bringing up level for play took: 0.000933
+[2021.09.18-13.48.47:332][477]LogOnline: OSS: Creating online subsystem instance for: :Context_5
+[2021.09.18-13.48.47:335][477]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 -0.291
+[2021.09.18-13.48.50:753][673]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.50:753][673]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.50:753][673]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.48.50:753][673]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.48.50:753][673]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.50:753][673]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.48.50:753][673]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.48.50:764][673]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.48.50:767][673]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.48.50:791][673]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.48.50:798][673]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.48.50:800][673]LogUObjectHash: Compacting FUObjectHashTables data took   1.76ms
+[2021.09.18-13.48.50:858][675]LogPlayLevel: Display: Destroying online subsystem :Context_5
+[2021.09.18-13.49.01:707][172]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.49.01:727][172]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.49.01:727][172]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:49:01 am)
+[2021.09.18-13.49.01:727][172]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.49.01:731][172]LogPlayLevel: PIE: StaticDuplicateObject took: (0.003691s)
+[2021.09.18-13.49.01:733][172]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.49.01:733][172]LogPlayLevel: PIE: World Init took: (0.001976s)
+[2021.09.18-13.49.01:733][172]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.006057s)
+[2021.09.18-13.49.01:766][172]LogUObjectHash: Compacting FUObjectHashTables data took   1.56ms
+[2021.09.18-13.49.01:768][172]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.49.01:768][172]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.49.01:768][172]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.49.01:768][172]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.49.01:768][172]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.49.01:768][172]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.49.01:768][172]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.49.01:768][172]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.49.01:768][172]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.49.01:768][172]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.49.01:771][172]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.49.01:787][172]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.49.01:788][172]LogInit: FAudioDevice initialized.
+[2021.09.18-13.49.01:799][172]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.49.01:800][172]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.49.01
+[2021.09.18-13.49.01:800][172]LogWorld: Bringing up level for play took: 0.000895
+[2021.09.18-13.49.01:800][172]LogOnline: OSS: Creating online subsystem instance for: :Context_6
+[2021.09.18-13.49.01:803][172]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 0.178
+[2021.09.18-13.49.04:903][349]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.04:903][349]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.04:903][349]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.49.04:903][349]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.49.04:903][349]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.04:903][349]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.49.04:903][349]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.49.04:915][349]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.49.04:917][349]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.49.04:947][349]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.04:951][349]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.49.04:954][349]LogUObjectHash: Compacting FUObjectHashTables data took   1.43ms
+[2021.09.18-13.49.05:014][351]LogPlayLevel: Display: Destroying online subsystem :Context_6
+[2021.09.18-13.49.12:154][777]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.49.12:165][777]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.49.12:165][777]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:49:12 am)
+[2021.09.18-13.49.12:166][777]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.49.12:168][777]LogPlayLevel: PIE: StaticDuplicateObject took: (0.001962s)
+[2021.09.18-13.49.12:168][777]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.49.12:169][777]LogPlayLevel: PIE: World Init took: (0.000887s)
+[2021.09.18-13.49.12:169][777]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.002979s)
+[2021.09.18-13.49.12:196][777]LogUObjectHash: Compacting FUObjectHashTables data took   1.25ms
+[2021.09.18-13.49.12:196][777]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.49.12:196][777]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.49.12:196][777]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.49.12:196][777]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.49.12:196][777]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.49.12:196][777]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.49.12:196][777]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.49.12:196][777]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.49.12:197][777]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.49.12:197][777]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.49.12:200][777]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.49.12:201][777]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.49.12:201][777]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.49.12:201][777]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.49.12:201][777]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.49.12:201][777]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.49.12:201][777]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.49.12:201][777]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.49.12:201][777]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.49.12:214][777]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.49.12:216][777]LogInit: FAudioDevice initialized.
+[2021.09.18-13.49.12:223][777]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.49.12:225][777]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.49.12
+[2021.09.18-13.49.12:225][777]LogWorld: Bringing up level for play took: 0.000818
+[2021.09.18-13.49.12:225][777]LogOnline: OSS: Creating online subsystem instance for: :Context_7
+[2021.09.18-13.49.12:228][777]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 0.602
+[2021.09.18-13.49.13:519][844]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.13:519][844]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.13:519][844]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.49.13:519][844]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.49.13:519][844]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.13:519][844]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.49.13:519][844]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.49.13:530][844]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.49.13:533][844]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.49.13:561][844]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.13:565][844]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.49.13:568][844]LogUObjectHash: Compacting FUObjectHashTables data took   1.26ms
+[2021.09.18-13.49.13:620][847]LogPlayLevel: Display: Destroying online subsystem :Context_7
+[2021.09.18-13.49.20:636][211]LogEditorViewport: Clicking on Actor (LMB): BP_Sky_Sphere_C (BP_Sky_Sphere)
+[2021.09.18-13.49.44:820][429]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.49.44:833][429]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.49.44:834][429]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:49:44 am)
+[2021.09.18-13.49.44:834][429]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.49.44:836][429]LogPlayLevel: PIE: StaticDuplicateObject took: (0.001825s)
+[2021.09.18-13.49.44:836][429]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.49.44:837][429]LogPlayLevel: PIE: World Init took: (0.000996s)
+[2021.09.18-13.49.44:837][429]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.002962s)
+[2021.09.18-13.49.44:867][429]LogUObjectHash: Compacting FUObjectHashTables data took   1.49ms
+[2021.09.18-13.49.44:867][429]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.49.44:867][429]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.49.44:867][429]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.49.44:867][429]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.49.44:867][429]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.49.44:867][429]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.49.44:867][429]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.49.44:867][429]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.49.44:868][429]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.49.44:868][429]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.49.44:870][429]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.49.44:885][429]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.49.44:886][429]LogInit: FAudioDevice initialized.
+[2021.09.18-13.49.44:897][429]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.49.44:898][429]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.49.44
+[2021.09.18-13.49.44:898][429]LogWorld: Bringing up level for play took: 0.000823
+[2021.09.18-13.49.44:898][429]LogOnline: OSS: Creating online subsystem instance for: :Context_8
+[2021.09.18-13.49.44:901][429]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 -0.725
+[2021.09.18-13.49.52:534][880]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.52:534][880]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.52:534][880]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.49.52:534][880]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.49.52:534][880]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.52:534][880]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.49.52:534][880]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.49.52:544][880]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.49.52:548][880]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.49.52:575][880]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.49.52:578][880]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.49.52:582][880]LogUObjectHash: Compacting FUObjectHashTables data took   2.16ms
+[2021.09.18-13.49.52:642][882]LogPlayLevel: Display: Destroying online subsystem :Context_8
+[2021.09.18-13.50.14:598][137]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.50.14:613][137]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.50.14:613][137]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:50:14 am)
+[2021.09.18-13.50.14:613][137]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.50.14:615][137]LogPlayLevel: PIE: StaticDuplicateObject took: (0.002118s)
+[2021.09.18-13.50.14:616][137]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.50.14:616][137]LogPlayLevel: PIE: World Init took: (0.000903s)
+[2021.09.18-13.50.14:616][137]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.003139s)
+[2021.09.18-13.50.14:645][137]LogUObjectHash: Compacting FUObjectHashTables data took   1.45ms
+[2021.09.18-13.50.14:647][137]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.50.14:647][137]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.50.14:647][137]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.50.14:647][137]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.50.14:647][137]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.50.14:647][137]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.50.14:647][137]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.50.14:647][137]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.50.14:648][137]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.50.14:648][137]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.50.14:650][137]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.50.14:664][137]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.50.14:666][137]LogInit: FAudioDevice initialized.
+[2021.09.18-13.50.14:672][137]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.50.14:674][137]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.50.14
+[2021.09.18-13.50.14:674][137]LogWorld: Bringing up level for play took: 0.000966
+[2021.09.18-13.50.14:674][137]LogOnline: OSS: Creating online subsystem instance for: :Context_9
+[2021.09.18-13.50.14:684][137]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 1.058
+[2021.09.18-13.52.40:746][886]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.52.40:746][886]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.52.40:746][886]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.52.40:746][886]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.52.40:746][886]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.52.40:747][886]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.52.40:747][886]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.52.40:759][886]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.52.40:761][886]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.52.40:787][886]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.52.40:798][886]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.52.40:800][886]LogUObjectHash: Compacting FUObjectHashTables data took   1.48ms
+[2021.09.18-13.52.40:860][888]LogPlayLevel: Display: Destroying online subsystem :Context_9
+[2021.09.18-13.52.58:260][778]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.52.58:279][778]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.52.58:279][778]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:52:58 am)
+[2021.09.18-13.52.58:279][778]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.52.58:282][778]LogPlayLevel: PIE: StaticDuplicateObject took: (0.002165s)
+[2021.09.18-13.52.58:283][778]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.52.58:283][778]LogPlayLevel: PIE: World Init took: (0.001331s)
+[2021.09.18-13.52.58:283][778]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.003675s)
+[2021.09.18-13.52.58:319][778]LogUObjectHash: Compacting FUObjectHashTables data took   1.56ms
+[2021.09.18-13.52.58:321][778]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.52.58:321][778]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.52.58:321][778]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.52.58:321][778]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.52.58:321][778]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.52.58:321][778]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.52.58:321][778]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.52.58:321][778]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.52.58:322][778]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.52.58:322][778]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.52.58:325][778]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.52.58:343][778]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.52.58:345][778]LogInit: FAudioDevice initialized.
+[2021.09.18-13.52.58:355][778]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.52.58:357][778]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.52.58
+[2021.09.18-13.52.58:357][778]LogWorld: Bringing up level for play took: 0.000929
+[2021.09.18-13.52.58:358][778]LogOnline: OSS: Creating online subsystem instance for: :Context_10
+[2021.09.18-13.52.58:370][778]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 0.744
+[2021.09.18-13.53.03:011][ 49]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.53.03:011][ 49]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.53.03:012][ 49]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.53.03:012][ 49]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.53.03:012][ 49]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.53.03:012][ 49]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.53.03:012][ 49]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.53.03:026][ 49]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.53.03:029][ 49]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.53.03:065][ 49]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.53.03:069][ 49]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.53.03:072][ 49]LogUObjectHash: Compacting FUObjectHashTables data took   1.74ms
+[2021.09.18-13.53.03:138][ 51]LogPlayLevel: Display: Destroying online subsystem :Context_10
+[2021.09.18-13.53.04:061][106]Cmd: TRANSACTION UNDO
+[2021.09.18-13.53.04:061][106]LogEditorTransaction: Undo Edit Grid Size
+[2021.09.18-13.53.19:577][945]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.53.19:593][945]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.53.19:594][945]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:53:19 am)
+[2021.09.18-13.53.19:594][945]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.53.19:596][945]LogPlayLevel: PIE: StaticDuplicateObject took: (0.002079s)
+[2021.09.18-13.53.19:597][945]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.53.19:597][945]LogPlayLevel: PIE: World Init took: (0.001160s)
+[2021.09.18-13.53.19:597][945]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.003435s)
+[2021.09.18-13.53.19:632][945]LogUObjectHash: Compacting FUObjectHashTables data took   1.98ms
+[2021.09.18-13.53.19:634][945]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.53.19:634][945]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.53.19:634][945]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.53.19:634][945]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.53.19:634][945]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.53.19:634][945]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.53.19:634][945]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.53.19:634][945]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.53.19:634][945]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.53.19:634][945]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.53.19:637][945]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.53.19:658][945]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.53.19:659][945]LogInit: FAudioDevice initialized.
+[2021.09.18-13.53.19:666][945]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.53.19:667][945]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.53.19
+[2021.09.18-13.53.19:668][945]LogWorld: Bringing up level for play took: 0.001000
+[2021.09.18-13.53.19:668][945]LogOnline: OSS: Creating online subsystem instance for: :Context_11
+[2021.09.18-13.53.19:680][945]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 0.054
+[2021.09.18-13.53.53:548][939]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.53.53:548][939]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.53.53:548][939]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.53.53:548][939]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.53.53:548][939]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.53.53:548][939]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.53.53:549][939]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.53.53:562][939]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.53.53:564][939]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.53.53:594][939]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.53.53:597][939]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.53.53:599][939]LogUObjectHash: Compacting FUObjectHashTables data took   1.41ms
+[2021.09.18-13.53.53:648][942]LogPlayLevel: Display: Destroying online subsystem :Context_11
+[2021.09.18-13.54.01:935][411]Cmd: DUPLICATE
+[2021.09.18-13.54.01:937][411]Cmd: ACTOR DUPLICATE
+[2021.09.18-13.54.01:944][411]LogActor: Warning: PGRoom /Game/Maps/Level_1.Level_1:PersistentLevel.Ceiling_0 has natively added scene component(s), but none of them were set as the actor's RootComponent - picking one arbitrarily
+[2021.09.18-13.54.13:772][ 79]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.54.13:799][ 79]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.54.13:799][ 79]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:54:13 am)
+[2021.09.18-13.54.13:799][ 79]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.54.13:802][ 79]LogPlayLevel: PIE: StaticDuplicateObject took: (0.002853s)
+[2021.09.18-13.54.13:803][ 79]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.54.13:804][ 79]LogPlayLevel: PIE: World Init took: (0.001494s)
+[2021.09.18-13.54.13:804][ 79]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.004529s)
+[2021.09.18-13.54.13:843][ 79]LogUObjectHash: Compacting FUObjectHashTables data took   1.59ms
+[2021.09.18-13.54.13:844][ 79]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.54.13:844][ 79]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.54.13:844][ 79]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.54.13:844][ 79]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.54.13:844][ 79]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.54.13:844][ 79]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.54.13:844][ 79]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.54.13:844][ 79]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.54.13:845][ 79]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.54.13:845][ 79]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.54.13:847][ 79]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.54.13:847][ 79]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.54.13:847][ 79]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.54.13:847][ 79]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.54.13:847][ 79]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.54.13:847][ 79]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.54.13:847][ 79]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.54.13:848][ 79]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.54.13:848][ 79]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.54.13:866][ 79]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.54.13:868][ 79]LogInit: FAudioDevice initialized.
+[2021.09.18-13.54.13:877][ 79]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.54.13:879][ 79]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.54.13
+[2021.09.18-13.54.13:879][ 79]LogWorld: Bringing up level for play took: 0.000884
+[2021.09.18-13.54.13:879][ 79]LogOnline: OSS: Creating online subsystem instance for: :Context_12
+[2021.09.18-13.54.13:897][ 79]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 0.271
+[2021.09.18-13.54.27:726][890]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.54.27:726][890]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.54.27:726][890]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.54.27:726][890]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.54.27:726][890]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.54.27:726][890]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.54.27:726][890]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.54.27:739][890]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.54.27:743][890]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.54.27:781][890]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.54.27:788][890]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.54.27:790][890]LogUObjectHash: Compacting FUObjectHashTables data took   1.72ms
+[2021.09.18-13.54.27:859][892]LogPlayLevel: Display: Destroying online subsystem :Context_12
+[2021.09.18-13.54.30:092][ 19]Cmd: DELETE
+[2021.09.18-13.54.30:092][ 19]Cmd: ACTOR DELETE
+[2021.09.18-13.54.30:095][ 19]LogEditorActor: Deleted Actor: PGRoom
+[2021.09.18-13.54.30:135][ 19]LogUObjectHash: Compacting FUObjectHashTables data took   0.90ms
+[2021.09.18-13.54.30:137][ 19]LogEditorActor: Deleted 1 Actors (0.043 secs)
+[2021.09.18-13.55.40:945][201]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.55.40:964][201]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.55.40:964][201]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:55:40 am)
+[2021.09.18-13.55.40:965][201]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.55.40:968][201]LogPlayLevel: PIE: StaticDuplicateObject took: (0.003568s)
+[2021.09.18-13.55.40:969][201]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.55.40:970][201]LogPlayLevel: PIE: World Init took: (0.001246s)
+[2021.09.18-13.55.40:970][201]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.005010s)
+[2021.09.18-13.55.41:005][201]LogUObjectHash: Compacting FUObjectHashTables data took   1.83ms
+[2021.09.18-13.55.41:007][201]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.55.41:007][201]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.55.41:007][201]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.55.41:007][201]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.55.41:007][201]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.55.41:007][201]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.55.41:007][201]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.55.41:007][201]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.55.41:008][201]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.55.41:008][201]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.55.41:011][201]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.55.41:028][201]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.55.41:030][201]LogInit: FAudioDevice initialized.
+[2021.09.18-13.55.41:038][201]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.55.41:040][201]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.55.41
+[2021.09.18-13.55.41:040][201]LogWorld: Bringing up level for play took: 0.001106
+[2021.09.18-13.55.41:040][201]LogOnline: OSS: Creating online subsystem instance for: :Context_13
+[2021.09.18-13.55.41:055][201]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 -0.57
+[2021.09.18-13.56.01:554][422]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.56.01:554][422]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.56.01:556][422]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.56.01:556][422]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.56.01:556][422]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.56.01:556][422]LogWorld: UWorld::CleanupWorld for Level_1, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-13.56.01:556][422]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.56.01:567][422]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.18-13.56.01:571][422]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-13.56.01:604][422]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.18-13.56.01:608][422]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-13.56.01:611][422]LogUObjectHash: Compacting FUObjectHashTables data took   1.65ms
+[2021.09.18-13.56.01:682][424]LogPlayLevel: Display: Destroying online subsystem :Context_13
+[2021.09.18-13.56.07:782][709]LogAssetEditorSubsystem: Opening Asset editor for Class /Script/TwistedGrounds.PlayerCharacter
+[2021.09.18-13.57.35:954][585]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-13.57.35:968][585]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-13.57.35:968][585]PIE: New page: PIE session: Level_1 (19 Sep 2021, 9:57:35 am)
+[2021.09.18-13.57.35:968][585]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_Level_1
+[2021.09.18-13.57.35:972][585]LogPlayLevel: PIE: StaticDuplicateObject took: (0.003176s)
+[2021.09.18-13.57.35:972][585]LogAIModule: Creating AISystem for world Level_1
+[2021.09.18-13.57.35:973][585]LogPlayLevel: PIE: World Init took: (0.001194s)
+[2021.09.18-13.57.35:973][585]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/Level_1.Level_1 to /Game/Maps/UEDPIE_0_Level_1.Level_1 (0.004942s)
+[2021.09.18-13.57.36:001][585]LogUObjectHash: Compacting FUObjectHashTables data took   1.14ms
+[2021.09.18-13.57.36:003][585]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-13.57.36:003][585]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-13.57.36:003][585]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-13.57.36:003][585]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-13.57.36:003][585]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-13.57.36:003][585]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-13.57.36:003][585]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-13.57.36:003][585]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-13.57.36:003][585]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-13.57.36:003][585]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: Channel Order:
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-13.57.36:006][585]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-13.57.36:023][585]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.18-13.57.36:026][585]LogInit: FAudioDevice initialized.
+[2021.09.18-13.57.36:037][585]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-13.57.36:038][585]LogWorld: Bringing World /Game/Maps/UEDPIE_0_Level_1.Level_1 up for play (max tick rate 60) at 2021.09.18-23.57.36
+[2021.09.18-13.57.36:039][585]LogWorld: Bringing up level for play took: 0.000986
+[2021.09.18-13.57.36:039][585]LogOnline: OSS: Creating online subsystem instance for: :Context_14
+[2021.09.18-13.57.36:049][585]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_Level_1 0.423
+[2021.09.18-13.57.43:349][952]LogWindows: Error: === Critical error: ===
+[2021.09.18-13.57.43:349][952]LogWindows: Error: 
+[2021.09.18-13.57.43:350][952]LogWindows: Error: Fatal error!
+[2021.09.18-13.57.43:350][952]LogWindows: Error: 
+[2021.09.18-13.57.43:350][952]LogWindows: Error: Unhandled Exception: EXCEPTION_ACCESS_VIOLATION reading address 0x000002a8
+[2021.09.18-13.57.43:350][952]LogWindows: Error: 
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb57c72670 UE4Editor-TwistedGrounds-0542.dll!UChallenge::ToggleSprint() [C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds\Challenge.cpp:10]
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c9d5376 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c9fe631 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c4e0043 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c4f1e3d UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c4ddfcb UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c4f0267 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6b797866 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c8d7223 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c8e5256 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6a979ff2 UE4Editor-Core.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6a97a393 UE4Editor-Core.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6a98aa68 UE4Editor-Core.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c9038b0 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c9097c2 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c08a25f UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6c095127 UE4Editor-Engine.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb6955ad60 UE4Editor-UnrealEd.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffb69dbe476 UE4Editor-UnrealEd.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ff6d6097f62 UE4Editor.exe!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ff6d60ac3ec UE4Editor.exe!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ff6d60ac4ca UE4Editor.exe!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ff6d60bceae UE4Editor.exe!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ff6d60bfcbe UE4Editor.exe!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffbde857034 KERNEL32.DLL!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: [Callstack] 0x00007ffbdffa2651 ntdll.dll!UnknownFunction []
+[2021.09.18-13.57.43:350][952]LogWindows: Error: 
+[2021.09.18-13.57.43:368][952]LogExit: Executing StaticShutdownAfterError
+[2021.09.18-13.57.43:371][952]LogWindows: FPlatformMisc::RequestExit(1)
+[2021.09.18-13.57.43:371][952]LogCore: Engine exit requested (reason: Win RequestExit)
+[2021.09.18-13.57.43:382][952]Log file closed, 09/18/21 23:57:43
