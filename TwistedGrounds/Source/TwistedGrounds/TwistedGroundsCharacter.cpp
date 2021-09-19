@@ -118,7 +118,7 @@ void ATwistedGroundsCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
-	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ATwistedGroundsCharacter::OnFire);
+	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &ATwistedGroundsCharacter::OnFire);
 
 	// Enable touchscreen input
 	EnableTouchscreenMovement(PlayerInputComponent);

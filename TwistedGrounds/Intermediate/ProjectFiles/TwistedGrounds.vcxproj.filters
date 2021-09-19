@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\TwistedGrounds.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{E0C6E78C-170F-4C9E-B744-2B49A84B1DC5}</UniqueIdentifier>
+      <UniqueIdentifier>{2399A04B-BE98-48E1-8272-7502ED677E92}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TwistedGrounds.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{47D89888-9C41-4E60-A201-83D92E4CBACF}</UniqueIdentifier>
+      <UniqueIdentifier>{0C456778-0B2A-4F92-AC58-77D65C17205D}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -29,9 +29,87 @@
     <None Include="..\..\Config\DefaultInput.ini">
       <Filter>Config</Filter>
     </None>
-    <Filter Include="Source\TwistedGrounds">
-      <UniqueIdentifier>{87609FEE-0B75-40B8-8ADD-F70F8DD909C7}</UniqueIdentifier>
+    <Filter Include="Plugins">
+      <UniqueIdentifier>{324A6B85-B86C-45E3-ACA1-3DCF0C1DE2C3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Plugins\SimplexNoise">
+      <UniqueIdentifier>{81C3162F-5EFB-43A9-98CF-20258B21C26E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\SimplexNoise\SimplexNoise">
+      <UniqueIdentifier>{C0B265B6-D721-41E9-AF63-51BAB4DC7F16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\SimplexNoise\SimplexNoise\Source">
+      <UniqueIdentifier>{CE79C3C6-D4A5-4259-9055-31DEF57CDA25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise">
+      <UniqueIdentifier>{0F38CE3B-20DF-477D-B9A0-9DEF6E1BCABC}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\SimplexNoise.Build.cs">
+      <Filter>Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise</Filter>
+    </None>
+    <Filter Include="Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Private">
+      <UniqueIdentifier>{FAF26960-75D6-457B-BA8C-002E9FBB6EE5}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Private\SimplexNoiseBPLibrary.cpp">
+      <Filter>Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Private\SimplexNoiseModule.cpp">
+      <Filter>Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Private</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Private\SimplexNoisePrivatePCH.h">
+      <Filter>Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Private</Filter>
+    </ClInclude>
+    <Filter Include="Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Public">
+      <UniqueIdentifier>{4B3F9E53-21F6-46D9-BF8D-BE9D19209178}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Public\ISimplexNoise.h">
+      <Filter>Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Public\SimplexNoiseBPLibrary.h">
+      <Filter>Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Public</Filter>
+    </ClInclude>
+    <None Include="..\..\Plugins\SimplexNoise\SimplexNoise\SimplexNoise.uplugin">
+      <Filter>Plugins\SimplexNoise\SimplexNoise</Filter>
+    </None>
+    <Filter Include="Plugins\SimplexNoise\SimplexNoise\Resources">
+      <UniqueIdentifier>{945C2B35-E9E5-41F8-9240-63E0F71A8ACD}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\SimplexNoise\SimplexNoise\Resources\Icon128.png">
+      <Filter>Plugins\SimplexNoise\SimplexNoise\Resources</Filter>
+    </None>
+    <Filter Include="Source\TwistedGrounds">
+      <UniqueIdentifier>{E87614BD-76C3-4C49-8370-9E80B0F56693}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\TwistedGrounds\ProcMeshSculpt.cpp">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TwistedGrounds\ProcMeshSculpt.h">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TwistedGrounds\SculptComponent.cpp">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TwistedGrounds\SculptComponent.h">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TwistedGrounds\TerrainEditorStuff.cpp">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TwistedGrounds\TerrainEditorStuff.h">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TwistedGrounds\TerrainGenerator.cpp">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TwistedGrounds\TerrainGenerator.h">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TwistedGrounds\TerrainSection.cpp">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TwistedGrounds\TerrainSection.h">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClInclude>
     <None Include="..\..\Source\TwistedGrounds\TwistedGrounds.Build.cs">
       <Filter>Source\TwistedGrounds</Filter>
     </None>

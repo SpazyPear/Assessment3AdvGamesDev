@@ -29,6 +29,30 @@
 			"Type": "Executable"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RuntimeMeshComponent/Binaries/Win64/UE4Editor-RuntimeMeshComponent.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RuntimeMeshComponent/Binaries/Win64/UE4Editor-RuntimeMeshComponent.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RuntimeMeshComponent/Binaries/Win64/UE4Editor-RuntimeMeshComponentEditor.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RuntimeMeshComponent/Binaries/Win64/UE4Editor-RuntimeMeshComponentEditor.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/SimplexNoise/SimplexNoise/Binaries/Win64/UE4Editor-SimplexNoise.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/SimplexNoise/SimplexNoise/Binaries/Win64/UE4Editor-SimplexNoise.pdb",
+			"Type": "SymbolFile"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor-Paper2D.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -2025,6 +2049,14 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RuntimeMeshComponent/Binaries/Win64/UE4Editor.modules",
+			"Type": "RequiredResource"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/SimplexNoise/SimplexNoise/Binaries/Win64/UE4Editor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/2D/Paper2D/Binaries/Win64/UE4Editor.modules",
 			"Type": "RequiredResource"
 		},
@@ -2344,6 +2376,14 @@
 	"RuntimeDependencies": [
 		{
 			"Path": "$(ProjectDir)/TwistedGrounds.uproject",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RuntimeMeshComponent/RuntimeMeshComponent.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/SimplexNoise/SimplexNoise/SimplexNoise.uplugin",
 			"Type": "UFS"
 		},
 		{

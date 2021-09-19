@@ -1,0 +1,979 @@
+﻿Log file open, 09/18/21 21:42:58
+LogWindows: Failed to load 'aqProf.dll' (GetLastError=126)
+LogWindows: File 'aqProf.dll' does not exist
+LogWindows: Failed to load 'VtuneApi.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi.dll' does not exist
+LogWindows: Failed to load 'VtuneApi32e.dll' (GetLastError=126)
+LogWindows: File 'VtuneApi32e.dll' does not exist
+LogConsoleResponse: Display: Failed to find resolution value strings in scalability ini. Falling back to default.
+LogInit: Display: Running engine for game: TwistedGrounds
+LogPlatformFile: Not using cached read wrapper
+LogTaskGraph: Started task graph with 5 named threads and 47 total threads with 3 sets of task threads.
+LogStats: Stats thread started at 0.094657
+LogD3D11RHI: Loaded GFSDK_Aftermath_Lib.x64.dll
+LogICUInternationalization: ICU TimeZone Detection - Raw Offset: +10:00, Platform Override: ''
+LogPluginManager: Warning: Engine version string in E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Plugins/SimplexNoise/SimplexNoise/SimplexNoise.uplugin could not be parsed ("4.24")
+LogPluginManager: Mounting plugin Paper2D
+LogPluginManager: Mounting plugin AISupport
+LogPluginManager: Mounting plugin LightPropagationVolume
+LogPluginManager: Mounting plugin ActorLayerUtilities
+LogPluginManager: Mounting plugin AnimationSharing
+LogPluginManager: Mounting plugin CLionSourceCodeAccess
+LogPluginManager: Mounting plugin CodeLiteSourceCodeAccess
+LogPluginManager: Mounting plugin GitSourceControl
+LogPluginManager: Mounting plugin KDevelopSourceCodeAccess
+LogPluginManager: Mounting plugin NullSourceCodeAccess
+LogPluginManager: Mounting plugin PerforceSourceControl
+LogPluginManager: Mounting plugin PlasticSourceControl
+LogPluginManager: Mounting plugin SubversionSourceControl
+LogPluginManager: Mounting plugin UObjectPlugin
+LogPluginManager: Mounting plugin VisualStudioCodeSourceCodeAccess
+LogPluginManager: Mounting plugin VisualStudioSourceCodeAccess
+LogPluginManager: Mounting plugin XCodeSourceCodeAccess
+LogPluginManager: Mounting plugin AssetManagerEditor
+LogPluginManager: Mounting plugin CryptoKeys
+LogPluginManager: Mounting plugin CurveEditorTools
+LogPluginManager: Mounting plugin DataValidation
+LogPluginManager: Mounting plugin FacialAnimation
+LogPluginManager: Mounting plugin GameplayTagsEditor
+LogPluginManager: Mounting plugin MacGraphicsSwitching
+LogPluginManager: Mounting plugin MaterialAnalyzer
+LogPluginManager: Mounting plugin MobileLauncherProfileWizard
+LogPluginManager: Mounting plugin PluginBrowser
+LogPluginManager: Mounting plugin SpeedTreeImporter
+LogPluginManager: Mounting plugin DatasmithContent
+LogPluginManager: Mounting plugin VariantManagerContent
+LogPluginManager: Mounting plugin AlembicImporter
+LogPluginManager: Mounting plugin AutomationUtils
+LogPluginManager: Mounting plugin BackChannel
+LogPluginManager: Mounting plugin CharacterAI
+LogPluginManager: Mounting plugin GeometryCache
+LogPluginManager: Mounting plugin PlatformCrypto
+LogPluginManager: Mounting plugin ProxyLODPlugin
+LogPluginManager: Mounting plugin SkeletalReduction
+LogPluginManager: Mounting plugin MagicLeap
+LogPluginManager: Mounting plugin MagicLeapMedia
+LogPluginManager: Mounting plugin MLSDK
+LogPluginManager: Mounting plugin RuntimeMeshComponent
+LogPluginManager: Mounting plugin AndroidMedia
+LogPluginManager: Mounting plugin AvfMedia
+LogPluginManager: Mounting plugin ImgMedia
+LogPluginManager: Mounting plugin MediaCompositing
+LogPluginManager: Mounting plugin MediaPlayerEditor
+LogPluginManager: Mounting plugin WebMMedia
+LogPluginManager: Mounting plugin WmfMedia
+LogPluginManager: Mounting plugin TcpMessaging
+LogPluginManager: Mounting plugin UdpMessaging
+LogPluginManager: Mounting plugin ActorSequence
+LogPluginManager: Mounting plugin LevelSequenceEditor
+LogPluginManager: Mounting plugin MatineeToLevelSequence
+LogPluginManager: Mounting plugin NetcodeUnitTest
+LogPluginManager: Mounting plugin NUTUnrealEngine4
+LogPluginManager: Mounting plugin OnlineSubsystemGooglePlay
+LogPluginManager: Mounting plugin OnlineSubsystemIOS
+LogPluginManager: Mounting plugin OnlineSubsystem
+LogPluginManager: Mounting plugin OnlineSubsystemNull
+LogPluginManager: Mounting plugin OnlineSubsystemUtils
+LogPluginManager: Mounting plugin LauncherChunkInstaller
+LogPluginManager: Mounting plugin AndroidDeviceProfileSelector
+LogPluginManager: Mounting plugin AndroidMoviePlayer
+LogPluginManager: Mounting plugin AndroidPermission
+LogPluginManager: Mounting plugin AppleImageUtils
+LogPluginManager: Mounting plugin AppleMoviePlayer
+LogPluginManager: Mounting plugin ArchVisCharacter
+LogPluginManager: Mounting plugin AssetTags
+LogPluginManager: Mounting plugin AudioCapture
+LogPluginManager: Mounting plugin CableComponent
+LogPluginManager: Mounting plugin CustomMeshComponent
+LogPluginManager: Mounting plugin EditableMesh
+LogPluginManager: Mounting plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting plugin GoogleCloudMessaging
+LogPluginManager: Mounting plugin IOSDeviceProfileSelector
+LogPluginManager: Mounting plugin LinuxDeviceProfileSelector
+LogPluginManager: Mounting plugin LocationServicesBPLibrary
+LogPluginManager: Mounting plugin MobilePatchingUtils
+LogPluginManager: Mounting plugin OculusVR
+LogPluginManager: Mounting plugin PhysXVehicles
+LogPluginManager: Mounting plugin PostSplashScreen
+LogPluginManager: Mounting plugin ProceduralMeshComponent
+LogPluginManager: Mounting plugin RuntimePhysXCooking
+LogPluginManager: Mounting plugin SignificanceManager
+LogPluginManager: Mounting plugin SteamVR
+LogPluginManager: Mounting plugin WebMMoviePlayer
+LogPluginManager: Mounting plugin WindowsMoviePlayer
+LogPluginManager: Mounting plugin ScreenshotTools
+LogPluginManager: Mounting plugin SimplexNoise
+LogInit: Using libcurl 7.55.1-DEV
+LogInit:  - built for x86_64-pc-win32
+LogInit:  - supports SSL with OpenSSL/1.1.1
+LogInit:  - supports HTTP deflate (compression) using libz 1.2.8
+LogInit:  - other features:
+LogInit:      CURL_VERSION_SSL
+LogInit:      CURL_VERSION_LIBZ
+LogInit:      CURL_VERSION_IPV6
+LogInit:      CURL_VERSION_ASYNCHDNS
+LogInit:      CURL_VERSION_LARGEFILE
+LogInit:      CURL_VERSION_IDN
+LogInit:  CurlRequestOptions (configurable via config and command line):
+LogInit:  - bVerifyPeer = true  - Libcurl will verify peer certificate
+LogInit:  - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+LogInit:  - bDontReuseConnections = false  - Libcurl will reuse connections
+LogInit:  - MaxHostConnections = 16  - Libcurl will limit the number of connections to a host
+LogInit:  - LocalHostAddr = Default
+LogInit:  - BufferSize = 65536
+LogOnline: OSS: Creating online subsystem instance for: NULL
+LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for module [NULL]
+LogHMD: Failed initializing OVRPlugin 1.40.0
+LogInit: Build: ++UE4+Release-4.24-CL-11590370
+LogInit: Engine Version: 4.24.3-11590370+++UE4+Release-4.24
+LogInit: Compatible Engine Version: 4.24.0-10570792+++UE4+Release-4.24
+LogInit: Net CL: 10570792
+LogInit: OS: Windows 10 (Release 2009) (), CPU: AMD Ryzen 7 2700X Eight-Core Processor         , GPU: NVIDIA GeForce GTX 1080
+LogInit: Compiled (64-bit): Feb 24 2020 15:39:18
+LogInit: Compiled with Visual C++: 19.16.27032.01
+LogInit: Build Configuration: Development
+LogInit: Branch Name: ++UE4+Release-4.24
+LogInit: Command Line: 
+LogInit: Base Directory: C:/Program Files/UE_4.24/Engine/Binaries/Win64/
+LogInit: Installed Engine Build: 1
+LogDevObjectVersion: Number of dev versions registered: 25
+LogDevObjectVersion:   Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+LogDevObjectVersion:   Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+LogDevObjectVersion:   Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 3
+LogDevObjectVersion:   Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 37
+LogDevObjectVersion:   Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 36
+LogDevObjectVersion:   Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 2
+LogDevObjectVersion:   Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+LogDevObjectVersion:   Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+LogDevObjectVersion:   Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 2
+LogDevObjectVersion:   Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+LogDevObjectVersion:   Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 36
+LogDevObjectVersion:   Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 11
+LogDevObjectVersion:   Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 2
+LogDevObjectVersion:   Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+LogDevObjectVersion:   Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 3
+LogDevObjectVersion:   Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 17
+LogDevObjectVersion:   Dev-Anim (AF43A65D-7FD3-4947-9873-3E8ED9C1BB05): 2
+LogDevObjectVersion:   Dev-ReflectionCapture (6B266CEC-1EC7-4B8F-A30B-E4D90942FC07): 1
+LogDevObjectVersion:   Dev-Automation (0DF73D61-A23F-47EA-B727-89E90C41499A): 1
+LogDevObjectVersion:   FortniteMain (601D1886-AC64-4F84-AA16-D3DE0DEAC7D6): 31
+LogDevObjectVersion:   Dev-Enterprise (9DFFBCD6-494F-0158-E221-12823C92A888): 8
+LogDevObjectVersion:   Dev-Niagara (F2AED0AC-9AFE-416F-8664-AA7FFA26D6FC): 1
+LogDevObjectVersion:   Dev-Destruction (174F1F0B-B4C6-45A5-B13F-2EE8D0FB917D): 9
+LogDevObjectVersion:   Dev-Physics-Ext (35F94A83-E258-406C-A318-09F59610247C): 8
+LogDevObjectVersion:   Dev-CineCamera (B2E18506-4273-CFC2-A54E-F4BB758BBA07): 1
+LogInit: Presizing for max 25165824 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
+LogInit: Object subsystem initialized
+LogConfig: Setting CVar [[con.DebugEarlyDefault:1]]
+LogConfig: Setting CVar [[r.setres:1280x720]]
+[2021.09.18-11.42.59:714][  0]LogConfig: Setting CVar [[r.VSync:0]]
+[2021.09.18-11.42.59:714][  0]LogConfig: Setting CVar [[r.RHICmdBypass:0]]
+[2021.09.18-11.42.59:714][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererSettings] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-11.42.59:714][  0]LogConfig: Setting CVar [[r.GPUCrashDebugging:0]]
+[2021.09.18-11.42.59:714][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererOverrideSettings] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-11.42.59:714][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.StreamingSettings] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-11.42.59:714][  0]LogConfig: Setting CVar [[s.MinBulkDataSizeForAsyncLoading:131072]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.AsyncLoadingThreadEnabled:0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.EventDrivenLoaderEnabled:1]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.WarnIfTimeLimitExceeded:0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMultiplier:1.5]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.TimeLimitExceededMinTime:0.005]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.UseBackgroundLevelStreaming:1]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.PriorityAsyncLoadingExtraTime:15.0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.LevelStreamingActorsUpdateTimeLimit:5.0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.PriorityLevelStreamingActorsUpdateExtraTime:5.0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsRegistrationGranularity:10]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.UnregisterComponentsTimeLimit:1.0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.LevelStreamingComponentsUnregistrationGranularity:5]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[s.FlushStreamingOnExit:1]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.GarbageCollectionSettings] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.MaxObjectsNotConsideredByGC:1]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.SizeOfPermanentObjectPool:0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.FlushStreamingOnGC:0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.NumRetriesBeforeForcingGC:10]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.AllowParallelGC:1]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.TimeBetweenPurgingPendingKillObjects:61.1]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.MaxObjectsInEditor:25165824]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.IncrementalBeginDestroyEnabled:1]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.CreateGCClusters:1]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.MinGCClusterSize:5]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.ActorClusteringEnabled:0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.BlueprintClusteringEnabled:0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Setting CVar [[gc.UseDisregardForGCOnDedicatedServers:0]]
+[2021.09.18-11.42.59:715][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.NetworkSettings] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-11.42.59:715][  0]LogConfig: Applying CVar settings from Section [/Script/UnrealEd.CookerSettings] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-11.42.59:724][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2021.09.18-11.42.59:724][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:724][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:1]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
+[2021.09.18-11.42.59:725][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
+[2021.09.18-11.42.59:725][  0]LogInit: Selected Device Profile: [Windows]
+[2021.09.18-11.42.59:725][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
+[2021.09.18-11.42.59:729][  0]LogHAL: Display: Platform has ~ 16 GB [17128230912 / 17179869184 / 16], which maps to Larger [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2021.09.18-11.42.59:729][  0]LogInit: Going up to parent DeviceProfile []
+[2021.09.18-11.42.59:729][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.SkeletalMeshLODBias:0]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.ViewDistanceScale:1.0]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.PostProcessAAQuality:4]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.LightFunctionQuality:1]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.ShadowQuality:5]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.Shadow.MaxResolution:2048]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.Shadow.DistanceScale:1.0]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.DistanceFieldShadowing:1]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.DistanceFieldAO:1]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.AOQuality:2]]
+[2021.09.18-11.42.59:729][  0]LogConfig: Setting CVar [[r.VolumetricFog:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.LightMaxDrawDistanceScale:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.CapsuleShadows:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.MotionBlurQuality:4]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.AmbientOcclusionLevels:-1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DepthOfFieldQuality:2]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.RenderTargetPoolMin:400]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.LensFlareQuality:2]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SceneColorFringeQuality:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.EyeAdaptationQuality:2]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.BloomQuality:5]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.FastBlurThreshold:100]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Upscale.Quality:3]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Tonemapper.GrainQuantization:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.LightShaftQuality:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Filter.SizeScale:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Tonemapper.Quality:5]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Streaming.MipBias:0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Streaming.Boost:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.MaxAnisotropy:8]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.VT.MaxAnisotropy:8]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Streaming.PoolSize:1000]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.TranslucencyLightingVolumeDim:64]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.RefractionQuality:2]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SSR.Quality:3]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SSR.HalfResSceneColor:0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SceneColorFormat:4]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.DetailMode:2]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.TranslucencyVolumeBlur:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SSS.Scale:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SSS.SampleSet:2]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SSS.Quality:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SSS.HalfRes:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SSGI.Quality:3]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.EmitterSpawnRateScale:1.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.ParticleLightQuality:2]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountPerSlice:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:32.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.SampleCountMax:32.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[foliage.DensityScale:1.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[grass.DensityScale:1.0]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Scalability.ini]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.SampleCount:16]]
+[2021.09.18-11.42.59:730][  0]LogConfig: Setting CVar [[r.HairStrands.SkyLighting.JitterIntegration:0]]
+[2021.09.18-11.42.59:731][  0]LogConfig: Setting CVar [[r.HairStrands.SkyAO.SampleCount:16]]
+[2021.09.18-11.42.59:731][  0]LogConfig: Applying CVar settings from Section [Startup] File [../../../Engine/Config/ConsoleVariables.ini]
+[2021.09.18-11.42.59:731][  0]LogConfig: Setting CVar [[net.UseAdaptiveNetUpdateFrequency:0]]
+[2021.09.18-11.42.59:731][  0]LogConfig: Setting CVar [[p.chaos.AllowCreatePhysxBodies:1]]
+[2021.09.18-11.42.59:731][  0]LogConfig: Applying CVar settings from Section [ConsoleVariables] File [E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Config/Windows/Engine.ini]
+[2021.09.18-11.42.59:731][  0]LogInit: Computer: MAKAR
+[2021.09.18-11.42.59:731][  0]LogInit: User: joshsaad
+[2021.09.18-11.42.59:731][  0]LogInit: CPU Page size=4096, Cores=8
+[2021.09.18-11.42.59:731][  0]LogInit: High frequency timer resolution =10.000000 MHz
+[2021.09.18-11.42.59:731][  0]LogMemory: Memory total: Physical=16.0GB (16GB approx)
+[2021.09.18-11.42.59:731][  0]LogMemory: Platform Memory Stats for Windows
+[2021.09.18-11.42.59:731][  0]LogMemory: Process Physical Memory: 113.13 MB used, 113.14 MB peak
+[2021.09.18-11.42.59:731][  0]LogMemory: Process Virtual Memory: 109.26 MB used, 109.26 MB peak
+[2021.09.18-11.42.59:731][  0]LogMemory: Physical Memory: 11055.61 MB used,  5279.14 MB free, 16334.75 MB total
+[2021.09.18-11.42.59:731][  0]LogMemory: Virtual Memory: 5204.84 MB used,  134212520.00 MB free, 134217728.00 MB total
+[2021.09.18-11.42.59:735][  0]LogWindows: WindowsPlatformFeatures enabled
+[2021.09.18-11.42.59:791][  0]LogInit: Using OS detected language (en-GB).
+[2021.09.18-11.42.59:791][  0]LogInit: Using OS detected locale (en-AU).
+[2021.09.18-11.42.59:793][  0]LogTextLocalizationManager: No specific localization for 'en-GB' exists, so the 'en' localization will be used.
+[2021.09.18-11.43.00:019][  0]LogInit: Setting process to per monitor DPI aware
+[2021.09.18-11.43.00:078][  0]LogSlate: New Slate User Created.  User Index 0, Is Virtual User: 0
+[2021.09.18-11.43.00:078][  0]LogSlate: Slate User Registered.  User Index 0, Is Virtual User: 0
+[2021.09.18-11.43.00:338][  0]LogHMD: Failed to initialize OpenVR with code 112
+[2021.09.18-11.43.00:339][  0]LogD3D11RHI: D3D11 min allowed feature level: 11_0
+[2021.09.18-11.43.00:339][  0]LogD3D11RHI: D3D11 max allowed feature level: 11_0
+[2021.09.18-11.43.00:339][  0]LogD3D11RHI: D3D11 adapters:
+[2021.09.18-11.43.00:452][  0]LogD3D11RHI:    0. 'NVIDIA GeForce GTX 1080' (Feature Level 11_0)
+[2021.09.18-11.43.00:452][  0]LogD3D11RHI:       8079/0/8167 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:3, VendorId:0x10de
+[2021.09.18-11.43.00:455][  0]LogD3D11RHI:    1. 'Microsoft Basic Render Driver' (Feature Level 11_0)
+[2021.09.18-11.43.00:455][  0]LogD3D11RHI:       0/0/8167 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
+[2021.09.18-11.43.00:455][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2021.09.18-11.43.00:468][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2021.09.18-11.43.00:468][  0]LogD3D11RHI:     GPU DeviceId: 0x1b80 (for the marketing name, search the web for "GPU Device Id")
+[2021.09.18-11.43.00:468][  0]LogWindows: EnumDisplayDevices:
+[2021.09.18-11.43.00:468][  0]LogWindows:    0. 'NVIDIA GeForce GTX 1080' (P:1 D:1)
+[2021.09.18-11.43.00:468][  0]LogWindows:    1. 'NVIDIA GeForce GTX 1080' (P:0 D:1)
+[2021.09.18-11.43.00:469][  0]LogWindows:    2. 'NVIDIA GeForce GTX 1080' (P:0 D:1)
+[2021.09.18-11.43.00:469][  0]LogWindows:    3. 'NVIDIA GeForce GTX 1080' (P:0 D:0)
+[2021.09.18-11.43.00:469][  0]LogWindows: DebugString: FoundDriverCount:4 
+[2021.09.18-11.43.00:469][  0]LogD3D11RHI:     Adapter Name: NVIDIA GeForce GTX 1080
+[2021.09.18-11.43.00:469][  0]LogD3D11RHI:   Driver Version: 471.68 (internal:30.0.14.7168, unified:471.68)
+[2021.09.18-11.43.00:469][  0]LogD3D11RHI:      Driver Date: 8-5-2021
+[2021.09.18-11.43.00:469][  0]LogRHI: Texture pool is 5655 MB (70% of 8079 MB)
+[2021.09.18-11.43.00:561][  0]LogD3D11RHI: RHI has support for 64 bit atomics
+[2021.09.18-11.43.00:561][  0]LogD3D11RHI: Async texture creation enabled
+[2021.09.18-11.43.00:587][  0]LogD3D11RHI: GPU Timing Frequency: 1000.000000 (Debug: 2 1)
+[2021.09.18-11.43.00:994][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AllDesktop'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTC'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ATC'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXT'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1a'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_PVRTC'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'AndroidClient'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ASTCClient'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ATCClient'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_DXTClient'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1Client'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC1aClient'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_ETC2Client'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_PVRTCClient'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_Multi'
+[2021.09.18-11.43.01:030][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Android_MultiClient'
+[2021.09.18-11.43.01:055][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOSClient'
+[2021.09.18-11.43.01:055][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'IOS'
+[2021.09.18-11.43.01:065][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxNoEditor'
+[2021.09.18-11.43.01:074][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxClient'
+[2021.09.18-11.43.01:083][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxServer'
+[2021.09.18-11.43.01:093][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64NoEditor'
+[2021.09.18-11.43.01:103][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Client'
+[2021.09.18-11.43.01:112][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxAArch64Server'
+[2021.09.18-11.43.01:146][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Lumin'
+[2021.09.18-11.43.01:146][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'LuminClient'
+[2021.09.18-11.43.01:165][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOSClient'
+[2021.09.18-11.43.01:165][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'TVOS'
+[2021.09.18-11.43.01:174][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsNoEditor'
+[2021.09.18-11.43.01:185][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2021.09.18-11.43.01:195][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2021.09.18-11.43.01:205][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2021.09.18-11.43.01:205][  0]LogTargetPlatformManager: Display: Building Assets For Windows
+[2021.09.18-11.43.01:210][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2021.09.18-11.43.01:252][  0]LogShaderCompilers: Guid format shader working directory is -14 characters bigger than the processId version (E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Intermediate/Shaders/WorkingDirectory/43972/).
+[2021.09.18-11.43.01:252][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/josh.saad/AppData/Local/Temp/UnrealShaderWorkingDir/1C1438854DCF414464457A91C28110BE/'.
+[2021.09.18-11.43.01:253][  0]LogXGEController: Cleaning working directory: C:/Users/josh.saad/AppData/Local/Temp/UnrealXGEWorkingDir/
+[2021.09.18-11.43.01:253][  0]LogXGEController: Cannot use XGE Controller as Incredibuild is not installed on this machine.
+[2021.09.18-11.43.01:253][  0]LogShaderCompilers: Cannot use XGE Shader Compiler as Incredibuild is not installed on this machine.
+[2021.09.18-11.43.01:253][  0]LogShaderCompilers: Display: Using Local Shader Compiler.
+[2021.09.18-11.43.01:981][  0]LogDerivedDataCache: Display: Max Cache Size: 512 MB
+[2021.09.18-11.43.02:041][  0]LogDerivedDataCache: Loaded boot cache 0.06s 84MB C:/Users/josh.saad/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc.
+[2021.09.18-11.43.02:041][  0]LogDerivedDataCache: Display: Loaded Boot cache: C:/Users/josh.saad/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc
+[2021.09.18-11.43.02:041][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+[2021.09.18-11.43.02:041][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
+[2021.09.18-11.43.02:041][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2021.09.18-11.43.02:041][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
+[2021.09.18-11.43.02:052][  0]LogDerivedDataCache: Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
+[2021.09.18-11.43.02:052][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  EnterprisePak pak cache file ../../../Enterprise/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2021.09.18-11.43.02:052][  0]LogDerivedDataCache: Unable to find inner node EnterprisePak for hierarchical cache Hierarchy.
+[2021.09.18-11.43.02:054][  0]LogDerivedDataCache: Using Local data cache path C:/Users/josh.saad/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+[2021.09.18-11.43.02:054][  0]LogDerivedDataCache: Shared data cache path not found in *engine.ini, will not use an Shared cache.
+[2021.09.18-11.43.02:054][  0]LogDerivedDataCache: Unable to find inner node Shared for hierarchical cache Hierarchy.
+[2021.09.18-11.43.02:079][  0]LogMaterial: Verifying Global Shaders for PCD3D_SM5
+[2021.09.18-11.43.02:082][  0]LogSlate: Using FreeType 2.10.0
+[2021.09.18-11.43.02:082][  0]LogSlate: SlateFontServices - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2021.09.18-11.43.02:148][  0]LogAssetRegistry: FAssetRegistry took 0.0030 seconds to start up
+[2021.09.18-11.43.02:464][  0]LogInit: Selected Device Profile: [Windows]
+[2021.09.18-11.43.02:633][  0]LogMeshReduction: Using QuadricMeshReduction for automatic static mesh reduction
+[2021.09.18-11.43.02:633][  0]LogMeshReduction: Using SimplygonMeshReduction for automatic skeletal mesh reduction
+[2021.09.18-11.43.02:633][  0]LogMeshReduction: Using ProxyLODMeshReduction for automatic mesh merging
+[2021.09.18-11.43.02:633][  0]LogMeshReduction: No distributed automatic mesh merging module available
+[2021.09.18-11.43.02:633][  0]LogMeshMerging: No distributed automatic mesh merging module available
+[2021.09.18-11.43.02:654][  0]LogNetVersion: TwistedGrounds 1.0.0, NetCL: 10570792, EngineNetVer: 13, GameNetVer: 0 (Checksum: 1880475918)
+[2021.09.18-11.43.03:891][  0]LogPackageLocalizationCache: Processed 10 localized package path(s) for 1 prioritized culture(s) in 0.067169 seconds
+[2021.09.18-11.43.03:899][  0]LogUObjectArray: 46750 objects as part of root set at end of initial load.
+[2021.09.18-11.43.03:900][  0]LogUObjectAllocator: 8137160 out of 0 bytes used by permanent object pool.
+[2021.09.18-11.43.03:900][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2021.09.18-11.43.04:403][  0]LogTcpMessaging: Initializing TcpMessaging bridge
+[2021.09.18-11.43.04:407][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
+[2021.09.18-11.43.04:771][  0]SourceControl: Source control is disabled
+[2021.09.18-11.43.04:771][  0]SourceControl: Source control is disabled
+[2021.09.18-11.43.04:772][  0]SourceControl: Source control is disabled
+[2021.09.18-11.43.04:774][  0]SourceControl: Source control is disabled
+[2021.09.18-11.43.04:775][  0]SourceControl: Source control is disabled
+[2021.09.18-11.43.05:506][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2021.09.18-11.43.05:522][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2021.09.18-11.43.05:522][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2021.09.18-11.43.05:623][  0]LogOcInput: OculusInput pre-init called
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FRuntimeMeshCollisionConvexMesh::BoundingBox is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: ObjectProperty FRuntimeMeshMaterialSlot::Material is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FSculptInputInfo::SculptInput is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FSculptInputInfo::StartLocation is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FSculptInputInfo::CurrentLocation is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FSculptInputInfo::LastLocation is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FSculptSettings::SculptMode is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FVertexData::Vertices is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FVertexData::UV is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Warning: FVertexData::Normals is not initialized properly
+[2021.09.18-11.43.06:371][  0]LogClass: Display: 10 Uninitialized script stuct members found
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FRuntimeMeshCollisionConvexMesh::BoundingBox is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: ObjectProperty FRuntimeMeshMaterialSlot::Material is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FSculptInputInfo::SculptInput is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FSculptInputInfo::StartLocation is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FSculptInputInfo::CurrentLocation is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FSculptInputInfo::LastLocation is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FSculptSettings::SculptMode is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FVertexData::Vertices is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FVertexData::UV is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogAutomationTest: Warning: FVertexData::Normals is not initialized properly
+[2021.09.18-11.43.06:372][  0]LogEngine: Initializing Engine...
+[2021.09.18-11.43.06:414][  0]LogHMD: Failed to initialize OpenVR with code 112
+[2021.09.18-11.43.06:415][  0]LogStats: UGameplayTagsManager::InitializeManager -  0.000 s
+[2021.09.18-11.43.06:777][  0]LogInit: Initializing FReadOnlyCVARCache
+[2021.09.18-11.43.06:785][  0]LogAIModule: Creating AISystem for world Untitled
+[2021.09.18-11.43.06:792][  0]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-11.43.06:792][  0]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-11.43.06:792][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-11.43.06:792][  0]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-11.43.06:792][  0]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-11.43.06:792][  0]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-11.43.06:792][  0]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-11.43.06:792][  0]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-11.43.06:792][  0]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-11.43.06:792][  0]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: Name: VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: Channel Order:
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-11.43.06:894][  0]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-11.43.06:913][  0]LogAudioMixer: Display: Using Audio Device VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
+[2021.09.18-11.43.06:918][  0]LogInit: FAudioDevice initialized.
+[2021.09.18-11.43.06:918][  0]LogNetVersion: Set ProjectVersion to 1.0.0.0. Version Checksum will be recalculated on next use.
+[2021.09.18-11.43.06:986][  0]LogDerivedDataCache: Saved boot cache 0.07s 84MB C:/Users/josh.saad/AppData/Local/UnrealEngine/4.24/DerivedDataCache/Boot.ddc.
+[2021.09.18-11.43.06:989][  0]LogInit: Texture streaming: Enabled
+[2021.09.18-11.43.07:003][  0]LogEngineSessionManager: EngineSessionManager initialized
+[2021.09.18-11.43.07:003][  0]LogEngineSessionManager: EngineSessionManager sent abnormal shutdown report. Type=Crashed, SessionId={3A3B71A6-4415-FCFC-9F57-59B157353374}
+[2021.09.18-11.43.07:003][  0]LogEditorSessionSummary: Verbose: Initializing EditorSessionSummaryWriter for editor session tracking
+[2021.09.18-11.43.07:006][  0]LogEditorSessionSummary: EditorSessionSummaryWriter initialized
+[2021.09.18-11.43.07:069][  0]LogInit: Transaction tracking system initialized
+[2021.09.18-11.43.07:084][  0]BlueprintLog: New page: Editor Load
+[2021.09.18-11.43.07:130][  0]LocalizationService: Localization service is disabled
+[2021.09.18-11.43.07:483][  0]LogFileCache: Scanning file cache for directory 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Content/' took 0.01s
+[2021.09.18-11.43.07:483][  0]LogCook: Display: Max memory allowance for cook 16384mb min free memory 0mb
+[2021.09.18-11.43.07:483][  0]LogCook: Display: Mobile HDR setting 1
+[2021.09.18-11.43.08:302][  0]SourceControl: Source control is disabled
+[2021.09.18-11.43.08:302][  0]Cmd: MAP LOAD FILE="E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Content/FirstPersonCPP/Maps/FirstPersonExampleMap.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
+[2021.09.18-11.43.08:303][  0]LightingResults: New page: Lighting Build
+[2021.09.18-11.43.08:304][  0]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2021.09.18-11.43.08:304][  0]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.18-11.43.08:304][  0]MapCheck: New page: Map Check
+[2021.09.18-11.43.08:304][  0]LightingResults: New page: Lighting Build
+[2021.09.18-11.43.08:345][  0]LogUObjectHash: Compacting FUObjectHashTables data took   2.30ms
+[2021.09.18-11.43.08:426][  0]LogAIModule: Creating AISystem for world FirstPersonExampleMap
+[2021.09.18-11.43.08:435][  0]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
+[2021.09.18-11.43.08:475][  0]LogUObjectHash: Compacting FUObjectHashTables data took   2.51ms
+[2021.09.18-11.43.08:476][  0]Cmd: MAP CHECKDEP NOCLEARLOG
+[2021.09.18-11.43.08:476][  0]MapCheck: Map check complete: 0 Error(s), 0 Warning(s), took 0.381ms to complete.
+[2021.09.18-11.43.08:476][  0]LogFileHelpers: Loading map 'FirstPersonExampleMap' took 0.174
+[2021.09.18-11.43.08:623][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-11.43.08:630][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-11.43.08:636][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-11.43.08:642][  0]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.18-11.43.08:650][  0]LogCollectionManager: Loaded 0 collections in 0.002644 seconds
+[2021.09.18-11.43.08:666][  0]LogFileCache: Scanning file cache for directory 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/Collections/' took 0.00s
+[2021.09.18-11.43.08:666][  0]LogFileCache: Scanning file cache for directory 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Content/Developers/joshsaad/Collections/' took 0.00s
+[2021.09.18-11.43.08:666][  0]LogFileCache: Scanning file cache for directory 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Content/Collections/' took 0.00s
+[2021.09.18-11.43.08:666][  0]LogContentBrowser: Native class hierarchy populated in 0.0103 seconds. Added 3048 classes and 728 folders.
+[2021.09.18-11.43.08:669][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0006 seconds. Added 0 classes and 0 folders.
+[2021.09.18-11.43.08:770][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0006 seconds. Added 0 classes and 0 folders.
+[2021.09.18-11.43.08:777][  0]LogContentBrowser: Native class hierarchy updated for 'SceneOutliner' in 0.0007 seconds. Added 2 classes and 3 folders.
+[2021.09.18-11.43.08:885][  0]LogSlate: Took 0.000239 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Regular.ttf' (155K)
+[2021.09.18-11.43.08:887][  0]LogSlate: Took 0.000198 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Bold.ttf' (160K)
+[2021.09.18-11.43.08:891][  0]LogSlate: Took 0.000296 seconds to synchronously load lazily loaded font '../../../Engine/Content/Editor/Slate/Fonts/FontAwesome.ttf' (139K)
+[2021.09.18-11.43.08:982][  0]LogRenderer: Reallocating scene render targets to support 1164x572 Format 10 NumSamples 1 (Frame:1).
+[2021.09.18-11.43.09:040][  0]LogSlate: Took 0.000234 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2021.09.18-11.43.09:090][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0006 seconds. Added 0 classes and 0 folders.
+[2021.09.18-11.43.09:090][  0]LogLoad: (Engine Initialization) Total time: 12.90 seconds
+[2021.09.18-11.43.09:090][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.00 seconds
+[2021.09.18-11.43.09:156][  0]LogAssetRegistry: Asset discovery search completed in 7.0094 seconds
+[2021.09.18-11.43.09:159][  0]LogCollectionManager: Fixed up redirectors for 0 collections in 0.000007 seconds (updated 0 objects)
+[2021.09.18-11.43.09:160][  0]LogContentStreaming: Texture pool size now 1000 MB
+[2021.09.18-11.43.10:452][  4]LogSlate: Took 0.000220 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Light.ttf' (167K)
+[2021.09.18-11.43.15:148][ 18]LogAssetEditorSubsystem: Opening Asset editor for Blueprint /Game/ProcMeshGenBP.ProcMeshGenBP
+[2021.09.18-11.43.15:344][ 18]LogContentBrowser: Native class hierarchy updated for 'BlueprintGraph' in 0.0009 seconds. Added 121 classes and 0 folders.
+[2021.09.18-11.43.16:212][ 18]LogActor: Warning: ProcMeshGenBP_C /Engine/Transient.World_1:PersistentLevel.ProcMeshGenBP_C_0 has natively added scene component(s), but none of them were set as the actor's RootComponent - picking one arbitrarily
+[2021.09.18-11.43.16:217][ 18]LogSlate: Took 0.000288 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-BoldCondensed.ttf' (158K)
+[2021.09.18-11.43.16:283][ 19]LogSlate: Took 0.000463 seconds to synchronously load lazily loaded font '../../../Engine/Content/Slate/Fonts/Roboto-Italic.ttf' (157K)
+[2021.09.18-11.43.47:998][279]BlueprintLog: New page: Compile ProcMeshGenBP
+[2021.09.18-11.43.48:007][279]LogActor: Warning: ProcMeshGenBP_C /Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.ProcMeshGenBP_2 has natively added scene component(s), but none of them were set as the actor's RootComponent - picking one arbitrarily
+[2021.09.18-11.43.48:009][279]LogActor: Warning: ProcMeshGenBP_C /Engine/Transient.World_1:PersistentLevel.ProcMeshGenBP_C_0 has natively added scene component(s), but none of them were set as the actor's RootComponent - picking one arbitrarily
+[2021.09.18-11.43.48:272][279]LogUObjectHash: Compacting FUObjectHashTables data took   3.39ms
+[2021.09.18-11.43.48:568][301]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/ProcMeshGenBP" FILE="E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Content/ProcMeshGenBP.uasset" SILENT=true
+[2021.09.18-11.43.48:602][301]LogSavePackage: Moving 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/ProcMeshGenBP2A7E93574A09397E99EC7ABA1B22AA23.tmp' to 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Content/ProcMeshGenBP.uasset'
+[2021.09.18-11.43.48:654][301]AssetCheck: New page: Asset Save: ProcMeshGenBP
+[2021.09.18-11.43.48:654][301]LogContentValidation: Display: Validating Blueprint /Game/ProcMeshGenBP.ProcMeshGenBP
+[2021.09.18-11.43.52:639][690]LogUObjectHash: Compacting FUObjectHashTables data took   3.67ms
+[2021.09.18-11.43.52:903][690]LogSavePackage: Moving 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/FirstPersonExampleMap43EF76474DC0C91B8C47D7B2BAB225AC.tmp' to 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Content/FirstPersonCPP/Maps/FirstPersonExampleMap.umap'
+[2021.09.18-11.43.53:782][690]LogSavePackage: Moving 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Saved/FirstPersonExampleMap_BuiltDataD347CD3A46343EBC1CFAD7A39C4A3C03.tmp' to 'E:/Desktop/Documents -HDD/Assessment3AdvGamesDev/TwistedGrounds/Content/FirstPersonCPP/Maps/FirstPersonExampleMap_BuiltData.uasset'
+[2021.09.18-11.43.53:819][690]AssetCheck: New page: Asset Save: multiple assets
+[2021.09.18-11.43.53:819][690]LogContentValidation: Display: Validating World /Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap
+[2021.09.18-11.43.53:819][690]LogContentValidation: Display: Validating MapBuildDataRegistry /Game/FirstPersonCPP/Maps/FirstPersonExampleMap_BuiltData.FirstPersonExampleMap_BuiltData
+[2021.09.18-11.43.54:698][787]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.18-11.43.54:708][787]LogBlueprintUserMessages: Early PlayInEditor Detection: Level '/Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel' has LevelScriptBlueprint '/Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap' with GeneratedClass '/Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap_C' with ClassGeneratedBy '/Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap'
+[2021.09.18-11.43.54:708][787]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.18-11.43.54:708][787]PIE: New page: PIE session: FirstPersonExampleMap (19 Sep 2021, 7:43:54 am)
+[2021.09.18-11.43.54:709][787]LogOnline: OSS: Creating online subsystem instance for: NULL
+[2021.09.18-11.43.54:711][787]LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for module [NULL]
+[2021.09.18-11.43.54:711][787]LogPlayLevel: Creating play world package: /Game/FirstPersonCPP/Maps/UEDPIE_0_FirstPersonExampleMap
+[2021.09.18-11.43.54:723][787]LogPlayLevel: PIE: StaticDuplicateObject took: (0.011968s)
+[2021.09.18-11.43.54:724][787]LogAIModule: Creating AISystem for world FirstPersonExampleMap
+[2021.09.18-11.43.54:724][787]LogPlayLevel: PIE: World Init took: (0.000852s)
+[2021.09.18-11.43.54:724][787]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap to /Game/FirstPersonCPP/Maps/UEDPIE_0_FirstPersonExampleMap.FirstPersonExampleMap (0.013256s)
+[2021.09.18-11.43.54:771][787]LogUObjectHash: Compacting FUObjectHashTables data took   2.73ms
+[2021.09.18-11.43.54:771][787]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.18-11.43.54:771][787]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.18-11.43.54:771][787]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.18-11.43.54:771][787]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.18-11.43.54:771][787]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.18-11.43.54:771][787]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.18-11.43.54:771][787]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.18-11.43.54:771][787]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.18-11.43.54:772][787]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.18-11.43.54:772][787]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: Name: VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: Is Default: Yes
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: Channel Order:
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.18-11.43.54:859][787]LogAudioMixer: Display: 1: FrontRight
+[2021.09.18-11.43.54:867][787]LogAudioMixer: Display: Using Audio Device VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)
+[2021.09.18-11.43.54:868][787]LogInit: FAudioDevice initialized.
+[2021.09.18-11.43.54:880][787]LogLoad: Game class is 'TwistedGroundsGameMode'
+[2021.09.18-11.43.54:881][787]LogWorld: Bringing World /Game/FirstPersonCPP/Maps/UEDPIE_0_FirstPersonExampleMap.FirstPersonExampleMap up for play (max tick rate 0) at 2021.09.18-21.43.54
+[2021.09.18-11.43.54:881][787]LogWorld: Bringing up level for play took: 0.000931
+[2021.09.18-11.43.54:882][787]LogOnline: OSS: Creating online subsystem instance for: :Context_3
+[2021.09.18-11.43.54:888][787]LogContentBrowser: Native class hierarchy updated for 'MovieSceneCapture' in 0.0006 seconds. Added 20 classes and 0 folders.
+[2021.09.18-11.43.54:889][787]LogTemp: Warning: Rand 5765.861328
+[2021.09.18-11.43.55:825][787]LogTemp: Warning: Vertices Count: 10000 | UVCoords Count: 10000 Triangles Count: 58806
+[2021.09.18-11.43.55:826][787]PIE: Play in editor start time for /Game/FirstPersonCPP/Maps/UEDPIE_0_FirstPersonExampleMap 0.774
+[2021.09.18-11.43.55:826][787]LogBlueprintUserMessages: Late PlayInEditor Detection: Level '/Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel' has LevelScriptBlueprint '/Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap' with GeneratedClass '/Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap_C' with ClassGeneratedBy '/Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap'
+[2021.09.18-11.43.55:826][787]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:150][788]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:159][789]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:167][790]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:176][791]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:184][792]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:192][793]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:200][794]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:209][795]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:217][796]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:227][797]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:238][798]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:246][799]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:257][800]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:270][801]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:280][802]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:288][803]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:296][804]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:304][805]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:312][806]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:321][807]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:330][808]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:339][809]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:347][810]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:355][811]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:363][812]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:372][813]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:380][814]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:388][815]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:397][816]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:405][817]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:413][818]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:422][819]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:430][820]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:438][821]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:447][822]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:455][823]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:463][824]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:471][825]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:480][826]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:488][827]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:496][828]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:505][829]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:513][830]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:521][831]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:530][832]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:539][833]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:547][834]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:555][835]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:563][836]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:571][837]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:579][838]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:588][839]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:596][840]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:605][841]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:613][842]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:621][843]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:629][844]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:638][845]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:647][846]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:654][847]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:663][848]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:671][849]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:679][850]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:687][851]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:696][852]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:705][853]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:714][854]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:722][855]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:730][856]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:740][857]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:748][858]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:756][859]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:765][860]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:773][861]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:782][862]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:789][863]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:798][864]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:806][865]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:815][866]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:823][867]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:831][868]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:839][869]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:848][870]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:856][871]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:864][872]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:873][873]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:881][874]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:889][875]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:898][876]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:906][877]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:914][878]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:922][879]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:931][880]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:940][881]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:948][882]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:956][883]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:964][884]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:973][885]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:981][886]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:989][887]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.56:998][888]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:006][889]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:014][890]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:022][891]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:030][892]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:038][893]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:047][894]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:055][895]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:064][896]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:072][897]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:080][898]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:089][899]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:097][900]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:105][901]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:114][902]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:122][903]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:130][904]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:139][905]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:147][906]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:156][907]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:164][908]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:172][909]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:181][910]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:189][911]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:197][912]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:206][913]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:214][914]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:222][915]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:231][916]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:239][917]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:247][918]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:255][919]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:264][920]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:272][921]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:280][922]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:289][923]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:297][924]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:306][925]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:314][926]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:322][927]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:331][928]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:339][929]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:347][930]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:356][931]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:364][932]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:372][933]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:381][934]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:389][935]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:397][936]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:405][937]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:414][938]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:422][939]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:430][940]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:439][941]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:447][942]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:456][943]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:464][944]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:473][945]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:481][946]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:489][947]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:497][948]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:506][949]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:514][950]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:523][951]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:531][952]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:539][953]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:548][954]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:556][955]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:564][956]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:573][957]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:581][958]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:589][959]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:598][960]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:606][961]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:614][962]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:623][963]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:631][964]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:640][965]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:648][966]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:656][967]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:665][968]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:673][969]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:681][970]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:689][971]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:698][972]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:706][973]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:717][974]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:724][975]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:732][976]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:740][977]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:748][978]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:757][979]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:765][980]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:774][981]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:782][982]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:790][983]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:798][984]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:807][985]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:815][986]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:823][987]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:831][988]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:840][989]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:848][990]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:856][991]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:865][992]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:873][993]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:882][994]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:890][995]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:899][996]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:907][997]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:915][998]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:923][999]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:932][  0]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:940][  1]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:949][  2]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:956][  3]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:966][  4]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:973][  5]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:982][  6]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:990][  7]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=60000.000 Y=0.000 Z=0.000
+[2021.09.18-11.43.57:999][  8]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59999.723 Y=183.241 Z=0.000
+[2021.09.18-11.43.58:007][  9]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59998.879 Y=366.848 Z=0.000
+[2021.09.18-11.43.58:015][ 10]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59998.879 Y=366.848 Z=0.000
+[2021.09.18-11.43.58:024][ 11]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59995.520 Y=733.315 Z=0.000
+[2021.09.18-11.43.58:032][ 12]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59992.715 Y=916.781 Z=183.241
+[2021.09.18-11.43.58:040][ 13]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59989.633 Y=1100.180 Z=183.241
+[2021.09.18-11.43.58:049][ 14]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59982.695 Y=1393.516 Z=366.480
+[2021.09.18-11.43.58:057][ 15]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59977.074 Y=1617.553 Z=366.480
+[2021.09.18-11.43.58:065][ 16]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59967.004 Y=1912.040 Z=549.716
+[2021.09.18-11.43.58:074][ 17]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59952.352 Y=2301.326 Z=647.923
+[2021.09.18-11.43.58:082][ 18]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59932.922 Y=2708.219 Z=842.708
+[2021.09.18-11.43.58:091][ 19]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59910.355 Y=3129.192 Z=978.483
+[2021.09.18-11.43.58:099][ 20]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59887.184 Y=3545.099 Z=978.484
+[2021.09.18-11.43.58:107][ 21]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59857.133 Y=3971.694 Z=1161.696
+[2021.09.18-11.43.58:115][ 22]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59834.215 Y=4262.142 Z=1304.238
+[2021.09.18-11.43.58:123][ 23]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59798.637 Y=4692.621 Z=1449.890
+[2021.09.18-11.43.58:132][ 24]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59763.668 Y=5118.743 Z=1449.890
+[2021.09.18-11.43.58:140][ 25]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59734.152 Y=5452.416 Z=1449.890
+[2021.09.18-11.43.58:149][ 26]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59701.277 Y=5752.439 Z=1633.078
+[2021.09.18-11.43.58:157][ 27]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59652.387 Y=6197.620 Z=1783.957
+[2021.09.18-11.43.58:165][ 28]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59620.406 Y=6498.041 Z=1783.957
+[2021.09.18-11.43.58:173][ 29]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59564.422 Y=6943.379 Z=1967.108
+[2021.09.18-11.43.58:182][ 30]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59511.273 Y=7385.051 Z=1967.108
+[2021.09.18-11.43.58:190][ 31]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59454.227 Y=7831.037 Z=1967.108
+[2021.09.18-11.43.58:198][ 32]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59394.344 Y=8272.989 Z=1967.108
+[2021.09.18-11.43.58:207][ 33]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59330.551 Y=8718.751 Z=1967.108
+[2021.09.18-11.43.58:215][ 34]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59262.801 Y=9167.939 Z=1967.109
+[2021.09.18-11.43.58:224][ 35]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59191.063 Y=9620.211 Z=1967.108
+[2021.09.18-11.43.58:232][ 36]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59120.953 Y=10076.234 Z=1783.957
+[2021.09.18-11.43.58:240][ 37]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59059.879 Y=10453.397 Z=1630.161
+[2021.09.18-11.43.58:249][ 38]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=59003.457 Y=10781.337 Z=1534.643
+[2021.09.18-11.43.58:257][ 39]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58915.344 Y=11274.324 Z=1368.273
+[2021.09.18-11.43.58:265][ 40]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58846.016 Y=11649.170 Z=1201.335
+[2021.09.18-11.43.58:274][ 41]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58747.070 Y=12160.775 Z=947.174
+[2021.09.18-11.43.58:282][ 42]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58658.473 Y=12600.830 Z=634.506
+[2021.09.18-11.43.58:290][ 43]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58543.918 Y=13133.022 Z=365.172
+[2021.09.18-11.43.58:299][ 44]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58446.195 Y=13566.152 Z=-43.111
+[2021.09.18-11.43.58:307][ 45]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58367.477 Y=13895.918 Z=-376.142
+[2021.09.18-11.43.58:315][ 46]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58231.125 Y=14443.835 Z=-715.138
+[2021.09.18-11.43.58:324][ 47]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58155.297 Y=14723.102 Z=-1091.527
+[2021.09.18-11.43.58:332][ 48]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=58040.758 Y=15144.765 Z=-1380.844
+[2021.09.18-11.43.58:340][ 49]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57987.066 Y=15320.063 Z=-1672.046
+[2021.09.18-11.43.58:349][ 50]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57901.266 Y=15597.716 Z=-2038.364
+[2021.09.18-11.43.58:357][ 51]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57843.156 Y=15771.689 Z=-2328.701
+[2021.09.18-11.43.58:365][ 52]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57787.594 Y=15946.309 Z=-2511.831
+[2021.09.18-11.43.58:373][ 53]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57771.723 Y=15941.930 Z=-2877.954
+[2021.09.18-11.43.58:382][ 54]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57714.035 Y=16115.849 Z=-3060.976
+[2021.09.18-11.43.58:390][ 55]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57644.855 Y=16286.466 Z=-3438.259
+[2021.09.18-11.43.58:399][ 56]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57634.480 Y=16283.535 Z=-3621.188
+[2021.09.18-11.43.58:407][ 57]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57623.570 Y=16280.452 Z=-3804.083
+[2021.09.18-11.43.58:415][ 58]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57612.121 Y=16277.218 Z=-3986.944
+[2021.09.18-11.43.58:423][ 59]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:431][ 60]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:440][ 61]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:448][ 62]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:456][ 63]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:465][ 64]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:473][ 65]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:481][ 66]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:490][ 67]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:498][ 68]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:507][ 69]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:515][ 70]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:523][ 71]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
+[2021.09.18-11.43.58:531][ 72]LogBlueprintUserMessages: [ProcMeshGenBP_2] X=57600.133 Y=16273.831 Z=-4169.768
