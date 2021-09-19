@@ -98,8 +98,8 @@ void AProcMeshSculpt::Sculpt()
 {
 	FHitResult* HitResultPtr = &HitResult;
 	if (HitResultPtr != nullptr) {
-		FVector MiddleVertexLocation = HitResult.GetActor()->GetActorLocation();
-		UProceduralMeshComponent* mesh = HitResult.GetActor()->FindComponentByClass<UProceduralMeshComponent>();
+		FVector MiddleVertexLocation = HitResult.Location;
+		UProceduralMeshComponent* mesh = MeshComponent;
 		FVector RelativeHitLocation = MiddleVertexLocation - GetActorLocation();
 		FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.X / GridSize), FMath::RoundToInt(RelativeHitLocation.Y / GridSize), 0);
 		int32 CenterIndex = MiddleLocation.X * Width + MiddleLocation.Y;
