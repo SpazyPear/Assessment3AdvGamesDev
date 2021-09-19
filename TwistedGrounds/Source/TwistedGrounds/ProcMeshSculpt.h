@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ProceduralMeshComponent.h"
+#include "Curves/CurveFloat.h"
+#include "HAL/Runnable.h"
+#include "UpdateMeshThread.h"
 #include "ProcMeshSculpt.generated.h"
 
 UCLASS()
@@ -63,6 +66,8 @@ public:
 
 	virtual bool ShouldTickIfViewportsOnly() const override;
 
+	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex);
+
 	TArray<FVector> Normals;
 
 	TArray<FProcMeshTangent> Tangents;
@@ -70,5 +75,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Sculpt();
 
+	UPROPERTY(EditAnywhere)
+	UCurveFloat* Curve;
+
 	TArray<int32> AffectedVertNormals;
+
+	UpdateMeshThread* Thread;
+
 };

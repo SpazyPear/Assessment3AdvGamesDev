@@ -2,7 +2,9 @@
 
 
 #include "ProcMeshSculpt.h"
+#include "Math/UnrealMathUtility.h"
 #include <ProceduralMeshComponent/Public/KismetProceduralMeshLibrary.h>
+
 
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
@@ -20,20 +22,8 @@ void AProcMeshSculpt::BeginPlay()
 	Super::BeginPlay();
 	ClearMap();
 	GenerateMap();
-	/*TArray<FVector> Vertices;
-	Vertices.Add( FVector(0.0f, 0.0f, 0.0f));
-	Vertices.Add(FVector(0.0f, 100.0f, 0.0f));
-	Vertices.Add(FVector(100.0f, 100.0f, 0.0f));
-	Vertices.Add(FVector(100.0f, 0.0f, 0.0f));
-	TArray<int32> Triangles = { 0, 1, 3, 3, 1, 2 };
-	TArray<FVector2D> UVCoords;
-	UVCoords.Add(FVector2D(0.0f, 0.0f));
-	UVCoords.Add(FVector2D(0.0f, 1.0f));
-	UVCoords.Add(FVector2D(1.0f, 1.0f));
-	UVCoords.Add(FVector2D(1.0f, 0.0f));
-	MeshComponent->CreateMeshSection(0, Vertices, Triangles, TArray<FVector>(), UVCoords, TArray<FColor>(), TArray<FProcMeshTangent>(), true); */
-	//GenerateMap();
 
+	Thread = new UpdateMeshThread();
 }
 
 // Called every frame
@@ -45,6 +35,14 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 		ClearMap();
 		GenerateMap();
 	}
+
+	if (Thread->bRunningThread == false && Thread->TangentsQueue.Num() > 0) {
+		this->Tangents = Thread->TangentsQueue.Pop();
+		MeshComponent->UpdateMeshSection(0, Vertices, Normals, UVCoords, TArray<FColor>(), Tangents);
+		
+		UE_LOG(LogTemp, Warning, TEXT("ReUpdated"))
+	}
+	
 
 }
 
@@ -96,31 +94,34 @@ bool AProcMeshSculpt::ShouldTickIfViewportsOnly() const
 
 void AProcMeshSculpt::Sculpt()
 {
+	int32 CalledCounter = 0;
 	FHitResult* HitResultPtr = &HitResult;
 	if (HitResultPtr != nullptr) {
 		FVector MiddleVertexLocation = HitResult.Location;
 		UProceduralMeshComponent* mesh = MeshComponent;
 		FVector RelativeHitLocation = MiddleVertexLocation - GetActorLocation();
-		FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.X / GridSize), FMath::RoundToInt(RelativeHitLocation.Y / GridSize), 0);
-		int32 CenterIndex = MiddleLocation.X * Width + MiddleLocation.Y;
+		int32 VertsPerSide = ((Width - 1) * 1 + 1);
+		FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / GridSize), FMath::RoundToInt(RelativeHitLocation.X / GridSize), 0);
+		int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
 
 
-		int32 RadiusInVerts = 3 / GridSize;
+		int32 RadiusInVerts = 500 / GridSize;
 		int32 RadiusExtended = RadiusInVerts + 1;
 
-		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
+		for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
 		{
-			for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
+			for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 			{
 				// Continue loop if Vert doesn't exist
-				int32 CurrentIndex = CenterIndex + (X * Width) + Y;
+				int32 CurrentIndex = CenterIndex + (Y * Width) + X;
 				if (!Vertices.IsValidIndex(CurrentIndex)) { continue; }
 
 				FVector CurrentVertCoords = FVector(
-					FMath::RoundToInt(Vertices[CurrentIndex].X / GridSize),
 					FMath::RoundToInt(Vertices[CurrentIndex].Y / GridSize),
+					FMath::RoundToInt(Vertices[CurrentIndex].X / GridSize),
 					0);
 				float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
+				UE_LOG(LogTemp, Warning, TEXT("Distance: %f, Hit Location: %s, CurrentVertCoords: %s"), DistanceFromCenter, *(MiddleLocation.ToString()), *(CurrentVertCoords.ToString()));
 
 				// affected normals are added to array, and calculated after loop
 				if (DistanceFromCenter > RadiusExtended) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
@@ -137,7 +138,9 @@ void AProcMeshSculpt::Sculpt()
 
 				//	case ESculptMode::ST_Sculpt:
 						//VertexChangeHeight(CurrentIndex, DistanceFraction);
-					Vertices[CurrentIndex] = Vertices[CurrentIndex] + 100;
+					CalledCounter++;
+
+					VertexChangeHeight(DistanceFraction, CurrentIndex);
 						
 
 					
@@ -167,9 +170,21 @@ void AProcMeshSculpt::Sculpt()
 			if (!SectionActors.IsValidIndex(Iter)) { continue; }
 			(Settings.bUseUpdateQueue && !SectionUpdateQueue.Contains(Iter)) ? (SectionUpdateQueue.Add(Iter)) : (SectionActors[Iter]->UpdateSection());
 		}*/
-		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
+
+
 		mesh->UpdateMeshSection(0, Vertices, Normals, UVCoords, TArray<FColor>(), Tangents);
+		Thread->CreateThread(MeshComponent, Vertices, Triangles, UVCoords, Normals);
+	
 	}
 
+}
+
+void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
+{
+	float ScaledZStrength = 70;
+	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
+	float ZValue = FMath::Lerp(70.0f, 0.f, Alpha) * 10;
+	//UE_LOG(LogTemp, Warning, TEXT("Added %s"), *(FString::SanitizeFloat(ZValue)));
+	Vertices[VertexIndex] += (false) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
 }
 

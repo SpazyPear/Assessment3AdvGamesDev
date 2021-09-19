@@ -144,4 +144,14 @@
       <Filter>Source\TwistedGrounds</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\TwistedGrounds\UpdateMeshThread.h">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\TwistedGrounds\UpdateMeshThread.cpp">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
