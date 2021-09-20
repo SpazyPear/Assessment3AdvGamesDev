@@ -232,15 +232,9 @@
 /I "E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Source"
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\AugmentedReality
 /I Runtime\AugmentedReality\Public
-/I "E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Plugins\SimplexNoise\SimplexNoise\Intermediate\Build\Win64\UE4Editor\Inc\SimplexNoise"
-/I "E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Plugins\SimplexNoise\SimplexNoise\Source"
-/I "E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Plugins\SimplexNoise\SimplexNoise\Source\SimplexNoise\Public"
 /I ..\Plugins\Runtime\ProceduralMeshComponent\Intermediate\Build\Win64\UE4Editor\Inc\ProceduralMeshComponent
 /I ..\Plugins\Runtime\ProceduralMeshComponent\Source
 /I ..\Plugins\Runtime\ProceduralMeshComponent\Source\ProceduralMeshComponent\Public
-/I ..\Plugins\Marketplace\RuntimeMeshComponent\Intermediate\Build\Win64\UE4Editor\Inc\RuntimeMeshComponent
-/I ..\Plugins\Marketplace\RuntimeMeshComponent\Source
-/I ..\Plugins\Marketplace\RuntimeMeshComponent\Source\RuntimeMeshComponent\Public
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf

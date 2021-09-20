@@ -121,7 +121,6 @@ void AProcMeshSculpt::Sculpt()
 					FMath::RoundToInt(Vertices[CurrentIndex].X / GridSize),
 					0);
 				float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
-				UE_LOG(LogTemp, Warning, TEXT("Distance: %f, Hit Location: %s, CurrentVertCoords: %s"), DistanceFromCenter, *(MiddleLocation.ToString()), *(CurrentVertCoords.ToString()));
 
 				// affected normals are added to array, and calculated after loop
 				if (DistanceFromCenter > RadiusExtended) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
@@ -174,6 +173,8 @@ void AProcMeshSculpt::Sculpt()
 
 		mesh->UpdateMeshSection(0, Vertices, Normals, UVCoords, TArray<FColor>(), Tangents);
 		Thread->CreateThread(MeshComponent, Vertices, Triangles, UVCoords, Normals);
+		
+
 	
 	}
 

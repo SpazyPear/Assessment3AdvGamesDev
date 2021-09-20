@@ -1,7 +1,6 @@
 {
 	"SourceFiles": [
 		"E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGrounds\\TwistedGrounds.Build.cs",
-		"E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Plugins\\SimplexNoise\\SimplexNoise\\Source\\SimplexNoise\\SimplexNoise.Build.cs",
 		"E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGrounds.Target.cs",
 		"E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGroundsEditor.Target.cs"
 	],

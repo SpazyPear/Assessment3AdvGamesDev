@@ -1,10 +1,30 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build (E:\Desktop\Documents -HDD\Assessment3AdvGamesDev).
-  Creating makefile for TwistedGroundsEditor (.uproject file is newer)
-  While compiling E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\BuildRules\TwistedGroundsModuleRules.dll:
-e:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds\TwistedGrounds.Build.cs(16,3): warning CS0618: 'UnrealBuildTool.ModuleRules.bFasterWithoutUnity' is obsolete: 'bFasterWithoutUnity has been deprecated in favor of setting 'bUseUnity' on a per module basis in BuildConfiguration'
+  Creating makefile for TwistedGroundsEditor (no existing makefile)
   Parsing headers for TwistedGroundsEditor
     Running UnrealHeaderTool "E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\TwistedGrounds.uproject" "E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\TwistedGroundsEditor\Development\TwistedGroundsEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
-  Reflection code generated for TwistedGroundsEditor in 8.3602809 seconds
+  Reflection code generated for TwistedGroundsEditor in 7.995549 seconds
   Building TwistedGroundsEditor...
   Using Visual Studio 2019 14.29.30133 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133) and Windows 10.0.16299.0 SDK (C:\Program Files (x86)\Windows Kits\10).
-  Building 28 actions with 4 processes...
+  Building 18 actions with 4 processes...
+    [1/18] Default.rc2
+    [2/18] SharedPCH.Engine.ShadowErrors.cpp
+    [3/18] TwistedGrounds.cpp
+    [4/18] ProcMeshSculpt.cpp
+    [5/18] TwistedGroundsGameMode.cpp
+    [6/18] ProcMeshSculpt.gen.cpp
+    [7/18] TwistedGroundsCharacter.cpp
+    [8/18] TwistedGrounds.init.gen.cpp
+    [9/18] TwistedGroundsHUD.cpp
+    [10/18] TwistedGroundsCharacter.gen.cpp
+    [11/18] TwistedGroundsHUD.gen.cpp
+    [12/18] TwistedGroundsGameMode.gen.cpp
+    [13/18] TwistedGroundsProjectile.gen.cpp
+    [14/18] UpdateMeshThread.cpp
+    [15/18] TwistedGroundsProjectile.cpp
+    [16/18] UE4Editor-TwistedGrounds.lib
+       Creating library E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds.lib and object E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds.exp
+    [17/18] UE4Editor-TwistedGrounds.dll
+       Creating library E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds.suppressed.lib and object E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds.suppressed.exp
+    [18/18] TwistedGroundsEditor.target
+  Total time in Parallel executor: 27.45 seconds
+  Total execution time: 38.35 seconds
