@@ -5316,3 +5316,13 @@ LogConfig: Setting CVar [[r.setres:1280x720]]
 [2021.09.21-11.17.39:726][ 65]OBJ SavePackage: Finished generating thumbnails for package [/Game/ProcMeshGenBP]
 [2021.09.21-11.17.39:762][ 65]LogSavePackage: Moving '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/ProcMeshGenBP_Auto785DA3BD14C0513FB4D05DA8CC66FA270.tmp' to '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/Autosaves/Game/ProcMeshGenBP_Auto7.uasset'
 [2021.09.21-11.17.39:764][ 65]LogFileHelpers: Auto-saving content packages took 0.038
+[2021.09.21-11.18.08:773][196]LogUObjectHash: Compacting FUObjectHashTables data took   2.97ms
+[2021.09.21-11.18.08:843][196]LogUObjectHash: Compacting FUObjectHashTables data took   0.92ms
+[2021.09.21-11.18.09:189][196]LogSavePackage: Moving '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/FirstPersonExampleMap194764154A4352B0EA1DC4A861F146DB.tmp' to '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/FirstPersonCPP/Maps/FirstPersonExampleMap.umap'
+[2021.09.21-11.18.09:215][196]LogFileHelpers: Saving map 'FirstPersonExampleMap' took 0.413
+[2021.09.21-11.18.09:228][196]LogSavePackage: Moving '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/FirstPersonExampleMap_BuiltData677821FB44E3C0E60A74549413515E15.tmp' to '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/FirstPersonCPP/Maps/FirstPersonExampleMap_BuiltData.uasset'
+[2021.09.21-11.18.09:256][196]LogSavePackage: Moving '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/ProcMeshGenBPC435064A4D36D6E0B24CF58D55C7493B.tmp' to '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/ProcMeshGenBP.uasset'
+[2021.09.21-11.18.09:286][196]AssetCheck: New page: Asset Save: multiple assets
+[2021.09.21-11.18.09:287][196]LogContentValidation: Display: Validating World /Game/FirstPersonCPP/Maps/FirstPersonExampleMap.FirstPersonExampleMap
+[2021.09.21-11.18.09:287][196]LogContentValidation: Display: Validating MapBuildDataRegistry /Game/FirstPersonCPP/Maps/FirstPersonExampleMap_BuiltData.FirstPersonExampleMap_BuiltData
+[2021.09.21-11.18.09:287][196]LogContentValidation: Display: Validating Blueprint /Game/ProcMeshGenBP.ProcMeshGenBP
