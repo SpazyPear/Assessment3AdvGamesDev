@@ -23,6 +23,7 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 void AProcedurallyGeneratedMap::BeginPlay()
 {
 	Super::BeginPlay();
+	bRegenerateMap = true;
 }
 
 // Called every frame

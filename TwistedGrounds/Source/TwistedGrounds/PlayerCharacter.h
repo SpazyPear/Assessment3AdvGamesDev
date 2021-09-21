@@ -4,8 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
+
+#include "Camera/CameraComponent.h"
+#include "Components/SceneComponent.h"
+#include "ProcMeshSculpt.h"
+
 #include "GameFramework/CharacterMovementComponent.h"
 #include "PlayerCharacter.generated.h"
 
@@ -22,12 +26,12 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
+	UPROPERTY(EditAnywhere)
+		float LookSensitivity;
 
 	UPROPERTY(EditAnywhere)
-	float LookSensitivity;
-	UPROPERTY(EditInstanceOnly)
-	float SprintMultiplier;
+		AProcMeshSculpt* MeshSculpt;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -39,12 +43,7 @@ public:
 	void Strafe(float Value);
 	void LookUp(float Value);
 	void Turn(float Value);
-
-
-
-
-private:
+	void Sculpt();
 
 	UCameraComponent* Camera;
-
 };

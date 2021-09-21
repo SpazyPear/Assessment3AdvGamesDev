@@ -2,9 +2,8 @@
 
 
 #include "ProcMeshSculpt.h"
-#include "Math/UnrealMathUtility.h"
+#include "Kismet/GameplayStatics.h"
 #include <ProceduralMeshComponent/Public/KismetProceduralMeshLibrary.h>
-
 
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
@@ -17,7 +16,7 @@ AProcMeshSculpt::AProcMeshSculpt()
 void AProcMeshSculpt::BeginPlay()
 {
 	Super::BeginPlay();
-
+	HitSet = false;
 	Thread = new UpdateMeshThread();
 }
 
@@ -25,22 +24,40 @@ void AProcMeshSculpt::BeginPlay()
 void AProcMeshSculpt::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	//Don't know where this would go, before or after the predict projectile path
 	if (Thread->bRunningThread == false && Thread->TangentsQueue.Num() > 0) {
 		Map->Tangents = Thread->TangentsQueue.Pop();
 		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
-		
+
 		UE_LOG(LogTemp, Warning, TEXT("ReUpdated"))
 	}
+
+	if (!Muzzle || !Camera) {
+		UE_LOG(LogTemp, Warning, TEXT("No Muzzle or Camera"))
+		return;
+	}
+
+	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
+
+	HitSet = HitResult.GetActor() != nullptr;
+	if (HitSet) {
+		SetActorLocation(HitResult.ImpactPoint);
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *GetActorLocation().ToString())
 }
 
 void AProcMeshSculpt::Sculpt()
 {
+	if (!HitSet) {
+		return;
+	}
+
 	int32 CalledCounter = 0;
 	FHitResult* HitResultPtr = &HitResult;
-	if (HitResultPtr != nullptr) {
-		FVector MiddleVertexLocation = HitResult.Location;
-		UProceduralMeshComponent* mesh = Map->MeshComponent;
-		FVector RelativeHitLocation = MiddleVertexLocation - GetActorLocation();
+	if (HitResultPtr) {
+		FVector RelativeHitLocation = GetActorLocation();
 		int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
 		FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), 0);
 		int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
@@ -104,7 +121,7 @@ void AProcMeshSculpt::Sculpt()
 			if (!SectionActors.IsValidIndex(Iter)) { continue; }
 			(Settings.bUseUpdateQueue && !SectionUpdateQueue.Contains(Iter)) ? (SectionUpdateQueue.Add(Iter)) : (SectionActors[Iter]->UpdateSection());
 		}*/
-		mesh->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
+		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
 		Thread->CreateThread(Map->MeshComponent, Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals);
 	}
 }

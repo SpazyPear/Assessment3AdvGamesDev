@@ -4,9 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+
 #include "Curves/CurveFloat.h"
 #include "HAL/Runnable.h"
 #include "UpdateMeshThread.h"
+
+#include "Camera/CameraComponent.h"
+#include "Components/SceneComponent.h"
+
 #include "ProcedurallyGeneratedMap.h"
 #include "ProcMeshSculpt.generated.h"
 
@@ -26,21 +31,26 @@ protected:
 
 public:	
 	virtual void Tick(float DeltaTime) override;
+
 	UPROPERTY(BlueprintReadWrite)
 		FHitResult HitResult;
 
 	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex);
+	void Sculpt();
 
-	UFUNCTION(BlueprintCallable)
-		void Sculpt();
+	UFUNCTION(BlueprintImplementableEvent)
+		FHitResult TracePath(FVector StartPos, FVector LaunchVelocity, AActor* IgnoreActors);
 
 	UPROPERTY(EditAnywhere)
 		UCurveFloat* Curve;
 
 	TArray<int32> AffectedVertNormals;
-
 	UpdateMeshThread* Thread;
 
 	UPROPERTY(EditAnywhere)
 		AProcedurallyGeneratedMap* Map;
+
+	bool HitSet;
+	UCameraComponent* Camera;
+	USceneComponent* Muzzle;
 };

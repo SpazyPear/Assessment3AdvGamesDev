@@ -14,7 +14,6 @@ APlayerCharacter::APlayerCharacter()
 
 	//Set default member variable values
 	LookSensitivity = 1.0f;
-	SprintMultiplier = 1.5f;
 }
 
 // Called when the game starts or when spawned
@@ -24,20 +23,14 @@ void APlayerCharacter::BeginPlay()
 
 	//Initialise the camera variable
 	Camera = FindComponentByClass<UCameraComponent>();
-
-	// Get the skeletal mesh and then get the anim instance from it cast to the first person anim instance.
-	USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(GetDefaultSubobjectByName(TEXT("Arms")));
-	if (SkeletalMesh) // Make sure the skeletal mesh was found
-	{
-		
-	}
+	MeshSculpt->Camera = Camera;
+	MeshSculpt->Muzzle = Cast<USceneComponent>(GetDefaultSubobjectByName(TEXT("MuzzlePosition")));
 }
 
 // Called every frame
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -51,12 +44,11 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &APlayerCharacter::Turn);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
-
+	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Sculpt);
 }
 
 void APlayerCharacter::MoveForward(float Value) 
 {
-
 	FRotator ForwardRotation = GetControlRotation();
 	ForwardRotation.Roll = 0.0f;
 	ForwardRotation.Pitch = 0.0f;
@@ -70,16 +62,13 @@ void APlayerCharacter::Strafe(float Value)
 
 void APlayerCharacter::LookUp(float Value) 
 {
+	float NewPitch = Camera->GetRelativeRotation().Pitch + Value * LookSensitivity;
+	NewPitch = NewPitch > 90 ? 90 : NewPitch;
+	NewPitch = NewPitch < -90 ? -90 : NewPitch;
 
-	FRotator LookUpRotation = FRotator::ZeroRotator;
-	LookUpRotation.Pitch = Value * LookSensitivity;
-	if (Camera->RelativeRotation.Pitch + LookUpRotation.Pitch < 90.0f
-		&& Camera->RelativeRotation.Pitch + LookUpRotation.Pitch > -90.0f)
-	{
-		Camera->AddRelativeRotation(LookUpRotation);
-		Camera->RelativeRotation.Yaw = 0.0f;
-		Camera->RelativeRotation.Roll = 0.0f;
-	}
+	FRotator CamRot = FRotator().ZeroRotator;
+	CamRot.Pitch = NewPitch;
+	Camera->SetRelativeRotation(CamRot);
 }
 
 void APlayerCharacter::Turn(float Value) 
@@ -87,8 +76,12 @@ void APlayerCharacter::Turn(float Value)
 	AddControllerYawInput(Value * LookSensitivity);
 }
 
-
-
-
-
-
+void APlayerCharacter::Sculpt()
+{
+	if (MeshSculpt) {
+		MeshSculpt->Sculpt();
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+	}
+}
