@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "ProceduralMeshComponent.h"
 #include "Curves/CurveFloat.h"
 #include "HAL/Runnable.h"
 #include "UpdateMeshThread.h"
+#include "ProcedurallyGeneratedMap.h"
 #include "ProcMeshSculpt.generated.h"
 
 UCLASS()
@@ -26,60 +26,21 @@ protected:
 
 public:	
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(VisibleAnywhere)
-		UProceduralMeshComponent* MeshComponent;
-
-	UPROPERTY(EditAnywhere)
-		int32 Width;
-
-	UPROPERTY(EditAnywhere)
-		int32 Height;
-
-	UPROPERTY(EditAnywhere)
-		float GridSize;
-
 	UPROPERTY(BlueprintReadWrite)
 		FHitResult HitResult;
 
-	TArray<FVector> Vertices;
-
-	TArray<int32> Triangles;
-
-	TArray<FVector2D> UVCoords;
-
-	float PerlinOffset;
-
-	UPROPERTY(EditAnywhere)
-		float PerlinScale;
-
-	UPROPERTY(EditAnywhere)
-		float PerlinRoughness;
-
-	UFUNCTION(BlueprintCallable)
-		void GenerateMap();
-
-	UPROPERTY(EditAnywhere)
-		bool bRegenerateMap;
-
-	void ClearMap();
-
-	virtual bool ShouldTickIfViewportsOnly() const override;
-
 	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex);
 
-	TArray<FVector> Normals;
-
-	TArray<FProcMeshTangent> Tangents;
-
 	UFUNCTION(BlueprintCallable)
-	void Sculpt();
+		void Sculpt();
 
 	UPROPERTY(EditAnywhere)
-	UCurveFloat* Curve;
+		UCurveFloat* Curve;
 
 	TArray<int32> AffectedVertNormals;
 
 	UpdateMeshThread* Thread;
 
+	UPROPERTY(EditAnywhere)
+		AProcedurallyGeneratedMap* Map;
 };

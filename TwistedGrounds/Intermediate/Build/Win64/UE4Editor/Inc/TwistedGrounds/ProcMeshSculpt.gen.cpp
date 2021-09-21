@@ -17,42 +17,18 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_TwistedGrounds();
-	TWISTEDGROUNDS_API UFunction* Z_Construct_UFunction_AProcMeshSculpt_GenerateMap();
 	TWISTEDGROUNDS_API UFunction* Z_Construct_UFunction_AProcMeshSculpt_Sculpt();
+	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcedurallyGeneratedMap_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
-	PROCEDURALMESHCOMPONENT_API UClass* Z_Construct_UClass_UProceduralMeshComponent_NoRegister();
 // End Cross Module References
 	void AProcMeshSculpt::StaticRegisterNativesAProcMeshSculpt()
 	{
 		UClass* Class = AProcMeshSculpt::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
-			{ "GenerateMap", &AProcMeshSculpt::execGenerateMap },
 			{ "Sculpt", &AProcMeshSculpt::execSculpt },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
-	}
-	struct Z_Construct_UFunction_AProcMeshSculpt_GenerateMap_Statics
-	{
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UE4CodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AProcMeshSculpt_GenerateMap_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_AProcMeshSculpt_GenerateMap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AProcMeshSculpt, nullptr, "GenerateMap", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_AProcMeshSculpt_GenerateMap_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_AProcMeshSculpt_GenerateMap_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_AProcMeshSculpt_GenerateMap()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_AProcMeshSculpt_GenerateMap_Statics::FuncParams);
-		}
-		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_AProcMeshSculpt_Sculpt_Statics
 	{
@@ -88,42 +64,17 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Map_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Map;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Curve_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Curve;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bRegenerateMap_MetaData[];
-#endif
-		static void NewProp_bRegenerateMap_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bRegenerateMap;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerlinRoughness_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerlinRoughness;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerlinScale_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerlinScale;
-#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HitResult_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FStructPropertyParams NewProp_HitResult;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_GridSize_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_GridSize;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Height_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FIntPropertyParams NewProp_Height;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Width_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FIntPropertyParams NewProp_Width;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MeshComponent_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_MeshComponent;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -133,7 +84,6 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_TwistedGrounds,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AProcMeshSculpt_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_AProcMeshSculpt_GenerateMap, "GenerateMap" }, // 1329632605
 		{ &Z_Construct_UFunction_AProcMeshSculpt_Sculpt, "Sculpt" }, // 101463453
 	};
 #if WITH_METADATA
@@ -143,6 +93,13 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map_MetaData[] = {
+		{ "Category", "ProcMeshSculpt" },
+		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map = { "Map", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, Map), Z_Construct_UClass_AProcedurallyGeneratedMap_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve_MetaData[] = {
 		{ "Category", "ProcMeshSculpt" },
 		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
@@ -150,76 +107,16 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve = { "Curve", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, Curve), Z_Construct_UClass_UCurveFloat_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_bRegenerateMap_MetaData[] = {
-		{ "Category", "ProcMeshSculpt" },
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	void Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_bRegenerateMap_SetBit(void* Obj)
-	{
-		((AProcMeshSculpt*)Obj)->bRegenerateMap = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_bRegenerateMap = { "bRegenerateMap", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AProcMeshSculpt), &Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_bRegenerateMap_SetBit, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_bRegenerateMap_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_bRegenerateMap_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinRoughness_MetaData[] = {
-		{ "Category", "ProcMeshSculpt" },
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinRoughness = { "PerlinRoughness", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, PerlinRoughness), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinRoughness_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinRoughness_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinScale_MetaData[] = {
-		{ "Category", "ProcMeshSculpt" },
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinScale = { "PerlinScale", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, PerlinScale), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinScale_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinScale_MetaData)) };
-#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult_MetaData[] = {
 		{ "Category", "ProcMeshSculpt" },
 		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
 	};
 #endif
 	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult = { "HitResult", nullptr, (EPropertyFlags)0x0010008000000004, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, HitResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_GridSize_MetaData[] = {
-		{ "Category", "ProcMeshSculpt" },
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_GridSize = { "GridSize", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, GridSize), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_GridSize_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_GridSize_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Height_MetaData[] = {
-		{ "Category", "ProcMeshSculpt" },
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Height = { "Height", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, Height), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Height_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Height_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Width_MetaData[] = {
-		{ "Category", "ProcMeshSculpt" },
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Width = { "Width", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, Width), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Width_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Width_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MeshComponent_MetaData[] = {
-		{ "Category", "ProcMeshSculpt" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MeshComponent = { "MeshComponent", nullptr, (EPropertyFlags)0x00100000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, MeshComponent), Z_Construct_UClass_UProceduralMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MeshComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MeshComponent_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AProcMeshSculpt_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_bRegenerateMap,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinRoughness,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_PerlinScale,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_GridSize,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Height,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Width,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MeshComponent,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AProcMeshSculpt_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AProcMeshSculpt>::IsAbstract,
@@ -248,7 +145,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AProcMeshSculpt, 489591607);
+	IMPLEMENT_CLASS(AProcMeshSculpt, 2180463000);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AProcMeshSculpt>()
 	{
 		return AProcMeshSculpt::StaticClass();
