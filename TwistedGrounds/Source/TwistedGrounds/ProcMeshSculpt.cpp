@@ -10,6 +10,8 @@ AProcMeshSculpt::AProcMeshSculpt()
 {
 	// Set this actor to call Tick() every frame. You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	SculptState = SCULPTSTATE::IDLE;
+	ScaledZStrength = 70;
 }
 
 // Called when the game starts or when spawned
@@ -44,7 +46,7 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	if (HitSet) {
 		SetActorLocation(HitResult.ImpactPoint);
 	}
-
+	CheckState();
 	UE_LOG(LogTemp, Warning, TEXT("%s"), *GetActorLocation().ToString())
 }
 
@@ -122,15 +124,27 @@ void AProcMeshSculpt::Sculpt()
 			(Settings.bUseUpdateQueue && !SectionUpdateQueue.Contains(Iter)) ? (SectionUpdateQueue.Add(Iter)) : (SectionActors[Iter]->UpdateSection());
 		}*/
 		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
-		Thread->CreateThread(Map->MeshComponent, Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals);
+		//Thread->CreateThread(Map->MeshComponent, Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals);
+	}
+}
+
+void AProcMeshSculpt::CheckState()
+{
+	switch (SculptState) {
+		
+	case SCULPTSTATE::IDLE:
+		break;
+	case SCULPTSTATE::ONGOING:
+		Sculpt();
+		break;
 	}
 }
 
 void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
 {
-	float ScaledZStrength = 70;
+	
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
 	float ZValue = FMath::Lerp(70.0f, 0.f, Alpha) * 10;
 	//UE_LOG(LogTemp, Warning, TEXT("Added %s"), *(FString::SanitizeFloat(ZValue)));
-	Map->Vertices[VertexIndex] += (false) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
+	Map->Vertices[VertexIndex] += (false) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue/ScaledZStrength)); // invert
 }

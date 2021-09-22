@@ -13,10 +13,11 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 // Cross Module References
+	TWISTEDGROUNDS_API UEnum* Z_Construct_UEnum_TwistedGrounds_SCULPTSTATE();
+	UPackage* Z_Construct_UPackage__Script_TwistedGrounds();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt_NoRegister();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
-	UPackage* Z_Construct_UPackage__Script_TwistedGrounds();
 	TWISTEDGROUNDS_API UFunction* Z_Construct_UFunction_AProcMeshSculpt_TracePath();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
@@ -24,6 +25,60 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcedurallyGeneratedMap_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 // End Cross Module References
+	static UEnum* SCULPTSTATE_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_TwistedGrounds_SCULPTSTATE, Z_Construct_UPackage__Script_TwistedGrounds(), TEXT("SCULPTSTATE"));
+		}
+		return Singleton;
+	}
+	template<> TWISTEDGROUNDS_API UEnum* StaticEnum<SCULPTSTATE>()
+	{
+		return SCULPTSTATE_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_SCULPTSTATE(SCULPTSTATE_StaticEnum, TEXT("/Script/TwistedGrounds"), TEXT("SCULPTSTATE"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_TwistedGrounds_SCULPTSTATE_Hash() { return 3493829751U; }
+	UEnum* Z_Construct_UEnum_TwistedGrounds_SCULPTSTATE()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_TwistedGrounds();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("SCULPTSTATE"), 0, Get_Z_Construct_UEnum_TwistedGrounds_SCULPTSTATE_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "SCULPTSTATE::IDLE", (int64)SCULPTSTATE::IDLE },
+				{ "SCULPTSTATE::ONGOING", (int64)SCULPTSTATE::ONGOING },
+				{ "SCULPTSTATE::STOPPED", (int64)SCULPTSTATE::STOPPED },
+			};
+#if WITH_METADATA
+			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "IDLE.Name", "SCULPTSTATE::IDLE" },
+				{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+				{ "ONGOING.Name", "SCULPTSTATE::ONGOING" },
+				{ "STOPPED.Name", "SCULPTSTATE::STOPPED" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_TwistedGrounds,
+				nullptr,
+				"SCULPTSTATE",
+				"SCULPTSTATE",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				UE4CodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UE4CodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
 	static FName NAME_AProcMeshSculpt_TracePath = FName(TEXT("TracePath"));
 	FHitResult AProcMeshSculpt::TracePath(FVector StartPos, FVector LaunchVelocity, AActor* IgnoreActors)
 	{
@@ -94,6 +149,10 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Curve;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ScaledZStrength_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_ScaledZStrength;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_HitResult_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FStructPropertyParams NewProp_HitResult;
@@ -129,6 +188,13 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve = { "Curve", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, Curve), Z_Construct_UClass_UCurveFloat_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_ScaledZStrength_MetaData[] = {
+		{ "Category", "ProcMeshSculpt" },
+		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_ScaledZStrength = { "ScaledZStrength", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, ScaledZStrength), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_ScaledZStrength_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_ScaledZStrength_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult_MetaData[] = {
 		{ "Category", "ProcMeshSculpt" },
 		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
@@ -138,6 +204,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AProcMeshSculpt_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_ScaledZStrength,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AProcMeshSculpt_Statics::StaticCppClassTypeInfo = {
@@ -167,7 +234,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AProcMeshSculpt, 1218638067);
+	IMPLEMENT_CLASS(AProcMeshSculpt, 4040447116);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AProcMeshSculpt>()
 	{
 		return AProcMeshSculpt::StaticClass();

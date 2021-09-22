@@ -15,6 +15,13 @@
 #include "ProcedurallyGeneratedMap.h"
 #include "ProcMeshSculpt.generated.h"
 
+UENUM()
+enum class SCULPTSTATE : uint8 {
+	IDLE,
+	ONGOING,
+	STOPPED,
+};
+
 UCLASS()
 class TWISTEDGROUNDS_API AProcMeshSculpt : public AActor
 {
@@ -38,8 +45,15 @@ public:
 	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex);
 	void Sculpt();
 
+	UPROPERTY(EditAnywhere)
+		float ScaledZStrength;
+
 	UFUNCTION(BlueprintImplementableEvent)
 		FHitResult TracePath(FVector StartPos, FVector LaunchVelocity, AActor* IgnoreActors);
+
+	SCULPTSTATE SculptState;
+
+	void CheckState();
 
 	UPROPERTY(EditAnywhere)
 		UCurveFloat* Curve;

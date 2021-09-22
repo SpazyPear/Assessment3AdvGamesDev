@@ -33,6 +33,10 @@ public:
 	UPROPERTY(EditAnywhere)
 		AProcMeshSculpt* MeshSculpt;
 
+	void SculptStart();
+
+	void SculptEnd();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

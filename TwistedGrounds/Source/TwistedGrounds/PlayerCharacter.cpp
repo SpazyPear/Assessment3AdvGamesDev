@@ -44,7 +44,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &APlayerCharacter::Turn);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Sculpt);
+	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::SculptStart);
+	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::SculptEnd);
 }
 
 void APlayerCharacter::MoveForward(float Value) 
@@ -76,10 +77,20 @@ void APlayerCharacter::Turn(float Value)
 	AddControllerYawInput(Value * LookSensitivity);
 }
 
-void APlayerCharacter::Sculpt()
+void APlayerCharacter::SculptStart()
 {
 	if (MeshSculpt) {
-		MeshSculpt->Sculpt();
+		MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+	}
+}
+
+void APlayerCharacter::SculptEnd()
+{
+	if (MeshSculpt) {
+		MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
 	}
 	else {
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
