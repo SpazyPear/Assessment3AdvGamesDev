@@ -44,8 +44,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	if (HitSet) {
 		SetActorLocation(HitResult.ImpactPoint);
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *GetActorLocation().ToString())
 }
 
 void AProcMeshSculpt::Sculpt()

@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ProcedurallyGeneratedMap.h"
-#include "KismetProceduralMeshLibrary.h"
 
 // Sets default values
 AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
@@ -23,7 +22,10 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 void AProcedurallyGeneratedMap::BeginPlay()
 {
 	Super::BeginPlay();
-	bRegenerateMap = true;
+	bRegenerateMap = !UGameplayStatics::DoesSaveGameExist(TEXT("SavedMap"), 0);
+	if (!bRegenerateMap) {
+		LoadMap();
+	}
 }
 
 // Called every frame
@@ -34,6 +36,7 @@ void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 		ClearMap();
 		GenerateMap();
 		bRegenerateMap = false;
+		SaveMap();
 	}
 }
 
@@ -72,6 +75,27 @@ void AProcedurallyGeneratedMap::ClearMap() {
 
 float AProcedurallyGeneratedMap::PerlinSample(float Axis, float Offset) {
 	return (Axis + Offset) * PerlinRoughness;
+}
+
+void AProcedurallyGeneratedMap::SaveMap() {
+	USavedMap* Map = Cast<USavedMap>(UGameplayStatics::CreateSaveGameObject(USavedMap::StaticClass()));
+	Map->Vertices = Vertices;
+	Map->Triangles = Triangles;
+	Map->UVCoords = UVCoords;
+	Map->Normals = Normals;
+	Map->Tangents = Tangents;
+	UGameplayStatics::SaveGameToSlot(Map, TEXT("SavedMap"), 0);
+	UE_LOG(LogTemp, Warning, TEXT("Saved Map"))
+}
+
+void AProcedurallyGeneratedMap::LoadMap() {
+	USavedMap* Map = Cast<USavedMap>(UGameplayStatics::LoadGameFromSlot(TEXT("SavedMap"), 0));
+	Vertices = Map->Vertices;
+	Triangles = Map->Triangles;
+	UVCoords = Map->UVCoords;
+	Normals = Map->Normals;
+	Tangents = Map->Tangents;
+	UE_LOG(LogTemp, Warning, TEXT("Loaded Map"))
 }
 
 bool AProcedurallyGeneratedMap::ShouldTickIfViewportsOnly() const {
