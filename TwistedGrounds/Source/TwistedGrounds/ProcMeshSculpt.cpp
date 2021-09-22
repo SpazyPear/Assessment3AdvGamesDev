@@ -28,27 +28,14 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	//Don't know where this would go, before or after the predict projectile path
-	if (Thread->bRunningThread == false && Thread->TangentsQueue.Num() > 0) {
-		Map->Tangents = Thread->TangentsQueue.Pop();
-		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
-
-		UE_LOG(LogTemp, Warning, TEXT("ReUpdated"))
-	}
-
 	if (!Muzzle || !Camera) {
 		UE_LOG(LogTemp, Warning, TEXT("No Muzzle or Camera"))
 		return;
 	}
 
-	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
-
-	HitSet = HitResult.GetActor() != nullptr;
-	if (HitSet) {
-		SetActorLocation(HitResult.ImpactPoint);
-	}
+	Raycast();
 	CheckState();
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *GetActorLocation().ToString())
+
 }
 
 void AProcMeshSculpt::Sculpt()
@@ -88,27 +75,13 @@ void AProcMeshSculpt::Sculpt()
 
 				// Check real radius
 				if (DistanceFromCenter > RadiusInVerts) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
-				// execute selected sculpt function for each vertex in radius
-				//if (InputInfo.SculptInput != ESculptInput::ST_Stopped)
-				//{
+	
 					float DistanceFraction = DistanceFromCenter / RadiusInVerts;
 
-				//	case ESculptMode::ST_Sculpt:
-						//VertexChangeHeight(CurrentIndex, DistanceFraction);
 					CalledCounter++;
 
 					VertexChangeHeight(DistanceFraction, CurrentIndex);
-				//}
 
-				//FVector SectionCoordinates = FVector(SectionIndex / (ComponentXY), SectionIndex % (ComponentXY), 0);
-
-				//FVector SectionVertCoords = CurrentVertCoords - (SectionCoordinates * SectionXY - SectionCoordinates);
-				//int32 SectionVertIndex = SectionVertCoords.X * SectionXY + SectionVertCoords.Y;
-
-				//if (SectionVertCoords.X > SectionXY - 1 || SectionVertCoords.X < 0 || SectionVertCoords.Y > SectionXY - 1 || SectionVertCoords.Y < 0) { continue; }
-				//if (!SectionProperties.SectionPosition.IsValidIndex(SectionVertIndex)) { continue; }
-
-				//AddAffectedSections(SectionIndex, SectionVertIndex, OUT AffectedSections);
 			}
 		}
 
@@ -118,12 +91,7 @@ void AProcMeshSculpt::Sculpt()
 			//Normals[Vert] = CalculateVertexNormal(Vert);
 		}
 
-		// Update section directly or via Queue
-		/*for (int32 Iter : AffectedSections)
-		{
-			if (!SectionActors.IsValidIndex(Iter)) { continue; }
-			(Settings.bUseUpdateQueue && !SectionUpdateQueue.Contains(Iter)) ? (SectionUpdateQueue.Add(Iter)) : (SectionActors[Iter]->UpdateSection());
-		}*/
+
 		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
 		//Thread->CreateThread(Map->MeshComponent, Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals);
 	}
@@ -138,6 +106,26 @@ void AProcMeshSculpt::CheckState()
 	case SCULPTSTATE::ONGOING:
 		Sculpt();
 		break;
+	}
+}
+
+void AProcMeshSculpt::UpdateTangents()
+{
+	if (Thread->bRunningThread == false && Thread->TangentsQueue.Num() > 0) {
+		Map->Tangents = Thread->TangentsQueue.Pop();
+		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
+
+		UE_LOG(LogTemp, Warning, TEXT("ReUpdated"))
+	}
+}
+
+void AProcMeshSculpt::Raycast()
+{
+	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
+
+	HitSet = HitResult.GetActor() != nullptr;
+	if (HitSet) {
+		SetActorLocation(HitResult.ImpactPoint);
 	}
 }
 

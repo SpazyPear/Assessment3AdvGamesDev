@@ -67,6 +67,11 @@ public:
 		AProcedurallyGeneratedMap* Map;
 
 	bool HitSet;
+
+	void UpdateTangents();
+
+	void Raycast();
+
 	UCameraComponent* Camera;
 	USceneComponent* Muzzle;
 };
