@@ -46,6 +46,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::SculptStart);
 	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::SculptEnd);
+	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Invert);
+	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
 }
 
 void APlayerCharacter::MoveForward(float Value) 
@@ -91,6 +93,18 @@ void APlayerCharacter::SculptEnd()
 {
 	if (MeshSculpt) {
 		MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+	}
+}
+
+void APlayerCharacter::Invert()
+{
+
+	if (MeshSculpt) {
+	
+		MeshSculpt->bInvert = MeshSculpt->bInvert ? false : true;
 	}
 	else {
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))

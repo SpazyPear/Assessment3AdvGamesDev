@@ -12,6 +12,7 @@ AProcMeshSculpt::AProcMeshSculpt()
 	PrimaryActorTick.bCanEverTick = true;
 	SculptState = SCULPTSTATE::IDLE;
 	ScaledZStrength = 70;
+	bInvert = false;
 }
 
 // Called when the game starts or when spawned
@@ -146,5 +147,5 @@ void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexInd
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
 	float ZValue = FMath::Lerp(70.0f, 0.f, Alpha) * 10;
 	//UE_LOG(LogTemp, Warning, TEXT("Added %s"), *(FString::SanitizeFloat(ZValue)));
-	Map->Vertices[VertexIndex] += (false) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue/ScaledZStrength)); // invert
+	Map->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue/ScaledZStrength)) : (FVector(0.f, 0.f, ZValue/ScaledZStrength)); // invert
 }

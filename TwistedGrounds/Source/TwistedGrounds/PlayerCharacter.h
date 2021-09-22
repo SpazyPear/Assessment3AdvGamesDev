@@ -37,6 +37,8 @@ public:
 
 	void SculptEnd();
 
+	void Invert();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

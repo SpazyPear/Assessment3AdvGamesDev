@@ -53,6 +53,8 @@ public:
 
 	SCULPTSTATE SculptState;
 
+	bool bInvert;
+
 	void CheckState();
 
 	UPROPERTY(EditAnywhere)
