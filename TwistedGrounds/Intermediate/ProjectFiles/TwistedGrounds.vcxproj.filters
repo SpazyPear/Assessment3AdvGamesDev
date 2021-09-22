@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\TwistedGrounds.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{2403E1E7-F41E-4AA8-B0AC-41AE9B0C3B7D}</UniqueIdentifier>
+      <UniqueIdentifier>{97D38769-2136-4FE3-9F8B-451A5B5D3369}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TwistedGrounds.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{E3C94B12-399E-46C1-BB01-899C7C9051B6}</UniqueIdentifier>
+      <UniqueIdentifier>{1EE47FCE-335C-43C5-BF2D-DAA88475E602}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,12 +30,18 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\TwistedGrounds">
-      <UniqueIdentifier>{975B0A70-81CA-4315-870C-DF50136895FA}</UniqueIdentifier>
+      <UniqueIdentifier>{240C356D-6BD7-43AA-A6EE-04BDE0584356}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\TwistedGrounds\PlayerCharacter.cpp">
       <Filter>Source\TwistedGrounds</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\TwistedGrounds\PlayerCharacter.h">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\TwistedGrounds\ProcedurallyGeneratedMap.cpp">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\TwistedGrounds\ProcedurallyGeneratedMap.h">
       <Filter>Source\TwistedGrounds</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\TwistedGrounds\ProcMeshSculpt.cpp">
