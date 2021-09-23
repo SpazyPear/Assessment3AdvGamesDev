@@ -79,6 +79,9 @@ void APlayerCharacter::Turn(float Value)
 void APlayerCharacter::Sculpt()
 {
 	if (MeshSculpt) {
+		ADustClouds* Emitter = GetWorld()->SpawnActor<ADustClouds>(DustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
+		FString s = Emitter ? "Getting Somewhere" : "Not Getting Anywhere";
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *s)
 		MeshSculpt->Sculpt();
 	}
 	else {

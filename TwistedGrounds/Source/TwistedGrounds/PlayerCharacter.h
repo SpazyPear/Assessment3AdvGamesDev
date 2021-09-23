@@ -8,7 +8,9 @@
 
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "ProcMeshSculpt.h"
+#include "DustClouds.h"
 
 #include "GameFramework/CharacterMovementComponent.h"
 #include "PlayerCharacter.generated.h"
@@ -46,4 +48,7 @@ public:
 	void Sculpt();
 
 	UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<ADustClouds> DustEmitterToSpawn;
 };
