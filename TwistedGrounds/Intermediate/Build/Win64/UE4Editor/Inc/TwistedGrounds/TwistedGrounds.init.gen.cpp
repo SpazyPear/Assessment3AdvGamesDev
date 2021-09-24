@@ -21,8 +21,8 @@ void EmptyLinkFunctionForGeneratedCodeTwistedGrounds_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x547CEE83,
-				0xD7D170DD,
+				0xE279D175,
+				0x7AB14A0A,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UE4CodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);

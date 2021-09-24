@@ -50,7 +50,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
 }
 
-void APlayerCharacter::MoveForward(float Value) 
+void APlayerCharacter::MoveForward(float Value)
 {
 	FRotator ForwardRotation = GetControlRotation();
 	ForwardRotation.Roll = 0.0f;
@@ -58,12 +58,12 @@ void APlayerCharacter::MoveForward(float Value)
 	AddMovementInput(ForwardRotation.Vector(), Value);
 }
 
-void APlayerCharacter::Strafe(float Value) 
+void APlayerCharacter::Strafe(float Value)
 {
 	AddMovementInput(GetActorRightVector(), Value);
 }
 
-void APlayerCharacter::LookUp(float Value) 
+void APlayerCharacter::LookUp(float Value)
 {
 	float NewPitch = Camera->GetRelativeRotation().Pitch + Value * LookSensitivity;
 	NewPitch = NewPitch > 90 ? 90 : NewPitch;
@@ -74,7 +74,7 @@ void APlayerCharacter::LookUp(float Value)
 	Camera->SetRelativeRotation(CamRot);
 }
 
-void APlayerCharacter::Turn(float Value) 
+void APlayerCharacter::Turn(float Value)
 {
 	AddControllerYawInput(Value * LookSensitivity);
 }
@@ -103,8 +103,12 @@ void APlayerCharacter::Invert()
 {
 
 	if (MeshSculpt) {
-	
+
 		MeshSculpt->bInvert = MeshSculpt->bInvert ? false : true;
+		ADustClouds* Emitter = GetWorld()->SpawnActor<ADustClouds>(DustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
+		FString s = Emitter ? "Getting Somewhere" : "Not Getting Anywhere";
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *s)
+		MeshSculpt->Sculpt();
 	}
 	else {
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))

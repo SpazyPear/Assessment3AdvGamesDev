@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SavedMap.h"
+#include "Kismet/GameplayStatics.h"
+#include "KismetProceduralMeshLibrary.h"
 #include "ProceduralMeshComponent.h"
 #include "ProcedurallyGeneratedMap.generated.h"
 
@@ -61,4 +64,6 @@ public:
 
 private:
 	float PerlinSample(float Axis, float Offset);
+	void SaveMap();
+	void LoadMap();
 };

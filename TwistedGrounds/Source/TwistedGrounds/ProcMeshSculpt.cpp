@@ -36,6 +36,12 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	Raycast();
 	CheckState();
 
+	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
+
+	HitSet = HitResult.GetActor() != nullptr;
+	if (HitSet) {
+		SetActorLocation(HitResult.ImpactPoint);
+	}
 }
 
 void AProcMeshSculpt::Sculpt()
@@ -75,7 +81,7 @@ void AProcMeshSculpt::Sculpt()
 
 				// Check real radius
 				if (DistanceFromCenter > RadiusInVerts) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
-	
+
 					float DistanceFraction = DistanceFromCenter / RadiusInVerts;
 
 					CalledCounter++;
@@ -100,7 +106,7 @@ void AProcMeshSculpt::Sculpt()
 void AProcMeshSculpt::CheckState()
 {
 	switch (SculptState) {
-		
+
 	case SCULPTSTATE::IDLE:
 		break;
 	case SCULPTSTATE::ONGOING:
@@ -131,7 +137,7 @@ void AProcMeshSculpt::Raycast()
 
 void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
 {
-	
+
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
 	float ZValue = FMath::Lerp(70.0f, 0.f, Alpha) * 10;
 	//UE_LOG(LogTemp, Warning, TEXT("Added %s"), *(FString::SanitizeFloat(ZValue)));
