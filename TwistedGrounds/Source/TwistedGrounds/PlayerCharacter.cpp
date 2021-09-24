@@ -88,7 +88,7 @@ void APlayerCharacter::SculptStart()
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
 		return;
 	}
-	BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
+	
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
 	MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
 }
@@ -103,8 +103,9 @@ void APlayerCharacter::SculptEnd()
 	if (SmallEmitter) {
 		SmallEmitter->Destroy();
 		SmallEmitter = nullptr;
+		
 	}
-
+	BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
 	MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
 }
 
