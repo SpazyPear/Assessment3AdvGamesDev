@@ -31,6 +31,9 @@ void APlayerCharacter::BeginPlay()
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (SmallEmitter) {
+		SmallEmitter->SetActorLocation(MeshSculpt->GetActorLocation());
+	}
 }
 
 // Called to bind functionality to input
@@ -81,36 +84,35 @@ void APlayerCharacter::Turn(float Value)
 
 void APlayerCharacter::SculptStart()
 {
-	if (MeshSculpt) {
-		MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
-	}
-	else {
+	if (!MeshSculpt) {
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+		return;
 	}
+	BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
+	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
+	MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
 }
 
 void APlayerCharacter::SculptEnd()
 {
-	if (MeshSculpt) {
-		MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
-	}
-	else {
+	if (!MeshSculpt) {
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+		return;
 	}
+
+	if (SmallEmitter) {
+		SmallEmitter->Destroy();
+		SmallEmitter = nullptr;
+	}
+
+	MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
 }
 
 void APlayerCharacter::Invert()
 {
-
-	if (MeshSculpt) {
-
-		MeshSculpt->bInvert = MeshSculpt->bInvert ? false : true;
-		ADustClouds* Emitter = GetWorld()->SpawnActor<ADustClouds>(DustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
-		FString s = Emitter ? "Getting Somewhere" : "Not Getting Anywhere";
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *s)
-		MeshSculpt->Sculpt();
-	}
-	else {
+	if (!MeshSculpt) {
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+		return;
 	}
+	MeshSculpt->bInvert = !MeshSculpt->bInvert;
 }

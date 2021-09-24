@@ -51,10 +51,16 @@ public:
 	void Strafe(float Value);
 	void LookUp(float Value);
 	void Turn(float Value);
-	void Sculpt();
 
 	UCameraComponent* Camera;
 
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<ADustClouds> DustEmitterToSpawn;
+		TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
+
+private:
+	ADustClouds* BigEmitter;
+	ADustClouds* SmallEmitter;
 };

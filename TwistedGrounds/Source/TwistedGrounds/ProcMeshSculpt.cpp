@@ -46,61 +46,55 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 
 void AProcMeshSculpt::Sculpt()
 {
-	if (!HitSet) {
+	if (!HitSet || !&HitResult) {
 		return;
 	}
 
 	int32 CalledCounter = 0;
-	FHitResult* HitResultPtr = &HitResult;
-	if (HitResultPtr) {
-		FVector RelativeHitLocation = GetActorLocation();
-		int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
-		FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), 0);
-		int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
+	FVector RelativeHitLocation = GetActorLocation();
+	int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
+	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), 0);
+	int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
 
-		int32 RadiusInVerts = 500 / Map->GridSize;
-		int32 RadiusExtended = RadiusInVerts + 1;
+	int32 RadiusInVerts = 500 / Map->GridSize;
+	int32 RadiusExtended = RadiusInVerts + 1;
 
-		for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
+	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
+	{
+		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 		{
-			for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
-			{
-				// Continue loop if Vert doesn't exist
-				int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X;
-				if (!Map->Vertices.IsValidIndex(CurrentIndex)) { continue; }
+			// Continue loop if Vert doesn't exist
+			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X;
+			if (!Map->Vertices.IsValidIndex(CurrentIndex)) { continue; }
 
-				FVector CurrentVertCoords = FVector(
-					FMath::RoundToInt(Map->Vertices[CurrentIndex].Y / Map->GridSize),
-					FMath::RoundToInt(Map->Vertices[CurrentIndex].X / Map->GridSize),
-					0);
-				float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
+			FVector CurrentVertCoords = FVector(
+				FMath::RoundToInt(Map->Vertices[CurrentIndex].Y / Map->GridSize),
+				FMath::RoundToInt(Map->Vertices[CurrentIndex].X / Map->GridSize),
+				0);
+			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
-				// affected normals are added to array, and calculated after loop
-				if (DistanceFromCenter > RadiusExtended) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
-				AffectedVertNormals.Add(CurrentIndex);
+			// affected normals are added to array, and calculated after loop
+			if (DistanceFromCenter > RadiusExtended) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
+			AffectedVertNormals.Add(CurrentIndex);
 
-				// Check real radius
-				if (DistanceFromCenter > RadiusInVerts) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
+			// Check real radius
+			if (DistanceFromCenter > RadiusInVerts) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
 
-					float DistanceFraction = DistanceFromCenter / RadiusInVerts;
-
-					CalledCounter++;
-
-					VertexChangeHeight(DistanceFraction, CurrentIndex);
-
-			}
+			float DistanceFraction = DistanceFromCenter / RadiusInVerts;
+			CalledCounter++;
+			VertexChangeHeight(DistanceFraction, CurrentIndex);
 		}
-
-		// Update affected Normals
-		for (int32 Vert : AffectedVertNormals)
-		{
-			//Normals[Vert] = CalculateVertexNormal(Vert);
-		}
-
-
-		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
-		//Thread->CreateThread(Map->MeshComponent, Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals);
 	}
+
+	// Update affected Normals
+	for (int32 Vert : AffectedVertNormals)
+	{
+		//Normals[Vert] = CalculateVertexNormal(Vert);
+	}
+
+
+	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
+	//Thread->CreateThread(Map->MeshComponent, Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals);
 }
 
 void AProcMeshSculpt::CheckState()
@@ -137,7 +131,6 @@ void AProcMeshSculpt::Raycast()
 
 void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
 {
-
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
 	float ZValue = FMath::Lerp(70.0f, 0.f, Alpha) * 10;
 	//UE_LOG(LogTemp, Warning, TEXT("Added %s"), *(FString::SanitizeFloat(ZValue)));
