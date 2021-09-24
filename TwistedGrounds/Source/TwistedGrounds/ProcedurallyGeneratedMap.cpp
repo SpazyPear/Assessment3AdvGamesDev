@@ -25,6 +25,7 @@ void AProcedurallyGeneratedMap::BeginPlay()
 	bRegenerateMap = !UGameplayStatics::DoesSaveGameExist(TEXT("SavedMap"), 0);
 	if (!bRegenerateMap) {
 		LoadMap();
+		MeshComponent->UpdateMeshSection(0, Vertices, Normals, UVCoords, TArray<FColor>(), Tangents);
 	}
 }
 
