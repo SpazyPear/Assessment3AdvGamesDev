@@ -149,6 +149,22 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Curve;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AmmoRegen_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_AmmoRegen;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AmmoCost_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_AmmoCost;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MaxAmmo_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_MaxAmmo;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SculptAmmo_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_SculptAmmo;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ScaledZStrength_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_ScaledZStrength;
@@ -188,6 +204,34 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve = { "Curve", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, Curve), Z_Construct_UClass_UCurveFloat_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoRegen_MetaData[] = {
+		{ "Category", "ProcMeshSculpt" },
+		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoRegen = { "AmmoRegen", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, AmmoRegen), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoRegen_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoRegen_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoCost_MetaData[] = {
+		{ "Category", "ProcMeshSculpt" },
+		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoCost = { "AmmoCost", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, AmmoCost), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoCost_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoCost_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MaxAmmo_MetaData[] = {
+		{ "Category", "ProcMeshSculpt" },
+		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MaxAmmo = { "MaxAmmo", nullptr, (EPropertyFlags)0x0010000000000004, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, MaxAmmo), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MaxAmmo_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MaxAmmo_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_SculptAmmo_MetaData[] = {
+		{ "Category", "ProcMeshSculpt" },
+		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_SculptAmmo = { "SculptAmmo", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, SculptAmmo), METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_SculptAmmo_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_SculptAmmo_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_ScaledZStrength_MetaData[] = {
 		{ "Category", "ProcMeshSculpt" },
 		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
@@ -204,6 +248,10 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AProcMeshSculpt_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoRegen,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoCost,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_MaxAmmo,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_SculptAmmo,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_ScaledZStrength,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult,
 	};
@@ -234,7 +282,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AProcMeshSculpt, 4040447116);
+	IMPLEMENT_CLASS(AProcMeshSculpt, 3617348854);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AProcMeshSculpt>()
 	{
 		return AProcMeshSculpt::StaticClass();

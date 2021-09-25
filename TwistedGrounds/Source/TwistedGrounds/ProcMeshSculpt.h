@@ -55,18 +55,39 @@ public:
 
 	bool bInvert;
 
-	void CheckState();
+	float CappedHeight;
+
+	bool CapHeight;
+
+	void CheckState(float DeltaTime);
+
+	void RegenAmmo(float DeltaTime);
+
+	bool ResetCappedHeight;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float SculptAmmo;
+
+	UPROPERTY(BlueprintReadWrite)
+		float MaxAmmo;
+
+	UPROPERTY(EditAnywhere)
+		float AmmoCost;
+
+	UPROPERTY(EditAnywhere)
+		float AmmoRegen;
 
 	UPROPERTY(EditAnywhere)
 		UCurveFloat* Curve;
 
 	TArray<int32> AffectedVertNormals;
-	UpdateMeshThread* Thread;
 
 	UPROPERTY(EditAnywhere)
 		AProcedurallyGeneratedMap* Map;
 
 	bool HitSet;
+
+	int32 TangentsToBeUpdated;
 
 	void UpdateTangents();
 

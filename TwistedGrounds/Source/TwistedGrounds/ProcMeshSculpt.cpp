@@ -13,14 +13,20 @@ AProcMeshSculpt::AProcMeshSculpt()
 	SculptState = SCULPTSTATE::IDLE;
 	ScaledZStrength = 70;
 	bInvert = false;
+	SculptAmmo = 10.0f;
+	AmmoCost = 3.0f;
+	AmmoRegen = 2.0f;
+	TangentsToBeUpdated = 0;
+	CapHeight = false;
+	
 }
 
 // Called when the game starts or when spawned
 void AProcMeshSculpt::BeginPlay()
 {
+	MaxAmmo = SculptAmmo;
 	Super::BeginPlay();
 	HitSet = false;
-	Thread = new UpdateMeshThread();
 }
 
 // Called every frame
@@ -34,13 +40,17 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	}
 
 	Raycast();
-	CheckState();
-
-	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
+	CheckState(DeltaTime);
+	RegenAmmo(DeltaTime);
+	UpdateTangents();
 
 	HitSet = HitResult.GetActor() != nullptr;
 	if (HitSet) {
+		SetActorHiddenInGame(false);
 		SetActorLocation(HitResult.ImpactPoint);
+	}
+	else {
+		SetActorHiddenInGame(true);
 	}
 }
 
@@ -49,7 +59,7 @@ void AProcMeshSculpt::Sculpt()
 	if (!HitSet || !&HitResult) {
 		return;
 	}
-
+	UE_LOG(LogTemp, Warning, TEXT("Strength: %f"), ScaledZStrength)
 	int32 CalledCounter = 0;
 	FVector RelativeHitLocation = GetActorLocation();
 	int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
@@ -73,46 +83,56 @@ void AProcMeshSculpt::Sculpt()
 				0);
 			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
-			// affected normals are added to array, and calculated after loop
-			if (DistanceFromCenter > RadiusExtended) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
+	
+			if (DistanceFromCenter > RadiusExtended) { continue; }
 			AffectedVertNormals.Add(CurrentIndex);
 
-			// Check real radius
-			if (DistanceFromCenter > RadiusInVerts) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
+			if (DistanceFromCenter > RadiusInVerts) { continue; }
 
 			float DistanceFraction = DistanceFromCenter / RadiusInVerts;
 			CalledCounter++;
 			VertexChangeHeight(DistanceFraction, CurrentIndex);
+			
 		}
 	}
-
-	// Update affected Normals
-	for (int32 Vert : AffectedVertNormals)
-	{
-		//Normals[Vert] = CalculateVertexNormal(Vert);
-	}
-
-
+	
+	TangentsToBeUpdated++;
 	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
-	//Thread->CreateThread(Map->MeshComponent, Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals);
+	
 }
 
-void AProcMeshSculpt::CheckState()
+
+void AProcMeshSculpt::CheckState(float DeltaTime)
 {
 	switch (SculptState) {
 
 	case SCULPTSTATE::IDLE:
 		break;
 	case SCULPTSTATE::ONGOING:
-		Sculpt();
+		if (SculptAmmo > 0.0f) {
+			SculptAmmo -= AmmoCost * DeltaTime;
+			UE_LOG(LogTemp, Warning, TEXT("Ammo: %f"), SculptAmmo)
+			Sculpt();
+		}
 		break;
+	case SCULPTSTATE::STOPPED:
+		SculptState = SCULPTSTATE::IDLE; //stub
+	}
+}
+
+void AProcMeshSculpt::RegenAmmo(float DeltaTime)
+{
+	if (SculptState == SCULPTSTATE::IDLE && SculptAmmo < MaxAmmo) {
+		SculptAmmo += AmmoRegen * DeltaTime;
+		SculptAmmo = FMath::Clamp(SculptAmmo, 0.0f, MaxAmmo);
 	}
 }
 
 void AProcMeshSculpt::UpdateTangents()
 {
-	if (Thread->bRunningThread == false && Thread->TangentsQueue.Num() > 0) {
-		Map->Tangents = Thread->TangentsQueue.Pop();
+	if (TangentsToBeUpdated > 0) {
+		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals, Map->Tangents);
+		TangentsToBeUpdated--;
 		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
 
 		UE_LOG(LogTemp, Warning, TEXT("ReUpdated"))
@@ -131,8 +151,18 @@ void AProcMeshSculpt::Raycast()
 
 void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
 {
+	if (Map->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
+		CappedHeight = Map->Vertices[VertexIndex].Z;
+		
+	}
+	
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
-	float ZValue = FMath::Lerp(70.0f, 0.f, Alpha) * 10;
-	//UE_LOG(LogTemp, Warning, TEXT("Added %s"), *(FString::SanitizeFloat(ZValue)));
-	Map->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue/ScaledZStrength)) : (FVector(0.f, 0.f, ZValue/ScaledZStrength)); // invert
+	float ZValue = FMath::Lerp(ScaledZStrength, 0.f, Alpha) * 10;
+	//ZValue /= ScaledZStrength;
+
+	if (Map->Vertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
+		return;
+	}
+
+	Map->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
 }

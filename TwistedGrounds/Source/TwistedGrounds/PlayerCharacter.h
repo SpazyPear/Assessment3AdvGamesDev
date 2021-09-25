@@ -41,6 +41,8 @@ public:
 
 	void Invert();
 
+	void CapHeight();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

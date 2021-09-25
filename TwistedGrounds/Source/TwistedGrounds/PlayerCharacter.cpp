@@ -51,6 +51,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::SculptEnd);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Invert);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
+	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapHeight);
+	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
 }
 
 void APlayerCharacter::MoveForward(float Value)
@@ -88,7 +90,9 @@ void APlayerCharacter::SculptStart()
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
 		return;
 	}
-	
+	if (!MeshSculpt->HitSet) {
+		return;
+	}
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
 	MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
 }
@@ -105,8 +109,11 @@ void APlayerCharacter::SculptEnd()
 		SmallEmitter = nullptr;
 		
 	}
-	BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
-	MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
+	if (MeshSculpt->SculptState == SCULPTSTATE::ONGOING) {
+		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
+		MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
+	}
+	
 }
 
 void APlayerCharacter::Invert()
@@ -116,4 +123,12 @@ void APlayerCharacter::Invert()
 		return;
 	}
 	MeshSculpt->bInvert = !MeshSculpt->bInvert;
+}
+
+void APlayerCharacter::CapHeight()
+{
+	MeshSculpt->CapHeight = !MeshSculpt->CapHeight;
+	if (!MeshSculpt->CapHeight) {
+		MeshSculpt->CappedHeight = MIN_flt;
+	}
 }

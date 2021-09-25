@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "TwistedGrounds",
-			"Path": "C:\\Users\\zelno\\Downloads\\Stuff\\Coding Stuff\\Unreal Engine\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGrounds.Target.cs",
+			"Path": "E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGrounds.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "TwistedGroundsEditor",
-			"Path": "C:\\Users\\zelno\\Downloads\\Stuff\\Coding Stuff\\Unreal Engine\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGroundsEditor.Target.cs",
+			"Path": "E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGroundsEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]
