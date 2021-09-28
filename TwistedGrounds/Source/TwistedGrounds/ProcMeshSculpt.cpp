@@ -4,6 +4,10 @@
 #include "ProcMeshSculpt.h"
 #include "Kismet/GameplayStatics.h"
 #include <ProceduralMeshComponent/Public/KismetProceduralMeshLibrary.h>
+#include "DrawDebugHelpers.h"
+#include "Kismet/KismetMathLibrary.h"
+
+
 
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
@@ -13,14 +17,23 @@ AProcMeshSculpt::AProcMeshSculpt()
 	SculptState = SCULPTSTATE::IDLE;
 	ScaledZStrength = 70;
 	bInvert = false;
+	SculptAmmo = 10.0f;
+	AmmoCost = 3.0f;
+	AmmoRegen = 2.0f;
+	TangentsToBeUpdated = 0;
+	CapHeight = false;
+	CapDistance = false;
+	CappedHeightIndex = 0;
+	
 }
 
 // Called when the game starts or when spawned
 void AProcMeshSculpt::BeginPlay()
 {
 	Super::BeginPlay();
+	MaxAmmo = SculptAmmo;
 	HitSet = false;
-	Thread = new UpdateMeshThread();
+	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 // Called every frame
@@ -34,13 +47,21 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	}
 
 	Raycast();
-	CheckState();
-
-	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
+	CheckState(DeltaTime);
+	RegenAmmo(DeltaTime);
+	UpdateTangents();
 
 	HitSet = HitResult.GetActor() != nullptr;
 	if (HitSet) {
+		SetActorHiddenInGame(false);
 		SetActorLocation(HitResult.ImpactPoint);
+	}
+	else {
+		SetActorHiddenInGame(true);
+	}
+
+	if (CapDistance) {
+		FindNearestPointOnCurve();
 	}
 }
 
@@ -49,7 +70,7 @@ void AProcMeshSculpt::Sculpt()
 	if (!HitSet || !&HitResult) {
 		return;
 	}
-
+	UE_LOG(LogTemp, Warning, TEXT("Strength: %f"), ScaledZStrength)
 	int32 CalledCounter = 0;
 	FVector RelativeHitLocation = GetActorLocation();
 	int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
@@ -73,46 +94,56 @@ void AProcMeshSculpt::Sculpt()
 				0);
 			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
-			// affected normals are added to array, and calculated after loop
-			if (DistanceFromCenter > RadiusExtended) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
+	
+			if (DistanceFromCenter > RadiusExtended) { continue; }
 			AffectedVertNormals.Add(CurrentIndex);
 
-			// Check real radius
-			if (DistanceFromCenter > RadiusInVerts) { /*CalculateVertexNormal(CurrentIndex);*/ continue; }
+			if (DistanceFromCenter > RadiusInVerts) { continue; }
 
 			float DistanceFraction = DistanceFromCenter / RadiusInVerts;
 			CalledCounter++;
 			VertexChangeHeight(DistanceFraction, CurrentIndex);
+			
 		}
 	}
-
-	// Update affected Normals
-	for (int32 Vert : AffectedVertNormals)
-	{
-		//Normals[Vert] = CalculateVertexNormal(Vert);
-	}
-
-
+	
+	TangentsToBeUpdated++;
 	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
-	//Thread->CreateThread(Map->MeshComponent, Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals);
+	
 }
 
-void AProcMeshSculpt::CheckState()
+
+void AProcMeshSculpt::CheckState(float DeltaTime)
 {
 	switch (SculptState) {
 
 	case SCULPTSTATE::IDLE:
 		break;
 	case SCULPTSTATE::ONGOING:
-		Sculpt();
+		if (SculptAmmo > 0.0f) {
+			SculptAmmo -= AmmoCost * DeltaTime;
+			UE_LOG(LogTemp, Warning, TEXT("Ammo: %f"), SculptAmmo)
+			Sculpt();
+		}
 		break;
+	case SCULPTSTATE::STOPPED:
+		SculptState = SCULPTSTATE::IDLE; //stub
+	}
+}
+
+void AProcMeshSculpt::RegenAmmo(float DeltaTime)
+{
+	if (SculptState == SCULPTSTATE::IDLE && SculptAmmo < MaxAmmo) {
+		SculptAmmo += AmmoRegen * DeltaTime;
+		SculptAmmo = FMath::Clamp(SculptAmmo, 0.0f, MaxAmmo);
 	}
 }
 
 void AProcMeshSculpt::UpdateTangents()
 {
-	if (Thread->bRunningThread == false && Thread->TangentsQueue.Num() > 0) {
-		Map->Tangents = Thread->TangentsQueue.Pop();
+	if (TangentsToBeUpdated > 0) {
+		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Map->Vertices, Map->Triangles, Map->UVCoords, Map->Normals, Map->Tangents);
+		TangentsToBeUpdated--;
 		Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
 
 		UE_LOG(LogTemp, Warning, TEXT("ReUpdated"))
@@ -129,10 +160,129 @@ void AProcMeshSculpt::Raycast()
 	}
 }
 
+void AProcMeshSculpt::EndWall()
+{
+	FVector Forward = Player->GetActorForwardVector();
+	FRotator Rot = UKismetMathLibrary::MakeRotFromZ(Forward);
+	Rot = FRotator(0, 0, 0);
+	Player->SetActorRotation(Rot);
+	FVector ForwardCamera = Camera->GetOwner()->GetActorLocation();
+	FRotator RotCamera = UKismetMathLibrary::MakeRotFromY(ForwardCamera);
+	RotCamera = FRotator(0, 0, 0);
+	Camera->SetRelativeRotation(RotCamera);
+}
+
 void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
 {
+	if (Map->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
+		CappedHeight = Map->Vertices[VertexIndex].Z;
+		CappedHeightIndex = VertexIndex;
+	}
+	
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
-	float ZValue = FMath::Lerp(70.0f, 0.f, Alpha) * 10;
-	//UE_LOG(LogTemp, Warning, TEXT("Added %s"), *(FString::SanitizeFloat(ZValue)));
-	Map->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue/ScaledZStrength)) : (FVector(0.f, 0.f, ZValue/ScaledZStrength)); // invert
+	float ZValue = FMath::Lerp(ScaledZStrength, 0.f, Alpha) * 10;
+
+	if (Map->Vertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
+		return;
+	}
+
+	
+	Map->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
+}
+
+FVector AProcMeshSculpt::FindNearestPointOnCurve()
+{
+	FVector2D HitLocation = FVector2D(GetActorLocation().X, GetActorLocation().Y);
+	/*int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
+	float Radius = FVector2D::Distance(Center, HitLocation);
+	int32 L = 0;
+	int32 R = PointsOnCurve.Num() - 1;
+	float MinDistance = 0.0f;
+	FVector2D ClosestPoint;
+	while (L <= R) {
+		float m = (L + R) / 2;
+		float Distance = FVector2D::Distance(PointsOnCurve[m], HitLocation);
+		if (Distance < MinDistance) {
+			MinDistance = Distance;
+			ClosestPoint = PointsOnCurve[m];
+			L = m + 1;
+		}
+		else if (Distance > MinDistance) {
+			R = m - 1;
+		}
+		else {
+			MinDistance = Distance;
+			ClosestPoint = PointsOnCurve[m];
+			break;
+		}
+	}
+	if (&ClosestPoint == nullptr) {
+		UE_LOG(LogTemp, Warning, TEXT("Closest Point Not Found"))
+		return FVector2D();
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Closest Point: %s"), *ClosestPoint.ToString()) */
+	FVector ClosestPoint;
+	FMath::PointDistToLine(GetActorLocation(), Direction, Origin, ClosestPoint);
+	UE_LOG(LogTemp, Warning, TEXT("Closest Point: %s"), *ClosestPoint.ToString())
+	FVector Forward = ClosestPoint - Player->GetActorLocation();
+	FRotator Rot = UKismetMathLibrary::MakeRotFromZ(Forward);
+	UE_LOG(LogTemp, Warning, TEXT("Rotation: %s"), *Rot.ToString())
+	Player->SetActorRotation(Rot);
+	FVector ForwardCamera = ClosestPoint - Camera->GetRelativeLocation();
+	FRotator RotCamera = UKismetMathLibrary::MakeRotFromX(ForwardCamera);
+	
+	Camera->SetWorldRotation(RotCamera);
+	
+	return ClosestPoint;
+}
+
+void AProcMeshSculpt::CreateCurve()
+{
+	PointsOnCurve.Empty();
+	FVector2D HitLocation = FVector2D(GetActorLocation().X, GetActorLocation().Y);
+	FVector2D PlayerLocation = FVector2D(Player->GetActorLocation().X, Player->GetActorLocation().Y);
+	Center = FMath::Lerp(HitLocation, PlayerLocation, 0.5f);
+	int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
+	float Radius = FVector2D::Distance(Center, HitLocation);
+
+	int32 Index = 0;
+	FVector Previous;
+	bool FlipCircle = false;
+	/*for (auto LoopCount = 0; LoopCount <= 1; LoopCount++) {
+		for (auto points = -10; points < 10; points++) {
+			 int32 x = Center.X + points * 100;
+			float y = FMath::Sqrt(FMath::Square(Radius) - FMath::Square(x - Center.X)) + Center.Y;
+			UE_LOG(LogTemp, Warning, TEXT("Start: %i"), points);
+			if (!y) {
+				continue;
+			}
+			FVector2D NewPoint = FVector2D(x, y);
+			y = FlipCircle ? y - 4 * FMath::PointDistToLine(FVector(NewPoint.X, NewPoint.Y, 0), FVector(1, 0, 0), FVector(Center.X, Center.Y, 0)) : y;
+			
+			FVector VertexLocation = FVector(FMath::RoundToInt(NewPoint.Y / Map->GridSize), FMath::RoundToInt(NewPoint.X / Map->GridSize), 0);
+			FVector Start;
+			int32 VertexIndex = VertexLocation.X * VertsPerSide + VertexLocation.Y;
+			if (Map->Vertices.IsValidIndex(VertexIndex)) {
+				Start = FVector(NewPoint.X, NewPoint.Y, 400);
+			}
+			else {
+				continue;
+			}
+			if (PointsOnCurve.Num() > 0) {
+
+				if (&Start) {
+					UE_LOG(LogTemp, Warning, TEXT("Start: %s"), *Start.ToString());
+					DrawDebugLine(GetWorld(), Start, Previous, FColor(255, 0, 0), false, 5.0f);
+				}
+			}
+			PointsOnCurve.Add(NewPoint);
+			Previous = Start;
+			Index++; 
+		} 
+		FlipCircle = true;
+	} */
+	Origin = GetActorLocation() - Player->GetActorRightVector() * 1000;
+	Direction = Player->GetActorRightVector();
+	DrawDebugLine(GetWorld(), GetActorLocation() - Player->GetActorRightVector() * 1000, Player->GetActorRightVector() * 1000 + GetActorLocation(), FColor(255, 0, 0), false, 5.0f);
+	CapDistance = true;
 }

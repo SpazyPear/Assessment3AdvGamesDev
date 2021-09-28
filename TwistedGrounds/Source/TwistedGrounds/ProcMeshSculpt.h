@@ -53,24 +53,67 @@ public:
 
 	SCULPTSTATE SculptState;
 
+	APawn* Player;
+
 	bool bInvert;
 
-	void CheckState();
+	float CappedHeight;
+
+	bool CapHeight;
+
+	void CheckState(float DeltaTime);
+
+	void RegenAmmo(float DeltaTime);
+
+	FVector FindNearestPointOnCurve();
+
+	void CreateCurve();
+
+	TArray<FVector2D> PointsOnCurve;
+
+	FVector2D Center;
+
+	bool ResetCappedHeight;
+
+	float CappedDistance;
+
+	int32 CappedHeightIndex;
+
+	bool CapDistance;
+
+	FVector Origin;
+
+	FVector Direction;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float SculptAmmo;
+
+	UPROPERTY(BlueprintReadWrite)
+		float MaxAmmo;
+
+	UPROPERTY(EditAnywhere)
+		float AmmoCost;
+
+	UPROPERTY(EditAnywhere)
+		float AmmoRegen;
 
 	UPROPERTY(EditAnywhere)
 		UCurveFloat* Curve;
 
 	TArray<int32> AffectedVertNormals;
-	UpdateMeshThread* Thread;
 
 	UPROPERTY(EditAnywhere)
 		AProcedurallyGeneratedMap* Map;
 
 	bool HitSet;
 
+	int32 TangentsToBeUpdated;
+
 	void UpdateTangents();
 
 	void Raycast();
+
+	void EndWall();
 
 	UCameraComponent* Camera;
 	USceneComponent* Muzzle;

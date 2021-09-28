@@ -21,7 +21,7 @@ UpdateMeshThread::~UpdateMeshThread()
 	}
 }
 
-void UpdateMeshThread::CreateThread(UProceduralMeshComponent* MeshComponentP, TArray<FVector> VerticesP, TArray<int32> TrianglesP, TArray<FVector2D> UVCoordsP, TArray<FVector> NormalsP)
+void UpdateMeshThread::CreateThread(AProcedurallyGeneratedMap* MapP, TArray<FVector> VerticesP, TArray<int32> TrianglesP, TArray<FVector2D> UVCoordsP, TArray<FVector> NormalsP)
 {
 	this->Vertices = VerticesP;
 
@@ -31,7 +31,7 @@ void UpdateMeshThread::CreateThread(UProceduralMeshComponent* MeshComponentP, TA
 
 	this->Normals = NormalsP;
 
-	this->MeshComponent = MeshComponentP;
+	this->Map = MapP;
 
 	UpdateThread = FRunnableThread::Create(this, TEXT("UpdateThread"));
 }

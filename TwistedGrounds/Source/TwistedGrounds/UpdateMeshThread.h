@@ -6,6 +6,7 @@
 #include "HAL/RunnableThread.h"
 #include "HAL/Runnable.h"
 #include <KismetProceduralMeshLibrary.h>
+#include "ProcedurallyGeneratedMap.h"
 
 /**
  * 
@@ -37,9 +38,9 @@ public:
 
 	TArray<TArray<FProcMeshTangent>> TangentsQueue;
 
-	UProceduralMeshComponent* MeshComponent;
+	AProcedurallyGeneratedMap* Map;
 
-	void CreateThread(UProceduralMeshComponent* MeshComponentP, TArray<FVector> VerticesP, TArray<int32> TrianglesP, TArray<FVector2D> UVCoordsP, TArray<FVector> NormalsP);
+	void CreateThread(AProcedurallyGeneratedMap* MapP, TArray<FVector> VerticesP, TArray<int32> TrianglesP, TArray<FVector2D> UVCoordsP, TArray<FVector> NormalsP);
 
 	bool bRunningThread;
 	

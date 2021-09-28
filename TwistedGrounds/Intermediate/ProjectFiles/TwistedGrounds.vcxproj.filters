@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\TwistedGrounds.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{FF0C947B-6DAA-44E8-96E9-195D86DDAE4B}</UniqueIdentifier>
+      <UniqueIdentifier>{BAE5BFB5-2DD3-4E40-93A7-A1F3E67DA3E3}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TwistedGrounds.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{59D2F331-461C-42A5-8D78-A43F6341D52F}</UniqueIdentifier>
+      <UniqueIdentifier>{35AF79AA-9429-484F-8C6B-BCD256E6035D}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\TwistedGrounds">
-      <UniqueIdentifier>{68B9B61C-3F93-4D45-A717-491D0760E2D8}</UniqueIdentifier>
+      <UniqueIdentifier>{8D51E4CB-E784-4BAE-BAB5-06A312E64D4D}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\TwistedGrounds\DustClouds.cpp">
       <Filter>Source\TwistedGrounds</Filter>
@@ -71,12 +71,6 @@
     <ClInclude Include="..\..\Source\TwistedGrounds\TwistedGrounds.h">
       <Filter>Source\TwistedGrounds</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\TwistedGrounds\TwistedGroundsCharacter.cpp">
-      <Filter>Source\TwistedGrounds</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\TwistedGrounds\TwistedGroundsCharacter.h">
-      <Filter>Source\TwistedGrounds</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\TwistedGrounds\TwistedGroundsGameMode.cpp">
       <Filter>Source\TwistedGrounds</Filter>
     </ClCompile>
@@ -87,12 +81,6 @@
       <Filter>Source\TwistedGrounds</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\TwistedGrounds\TwistedGroundsHUD.h">
-      <Filter>Source\TwistedGrounds</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\TwistedGrounds\TwistedGroundsProjectile.cpp">
-      <Filter>Source\TwistedGrounds</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\TwistedGrounds\TwistedGroundsProjectile.h">
       <Filter>Source\TwistedGrounds</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\TwistedGrounds\UpdateMeshThread.cpp">
