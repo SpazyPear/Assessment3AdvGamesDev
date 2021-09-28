@@ -143,6 +143,6 @@ void APlayerCharacter::CapDistance()
 
 	else {
 		MeshSculpt->CapDistance = false;
-		MeshSculpt->EndWall();
+		//MeshSculpt->EndWall();
 	}
 }

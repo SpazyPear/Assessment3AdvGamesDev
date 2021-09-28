@@ -226,13 +226,16 @@ FVector AProcMeshSculpt::FindNearestPointOnCurve()
 	UE_LOG(LogTemp, Warning, TEXT("Closest Point: %s"), *ClosestPoint.ToString())
 	FVector Forward = ClosestPoint - Player->GetActorLocation();
 	FRotator Rot = UKismetMathLibrary::MakeRotFromZ(Forward);
+	Rot.Roll = 0.0f;
 	UE_LOG(LogTemp, Warning, TEXT("Rotation: %s"), *Rot.ToString())
-	Player->SetActorRotation(Rot);
-	FVector ForwardCamera = ClosestPoint - Camera->GetRelativeLocation();
+	
+	Player->FaceRotation(Rot);
+	FVector ForwardCamera = ClosestPoint - Player->GetActorLocation();
 	FRotator RotCamera = UKismetMathLibrary::MakeRotFromX(ForwardCamera);
-	
+	RotCamera.Roll = 0.0f;
+	UE_LOG(LogTemp, Warning, TEXT("Rotation: %s"), *RotCamera.ToString())
 	Camera->SetWorldRotation(RotCamera);
-	
+
 	return ClosestPoint;
 }
 
@@ -248,6 +251,7 @@ void AProcMeshSculpt::CreateCurve()
 	int32 Index = 0;
 	FVector Previous;
 	bool FlipCircle = false;
+
 	/*for (auto LoopCount = 0; LoopCount <= 1; LoopCount++) {
 		for (auto points = -10; points < 10; points++) {
 			 int32 x = Center.X + points * 100;
@@ -281,8 +285,9 @@ void AProcMeshSculpt::CreateCurve()
 		} 
 		FlipCircle = true;
 	} */
+
 	Origin = GetActorLocation() - Player->GetActorRightVector() * 1000;
 	Direction = Player->GetActorRightVector();
-	DrawDebugLine(GetWorld(), GetActorLocation() - Player->GetActorRightVector() * 1000, Player->GetActorRightVector() * 1000 + GetActorLocation(), FColor(255, 0, 0), false, 5.0f);
+	//DrawDebugLine(GetWorld(), GetActorLocation() - Player->GetActorRightVector() * 1000, Player->GetActorRightVector() * 1000 + GetActorLocation(), FColor(255, 0, 0), false, 5.0f);
 	CapDistance = true;
 }
