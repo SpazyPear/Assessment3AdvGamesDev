@@ -24,3 +24,8 @@ E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Bui
 C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
 C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\ProcMeshSculpt.generated.h
+C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Public\DrawDebugHelpers.h
+C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
+C:\Program Files\UE_4.24\Engine\Source\Runtime\Core\Public\Misc/QualifiedFrameTime.h
+C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetMathLibrary.generated.h
+C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl

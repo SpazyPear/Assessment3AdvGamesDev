@@ -43,6 +43,8 @@ public:
 
 	void CapHeight();
 
+	void CapDistance();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

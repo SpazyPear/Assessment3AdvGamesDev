@@ -53,6 +53,8 @@ public:
 
 	SCULPTSTATE SculptState;
 
+	APawn* Player;
+
 	bool bInvert;
 
 	float CappedHeight;
@@ -63,7 +65,25 @@ public:
 
 	void RegenAmmo(float DeltaTime);
 
+	FVector FindNearestPointOnCurve();
+
+	void CreateCurve();
+
+	TArray<FVector2D> PointsOnCurve;
+
+	FVector2D Center;
+
 	bool ResetCappedHeight;
+
+	float CappedDistance;
+
+	int32 CappedHeightIndex;
+
+	bool CapDistance;
+
+	FVector Origin;
+
+	FVector Direction;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float SculptAmmo;
@@ -92,6 +112,8 @@ public:
 	void UpdateTangents();
 
 	void Raycast();
+
+	void EndWall();
 
 	UCameraComponent* Camera;
 	USceneComponent* Muzzle;

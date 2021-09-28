@@ -53,6 +53,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapHeight);
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
+	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapDistance);
+	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Released, this, &APlayerCharacter::CapDistance);
 }
 
 void APlayerCharacter::MoveForward(float Value)
@@ -130,5 +132,17 @@ void APlayerCharacter::CapHeight()
 	MeshSculpt->CapHeight = !MeshSculpt->CapHeight;
 	if (!MeshSculpt->CapHeight) {
 		MeshSculpt->CappedHeight = MIN_flt;
+	}
+}
+
+void APlayerCharacter::CapDistance()
+{
+	if (MeshSculpt->CapDistance == false) {
+		MeshSculpt->CreateCurve();
+	}
+
+	else {
+		MeshSculpt->CapDistance = false;
+		MeshSculpt->EndWall();
 	}
 }
