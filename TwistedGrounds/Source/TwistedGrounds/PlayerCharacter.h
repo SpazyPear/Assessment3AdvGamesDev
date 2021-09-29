@@ -9,7 +9,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
 #include "Particles/ParticleSystemComponent.h"
-#include "ProcMeshSculpt.h"
+//#include "ProcMeshSculpt.h"
 #include "DustClouds.h"
 
 #include "GameFramework/CharacterMovementComponent.h"
@@ -51,18 +51,18 @@ public:
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
 
-	UPROPERTY(EditAnywhere)
-		AProcMeshSculpt* MeshSculpt;
+	//UPROPERTY(EditAnywhere)
+	//	AProcMeshSculpt* MeshSculpt;
 
-	void SculptStart();
+	//void SculptStart();
 
-	void SculptEnd();
+	//void SculptEnd();
 
-	void Invert();
+	//void Invert();
 
-	void CapHeight();
+	//void CapHeight();
 
-	void CapDistance();
+	//void CapDistance();
 
 private:
 	ADustClouds* BigEmitter;

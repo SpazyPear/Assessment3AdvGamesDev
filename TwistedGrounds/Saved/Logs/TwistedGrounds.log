@@ -792,3 +792,124 @@ LogConfig: Setting CVar [[r.setres:1280x720]]
 [2021.09.29-03.13.18:858][786]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
 [2021.09.29-03.13.18:865][786]LogUObjectHash: Compacting FUObjectHashTables data took   1.72ms
 [2021.09.29-03.13.18:883][787]LogPlayLevel: Display: Destroying online subsystem :Context_4
+[2021.09.29-03.19.40:491][821]Candidate modules for hot reload:
+[2021.09.29-03.19.40:491][821]  TwistedGrounds
+[2021.09.29-03.19.40:492][821]Launching UnrealBuildTool... [C:/Program Files/Epic Games/UE_4.24/Engine/Binaries/DotNET/UnrealBuildTool.exe  -ModuleWithSuffix=TwistedGrounds,4879 Win64 Development -TargetType=Editor -Project="C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/TwistedGrounds.uproject" "C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/TwistedGrounds.uproject"  -IgnoreJunk]
+[2021.09.29-03.19.40:497][821]Warning: Starting HotReload took  0.0s.
+[2021.09.29-03.19.52:826][546]CompilerResultsLog: New page: Compilation - 29 Sep 2021, 11:19:52 pm
+[2021.09.29-03.19.52:827][546]CompilerResultsLog: Using 'git status' to determine working set for adaptive non-unity build (C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev).
+[2021.09.29-03.19.52:827][546]CompilerResultsLog: Parsing headers for TwistedGroundsEditor
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:   Running UnrealHeaderTool "C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\TwistedGrounds.uproject" "C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\TwistedGroundsEditor\Development\TwistedGroundsEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+[2021.09.29-03.19.52:827][546]CompilerResultsLog: Reflection code generated for TwistedGroundsEditor in 8.0529493 seconds
+[2021.09.29-03.19.52:827][546]CompilerResultsLog: Building TwistedGroundsEditor...
+[2021.09.29-03.19.52:827][546]CompilerResultsLog: Using Visual Studio 2019 14.29.30040 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037) and Windows 10.0.18362.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+[2021.09.29-03.19.52:827][546]CompilerResultsLog: Building 6 actions with 8 processes...
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:   [1/6] TwistedGrounds.init.gen.cpp
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:   [2/6] PlayerCharacter.gen.cpp
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:   [3/6] PlayerCharacter.cpp
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:   [4/6] UE4Editor-TwistedGrounds-4879.lib
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:      Creating library C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds-4879.lib and object C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds-4879.exp
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:   [5/6] UE4Editor-TwistedGrounds-4879.dll
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:      Creating library C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds-4879.suppressed.lib and object C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds-4879.suppressed.exp
+[2021.09.29-03.19.52:827][546]CompilerResultsLog:   [6/6] TwistedGroundsEditor.target
+[2021.09.29-03.19.52:827][546]CompilerResultsLog: Total time in Parallel executor: 2.87 seconds
+[2021.09.29-03.19.52:827][546]CompilerResultsLog: Total execution time: 12.23 seconds
+[2021.09.29-03.19.52:827][546]LogMainFrame: MainFrame: Module compiling took 12.337 seconds
+[2021.09.29-03.19.52:853][546]LogUObjectHash: Compacting FUObjectHashTables data took   0.94ms
+[2021.09.29-03.19.53:866][546]LogClass: Could not find existing class PlayerCharacter in package /Script/TwistedGrounds for HotReload, assuming new class
+[2021.09.29-03.19.53:875][546]LogClass: SCULPTSTATE HotReload.
+[2021.09.29-03.19.53:883][546]LogHotReload: Re-instancing PlayerCharacter after hot-reload.
+[2021.09.29-03.19.54:175][546]LogContentBrowser: Native class hierarchy updated for 'TwistedGrounds' in 0.0005 seconds. Added 7 classes and 2 folders.
+[2021.09.29-03.19.54:178][546]Display: HotReload successful (1 functions remapped  0 scriptstructs remapped)
+[2021.09.29-03.19.54:261][546]LogUObjectHash: Compacting FUObjectHashTables data took   2.75ms
+[2021.09.29-03.19.54:269][546]LogContentBrowser: Native class hierarchy populated in 0.0078 seconds. Added 3024 classes and 722 folders.
+[2021.09.29-03.19.54:275][546]Display: HotReload took 13.8s.
+[2021.09.29-03.19.55:866][622]Candidate modules for hot reload:
+[2021.09.29-03.19.55:866][622]  TwistedGrounds
+[2021.09.29-03.19.55:866][622]Launching UnrealBuildTool... [C:/Program Files/Epic Games/UE_4.24/Engine/Binaries/DotNET/UnrealBuildTool.exe  -ModuleWithSuffix=TwistedGrounds,2594 Win64 Development -TargetType=Editor -Project="C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/TwistedGrounds.uproject" "C:/Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/TwistedGrounds.uproject"  -IgnoreJunk]
+[2021.09.29-03.19.55:872][622]Warning: Starting HotReload took  0.0s.
+[2021.09.29-03.19.58:450][736]CompilerResultsLog: New page: Compilation - 29 Sep 2021, 11:19:58 pm
+[2021.09.29-03.19.58:450][736]CompilerResultsLog: Using 'git status' to determine working set for adaptive non-unity build (C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev).
+[2021.09.29-03.19.58:450][736]CompilerResultsLog: Building TwistedGroundsEditor...
+[2021.09.29-03.19.58:450][736]CompilerResultsLog: Using Visual Studio 2019 14.29.30040 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30037) and Windows 10.0.18362.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+[2021.09.29-03.19.58:450][736]CompilerResultsLog: Building 3 actions with 8 processes...
+[2021.09.29-03.19.58:450][736]CompilerResultsLog:   [1/3] UE4Editor-TwistedGrounds-2594.lib
+[2021.09.29-03.19.58:450][736]CompilerResultsLog:      Creating library C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds-2594.lib and object C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds-2594.exp
+[2021.09.29-03.19.58:450][736]CompilerResultsLog:   [2/3] UE4Editor-TwistedGrounds-2594.dll
+[2021.09.29-03.19.58:450][736]CompilerResultsLog:      Creating library C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds-2594.suppressed.lib and object C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\UE4Editor-TwistedGrounds-2594.suppressed.exp
+[2021.09.29-03.19.58:450][736]CompilerResultsLog:   [3/3] TwistedGroundsEditor.target
+[2021.09.29-03.19.58:450][736]CompilerResultsLog: Total time in Parallel executor: 1.34 seconds
+[2021.09.29-03.19.58:450][736]CompilerResultsLog: Total execution time: 2.49 seconds
+[2021.09.29-03.19.58:450][736]LogMainFrame: MainFrame: Module compiling took 2.587 seconds
+[2021.09.29-03.19.58:517][736]LogUObjectHash: Compacting FUObjectHashTables data took   2.56ms
+[2021.09.29-03.19.59:037][736]LogClass: SCULPTSTATE HotReload.
+[2021.09.29-03.19.59:044][736]LogContentBrowser: Native class hierarchy updated for 'TwistedGrounds' in 0.0004 seconds. Added 7 classes and 2 folders.
+[2021.09.29-03.19.59:048][736]Display: HotReload successful (1 functions remapped  0 scriptstructs remapped)
+[2021.09.29-03.19.59:151][736]LogUObjectHash: Compacting FUObjectHashTables data took   2.12ms
+[2021.09.29-03.19.59:159][736]LogContentBrowser: Native class hierarchy populated in 0.0076 seconds. Added 3024 classes and 722 folders.
+[2021.09.29-03.19.59:165][736]Display: HotReload took  3.3s.
+[2021.09.29-03.20.17:817][660]Cmd: DELETE
+[2021.09.29-03.20.17:817][660]Cmd: ACTOR DELETE
+[2021.09.29-03.20.17:821][660]LogEditorActor: Deleted Actor: ProcMeshGenBlueprint_C
+[2021.09.29-03.20.17:882][660]LogUObjectHash: Compacting FUObjectHashTables data took   3.30ms
+[2021.09.29-03.20.17:883][660]LogEditorActor: Deleted 1 Actors (0.065 secs)
+[2021.09.29-03.20.21:299][851]LogTemp: Repeating last play command: Selected Viewport
+[2021.09.29-03.20.21:307][851]LogBlueprintUserMessages: Early PlayInEditor Detection: Level '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel' has LevelScriptBlueprint '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap' with GeneratedClass '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap_C' with ClassGeneratedBy '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap'
+[2021.09.29-03.20.21:307][851]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2021.09.29-03.20.21:307][851]PIE: New page: PIE session: FirstPersonExampleMap (29 Sep 2021, 11:20:21 pm)
+[2021.09.29-03.20.21:307][851]LogPlayLevel: Creating play world package: /Game/Maps/UEDPIE_0_FirstPersonExampleMap
+[2021.09.29-03.20.21:333][851]LogPlayLevel: PIE: StaticDuplicateObject took: (0.026179s)
+[2021.09.29-03.20.21:334][851]LogAIModule: Creating AISystem for world FirstPersonExampleMap
+[2021.09.29-03.20.21:334][851]LogPlayLevel: PIE: World Init took: (0.000896s)
+[2021.09.29-03.20.21:334][851]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap to /Game/Maps/UEDPIE_0_FirstPersonExampleMap.FirstPersonExampleMap (0.027200s)
+[2021.09.29-03.20.21:368][851]LogUObjectHash: Compacting FUObjectHashTables data took   1.88ms
+[2021.09.29-03.20.21:370][851]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2021.09.29-03.20.21:370][851]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2021.09.29-03.20.21:370][851]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2021.09.29-03.20.21:370][851]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2021.09.29-03.20.21:370][851]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2021.09.29-03.20.21:370][851]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2021.09.29-03.20.21:370][851]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2021.09.29-03.20.21:370][851]LogAudio: Display: AudioDevice MaxSources: 32
+[2021.09.29-03.20.21:370][851]LogAudio: Display: Using built-in audio occlusion.
+[2021.09.29-03.20.21:370][851]LogAudioMixer: Display: Initializing audio mixer.
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: Audio Device Output Speaker Info:
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: Name: Speakers (Realtek High Definition Audio(SST))
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: Is Default: Yes
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: Sample Rate: 48000
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: Channel Count Used: 2
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: Device Channel Count: 2
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: Channel Order:
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: 0: FrontLeft
+[2021.09.29-03.20.21:373][851]LogAudioMixer: Display: 1: FrontRight
+[2021.09.29-03.20.21:389][851]LogAudioMixer: Display: Using Audio Device Speakers (Realtek High Definition Audio(SST))
+[2021.09.29-03.20.21:391][851]LogInit: FAudioDevice initialized.
+[2021.09.29-03.20.21:403][851]LogLoad: Game class is 'GameModeOverride_C'
+[2021.09.29-03.20.21:405][851]LogWorld: Bringing World /Game/Maps/UEDPIE_0_FirstPersonExampleMap.FirstPersonExampleMap up for play (max tick rate 60) at 2021.09.29-13.20.21
+[2021.09.29-03.20.21:405][851]LogWorld: Bringing up level for play took: 0.000621
+[2021.09.29-03.20.21:405][851]LogOnline: OSS: Creating online subsystem instance for: :Context_5
+[2021.09.29-03.20.21:415][851]LogTemp: Warning: Loaded Map
+[2021.09.29-03.20.21:415][851]LogScript: Warning: Script Msg: Attempted to access index 0 from array 'CallFunc_GetAllActorsOfClassWithTag_OutActors' of length 0 in '/Game/UI/HUD.HUD_C:ExecuteUbergraph_HUD'!
+[2021.09.29-03.20.21:415][851]PIE: Play in editor start time for /Game/Maps/UEDPIE_0_FirstPersonExampleMap 0.408
+[2021.09.29-03.20.21:416][851]LogBlueprintUserMessages: Late PlayInEditor Detection: Level '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel' has LevelScriptBlueprint '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap' with GeneratedClass '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap_C' with ClassGeneratedBy '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap'
+[2021.09.29-03.20.29:042][300]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.29-03.20.29:042][300]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.29-03.20.29:042][300]LogBlueprintUserMessages: Early EndPlayMap Detection: Level '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel' has LevelScriptBlueprint '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap' with GeneratedClass '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap_C' with ClassGeneratedBy '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap'
+[2021.09.29-03.20.29:042][300]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.29-03.20.29:042][300]LogWorld: BeginTearingDown for /Game/Maps/UEDPIE_0_FirstPersonExampleMap
+[2021.09.29-03.20.29:042][300]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.29-03.20.29:043][300]LogWorld: UWorld::CleanupWorld for FirstPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2021.09.29-03.20.29:043][300]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.29-03.20.29:054][300]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2021.09.29-03.20.29:054][300]LogBlueprintUserMessages: Late EndPlayMap Detection: Level '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel' has LevelScriptBlueprint '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap' with GeneratedClass '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap_C' with ClassGeneratedBy '/Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap:PersistentLevel.FirstPersonExampleMap'
+[2021.09.29-03.20.29:058][300]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2021.09.29-03.20.29:084][300]LogAudioMixer: Display: No commands were queued while flushing the source manager.
+[2021.09.29-03.20.29:087][300]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2021.09.29-03.20.29:090][300]LogUObjectHash: Compacting FUObjectHashTables data took   2.36ms
+[2021.09.29-03.20.29:152][302]LogPlayLevel: Display: Destroying online subsystem :Context_5
+[2021.09.29-03.20.31:735][455]LogUObjectHash: Compacting FUObjectHashTables data took   0.75ms
+[2021.09.29-03.20.31:805][455]LogUObjectHash: Compacting FUObjectHashTables data took   0.76ms
+[2021.09.29-03.20.32:069][455]LogSavePackage: Moving '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Saved/FirstPersonExampleMap2C0D5D634EBB778510FBB88E36F3C02E.tmp' to '../../../../../../Users/zelno/Downloads/Stuff/Coding Stuff/Unreal Engine/Assessment3AdvGamesDev/TwistedGrounds/Content/Maps/FirstPersonExampleMap.umap'
+[2021.09.29-03.20.32:082][455]LogFileHelpers: Saving map 'FirstPersonExampleMap' took 0.307
+[2021.09.29-03.20.32:100][455]AssetCheck: New page: Asset Save: FirstPersonExampleMap
+[2021.09.29-03.20.32:100][455]LogContentValidation: Display: Validating World /Game/Maps/FirstPersonExampleMap.FirstPersonExampleMap

@@ -23,8 +23,8 @@ void APlayerCharacter::BeginPlay()
 
 	//Initialise the camera variable
 	Camera = FindComponentByClass<UCameraComponent>();
-	MeshSculpt->Camera = Camera;
-	MeshSculpt->Muzzle = Cast<USceneComponent>(GetDefaultSubobjectByName(TEXT("MuzzlePosition")));
+	//MeshSculpt->Camera = Camera;
+	//MeshSculpt->Muzzle = Cast<USceneComponent>(GetDefaultSubobjectByName(TEXT("MuzzlePosition")));
 }
 
 // Called every frame
@@ -32,7 +32,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	if (SmallEmitter) {
-		SmallEmitter->SetActorLocation(MeshSculpt->GetActorLocation());
+		//SmallEmitter->SetActorLocation(MeshSculpt->GetActorLocation());
 	}
 }
 
@@ -47,14 +47,14 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &APlayerCharacter::Turn);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::SculptStart);
-	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::SculptEnd);
-	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Invert);
-	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
-	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapHeight);
-	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
-	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapDistance);
-	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Released, this, &APlayerCharacter::CapDistance);
+	//PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::SculptStart);
+	//PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::SculptEnd);
+	//PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Invert);
+	//PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
+	//PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapHeight);
+	//PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
+	//PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapDistance);
+	//PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Released, this, &APlayerCharacter::CapDistance);
 }
 
 void APlayerCharacter::MoveForward(float Value)
@@ -86,63 +86,63 @@ void APlayerCharacter::Turn(float Value)
 	AddControllerYawInput(Value * LookSensitivity);
 }
 
-void APlayerCharacter::SculptStart()
-{
-	if (!MeshSculpt) {
-		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
-		return;
-	}
-	if (!MeshSculpt->HitSet) {
-		return;
-	}
-	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
-	MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
-}
-
-void APlayerCharacter::SculptEnd()
-{
-	if (!MeshSculpt) {
-		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
-		return;
-	}
-
-	if (SmallEmitter) {
-		SmallEmitter->Destroy();
-		SmallEmitter = nullptr;
-		
-	}
-	if (MeshSculpt->SculptState == SCULPTSTATE::ONGOING) {
-		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
-		MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
-	}
-	
-}
-
-void APlayerCharacter::Invert()
-{
-	if (!MeshSculpt) {
-		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
-		return;
-	}
-	MeshSculpt->bInvert = !MeshSculpt->bInvert;
-}
-
-void APlayerCharacter::CapHeight()
-{
-	MeshSculpt->CapHeight = !MeshSculpt->CapHeight;
-	if (!MeshSculpt->CapHeight) {
-		MeshSculpt->CappedHeight = MIN_flt;
-	}
-}
-
-void APlayerCharacter::CapDistance()
-{
-	if (MeshSculpt->CapDistance == false) {
-		MeshSculpt->CreateCurve();
-	}
-
-	else {
-		MeshSculpt->CapDistance = false;
-		//MeshSculpt->EndWall();
-	}
-}
+//void APlayerCharacter::SculptStart()
+//{
+//	if (!MeshSculpt) {
+//		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+//		return;
+//	}
+//	if (!MeshSculpt->HitSet) {
+//		return;
+//	}
+//	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
+//	MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
+//}
+//
+//void APlayerCharacter::SculptEnd()
+//{
+//	if (!MeshSculpt) {
+//		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+//		return;
+//	}
+//
+//	if (SmallEmitter) {
+//		SmallEmitter->Destroy();
+//		SmallEmitter = nullptr;
+//		
+//	}
+//	if (MeshSculpt->SculptState == SCULPTSTATE::ONGOING) {
+//		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
+//		MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
+//	}
+//	
+//}
+//
+//void APlayerCharacter::Invert()
+//{
+//	if (!MeshSculpt) {
+//		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+//		return;
+//	}
+//	MeshSculpt->bInvert = !MeshSculpt->bInvert;
+//}
+//
+//void APlayerCharacter::CapHeight()
+//{
+//	MeshSculpt->CapHeight = !MeshSculpt->CapHeight;
+//	if (!MeshSculpt->CapHeight) {
+//		MeshSculpt->CappedHeight = MIN_flt;
+//	}
+//}
+//
+//void APlayerCharacter::CapDistance()
+//{
+//	if (MeshSculpt->CapDistance == false) {
+//		MeshSculpt->CreateCurve();
+//	}
+//
+//	else {
+//		MeshSculpt->CapDistance = false;
+//		//MeshSculpt->EndWall();
+//	}
+//}
