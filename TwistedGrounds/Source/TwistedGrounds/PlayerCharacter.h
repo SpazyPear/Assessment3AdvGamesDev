@@ -32,19 +32,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		float LookSensitivity;
 
-	UPROPERTY(EditAnywhere)
-		AProcMeshSculpt* MeshSculpt;
-
-	void SculptStart();
-
-	void SculptEnd();
-
-	void Invert();
-
-	void CapHeight();
-
-	void CapDistance();
-
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -63,6 +50,19 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
+
+	UPROPERTY(EditAnywhere)
+		AProcMeshSculpt* MeshSculpt;
+
+	void SculptStart();
+
+	void SculptEnd();
+
+	void Invert();
+
+	void CapHeight();
+
+	void CapDistance();
 
 private:
 	ADustClouds* BigEmitter;
