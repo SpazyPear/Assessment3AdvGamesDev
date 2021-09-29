@@ -52,12 +52,9 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	UpdateTangents();
 
 	HitSet = HitResult.GetActor() != nullptr;
+	SetActorHiddenInGame(!HitSet);
 	if (HitSet) {
-		SetActorHiddenInGame(false);
 		SetActorLocation(HitResult.ImpactPoint);
-	}
-	else {
-		SetActorHiddenInGame(true);
 	}
 
 	if (CapDistance) {

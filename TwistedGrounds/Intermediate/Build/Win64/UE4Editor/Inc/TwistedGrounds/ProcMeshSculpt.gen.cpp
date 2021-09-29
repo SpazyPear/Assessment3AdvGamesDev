@@ -17,7 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	UPackage* Z_Construct_UPackage__Script_TwistedGrounds();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt_NoRegister();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt();
-	ENGINE_API UClass* Z_Construct_UClass_AActor();
+	ENGINE_API UClass* Z_Construct_UClass_ADecalActor();
 	TWISTEDGROUNDS_API UFunction* Z_Construct_UFunction_AProcMeshSculpt_TracePath();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
@@ -177,7 +177,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_AProcMeshSculpt_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_AActor,
+		(UObject* (*)())Z_Construct_UClass_ADecalActor,
 		(UObject* (*)())Z_Construct_UPackage__Script_TwistedGrounds,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AProcMeshSculpt_Statics::FuncInfo[] = {
@@ -185,8 +185,10 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::Class_MetaDataParams[] = {
+		{ "HideCategories", "Collision Attachment Actor Input Replication" },
 		{ "IncludePath", "ProcMeshSculpt.h" },
 		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
 #endif
 #if WITH_METADATA
@@ -282,7 +284,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AProcMeshSculpt, 3617348854);
+	IMPLEMENT_CLASS(AProcMeshSculpt, 2248878309);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AProcMeshSculpt>()
 	{
 		return AProcMeshSculpt::StaticClass();

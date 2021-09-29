@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Engine/DecalActor.h"
 
 #include "Curves/CurveFloat.h"
 #include "HAL/Runnable.h"
@@ -23,7 +23,7 @@ enum class SCULPTSTATE : uint8 {
 };
 
 UCLASS()
-class TWISTEDGROUNDS_API AProcMeshSculpt : public AActor
+class TWISTEDGROUNDS_API AProcMeshSculpt : public ADecalActor
 {
 	GENERATED_BODY()
 	
