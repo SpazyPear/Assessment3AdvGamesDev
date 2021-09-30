@@ -148,6 +148,7 @@ void AProcMeshSculpt::Raycast()
 	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor());
 	SetActorHiddenInGame(!Map);
 	if (Map) {
+		UE_LOG(LogTemp, Warning, TEXT("Hmm"))
 		SetActorLocation(HitResult.ImpactPoint);
 	}
 }

@@ -13,8 +13,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define TWISTEDGROUNDS_ProcedurallyGeneratedMap_generated_h
 
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_SPARSE_DATA
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_RPC_WRAPPERS \
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_SPARSE_DATA
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execGenerateMap) \
 	{ \
@@ -25,7 +25,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execGenerateMap) \
 	{ \
@@ -36,7 +36,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	}
 
 
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_INCLASS_NO_PURE_DECLS \
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAProcedurallyGeneratedMap(); \
 	friend struct Z_Construct_UClass_AProcedurallyGeneratedMap_Statics; \
@@ -45,7 +45,7 @@ public: \
 	DECLARE_SERIALIZER(AProcedurallyGeneratedMap)
 
 
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_INCLASS \
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_INCLASS \
 private: \
 	static void StaticRegisterNativesAProcedurallyGeneratedMap(); \
 	friend struct Z_Construct_UClass_AProcedurallyGeneratedMap_Statics; \
@@ -54,7 +54,7 @@ public: \
 	DECLARE_SERIALIZER(AProcedurallyGeneratedMap)
 
 
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_STANDARD_CONSTRUCTORS \
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AProcedurallyGeneratedMap(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AProcedurallyGeneratedMap) \
@@ -67,7 +67,7 @@ private: \
 public:
 
 
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_ENHANCED_CONSTRUCTORS \
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AProcedurallyGeneratedMap(AProcedurallyGeneratedMap&&); \
@@ -78,28 +78,28 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AProcedurallyGeneratedMap); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AProcedurallyGeneratedMap)
 
 
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_PRIVATE_PROPERTY_OFFSET
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_13_PROLOG
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_GENERATED_BODY_LEGACY \
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_PRIVATE_PROPERTY_OFFSET
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_PROLOG
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_PRIVATE_PROPERTY_OFFSET \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_SPARSE_DATA \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_RPC_WRAPPERS \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_INCLASS \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_STANDARD_CONSTRUCTORS \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_PRIVATE_PROPERTY_OFFSET \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_SPARSE_DATA \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_RPC_WRAPPERS \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_INCLASS \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_GENERATED_BODY \
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_PRIVATE_PROPERTY_OFFSET \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_SPARSE_DATA \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_INCLASS_NO_PURE_DECLS \
-	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_16_ENHANCED_CONSTRUCTORS \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_PRIVATE_PROPERTY_OFFSET \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_SPARSE_DATA \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_INCLASS_NO_PURE_DECLS \
+	TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

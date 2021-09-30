@@ -6,47 +6,37 @@
 AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+
+	PrimaryActorTick.bCanEverTick = false; //THIS IS SET TO FALSE, SET TO TRUE IF TICK IS NEEDED.
+
 	MeshComponent = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("Mesh Component"));
 	
 	Width = 30;
 	Height = 30;
 	GridSize = 200;
-
 	PerlinScale = 1000;
 	PerlinRoughness = 0.1;
-	bRegenerateMap = false;
+	PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
 }
 
 // Called when the game starts or when spawned
 void AProcedurallyGeneratedMap::BeginPlay()
 {
 	Super::BeginPlay();
-	bRegenerateMap = !UGameplayStatics::DoesSaveGameExist(TEXT("SavedMap"), 0);
-	if (!bRegenerateMap) {
-		LoadMap();
-		MeshComponent->UpdateMeshSection(0, Vertices, Normals, UVCoords, TArray<FColor>(), Tangents);
-	}
+
 }
 
 // Called every frame
 void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (bRegenerateMap) {
-		ClearMap();
-		GenerateMap();
-		bRegenerateMap = false;
-		SaveMap();
-	}
 }
 
 void AProcedurallyGeneratedMap::GenerateMap() {
-	float PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
 	for (int i = 0; i < Width * Height; i++) {
 		int X = i % Width;
 		int Y = i / Width;
-		float Z = FMath::PerlinNoise2D(FVector2D(PerlinSample(X, PerlinOffset), PerlinSample(Y, PerlinOffset))) * PerlinScale;
+		float Z = FMath::PerlinNoise2D(FVector2D(PerlinSample(X + OffsetX, PerlinOffset), PerlinSample(Y + OffsetY, PerlinOffset))) * PerlinScale;
 		Vertices.Add(FVector(GridSize * X, GridSize * Y, Z));
 
 		//If not at the top and left of the grid
@@ -97,8 +87,4 @@ void AProcedurallyGeneratedMap::LoadMap() {
 	Normals = Map->Normals;
 	Tangents = Map->Tangents;
 	UE_LOG(LogTemp, Warning, TEXT("Loaded Map"))
-}
-
-bool AProcedurallyGeneratedMap::ShouldTickIfViewportsOnly() const {
-	return true;
 }

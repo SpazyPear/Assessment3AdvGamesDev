@@ -90,4 +90,14 @@
       <Filter>Source\TwistedGrounds</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\TwistedGrounds\MapGenerator.h">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\TwistedGrounds\MapGenerator.cpp">
+      <Filter>Source\TwistedGrounds</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
