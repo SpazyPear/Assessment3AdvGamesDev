@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeTwistedGrounds_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xA685D637,
+				0xB495DAFF,
 				0x5722068C,
 				METADATA_PARAMS(nullptr, 0)
 			};

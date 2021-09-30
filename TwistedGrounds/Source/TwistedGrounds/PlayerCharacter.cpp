@@ -88,13 +88,10 @@ void APlayerCharacter::Turn(float Value)
 
 void APlayerCharacter::SculptStart()
 {
-	if (!MeshSculpt) {
-		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
+	if (!MeshSculpt || !MeshSculpt->Map) {
 		return;
 	}
-	if (!MeshSculpt->HitSet) {
-		return;
-	}
+
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
 	MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
 }

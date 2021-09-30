@@ -32,7 +32,7 @@ void AProcMeshSculpt::BeginPlay()
 {
 	Super::BeginPlay();
 	MaxAmmo = SculptAmmo;
-	HitSet = false;
+	Map = nullptr;
 	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
@@ -51,12 +51,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	RegenAmmo(DeltaTime);
 	UpdateTangents();
 
-	HitSet = HitResult.GetActor() != nullptr;
-	SetActorHiddenInGame(!HitSet);
-	if (HitSet) {
-		SetActorLocation(HitResult.ImpactPoint);
-	}
-
 	if (CapDistance) {
 		FindNearestPointOnCurve();
 	}
@@ -64,7 +58,7 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 
 void AProcMeshSculpt::Sculpt()
 {
-	if (!HitSet || !&HitResult) {
+	if (!Map || !&HitResult) {
 		return;
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Strength: %f"), ScaledZStrength)
@@ -151,8 +145,9 @@ void AProcMeshSculpt::Raycast()
 {
 	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
 
-	HitSet = HitResult.GetActor() != nullptr;
-	if (HitSet) {
+	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor());
+	SetActorHiddenInGame(!Map);
+	if (Map) {
 		SetActorLocation(HitResult.ImpactPoint);
 	}
 }

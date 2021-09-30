@@ -86,7 +86,7 @@ public:
 	FVector Direction;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float SculptAmmo;
+		float SculptAmmo;
 
 	UPROPERTY(BlueprintReadWrite)
 		float MaxAmmo;
@@ -102,10 +102,7 @@ public:
 
 	TArray<int32> AffectedVertNormals;
 
-	UPROPERTY(EditAnywhere)
-		AProcedurallyGeneratedMap* Map;
-
-	bool HitSet;
+	AProcedurallyGeneratedMap* Map; //This can now dynamically change to any chunk
 
 	int32 TangentsToBeUpdated;
 
