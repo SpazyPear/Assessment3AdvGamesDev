@@ -23,8 +23,13 @@ void APlayerCharacter::BeginPlay()
 
 	//Initialise the camera variable
 	Camera = FindComponentByClass<UCameraComponent>();
-	MeshSculpt->Camera = Camera;
-	MeshSculpt->Muzzle = Cast<USceneComponent>(GetDefaultSubobjectByName(TEXT("MuzzlePosition")));
+}
+
+void APlayerCharacter::SetSculptor() {
+	Sculptor = GetWorld()->SpawnActor<AProcMeshSculpt>(MeshSculptor, FVector::ZeroVector, FRotator::ZeroRotator);
+	Sculptor->Player = this;
+	Sculptor->Camera = Camera;
+	Sculptor->Muzzle = Cast<USceneComponent>(GetDefaultSubobjectByName(TEXT("MuzzlePosition")));
 }
 
 // Called every frame
@@ -32,7 +37,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	if (SmallEmitter) {
-		SmallEmitter->SetActorLocation(MeshSculpt->GetActorLocation());
+		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
 	}
 }
 
@@ -88,17 +93,17 @@ void APlayerCharacter::Turn(float Value)
 
 void APlayerCharacter::SculptStart()
 {
-	if (!MeshSculpt || !MeshSculpt->Map) {
+	if (!Sculptor || !Sculptor->Map) {
 		return;
 	}
 
-	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
-	MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
+	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
+	Sculptor->SculptState = SCULPTSTATE::ONGOING;
 }
 
 void APlayerCharacter::SculptEnd()
 {
-	if (!MeshSculpt) {
+	if (!Sculptor) {
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
 		return;
 	}
@@ -108,38 +113,38 @@ void APlayerCharacter::SculptEnd()
 		SmallEmitter = nullptr;
 		
 	}
-	if (MeshSculpt->SculptState == SCULPTSTATE::ONGOING) {
-		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
-		MeshSculpt->SculptState = SCULPTSTATE::STOPPED;
+	if (Sculptor->SculptState == SCULPTSTATE::ONGOING) {
+		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
+		Sculptor->SculptState = SCULPTSTATE::STOPPED;
 	}
 	
 }
 
 void APlayerCharacter::Invert()
 {
-	if (!MeshSculpt) {
+	if (!Sculptor) {
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
 		return;
 	}
-	MeshSculpt->bInvert = !MeshSculpt->bInvert;
+	Sculptor->bInvert = !Sculptor->bInvert;
 }
 
 void APlayerCharacter::CapHeight()
 {
-	MeshSculpt->CapHeight = !MeshSculpt->CapHeight;
-	if (!MeshSculpt->CapHeight) {
-		MeshSculpt->CappedHeight = MIN_flt;
+	Sculptor->CapHeight = !Sculptor->CapHeight;
+	if (!Sculptor->CapHeight) {
+		Sculptor->CappedHeight = MIN_flt;
 	}
 }
 
 void APlayerCharacter::CapDistance()
 {
-	if (MeshSculpt->CapDistance == false) {
-		MeshSculpt->CreateCurve();
+	if (Sculptor->CapDistance == false) {
+		Sculptor->CreateCurve();
 	}
 
 	else {
-		MeshSculpt->CapDistance = false;
+		Sculptor->CapDistance = false;
 		//MeshSculpt->EndWall();
 	}
 }

@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 
-#include "SavedMap.h"
-
 #include "Kismet/GameplayStatics.h"
 #include "KismetProceduralMeshLibrary.h"
 #include "ProceduralMeshComponent.h"
@@ -39,7 +37,6 @@ public:
 	float GridSize;
 	int32 OffsetX;
 	int32 OffsetY;
-
 	//End
 
 	TArray<FVector> Vertices;
@@ -62,7 +59,4 @@ public:
 
 private:
 	float PerlinSample(float Axis, float Offset);
-	void SaveMap();
-	void LoadMap();
-
 };

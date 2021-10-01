@@ -45,14 +45,12 @@ public:
 
 	UCameraComponent* Camera;
 
-	UPROPERTY(EditAnywhere)
-		TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
-
-	UPROPERTY(EditAnywhere)
-		TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
-
-	UPROPERTY(EditAnywhere)
-		AProcMeshSculpt* MeshSculpt;
+	//Controlled by MapGenerator
+	TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
+	TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
+	TSubclassOf<AProcMeshSculpt> MeshSculptor;
+	//End
+	void SetSculptor(); //Sets the sculptor after being spawned. Called in MapGenerator.
 
 	void SculptStart();
 
@@ -67,4 +65,5 @@ public:
 private:
 	ADustClouds* BigEmitter;
 	ADustClouds* SmallEmitter;
+	AProcMeshSculpt* Sculptor;
 };

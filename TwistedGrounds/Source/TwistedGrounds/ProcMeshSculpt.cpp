@@ -33,7 +33,9 @@ void AProcMeshSculpt::BeginPlay()
 	Super::BeginPlay();
 	MaxAmmo = SculptAmmo;
 	Map = nullptr;
-	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
+	FRotator Rot = GetActorRotation();
+	Rot.Pitch = 90;
+	SetActorRelativeRotation(Rot);
 }
 
 // Called every frame
@@ -97,10 +99,8 @@ void AProcMeshSculpt::Sculpt()
 			
 		}
 	}
-	
 	TangentsToBeUpdated++;
 	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
-	
 }
 
 
@@ -148,7 +148,6 @@ void AProcMeshSculpt::Raycast()
 	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor());
 	SetActorHiddenInGame(!Map);
 	if (Map) {
-		UE_LOG(LogTemp, Warning, TEXT("Hmm"))
 		SetActorLocation(HitResult.ImpactPoint);
 	}
 }

@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 
 #include "ProcedurallyGeneratedMap.h"
+#include "PlayerCharacter.h"
 
 #include "MapGenerator.generated.h"
 
@@ -33,6 +34,18 @@ public:
 		TSubclassOf<AProcedurallyGeneratedMap> PGMap;
 
 	UPROPERTY(EditAnywhere)
+		TSubclassOf<APlayerCharacter> PlayerToSpawn;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<ADustClouds> BigDustEmitter;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<ADustClouds> SmallDustEmitter;
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AProcMeshSculpt> Sculptor;
+
+	UPROPERTY(EditAnywhere)
 		UMaterialInterface* PGMaterial;
 
 	//These variables control the parameters of the procedurally generated maps
@@ -50,6 +63,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		float PerlinRoughness;
+	//End
 
 	virtual bool ShouldTickIfViewportsOnly() const override;
 
@@ -57,5 +71,12 @@ public:
 		bool bRegenerateMap;
 
 private:
+	TArray<APlayerCharacter*> Player;
+
 	void SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, int32 OffsetY);
+	void CheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
+	void ClearMaps(); //Generates the initial map according to the offset.
+
+	TArray<FVector> MapPoints; //The location of all the maps.
+	int32 RoundDownToNearest(int32 Value, int32 Nearest); //Rounds up to the nearest
 };

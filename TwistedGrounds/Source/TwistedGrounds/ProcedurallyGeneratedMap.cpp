@@ -10,20 +10,22 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 	PrimaryActorTick.bCanEverTick = false; //THIS IS SET TO FALSE, SET TO TRUE IF TICK IS NEEDED.
 
 	MeshComponent = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("Mesh Component"));
-	
+	SetRootComponent(MeshComponent);
+
 	Width = 30;
 	Height = 30;
 	GridSize = 200;
 	PerlinScale = 1000;
 	PerlinRoughness = 0.1;
 	PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
+	OffsetX = 0;
+	OffsetY = 0;
 }
 
 // Called when the game starts or when spawned
 void AProcedurallyGeneratedMap::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
@@ -45,7 +47,9 @@ void AProcedurallyGeneratedMap::GenerateMap() {
 			Triangles.Add(i + Width);
 			Triangles.Add(i + 1);
 		}
-		if (X != 0 && Y < Height - 1) { //If not at the bottom and right of the grid
+
+		//If not at the bottom and right of the grid
+		if (X != 0 && Y < Height - 1) {
 			Triangles.Add(i);
 			Triangles.Add(i + Width - 1);
 			Triangles.Add(i + Width);
@@ -66,25 +70,4 @@ void AProcedurallyGeneratedMap::ClearMap() {
 
 float AProcedurallyGeneratedMap::PerlinSample(float Axis, float Offset) {
 	return (Axis + Offset) * PerlinRoughness;
-}
-
-void AProcedurallyGeneratedMap::SaveMap() {
-	USavedMap* Map = Cast<USavedMap>(UGameplayStatics::CreateSaveGameObject(USavedMap::StaticClass()));
-	Map->Vertices = Vertices;
-	Map->Triangles = Triangles;
-	Map->UVCoords = UVCoords;
-	Map->Normals = Normals;
-	Map->Tangents = Tangents;
-	UGameplayStatics::SaveGameToSlot(Map, TEXT("SavedMap"), 0);
-	UE_LOG(LogTemp, Warning, TEXT("Saved Map"))
-}
-
-void AProcedurallyGeneratedMap::LoadMap() {
-	USavedMap* Map = Cast<USavedMap>(UGameplayStatics::LoadGameFromSlot(TEXT("SavedMap"), 0));
-	Vertices = Map->Vertices;
-	Triangles = Map->Triangles;
-	UVCoords = Map->UVCoords;
-	Normals = Map->Normals;
-	Tangents = Map->Tangents;
-	UE_LOG(LogTemp, Warning, TEXT("Loaded Map"))
 }
