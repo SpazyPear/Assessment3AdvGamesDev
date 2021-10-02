@@ -103,8 +103,9 @@ void AMapGenerator::CheckSurrounding(FVector Position)
 		//Else Generate the map.
 		AProcedurallyGeneratedMap* Map = GetWorld()->SpawnActor<AProcedurallyGeneratedMap>(PGMap, Loc, FRotator::ZeroRotator);
 
-		int32 OffsetX = ActualW * XMult;
-		int32 OffsetY = ActualW * YMult;
+		int32 OffsetX = ActualW * (X / W);
+		int32 OffsetY = ActualH * (Y / H);
+		UE_LOG(LogTemp, Warning, TEXT("OffsetX: %i OffsetY: %i"), OffsetX, OffsetY)
 		if (Map) {
 			SetMapParams(Map, OffsetX, OffsetY);
 		}
@@ -125,6 +126,7 @@ void AMapGenerator::ClearMaps()
 
 int32 AMapGenerator::RoundDownToNearest(int32 Value, int32 Nearest)
 {
-	int32 Result = Value - FMath::Fmod(Value, Nearest);
-	return Result;
+	int32 PosValue = FMath::Abs(Value);
+	int32 Result = PosValue - FMath::Fmod(PosValue, Nearest) + (Value < 0 ? Nearest : 0);
+	return Value < 0 ? -Result : Result;
 }
