@@ -105,7 +105,6 @@ void AMapGenerator::CheckSurrounding(FVector Position)
 
 		int32 OffsetX = ActualW * (X / W);
 		int32 OffsetY = ActualH * (Y / H);
-		UE_LOG(LogTemp, Warning, TEXT("OffsetX: %i OffsetY: %i"), OffsetX, OffsetY)
 		if (Map) {
 			SetMapParams(Map, OffsetX, OffsetY);
 		}
