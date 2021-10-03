@@ -4,11 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-
+#include "SavedMap.h"
 #include "Kismet/GameplayStatics.h"
 #include "KismetProceduralMeshLibrary.h"
 #include "ProceduralMeshComponent.h"
-
 #include "ProcedurallyGeneratedMap.generated.h"
 
 UCLASS()
@@ -31,13 +30,14 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		UProceduralMeshComponent* MeshComponent;
 
-	//Controlled by MapGenerator
-	int32 Width;
-	int32 Height;
-	float GridSize;
-	int32 OffsetX;
-	int32 OffsetY;
-	//End
+	UPROPERTY(EditAnywhere)
+		int32 Width;
+
+	UPROPERTY(EditAnywhere)
+		int32 Height;
+
+	UPROPERTY(EditAnywhere)
+		float GridSize;
 
 	TArray<FVector> Vertices;
 	TArray<int32> Triangles;
@@ -48,15 +48,22 @@ public:
 
 	void ClearMap();
 
-	//Controlled by MapGenerator
-	float PerlinScale;
-	float PerlinRoughness;
-	float PerlinOffset;
-	//End
+	UPROPERTY(EditAnywhere)
+		float PerlinScale;
+
+	UPROPERTY(EditAnywhere)
+		float PerlinRoughness;
+
+	virtual bool ShouldTickIfViewportsOnly() const override;
+
+	UPROPERTY(EditAnywhere)
+		bool bRegenerateMap;
 
 	TArray<FVector> Normals;
 	TArray<FProcMeshTangent> Tangents;
 
 private:
 	float PerlinSample(float Axis, float Offset);
+	void SaveMap();
+	void LoadMap();
 };
