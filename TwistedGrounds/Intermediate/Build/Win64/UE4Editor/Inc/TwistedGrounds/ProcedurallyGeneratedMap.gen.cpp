@@ -62,31 +62,6 @@ void EmptyLinkFunctionForGeneratedCodeProcedurallyGeneratedMap() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bRegenerateMap_MetaData[];
-#endif
-		static void NewProp_bRegenerateMap_SetBit(void* Obj);
-		static const UE4CodeGen_Private::FBoolPropertyParams NewProp_bRegenerateMap;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerlinRoughness_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerlinRoughness;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerlinScale_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerlinScale;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_GridSize_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_GridSize;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Height_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FIntPropertyParams NewProp_Height;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Width_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FIntPropertyParams NewProp_Width;
-#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MeshComponent_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_MeshComponent;
@@ -108,52 +83,6 @@ void EmptyLinkFunctionForGeneratedCodeProcedurallyGeneratedMap() {}
 	};
 #endif
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_bRegenerateMap_MetaData[] = {
-		{ "Category", "ProcedurallyGeneratedMap" },
-		{ "ModuleRelativePath", "ProcedurallyGeneratedMap.h" },
-	};
-#endif
-	void Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_bRegenerateMap_SetBit(void* Obj)
-	{
-		((AProcedurallyGeneratedMap*)Obj)->bRegenerateMap = 1;
-	}
-	const UE4CodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_bRegenerateMap = { "bRegenerateMap", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Bool | UE4CodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(AProcedurallyGeneratedMap), &Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_bRegenerateMap_SetBit, METADATA_PARAMS(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_bRegenerateMap_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_bRegenerateMap_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinRoughness_MetaData[] = {
-		{ "Category", "ProcedurallyGeneratedMap" },
-		{ "ModuleRelativePath", "ProcedurallyGeneratedMap.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinRoughness = { "PerlinRoughness", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcedurallyGeneratedMap, PerlinRoughness), METADATA_PARAMS(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinRoughness_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinRoughness_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinScale_MetaData[] = {
-		{ "Category", "ProcedurallyGeneratedMap" },
-		{ "ModuleRelativePath", "ProcedurallyGeneratedMap.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinScale = { "PerlinScale", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcedurallyGeneratedMap, PerlinScale), METADATA_PARAMS(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinScale_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinScale_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_GridSize_MetaData[] = {
-		{ "Category", "ProcedurallyGeneratedMap" },
-		{ "ModuleRelativePath", "ProcedurallyGeneratedMap.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_GridSize = { "GridSize", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcedurallyGeneratedMap, GridSize), METADATA_PARAMS(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_GridSize_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_GridSize_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Height_MetaData[] = {
-		{ "Category", "ProcedurallyGeneratedMap" },
-		{ "ModuleRelativePath", "ProcedurallyGeneratedMap.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Height = { "Height", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcedurallyGeneratedMap, Height), METADATA_PARAMS(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Height_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Height_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Width_MetaData[] = {
-		{ "Category", "ProcedurallyGeneratedMap" },
-		{ "ModuleRelativePath", "ProcedurallyGeneratedMap.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Width = { "Width", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcedurallyGeneratedMap, Width), METADATA_PARAMS(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Width_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Width_MetaData)) };
-#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_MeshComponent_MetaData[] = {
 		{ "Category", "ProcedurallyGeneratedMap" },
 		{ "EditInline", "true" },
@@ -162,12 +91,6 @@ void EmptyLinkFunctionForGeneratedCodeProcedurallyGeneratedMap() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_MeshComponent = { "MeshComponent", nullptr, (EPropertyFlags)0x00100000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcedurallyGeneratedMap, MeshComponent), Z_Construct_UClass_UProceduralMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_MeshComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_MeshComponent_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_bRegenerateMap,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinRoughness,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_PerlinScale,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_GridSize,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Height,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_Width,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::NewProp_MeshComponent,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AProcedurallyGeneratedMap_Statics::StaticCppClassTypeInfo = {
@@ -197,7 +120,7 @@ void EmptyLinkFunctionForGeneratedCodeProcedurallyGeneratedMap() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AProcedurallyGeneratedMap, 470868530);
+	IMPLEMENT_CLASS(AProcedurallyGeneratedMap, 1746893624);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AProcedurallyGeneratedMap>()
 	{
 		return AProcedurallyGeneratedMap::StaticClass();

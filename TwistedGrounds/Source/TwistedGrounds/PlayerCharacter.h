@@ -32,19 +32,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		float LookSensitivity;
 
-	UPROPERTY(EditAnywhere)
-		AProcMeshSculpt* MeshSculpt;
-
-	void SculptStart();
-
-	void SculptEnd();
-
-	void Invert();
-
-	void CapHeight();
-
-	void CapDistance();
-
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -58,13 +45,25 @@ public:
 
 	UCameraComponent* Camera;
 
-	UPROPERTY(EditAnywhere)
-		TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
+	//Controlled by MapGenerator
+	TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
+	TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
+	TSubclassOf<AProcMeshSculpt> MeshSculptor;
+	//End
+	void SetSculptor(); //Sets the sculptor after being spawned. Called in MapGenerator.
 
-	UPROPERTY(EditAnywhere)
-		TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
+	void SculptStart();
+
+	void SculptEnd();
+
+	void Invert();
+
+	void CapHeight();
+
+	void CapDistance();
 
 private:
 	ADustClouds* BigEmitter;
 	ADustClouds* SmallEmitter;
+	AProcMeshSculpt* Sculptor;
 };

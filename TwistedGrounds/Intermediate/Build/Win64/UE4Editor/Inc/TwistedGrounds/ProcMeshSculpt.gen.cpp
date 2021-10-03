@@ -17,12 +17,11 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	UPackage* Z_Construct_UPackage__Script_TwistedGrounds();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt_NoRegister();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt();
-	ENGINE_API UClass* Z_Construct_UClass_AActor();
+	ENGINE_API UClass* Z_Construct_UClass_ADecalActor();
 	TWISTEDGROUNDS_API UFunction* Z_Construct_UFunction_AProcMeshSculpt_TracePath();
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
-	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcedurallyGeneratedMap_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 // End Cross Module References
 	static UEnum* SCULPTSTATE_StaticEnum()
@@ -141,10 +140,6 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Map_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Map;
-#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Curve_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Curve;
@@ -177,7 +172,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_AProcMeshSculpt_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_AActor,
+		(UObject* (*)())Z_Construct_UClass_ADecalActor,
 		(UObject* (*)())Z_Construct_UPackage__Script_TwistedGrounds,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_AProcMeshSculpt_Statics::FuncInfo[] = {
@@ -185,17 +180,12 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::Class_MetaDataParams[] = {
+		{ "HideCategories", "Collision Attachment Actor Input Replication" },
 		{ "IncludePath", "ProcMeshSculpt.h" },
 		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
 #endif
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map_MetaData[] = {
-		{ "Category", "ProcMeshSculpt" },
-		{ "ModuleRelativePath", "ProcMeshSculpt.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map = { "Map", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, Map), Z_Construct_UClass_AProcedurallyGeneratedMap_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve_MetaData[] = {
 		{ "Category", "ProcMeshSculpt" },
@@ -246,7 +236,6 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 #endif
 	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult = { "HitResult", nullptr, (EPropertyFlags)0x0010008000000004, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AProcMeshSculpt, HitResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_HitResult_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AProcMeshSculpt_Statics::PropPointers[] = {
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Map,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_Curve,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoRegen,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AProcMeshSculpt_Statics::NewProp_AmmoCost,
@@ -282,7 +271,7 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AProcMeshSculpt, 3617348854);
+	IMPLEMENT_CLASS(AProcMeshSculpt, 3523996567);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AProcMeshSculpt>()
 	{
 		return AProcMeshSculpt::StaticClass();

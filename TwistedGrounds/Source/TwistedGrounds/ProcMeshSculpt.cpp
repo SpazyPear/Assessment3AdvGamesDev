@@ -32,8 +32,10 @@ void AProcMeshSculpt::BeginPlay()
 {
 	Super::BeginPlay();
 	MaxAmmo = SculptAmmo;
-	HitSet = false;
-	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
+	Map = nullptr;
+	FRotator Rot = GetActorRotation();
+	Rot.Pitch = 90;
+	SetActorRelativeRotation(Rot);
 }
 
 // Called every frame
@@ -51,15 +53,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	RegenAmmo(DeltaTime);
 	UpdateTangents();
 
-	HitSet = HitResult.GetActor() != nullptr;
-	if (HitSet) {
-		SetActorHiddenInGame(false);
-		SetActorLocation(HitResult.ImpactPoint);
-	}
-	else {
-		SetActorHiddenInGame(true);
-	}
-
 	if (CapDistance) {
 		
 		FindNearestPointOnCurve();
@@ -72,7 +65,7 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 
 void AProcMeshSculpt::Sculpt()
 {
-	if (!HitSet || !&HitResult) {
+	if (!Map || !&HitResult) {
 		return;
 	}
 	int32 CalledCounter = 0;
@@ -110,10 +103,8 @@ void AProcMeshSculpt::Sculpt()
 			
 		}
 	}
-	
 	TangentsToBeUpdated++;
 	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
-	
 }
 
 
@@ -158,8 +149,9 @@ void AProcMeshSculpt::Raycast()
 {
 	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
 
-	HitSet = HitResult.GetActor() != nullptr;
-	if (HitSet) {
+	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor());
+	SetActorHiddenInGame(!Map);
+	if (Map) {
 		SetActorLocation(HitResult.ImpactPoint);
 	}
 }

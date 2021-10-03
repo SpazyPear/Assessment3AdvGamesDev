@@ -35,7 +35,7 @@ private: \
 	static void StaticRegisterNativesAProcMeshSculpt(); \
 	friend struct Z_Construct_UClass_AProcMeshSculpt_Statics; \
 public: \
-	DECLARE_CLASS(AProcMeshSculpt, AActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/TwistedGrounds"), NO_API) \
+	DECLARE_CLASS(AProcMeshSculpt, ADecalActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/TwistedGrounds"), NO_API) \
 	DECLARE_SERIALIZER(AProcMeshSculpt)
 
 
@@ -44,7 +44,7 @@ private: \
 	static void StaticRegisterNativesAProcMeshSculpt(); \
 	friend struct Z_Construct_UClass_AProcMeshSculpt_Statics; \
 public: \
-	DECLARE_CLASS(AProcMeshSculpt, AActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/TwistedGrounds"), NO_API) \
+	DECLARE_CLASS(AProcMeshSculpt, ADecalActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/TwistedGrounds"), NO_API) \
 	DECLARE_SERIALIZER(AProcMeshSculpt)
 
 

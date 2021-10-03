@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Engine/DecalActor.h"
 
 #include "Curves/CurveFloat.h"
 #include "HAL/Runnable.h"
@@ -23,7 +23,7 @@ enum class SCULPTSTATE : uint8 {
 };
 
 UCLASS()
-class TWISTEDGROUNDS_API AProcMeshSculpt : public AActor
+class TWISTEDGROUNDS_API AProcMeshSculpt : public ADecalActor
 {
 	GENERATED_BODY()
 	
@@ -88,7 +88,7 @@ public:
 	FVector Direction;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float SculptAmmo;
+		float SculptAmmo;
 
 	UPROPERTY(BlueprintReadWrite)
 		float MaxAmmo;
@@ -104,10 +104,7 @@ public:
 
 	TArray<int32> AffectedVertNormals;
 
-	UPROPERTY(EditAnywhere)
-		AProcedurallyGeneratedMap* Map;
-
-	bool HitSet;
+	AProcedurallyGeneratedMap* Map; //This can now dynamically change to any chunk
 
 	int32 TangentsToBeUpdated;
 
