@@ -83,6 +83,8 @@ public:
 
 	FVector Origin;
 
+	FVector OriginalOrigin;
+
 	FVector Direction;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)

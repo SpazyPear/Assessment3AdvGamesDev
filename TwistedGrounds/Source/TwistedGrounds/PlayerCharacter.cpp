@@ -92,11 +92,18 @@ void APlayerCharacter::SculptStart()
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
 		return;
 	}
+	
 	if (!MeshSculpt->HitSet) {
 		return;
 	}
+
+	if (!MeshSculpt->CapHeight) {
+		MeshSculpt->CappedHeight = -INFINITY;
+	}
+
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, MeshSculpt->GetActorLocation(), FRotator::ZeroRotator);
 	MeshSculpt->SculptState = SCULPTSTATE::ONGOING;
+	
 }
 
 void APlayerCharacter::SculptEnd()
@@ -105,7 +112,7 @@ void APlayerCharacter::SculptEnd()
 		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
 		return;
 	}
-
+	
 	if (SmallEmitter) {
 		SmallEmitter->Destroy();
 		SmallEmitter = nullptr;
@@ -130,19 +137,19 @@ void APlayerCharacter::Invert()
 void APlayerCharacter::CapHeight()
 {
 	MeshSculpt->CapHeight = !MeshSculpt->CapHeight;
-	if (!MeshSculpt->CapHeight) {
-		MeshSculpt->CappedHeight = MIN_flt;
-	}
 }
 
 void APlayerCharacter::CapDistance()
 {
 	if (MeshSculpt->CapDistance == false) {
+		//MeshSculpt->CappedHeight = MIN_flt;
 		MeshSculpt->CreateCurve();
 	}
 
 	else {
+		
 		MeshSculpt->CapDistance = false;
+		
 		//MeshSculpt->EndWall();
 	}
 }
