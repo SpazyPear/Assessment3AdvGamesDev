@@ -54,7 +54,12 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	UpdateTangents();
 
 	if (CapDistance) {
+
 		FindNearestPointOnCurve();
+		if (!&HitResult && CapDistance) {
+			Origin.Z = OriginalOrigin.Z;
+			CappedHeight = Origin.Z;
+		}
 	}
 }
 
@@ -166,11 +171,14 @@ void AProcMeshSculpt::EndWall()
 
 void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
 {
-	if (Map->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
-		CappedHeight = Map->Vertices[VertexIndex].Z;
-		CappedHeightIndex = VertexIndex;
-	}
-	
+	    UE_LOG(LogTemp, Warning, TEXT("Cap: %f"), CappedHeight)
+		UE_LOG(LogTemp, Warning, TEXT("Height: %f"), Map->Vertices[VertexIndex].Z)
+		if (Map->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
+			CappedHeight = Map->Vertices[VertexIndex].Z;
+			CappedHeightIndex = VertexIndex;
+
+		}
+
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
 	float ZValue = FMath::Lerp(ScaledZStrength, 0.f, Alpha) * 10;
 
@@ -178,8 +186,11 @@ void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexInd
 		return;
 	}
 
-	
 	Map->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
+
+	Origin.Z = CapDistance ? CappedHeight - 200 : Origin.Z;
+
+
 }
 
 FVector AProcMeshSculpt::FindNearestPointOnCurve()
@@ -215,17 +226,16 @@ FVector AProcMeshSculpt::FindNearestPointOnCurve()
 	UE_LOG(LogTemp, Warning, TEXT("Closest Point: %s"), *ClosestPoint.ToString()) */
 	FVector ClosestPoint;
 	FMath::PointDistToLine(GetActorLocation(), Direction, Origin, ClosestPoint);
-	UE_LOG(LogTemp, Warning, TEXT("Closest Point: %s"), *ClosestPoint.ToString())
+	//UE_LOG(LogTemp, Warning, TEXT("Closest Point: %s"), *ClosestPoint.ToString())
 	FVector Forward = ClosestPoint - Player->GetActorLocation();
 	FRotator Rot = UKismetMathLibrary::MakeRotFromZ(Forward);
 	Rot.Roll = 0.0f;
-	UE_LOG(LogTemp, Warning, TEXT("Rotation: %s"), *Rot.ToString())
-	
+	//UE_LOG(LogTemp, Warning, TEXT("Rotation: %s"), *Rot.ToString())
+
 	Player->FaceRotation(Rot);
 	FVector ForwardCamera = ClosestPoint - Player->GetActorLocation();
 	FRotator RotCamera = UKismetMathLibrary::MakeRotFromX(ForwardCamera);
 	RotCamera.Roll = 0.0f;
-	UE_LOG(LogTemp, Warning, TEXT("Rotation: %s"), *RotCamera.ToString())
 	Camera->SetWorldRotation(RotCamera);
 
 	return ClosestPoint;
@@ -254,7 +264,7 @@ void AProcMeshSculpt::CreateCurve()
 			}
 			FVector2D NewPoint = FVector2D(x, y);
 			y = FlipCircle ? y - 4 * FMath::PointDistToLine(FVector(NewPoint.X, NewPoint.Y, 0), FVector(1, 0, 0), FVector(Center.X, Center.Y, 0)) : y;
-			
+
 			FVector VertexLocation = FVector(FMath::RoundToInt(NewPoint.Y / Map->GridSize), FMath::RoundToInt(NewPoint.X / Map->GridSize), 0);
 			FVector Start;
 			int32 VertexIndex = VertexLocation.X * VertsPerSide + VertexLocation.Y;
@@ -273,12 +283,13 @@ void AProcMeshSculpt::CreateCurve()
 			}
 			PointsOnCurve.Add(NewPoint);
 			Previous = Start;
-			Index++; 
-		} 
+			Index++;
+		}
 		FlipCircle = true;
 	} */
 
 	Origin = GetActorLocation() - Player->GetActorRightVector() * 1000;
+	OriginalOrigin = Origin;
 	Direction = Player->GetActorRightVector();
 	//DrawDebugLine(GetWorld(), GetActorLocation() - Player->GetActorRightVector() * 1000, Player->GetActorRightVector() * 1000 + GetActorLocation(), FColor(255, 0, 0), false, 5.0f);
 	CapDistance = true;

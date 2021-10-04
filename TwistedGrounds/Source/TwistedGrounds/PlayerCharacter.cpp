@@ -117,6 +117,10 @@ void APlayerCharacter::SculptEnd()
 		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
 		Sculptor->SculptState = SCULPTSTATE::STOPPED;
 	}
+
+	if (!Sculptor->CapHeight) {
+		Sculptor->CappedHeight = -INFINITY;
+	}
 	
 }
 
@@ -132,9 +136,6 @@ void APlayerCharacter::Invert()
 void APlayerCharacter::CapHeight()
 {
 	Sculptor->CapHeight = !Sculptor->CapHeight;
-	if (!Sculptor->CapHeight) {
-		Sculptor->CappedHeight = MIN_flt;
-	}
 }
 
 void APlayerCharacter::CapDistance()

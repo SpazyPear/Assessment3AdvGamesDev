@@ -73,6 +73,8 @@ public:
 
 	FVector2D Center;
 
+	FVector OriginalOrigin;
+
 	bool ResetCappedHeight;
 
 	float CappedDistance;
