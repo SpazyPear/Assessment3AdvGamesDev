@@ -4,9 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-
-#include "ProcedurallyGeneratedMap.h"
-#include "PlayerCharacter.h"
+#include "DustClouds.h"
 
 #include "MapGenerator.generated.h"
 
@@ -27,14 +25,16 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	TArray<FVector> GlobalVertices;
+
 	UPROPERTY(EditAnywhere)
 		float PerlinOffset;
 
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<AProcedurallyGeneratedMap> PGMap;
+		TSubclassOf<class AProcedurallyGeneratedMap> PGMap;
 
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<APlayerCharacter> PlayerToSpawn;
+		TSubclassOf<class APlayerCharacter> PlayerToSpawn;
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<ADustClouds> BigDustEmitter;
@@ -43,7 +43,7 @@ public:
 		TSubclassOf<ADustClouds> SmallDustEmitter;
 
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<AProcMeshSculpt> Sculptor;
+		TSubclassOf<class AProcMeshSculpt> Sculptor;
 
 	UPROPERTY(EditAnywhere)
 		UMaterialInterface* PGMaterial;
@@ -69,6 +69,14 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		bool bRegenerateMap;
+
+	TArray<FVector> MapPoints;
+
+	TArray<FVector> CenterMapPoints;
+
+	TArray<TArray<FVector>> MapVertices;
+
+	TArray<TArray<AProcedurallyGeneratedMap*>> Maps;
 
 private:
 	TArray<APlayerCharacter*> Player;

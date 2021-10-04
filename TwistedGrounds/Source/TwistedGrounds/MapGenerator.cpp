@@ -3,6 +3,9 @@
 
 #include "MapGenerator.h"
 #include "EngineUtils.h"
+#include "ProcedurallyGeneratedMap.h"
+#include "PlayerCharacter.h"
+#include "ProcMeshSculpt.h"
 
 // Sets default values
 AMapGenerator::AMapGenerator()
@@ -74,7 +77,7 @@ void AMapGenerator::SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, 
 	Map->PerlinOffset = PerlinOffset;
 	Map->OffsetX = OffsetX;
 	Map->OffsetY = OffsetY;
-	Map->GenerateMap();
+	Map->GenerateMap(&GlobalVertices);
 	Map->MeshComponent->SetMaterial(0, PGMaterial);
 }
 

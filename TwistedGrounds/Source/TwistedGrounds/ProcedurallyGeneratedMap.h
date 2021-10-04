@@ -8,7 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "KismetProceduralMeshLibrary.h"
 #include "ProceduralMeshComponent.h"
-
+#include "MapGenerator.h"
 #include "ProcedurallyGeneratedMap.generated.h"
 
 UCLASS()
@@ -39,6 +39,9 @@ public:
 	int32 OffsetY;
 	//End
 
+	static int32 MapIndexX;
+	static int32 MapIndexY;
+
 	TArray<FVector> Vertices;
 	TArray<int32> Triangles;
 	TArray<FVector2D> UVCoords;
@@ -53,6 +56,8 @@ public:
 	float PerlinRoughness;
 	float PerlinOffset;
 	//End
+
+	AMapGenerator* MapGenerator;
 
 	TArray<FVector> Normals;
 	TArray<FProcMeshTangent> Tangents;

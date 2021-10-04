@@ -11,7 +11,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
-
+#include "MapGenerator.h"
 #include "ProcedurallyGeneratedMap.h"
 #include "ProcMeshSculpt.generated.h"
 
@@ -54,6 +54,8 @@ public:
 	SCULPTSTATE SculptState;
 
 	APawn* Player;
+
+	AProcedurallyGeneratedMap* CurrentMap;
 
 	bool bInvert;
 
@@ -104,6 +106,8 @@ public:
 
 	TArray<int32> AffectedVertNormals;
 
+	TArray<AProcedurallyGeneratedMap*> AffectedSections;
+
 	AProcedurallyGeneratedMap* Map; //This can now dynamically change to any chunk
 
 	int32 TangentsToBeUpdated;
@@ -114,6 +118,10 @@ public:
 
 	void EndWall();
 
+	bool Contains(FVector Vertex);
+
+	TArray<FVector>* GlobalVertices;
+	AMapGenerator* MapGenerator;
 	UCameraComponent* Camera;
 	USceneComponent* Muzzle;
 };
