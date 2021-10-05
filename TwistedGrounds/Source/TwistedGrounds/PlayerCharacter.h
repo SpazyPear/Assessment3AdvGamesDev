@@ -46,9 +46,9 @@ public:
 	UCameraComponent* Camera;
 
 	//Controlled by MapGenerator
-	ADustClouds BigDustEmitterToSpawn;
-	ADustClouds SmallDustEmitterToSpawn;
-	AProcMeshSculpt* MeshSculptor;
+	TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
+	TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
+	TSubclassOf<AProcMeshSculpt> MeshSculptor;
 	//End
 	void SetSculptor(); //Sets the sculptor after being spawned. Called in MapGenerator.
 

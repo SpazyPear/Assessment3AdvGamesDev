@@ -77,7 +77,7 @@ void AMapGenerator::SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, 
 	Map->PerlinOffset = PerlinOffset;
 	Map->OffsetX = OffsetX;
 	Map->OffsetY = OffsetY;
-	Map->GenerateMap(&GlobalVertices);
+	Map->GenerateMap();
 	Map->MeshComponent->SetMaterial(0, PGMaterial);
 }
 

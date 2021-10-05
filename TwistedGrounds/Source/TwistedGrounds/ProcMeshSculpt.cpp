@@ -25,10 +25,7 @@ AProcMeshSculpt::AProcMeshSculpt()
 	CapHeight = false;
 	CapDistance = false;
 	CappedHeightIndex = 0;
-	for (TActorIterator<AMapGenerator> ActorIterator(GetWorld()); ActorIterator; ++ActorIterator) {
-		GlobalVertices = &ActorIterator->GlobalVertices;
-		MapGenerator = *ActorIterator;
-	}
+	
 }
 
 // Called when the game starts or when spawned
@@ -40,6 +37,10 @@ void AProcMeshSculpt::BeginPlay()
 	FRotator Rot = GetActorRotation();
 	Rot.Pitch = 90;
 	SetActorRelativeRotation(Rot);
+	for (TActorIterator<AMapGenerator> ActorIterator(GetWorld()); ActorIterator; ++ActorIterator) {
+		GlobalVertices = &ActorIterator->GlobalVertices;
+		MapGenerator = *ActorIterator;
+	}
 }
 
 // Called every frame

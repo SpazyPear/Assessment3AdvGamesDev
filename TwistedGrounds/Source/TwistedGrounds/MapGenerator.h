@@ -70,7 +70,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		bool bRegenerateMap;
 
-	TArray<FVector> MapPoints;
 
 	TArray<FVector> CenterMapPoints;
 

@@ -22,16 +22,17 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 	PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
 	OffsetX = 0;
 	OffsetY = 0;
-	for (TActorIterator<AMapGenerator> ActorIterator(GetWorld()); ActorIterator; ++ActorIterator) {
-
-		MapGenerator = *ActorIterator;
-	}
+	
 }
 
 // Called when the game starts or when spawned
 void AProcedurallyGeneratedMap::BeginPlay()
 {
 	Super::BeginPlay();
+	for (TActorIterator<AMapGenerator> ActorIterator(GetWorld()); ActorIterator; ++ActorIterator) {
+
+		MapGenerator = *ActorIterator;
+	}
 }
 
 // Called every frame

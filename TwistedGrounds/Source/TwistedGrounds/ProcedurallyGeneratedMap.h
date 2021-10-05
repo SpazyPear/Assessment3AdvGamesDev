@@ -65,3 +65,6 @@ public:
 private:
 	float PerlinSample(float Axis, float Offset);
 };
+
+int32 AProcedurallyGeneratedMap::MapIndexX = 0;
+int32 AProcedurallyGeneratedMap::MapIndexY = 0;
