@@ -11,6 +11,7 @@ AMapGenerator::AMapGenerator()
 	PrimaryActorTick.bCanEverTick = true;
 
 	//Parameters to control the ProcedurallyGeneratedMap
+	ChunkRadius = 3;
 	ChunkWidth = 30;
 	ChunkHeight = 30;
 	ChunkGridSize = 200;
@@ -27,7 +28,7 @@ AMapGenerator::AMapGenerator()
 void AMapGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-	ClearMaps(); //Generates the map first.
+	ClearMaps(); //Clears all the maps that were already generated first.
 
 	//For now there is only one player.
 	Player.Add(GetWorld()->SpawnActor<APlayerCharacter>(PlayerToSpawn, FVector(0, 0, 2000), FRotator::ZeroRotator));
@@ -83,36 +84,31 @@ void AMapGenerator::CheckSurrounding(FVector Position)
 	//Remember the actual width of the generated map is one less due to edge cases.
 	int ActualW = ChunkWidth - 1;
 	int ActualH = ChunkHeight - 1;
-	int W = ActualW * ChunkGridSize;
-	int H = ActualH * ChunkGridSize;
-	
-	int StartX = RoundDownToNearest(Position.X, W) - W;
-	int StartY = RoundDownToNearest(Position.Y, H) - H;
 
-	for (int i = 0; i < 9; i++) {
-		int XMult = (i % 3);
-		int YMult = (i / 3);
+	int W = ActualW * ChunkGridSize; //Width of the chunk
+	int H = ActualH * ChunkGridSize; //Height of the chunk
+	
+	float HalfRadius = ChunkRadius / 2; //Half of the radius
+	float StartX = RoundDownToNearest(Position.X, W) - W * HalfRadius;
+	float StartY = RoundDownToNearest(Position.Y, H) - H * HalfRadius;
+
+	for (int i = 0; i < ChunkRadius * ChunkRadius; i++) {
+		int XMult = (i % ChunkRadius);
+		int YMult = (i / ChunkRadius);
 
 		int X = StartX + W * XMult;
 		int Y = StartY + H * YMult;
 		FVector Loc = FVector(X, Y, 0);
-		if (MapPoints.Contains(Loc)) { //If there is already a map there do nothing
+		if (MapPoints.Contains(Loc)) { //If there is a location, it would most likely mean there is a map
 			continue;
 		}
 
 		//Else Generate the map.
 		AProcedurallyGeneratedMap* Map = GetWorld()->SpawnActor<AProcedurallyGeneratedMap>(PGMap, Loc, FRotator::ZeroRotator);
-
-		int32 OffsetX = ActualW * (X / W);
-		int32 OffsetY = ActualH * (Y / H);
-		if (Map) {
-			SetMapParams(Map, OffsetX, OffsetY);
-		}
-		else {
-			UE_LOG(LogTemp, Error, TEXT("THE MAP WAS NOT ABLE TO SPAWN"))
-		}
-
-		MapPoints.Add(Loc);
+		int32 OffsetX = ActualW * (X / W); //X offset for perlin noise
+		int32 OffsetY = ActualH * (Y / H); //Y offset for perlin noise
+		SetMapParams(Map, OffsetX, OffsetY);
+		MapPoints.Add(Loc); //Save the location of the map
 	}
 }
 
@@ -121,11 +117,12 @@ void AMapGenerator::ClearMaps()
 	for (TActorIterator<AProcedurallyGeneratedMap> EveryMap(GetWorld()); EveryMap; ++EveryMap) {
 		(*EveryMap)->Destroy();
 	}
+	MapPoints.Empty(); //Emptied so that a new map can be generated there.
 }
 
 int32 AMapGenerator::RoundDownToNearest(int32 Value, int32 Nearest)
 {
-	int32 PosValue = FMath::Abs(Value);
+	int32 PosValue = FMath::Abs(Value); //Mod goes towards 0, thus all values given to mod must be positive.
 	int32 Result = PosValue - FMath::Fmod(PosValue, Nearest) + (Value < 0 ? Nearest : 0);
 	return Value < 0 ? -Result : Result;
 }

@@ -63,6 +63,10 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 #endif
 		static const UE4CodeGen_Private::FIntPropertyParams NewProp_ChunkWidth;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ChunkRadius_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FIntPropertyParams NewProp_ChunkRadius;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PGMaterial_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_PGMaterial;
@@ -125,21 +129,27 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinScale_MetaData[] = {
 		{ "Category", "MapGenerator" },
+		{ "Comment", "//The size of each chunk\n" },
 		{ "ModuleRelativePath", "MapGenerator.h" },
+		{ "ToolTip", "The size of each chunk" },
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinScale = { "PerlinScale", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, PerlinScale), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinScale_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinScale_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkGridSize_MetaData[] = {
 		{ "Category", "MapGenerator" },
+		{ "Comment", "//The height of each chunk\n" },
 		{ "ModuleRelativePath", "MapGenerator.h" },
+		{ "ToolTip", "The height of each chunk" },
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkGridSize = { "ChunkGridSize", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, ChunkGridSize), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkGridSize_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkGridSize_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkHeight_MetaData[] = {
 		{ "Category", "MapGenerator" },
+		{ "Comment", "//The width of each chunk\n" },
 		{ "ModuleRelativePath", "MapGenerator.h" },
+		{ "ToolTip", "The width of each chunk" },
 	};
 #endif
 	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkHeight = { "ChunkHeight", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, ChunkHeight), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkHeight_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkHeight_MetaData)) };
@@ -152,6 +162,13 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 	};
 #endif
 	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth = { "ChunkWidth", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, ChunkWidth), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius_MetaData[] = {
+		{ "Category", "MapGenerator" },
+		{ "ModuleRelativePath", "MapGenerator.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius = { "ChunkRadius", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, ChunkRadius), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMaterial_MetaData[] = {
 		{ "Category", "MapGenerator" },
@@ -208,6 +225,7 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkGridSize,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkHeight,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMaterial,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_Sculptor,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_SmallDustEmitter,
@@ -243,7 +261,7 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMapGenerator, 2393499856);
+	IMPLEMENT_CLASS(AMapGenerator, 399673471);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AMapGenerator>()
 	{
 		return AMapGenerator::StaticClass();
