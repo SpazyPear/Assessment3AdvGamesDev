@@ -57,6 +57,8 @@ public:
 	TArray<FVector> Normals;
 	TArray<FProcMeshTangent> Tangents;
 
+	class AMapGenerator* MapGenerator;
+
 private:
 	float PerlinSample(float Axis, float Offset);
 };

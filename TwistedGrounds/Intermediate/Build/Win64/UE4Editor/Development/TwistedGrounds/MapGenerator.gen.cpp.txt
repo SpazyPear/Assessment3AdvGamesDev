@@ -35,6 +35,10 @@ E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGr
 C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Engine/DecalActor.h
 C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DecalActor.generated.h
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds\UpdateMeshThread.h
+C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
+C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
+C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h
+C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\BoxComponent.generated.h
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\ProcMeshSculpt.generated.h
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds\DustClouds.h
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\DustClouds.generated.h

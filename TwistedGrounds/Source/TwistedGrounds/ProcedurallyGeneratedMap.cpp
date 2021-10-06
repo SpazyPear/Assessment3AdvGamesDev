@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "ProcedurallyGeneratedMap.h"
+#include "MapGenerator.h"
+#include "EngineUtils.h"
 
 // Sets default values
 AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
@@ -26,6 +28,9 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 void AProcedurallyGeneratedMap::BeginPlay()
 {
 	Super::BeginPlay();
+	for (TActorIterator<AMapGenerator> It(GetWorld()); It; ++It) {
+		MapGenerator = *It;
+	}
 }
 
 // Called every frame
@@ -40,6 +45,7 @@ void AProcedurallyGeneratedMap::GenerateMap() {
 		int Y = i / Width;
 		float Z = FMath::PerlinNoise2D(FVector2D(PerlinSample(X + OffsetX, PerlinOffset), PerlinSample(Y + OffsetY, PerlinOffset))) * PerlinScale;
 		Vertices.Add(FVector(GridSize * X, GridSize * Y, Z));
+		MapGenerator->GlobalVertices.Add(FVector(GridSize * X, GridSize * Y, Z));
 
 		//If not at the top and left of the grid
 		if (X < Width - 1 && Y < Height - 1) {
@@ -57,6 +63,7 @@ void AProcedurallyGeneratedMap::GenerateMap() {
 
 		UVCoords.Add(FVector2D(X, Y));
 	}
+	
 	UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
 	MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
 }

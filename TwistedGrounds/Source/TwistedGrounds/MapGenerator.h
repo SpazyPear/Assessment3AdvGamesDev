@@ -70,6 +70,8 @@ public:
 	UPROPERTY(EditAnywhere)
 		bool bRegenerateMap;
 
+	TArray<FVector> GlobalVertices;
+
 private:
 	TArray<APlayerCharacter*> Player;
 

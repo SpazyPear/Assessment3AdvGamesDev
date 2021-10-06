@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F5497438-25C5-4CB2-BDCD-0110E8E144DA}</ProjectGuid>
+    <ProjectGuid>{D82BDEBE-7FF8-4370-AC75-8BC652BEE705}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
     <RootNamespace>TwistedGrounds</RootNamespace>
     <PlatformToolset>v142</PlatformToolset>

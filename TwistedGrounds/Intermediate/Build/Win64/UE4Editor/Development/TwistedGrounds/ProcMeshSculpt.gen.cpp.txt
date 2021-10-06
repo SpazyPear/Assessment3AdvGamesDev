@@ -23,4 +23,8 @@ C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Ga
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\ProcedurallyGeneratedMap.generated.h
 C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
 C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h
+C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
+C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
+C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.generated.h
+C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\BoxComponent.generated.h
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\ProcMeshSculpt.generated.h

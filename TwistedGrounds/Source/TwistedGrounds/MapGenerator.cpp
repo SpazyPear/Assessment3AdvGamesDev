@@ -38,6 +38,7 @@ void AMapGenerator::BeginPlay()
 		EachPlayer->SmallDustEmitterToSpawn = SmallDustEmitter;
 		EachPlayer->SetSculptor();
 	}
+	
 }
 
 // Called every frame

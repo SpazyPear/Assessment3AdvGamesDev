@@ -11,7 +11,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
-
+#include "Components/BoxComponent.h"
 #include "ProcedurallyGeneratedMap.h"
 #include "ProcMeshSculpt.generated.h"
 
@@ -65,6 +65,12 @@ public:
 
 	void RegenAmmo(float DeltaTime);
 
+	UFUNCTION()
+		virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+		virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
 	FVector FindNearestPointOnCurve();
 
 	void CreateCurve();
@@ -116,4 +122,11 @@ public:
 
 	UCameraComponent* Camera;
 	USceneComponent* Muzzle;
+	class AMapGenerator* MapGenerator;
+
+	UBoxComponent* Collider;
+
+	TArray<AProcedurallyGeneratedMap*> HitMaps;
+
+	bool bNeedsUpdate;
 };
