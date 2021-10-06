@@ -36,6 +36,17 @@ void AProcMeshSculpt::BeginPlay()
 	FRotator Rot = GetActorRotation();
 	Rot.Pitch = 90;
 	SetActorRelativeRotation(Rot);
+
+	//Set the collider for the actor
+	Collider = FindComponentByClass<UBoxComponent>();
+	if (Collider) {
+		Collider->SetGenerateOverlapEvents(true);
+		Collider->OnComponentBeginOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapBegin);
+		Collider->OnComponentEndOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapEnd);
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("No Collider"))
+	}
 }
 
 // Called every frame
@@ -63,42 +74,95 @@ void AProcMeshSculpt::Sculpt()
 	if (!Map || !&HitResult) {
 		return;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Strength: %f"), ScaledZStrength)
-	int32 CalledCounter = 0;
-	FVector RelativeHitLocation = GetActorLocation();
-	int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
-	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), 0);
-	int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
 
-	int32 RadiusInVerts = 500 / Map->GridSize;
-	int32 RadiusExtended = RadiusInVerts + 1;
+	int32 CalledCounter = 0; //Is this used?
 
-	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
-	{
-		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
-		{
-			// Continue loop if Vert doesn't exist
-			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X;
-			if (!Map->Vertices.IsValidIndex(CurrentIndex)) { continue; }
+	FVector RelativeHitLocation = GetActorLocation() - Map->GetActorLocation();
+	
+	int32 VertexX = FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize);
+	int32 VertexY = FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize);
+	int32 CenterIndex = VertexX + VertexY * Map->Width;
+	
+	TArray<int32> AffectedIndices;
+	TArray<int32> IndexChecklist; //All the indices that have yet to be checked
+	TArray<int32> NewChecklist; //Adds indices into index checklist in a burst
+	IndexChecklist.Push(CenterIndex);
 
-			FVector CurrentVertCoords = FVector(
-				FMath::RoundToInt(Map->Vertices[CurrentIndex].Y / Map->GridSize),
-				FMath::RoundToInt(Map->Vertices[CurrentIndex].X / Map->GridSize),
-				0);
-			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
+	int32 OriginalRadius = 2; //Probably make this an edit anywhere variable so that it can be controlled
+	int32 Radius = OriginalRadius;
+	TArray<int32> DirectionalIndices;
+	while (IndexChecklist.Num() > 0) {
+		int32 CurrentIndex = IndexChecklist.Pop();
+		if (!AffectedIndices.Contains(CurrentIndex)) {
+			AffectedIndices.Add(CurrentIndex);
+			VertexChangeHeight(Radius * 0.0001, CurrentIndex); //Add your own formula here.
+		}
+
+		if (Radius > 0) {
+			int32 RightEdge = CurrentIndex - (CurrentIndex % Map->Width); //Round down to nearest
+			int32 LeftEdge = RightEdge + Map->Width; //Round up to nearest
+
+			DirectionalIndices.Add(CurrentIndex == LeftEdge - 1 ? CurrentIndex : CurrentIndex + 1); //Left
+			DirectionalIndices.Add(CurrentIndex == RightEdge ? CurrentIndex : CurrentIndex - 1); //Right
+
+			int32 Up = CurrentIndex + Map->Width;
+			DirectionalIndices.Add(Up < Map->Vertices.Num() ? Up : CurrentIndex); //Up
+
+			int32 Down = CurrentIndex - Map->Width;
+			DirectionalIndices.Add(Down >= 0 ? Down : CurrentIndex); //Down
+		}
+
+		for (int32 Index : DirectionalIndices) {
+			NewChecklist.Push(Index);
+		}
+		DirectionalIndices.Empty();
+
+		if (IndexChecklist.Num() > 0) {
+			continue;
+		}
+
+		for (int32 Index : NewChecklist) {
+			IndexChecklist.Add(Index);
+		}
+		NewChecklist.Empty();
+		Radius--;
+	}
 
 	
-			if (DistanceFromCenter > RadiusExtended) { continue; }
-			AffectedVertNormals.Add(CurrentIndex);
 
-			if (DistanceFromCenter > RadiusInVerts) { continue; }
+	//int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
+	//FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), 0);
+	//int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
 
-			float DistanceFraction = DistanceFromCenter / RadiusInVerts;
-			CalledCounter++;
-			VertexChangeHeight(DistanceFraction, CurrentIndex);
-			
-		}
-	}
+	//int32 RadiusInVerts = 500 / Map->GridSize;
+	//int32 RadiusExtended = RadiusInVerts + 1;
+
+	//for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
+	//{
+	//	for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
+	//	{
+	//		// Continue loop if Vert doesn't exist
+	//		int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X;
+	//		if (!Map->Vertices.IsValidIndex(CurrentIndex)) { continue; }
+
+	//		FVector CurrentVertCoords = FVector(
+	//			FMath::RoundToInt(Map->Vertices[CurrentIndex].Y / Map->GridSize),
+	//			FMath::RoundToInt(Map->Vertices[CurrentIndex].X / Map->GridSize),
+	//			0);
+	//		float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
+
+	//
+	//		if (DistanceFromCenter > RadiusExtended) { continue; }
+	//		AffectedVertNormals.Add(CurrentIndex);
+
+	//		if (DistanceFromCenter > RadiusInVerts) { continue; }
+
+	//		float DistanceFraction = DistanceFromCenter / RadiusInVerts;
+	//		CalledCounter++;
+	//		VertexChangeHeight(DistanceFraction, CurrentIndex);
+	//		
+	//	}
+	//}
 	TangentsToBeUpdated++;
 	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
 }
@@ -112,8 +176,8 @@ void AProcMeshSculpt::CheckState(float DeltaTime)
 		break;
 	case SCULPTSTATE::ONGOING:
 		if (SculptAmmo > 0.0f) {
-			SculptAmmo -= AmmoCost * DeltaTime;
-			UE_LOG(LogTemp, Warning, TEXT("Ammo: %f"), SculptAmmo)
+																					//SculptAmmo -= AmmoCost * DeltaTime; //Disabled for the time being.
+			//UE_LOG(LogTemp, Warning, TEXT("Ammo: %f"), SculptAmmo)
 			Sculpt();
 		}
 		break;
@@ -127,6 +191,24 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 	if (SculptState == SCULPTSTATE::IDLE && SculptAmmo < MaxAmmo) {
 		SculptAmmo += AmmoRegen * DeltaTime;
 		SculptAmmo = FMath::Clamp(SculptAmmo, 0.0f, MaxAmmo);
+	}
+}
+
+void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
+	if (HitMap) {
+		HitMaps.Add(HitMap);
+		UE_LOG(LogTemp, Warning, TEXT("%i"), HitMaps.Num())
+	}
+}
+
+void AProcMeshSculpt::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
+	if (HitMap) {
+		HitMaps.Remove(HitMap);
+		//UE_LOG(LogTemp, Warning, TEXT("%i"), HitMaps.Num())
 	}
 }
 
