@@ -43,7 +43,7 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 		FHitResult HitResult;
 
-	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex);
+	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex, AProcedurallyGeneratedMap* Map);
 	void Sculpt();
 
 	UPROPERTY(EditAnywhere)
@@ -124,4 +124,9 @@ public:
 
 	UBoxComponent* Collider;
 	TArray<AProcedurallyGeneratedMap*> HitMaps;
+
+private:
+	TArray<int32> SculptIndices(int32 CurrentIndex, int32 Radius, TArray<int32> IndexHistory, AProcedurallyGeneratedMap* Map);
+	AProcedurallyGeneratedMap* SculptCheck(int32 Index, bool bOnNewMap, AProcedurallyGeneratedMap* CurrentMap, int32 XMult, int32 YMult);
+	AProcedurallyGeneratedMap* GetMapFromPosition(FVector Position);
 };

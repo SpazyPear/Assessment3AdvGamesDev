@@ -5,8 +5,8 @@
 #include "Kismet/GameplayStatics.h"
 #include <ProceduralMeshComponent/Public/KismetProceduralMeshLibrary.h>
 #include "DrawDebugHelpers.h"
+#include "EngineUtils.h"
 #include "Kismet/KismetMathLibrary.h"
-
 
 
 // Sets default values
@@ -75,96 +75,62 @@ void AProcMeshSculpt::Sculpt()
 		return;
 	}
 
-	int32 CalledCounter = 0; //Is this used?
-
 	FVector RelativeHitLocation = GetActorLocation() - Map->GetActorLocation();
-	
 	int32 VertexX = FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize);
 	int32 VertexY = FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize);
 	int32 CenterIndex = VertexX + VertexY * Map->Width;
 	
-	TArray<int32> AffectedIndices;
-	TArray<int32> IndexChecklist; //All the indices that have yet to be checked
-	TArray<int32> NewChecklist; //Adds indices into index checklist in a burst
-	IndexChecklist.Push(CenterIndex);
+	int32 Radius = 3; //Probably make this an edit anywhere variable so that it can be controlled
+	TArray<int32> IndexHistory;
+	SculptIndices(CenterIndex, Radius, IndexHistory, Map); //Recursive function
 
-	int32 OriginalRadius = 2; //Probably make this an edit anywhere variable so that it can be controlled
-	int32 Radius = OriginalRadius;
-	TArray<int32> DirectionalIndices;
-	while (IndexChecklist.Num() > 0) {
-		int32 CurrentIndex = IndexChecklist.Pop();
-		if (!AffectedIndices.Contains(CurrentIndex)) {
-			AffectedIndices.Add(CurrentIndex);
-			VertexChangeHeight(Radius * 0.0001, CurrentIndex); //Add your own formula here.
-		}
+	//TArray<int32> AffectedIndices;
+	//TArray<int32> IndexChecklist; //All the indices that have yet to be checked
+	//TArray<int32> NewChecklist; //Adds indices into index checklist in a burst
+	//IndexChecklist.Push(CenterIndex);
 
-		if (Radius > 0) {
-			int32 RightEdge = CurrentIndex - (CurrentIndex % Map->Width); //Round down to nearest
-			int32 LeftEdge = RightEdge + Map->Width; //Round up to nearest
-
-			DirectionalIndices.Add(CurrentIndex == LeftEdge - 1 ? CurrentIndex : CurrentIndex + 1); //Left
-			DirectionalIndices.Add(CurrentIndex == RightEdge ? CurrentIndex : CurrentIndex - 1); //Right
-
-			int32 Up = CurrentIndex + Map->Width;
-			DirectionalIndices.Add(Up < Map->Vertices.Num() ? Up : CurrentIndex); //Up
-
-			int32 Down = CurrentIndex - Map->Width;
-			DirectionalIndices.Add(Down >= 0 ? Down : CurrentIndex); //Down
-		}
-
-		for (int32 Index : DirectionalIndices) {
-			NewChecklist.Push(Index);
-		}
-		DirectionalIndices.Empty();
-
-		if (IndexChecklist.Num() > 0) {
-			continue;
-		}
-
-		for (int32 Index : NewChecklist) {
-			IndexChecklist.Add(Index);
-		}
-		NewChecklist.Empty();
-		Radius--;
-	}
-
-	
-
-	//int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
-	//FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), 0);
-	//int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
-
-	//int32 RadiusInVerts = 500 / Map->GridSize;
-	//int32 RadiusExtended = RadiusInVerts + 1;
-
-	//for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
-	//{
-	//	for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
-	//	{
-	//		// Continue loop if Vert doesn't exist
-	//		int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X;
-	//		if (!Map->Vertices.IsValidIndex(CurrentIndex)) { continue; }
-
-	//		FVector CurrentVertCoords = FVector(
-	//			FMath::RoundToInt(Map->Vertices[CurrentIndex].Y / Map->GridSize),
-	//			FMath::RoundToInt(Map->Vertices[CurrentIndex].X / Map->GridSize),
-	//			0);
-	//		float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
-
-	//
-	//		if (DistanceFromCenter > RadiusExtended) { continue; }
-	//		AffectedVertNormals.Add(CurrentIndex);
-
-	//		if (DistanceFromCenter > RadiusInVerts) { continue; }
-
-	//		float DistanceFraction = DistanceFromCenter / RadiusInVerts;
-	//		CalledCounter++;
-	//		VertexChangeHeight(DistanceFraction, CurrentIndex);
-	//		
+	//int32 OriginalRadius = 2; //Probably make this an edit anywhere variable so that it can be controlled
+	//int32 Radius = OriginalRadius;
+	//TArray<int32> DirectionalIndices;
+	//while (IndexChecklist.Num() > 0) {
+	//	int32 CurrentIndex = IndexChecklist.Pop();
+	//	if (!AffectedIndices.Contains(CurrentIndex)) {
+	//		AffectedIndices.Add(CurrentIndex);
+	//		VertexChangeHeight(Radius * 0.0001, CurrentIndex); //Add your own formula here.
 	//	}
+
+	//	if (Radius > 0) {
+	//		int32 RightEdge = CurrentIndex - (CurrentIndex % Map->Width); //Round down to nearest
+	//		int32 LeftEdge = RightEdge + Map->Width; //Round up to nearest
+
+	//		DirectionalIndices.Add(CurrentIndex == LeftEdge - 1 ? CurrentIndex : CurrentIndex + 1); //Left
+	//		DirectionalIndices.Add(CurrentIndex == RightEdge ? CurrentIndex : CurrentIndex - 1); //Right
+
+	//		int32 Up = CurrentIndex + Map->Width;
+	//		DirectionalIndices.Add(Up < Map->Vertices.Num() ? Up : CurrentIndex); //Up
+
+	//		int32 Down = CurrentIndex - Map->Width;
+	//		DirectionalIndices.Add(Down >= 0 ? Down : CurrentIndex); //Down
+	//	}
+
+	//	for (int32 Index : DirectionalIndices) {
+	//		NewChecklist.Push(Index);
+	//	}
+	//	DirectionalIndices.Empty();
+
+	//	if (IndexChecklist.Num() > 0) {
+	//		continue;
+	//	}
+
+	//	for (int32 Index : NewChecklist) {
+	//		IndexChecklist.Add(Index);
+	//	}
+	//	NewChecklist.Empty();
+	//	Radius--;
 	//}
-	TangentsToBeUpdated++;
-	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
+
+	//TangentsToBeUpdated++;
+	//Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
 }
 
 
@@ -199,8 +165,68 @@ void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, A
 	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
 	if (HitMap) {
 		HitMaps.Add(HitMap);
-		UE_LOG(LogTemp, Warning, TEXT("%i"), HitMaps.Num())
+		//UE_LOG(LogTemp, Warning, TEXT("%i"), HitMaps.Num())
 	}
+}
+
+TArray<int32> AProcMeshSculpt::SculptIndices(int32 CurrentIndex, int32 Radius, TArray<int32> IndexHistory, AProcedurallyGeneratedMap* CurrentMap)
+{
+	if (IndexHistory.Contains(CurrentIndex)) { //Has this index been visited before?
+		return IndexHistory;
+	}
+	IndexHistory.Add(CurrentIndex);
+	VertexChangeHeight(Radius * 0.0001, CurrentIndex, CurrentMap); //Add your own formula here.
+
+	int32 R = Radius - 1;
+	if (R > 0) { //No more checking?
+		//Up
+		int32 Dir = CurrentIndex + CurrentMap->Width;
+		AProcedurallyGeneratedMap* NewMap = SculptCheck(Dir, Dir > CurrentMap->Vertices.Num(), CurrentMap, 0, 1);
+		if (NewMap) {
+			IndexHistory = SculptIndices(Dir % CurrentMap->Vertices.Num(), R, IndexHistory, NewMap);
+		}
+		
+		//Down
+		Dir = CurrentIndex - CurrentMap->Width;
+		NewMap = SculptCheck(Dir, Dir < 0, CurrentMap, 0, -1);
+		if (NewMap) {
+			Dir = Dir < 0 ? CurrentMap->Vertices.Num() + Dir : Dir;
+			IndexHistory = SculptIndices(Dir, R, IndexHistory, NewMap);
+		}
+
+		int32 RightEdge = CurrentIndex - (CurrentIndex % Map->Width); //Round down to nearest
+		int32 LeftEdge = RightEdge + Map->Width; //Round up to nearest
+
+		//Left
+		Dir = CurrentIndex + 1;
+		NewMap = SculptCheck(Dir, Dir == LeftEdge, CurrentMap, 1, 0);
+		if (NewMap) {
+			Dir = Dir == LeftEdge ? RightEdge : Dir;
+			IndexHistory = SculptIndices(Dir, R, IndexHistory, NewMap);
+		}
+
+		//Left
+		Dir = CurrentIndex - 1;
+		NewMap = SculptCheck(Dir, Dir == RightEdge - 1, CurrentMap, -1, 0);
+		if (NewMap) {
+			Dir = Dir == RightEdge - 1 ? LeftEdge - 1 : Dir;
+			IndexHistory = SculptIndices(Dir, R, IndexHistory, NewMap);
+		}
+	}
+	CurrentMap->MeshComponent->UpdateMeshSection(0, CurrentMap->Vertices, CurrentMap->Normals, CurrentMap->UVCoords, TArray<FColor>(), CurrentMap->Tangents);
+	return IndexHistory;
+}
+
+AProcedurallyGeneratedMap* AProcMeshSculpt::SculptCheck(int32 Index, bool bOnNewMap, AProcedurallyGeneratedMap* CurrentMap, int32 XMult, int32 YMult)
+{
+	AProcedurallyGeneratedMap* NewMap = CurrentMap;
+	if (bOnNewMap) {
+		FVector Pos= CurrentMap->GetActorLocation();
+		float OffsetX = XMult * CurrentMap->GridSize * (CurrentMap->Width - 1);
+		float OffsetY = YMult * CurrentMap->GridSize * (CurrentMap->Height - 1);
+		NewMap = GetMapFromPosition(FVector(Pos.X + OffsetX, Pos.Y + OffsetY, 0));
+	}
+	return NewMap;
 }
 
 void AProcMeshSculpt::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
@@ -246,22 +272,32 @@ void AProcMeshSculpt::EndWall()
 	Camera->SetRelativeRotation(RotCamera);
 }
 
-void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
+
+void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex, AProcedurallyGeneratedMap* TargetMap)
 {
-	if (Map->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
-		CappedHeight = Map->Vertices[VertexIndex].Z;
+	if (TargetMap->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
+		CappedHeight = TargetMap->Vertices[VertexIndex].Z;
 		CappedHeightIndex = VertexIndex;
 	}
 	
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
 	float ZValue = FMath::Lerp(ScaledZStrength, 0.f, Alpha) * 10;
 
-	if (Map->Vertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
+	if (TargetMap->Vertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
 		return;
 	}
-
 	
-	Map->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
+	TargetMap->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
+}
+
+AProcedurallyGeneratedMap* AProcMeshSculpt::GetMapFromPosition(FVector Position)
+{
+	for (TActorIterator<AProcedurallyGeneratedMap> It(GetWorld()); It; ++It) {
+		if ((*It)->GetActorLocation() == Position) {
+			return *It;
+		}
+	}
+	return nullptr;
 }
 
 FVector AProcMeshSculpt::FindNearestPointOnCurve()
