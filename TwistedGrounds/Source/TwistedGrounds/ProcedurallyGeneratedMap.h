@@ -57,6 +57,11 @@ public:
 	TArray<FVector> Normals;
 	TArray<FProcMeshTangent> Tangents;
 
+	void UpdateEdges();
+	void UpdateNeighbours();
+
 private:
 	float PerlinSample(float Axis, float Offset);
+	void GetNeighbours(); //Get the adjacent maps
+	TArray<AProcedurallyGeneratedMap*> Neighbours;
 };

@@ -11,7 +11,6 @@
 
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
-#include "Components/BoxComponent.h"
 
 #include "ProcedurallyGeneratedMap.h"
 #include "ProcMeshSculpt.generated.h"
@@ -43,7 +42,7 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 		FHitResult HitResult;
 
-	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex, AProcedurallyGeneratedMap* Map);
+	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex);
 	void Sculpt();
 
 	UPROPERTY(EditAnywhere)
@@ -65,12 +64,6 @@ public:
 	void CheckState(float DeltaTime);
 
 	void RegenAmmo(float DeltaTime);
-
-	UFUNCTION()
-		virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	UFUNCTION()
-		virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	FVector FindNearestPointOnCurve();
 
@@ -122,11 +115,5 @@ public:
 	UCameraComponent* Camera;
 	USceneComponent* Muzzle;
 
-	UBoxComponent* Collider;
 	TArray<AProcedurallyGeneratedMap*> HitMaps;
-
-private:
-	TArray<int32> SculptIndices(int32 CurrentIndex, int32 Radius, TArray<int32> IndexHistory, AProcedurallyGeneratedMap* Map);
-	AProcedurallyGeneratedMap* SculptCheck(int32 Index, bool bOnNewMap, AProcedurallyGeneratedMap* CurrentMap, int32 XMult, int32 YMult);
-	AProcedurallyGeneratedMap* GetMapFromPosition(FVector Position);
 };
