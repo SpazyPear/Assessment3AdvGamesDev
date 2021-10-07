@@ -128,14 +128,14 @@ void AProcMeshSculpt::Sculpt()
 		ShouldRearrange = false;
 	}
 
-	int32 CalledCounter = 0;
-	FVector RelativeHitLocation = GetActorLocation();
-	int32 VertsPerSide = ((MapGenerator->ChunkWidth - 1) * 1 + 1);
-	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / MapGenerator->ChunkGridSize), FMath::RoundToInt(RelativeHitLocation.X / MapGenerator->ChunkGridSize), 0);
-	int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
+	/*int32 CalledCounter = 0;
+	FVector RelativeHitLocation = GetActorLocation() - Map->GetActorLocation();
+	int32 VertsPerSide = ((MapGenerator->ChunkWidth * 3 - 1) * 1 + 1);
+	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.X / MapGenerator->ChunkGridSize), FMath::RoundToInt(RelativeHitLocation.Y / MapGenerator->ChunkGridSize), 0);
+	int32 CenterIndex = MiddleLocation.Y * Map->Width * 3 + MiddleLocation.X;
 	int32 RadiusInVerts = 500 / MapGenerator->ChunkGridSize;
 	int32 RadiusExtended = RadiusInVerts + 1;
-
+	UE_LOG(LogTemp, Warning, TEXT("Map: %s"), *Map->GetName())
 	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
 	{
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
@@ -145,8 +145,8 @@ void AProcMeshSculpt::Sculpt()
 			if (!MapGenerator->GlobalVertices.IsValidIndex(CurrentIndex)) { continue; }
 
 			FVector CurrentVertCoords = FVector(
-				FMath::RoundToInt(MapGenerator->GlobalVertices[CurrentIndex].Y / MapGenerator->ChunkGridSize),
 				FMath::RoundToInt(MapGenerator->GlobalVertices[CurrentIndex].X / MapGenerator->ChunkGridSize),
+				FMath::RoundToInt(MapGenerator->GlobalVertices[CurrentIndex].Y / MapGenerator->ChunkGridSize),
 				0);
 			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
@@ -157,8 +157,75 @@ void AProcMeshSculpt::Sculpt()
 			VertexChangeHeight(DistanceFraction, CurrentIndex);
 		}
 	}
+	TangentsToBeUpdated++; */
+
+	if (!Map || !&HitResult) {
+		return;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Strength: %f"), ScaledZStrength)
+	int32 CalledCounter = 0;
+	FVector RelativeHitLocation = GetActorLocation() - Map->GetActorLocation();
+	int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
+	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), 0);
+	int32 CenterIndex = MiddleLocation.X * Map->Width + MiddleLocation.Y;
+
+	int32 RadiusInVerts = 500 / Map->GridSize;
+	int32 RadiusExtended = RadiusInVerts + 1;
+
+	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
+	{
+		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
+		{
+			// Continue loop if Vert doesn't exist
+			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X;
+			AProcedurallyGeneratedMap* CurrentMap = Map;
+			if (!Map->Vertices.IsValidIndex(CurrentIndex)) {
+				bool bFound = false;
+				if (X < 0) {
+					
+					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
+						FVector RelativeHitLocationCopy = GetActorLocation() - HitMap->GetActorLocation();
+						FVector MiddleLocationCopy = FVector(FMath::RoundToInt(RelativeHitLocationCopy.Y / HitMap->GridSize), FMath::RoundToInt(RelativeHitLocationCopy.X / HitMap->GridSize), 0);
+						int32 CenterIndexCopy = MiddleLocationCopy.X * HitMap->Width + MiddleLocationCopy.Y;
+						int32 CurrentIndexCopy = CenterIndexCopy + (Y * Map->Width) + X;
+						CurrentIndexCopy = (Y * Map->Width) + ((Map->Width - 1) - X);
+						if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy)) {
+							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
+								CurrentMap = HitMap;
+								RelativeHitLocation = RelativeHitLocationCopy;
+								MiddleLocation = MiddleLocationCopy;
+								CenterIndex = CenterIndexCopy;
+								CurrentIndex = CurrentIndexCopy;
+								bFound = true;
+							}
+						}
+					}
+				}
+				if (!bFound) {
+					continue;
+				}
+			}
+			FVector CurrentVertCoords = FVector(
+				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
+				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].X / Map->GridSize),
+				0);
+			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
+
+
+			if (DistanceFromCenter > RadiusExtended) { continue; }
+			AffectedVertNormals.Add(CurrentIndex);
+
+			if (DistanceFromCenter > RadiusInVerts) { continue; }
+
+			float DistanceFraction = DistanceFromCenter / RadiusInVerts;
+			CalledCounter++;
+			VertexChangeHeight(CurrentMap, DistanceFraction, CurrentIndex);
+
+		}
+	}
 	TangentsToBeUpdated++;
-	bNeedsUpdate = true;
+	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents); 
 }
 
 void AProcMeshSculpt::CheckState(float DeltaTime)
@@ -245,14 +312,14 @@ void AProcMeshSculpt::EndWall()
 	Camera->SetRelativeRotation(RotCamera);
 }
 
-void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexIndex)
+void AProcMeshSculpt::VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, float DistanceFraction, int32 VertexIndex)
 {
 	//UE_LOG(LogTemp, Warning, TEXT("Cap: %f"), CappedHeight)
 	//UE_LOG(LogTemp, Warning, TEXT("Height: %f"), MapGenerator->GlobalVertices[VertexIndex].Z)
 
-	UE_LOG(LogTemp, Warning, TEXT("Vert Coord: %s %s"), *MapGenerator->GlobalVertices[VertexIndex].ToString(), *Map->GetName())
+	//UE_LOG(LogTemp, Warning, TEXT("Vert Coord: %s %s"), *MapGenerator->GlobalVertices[VertexIndex].ToString(), *Map->GetName())
 	
-	if (MapGenerator->GlobalVertices[VertexIndex].Z > CappedHeight && !CapHeight) {
+	/*if (MapGenerator->GlobalVertices[VertexIndex].Z > CappedHeight && !CapHeight) {
 		CappedHeight = MapGenerator->GlobalVertices[VertexIndex].Z;
 		CappedHeightIndex = VertexIndex;
 	}
@@ -266,11 +333,18 @@ void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexInd
 	int32 Index;
 	Map->Vertices.Find(MapGenerator->GlobalVertices[VertexIndex], Index);
 	if (Index == -1) {
-		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+		/*for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 			HitMap->Vertices.Find(MapGenerator->GlobalVertices[VertexIndex], Index);
 			if (Index != -1) {
  				Map->Vertices[Index] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue));
 				break;
+			}
+		}
+		for (TActorIterator<AProcedurallyGeneratedMap> It(GetWorld()); It; ++It) {
+			It->Vertices.Find(MapGenerator->GlobalVertices[VertexIndex], Index);
+			if (Index != -1) {
+				It->Vertices[Index] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue));
+				It->MeshComponent->UpdateMeshSection(0, It->Vertices, It->Normals, It->UVCoords, TArray<FColor>(), It->Tangents);
 			}
 		}
 	}
@@ -280,7 +354,37 @@ void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexInd
 	
 	MapGenerator->GlobalVertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
 	
-	Origin.Z = CapDistance ? CappedHeight - 200 : Origin.Z;
+	Origin.Z = CapDistance ? CappedHeight - 200 : Origin.Z; 
+
+	bNeedsUpdate = true; */
+
+	UE_LOG(LogTemp, Warning, TEXT("Cap: %f"), CappedHeight)
+	UE_LOG(LogTemp, Warning, TEXT("Height: %f"), CurrentMap->Vertices[VertexIndex].Z)
+	if (CurrentMap->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
+		CappedHeight = CurrentMap->Vertices[VertexIndex].Z;
+		CappedHeightIndex = VertexIndex;
+
+	}
+
+	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
+	float ZValue = FMath::Lerp(ScaledZStrength, 0.f, Alpha) * 10;
+
+	if (CurrentMap->Vertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
+		return;
+	}
+
+	//int32 Index;
+	//for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+	//	HitMap->Vertices.Find(MapGenerator->GlobalVertices[VertexIndex], Index);
+	//	if (Index != -1) {
+	//		Map->Vertices[Index] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue));
+	//		break;
+	//	}
+	//}
+
+	CurrentMap->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
+
+	Origin.Z = CapDistance ? CappedHeight - 200 : Origin.Z; 
 
 }
 

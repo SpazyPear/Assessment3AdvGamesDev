@@ -42,7 +42,7 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 		FHitResult HitResult;
 
-	void VertexChangeHeight(float DistanceFraction, int32 VertexIndex);
+	void VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, float DistanceFraction, int32 VertexIndex);
 	void Sculpt();
 
 	UPROPERTY(EditAnywhere)
