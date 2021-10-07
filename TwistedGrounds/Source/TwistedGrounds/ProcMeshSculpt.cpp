@@ -27,7 +27,7 @@ AProcMeshSculpt::AProcMeshSculpt()
 	CapHeight = false;
 	CapDistance = false;
 	CappedHeightIndex = 0;
-	
+	ShouldRearrange = true;
 }
 
 // Called when the game starts or when spawned
@@ -46,6 +46,9 @@ void AProcMeshSculpt::BeginPlay()
 	Collider->SetGenerateOverlapEvents(true);
 	Collider->OnComponentBeginOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapBegin);
 	Collider->OnComponentEndOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapEnd);
+
+	
+
 }
 
 // Called every frame
@@ -90,12 +93,46 @@ void AProcMeshSculpt::Sculpt()
 		return;
 	}
 	
+	if (ShouldRearrange) {
+		TArray<FVector> GlobalVerticesCopy;
+		int32 Y = 0;
+		int32 Width = 30;
+		int32 i = 0;
+		int32 Across = 0;
+		int32 Crossed = 0;
+		while (Y < 3 * Width) {
+
+			if (Across == (Width * 3 - 1)) {
+
+				Y++;
+				i = (Width)*Y;
+				Across = 0;
+				Crossed = 0;
+
+			}
+			else if (Across == Width - 1 || Across == 2*Width - 1) {
+				i += FMath::Square(Width) - Width + 1;
+				Across++;
+				
+			}
+			else {
+				Across++;
+			}
+			
+			GlobalVerticesCopy.Add(MapGenerator->GlobalVertices[i]);
+			
+			i++;
+		}
+
+		MapGenerator->GlobalVertices = GlobalVerticesCopy;
+		ShouldRearrange = false;
+	}
+
 	int32 CalledCounter = 0;
-	FVector RelativeHitLocation = GetActorLocation() - MapGenerator->GetActorLocation();
-	int32 VertsPerSide = ((MapGenerator->ChunkWidth - 1) * 3 + 1);
+	FVector RelativeHitLocation = GetActorLocation();
+	int32 VertsPerSide = ((MapGenerator->ChunkWidth - 1) * 1 + 1);
 	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / MapGenerator->ChunkGridSize), FMath::RoundToInt(RelativeHitLocation.X / MapGenerator->ChunkGridSize), 0);
 	int32 CenterIndex = MiddleLocation.X * VertsPerSide + MiddleLocation.Y;
-
 	int32 RadiusInVerts = 500 / MapGenerator->ChunkGridSize;
 	int32 RadiusExtended = RadiusInVerts + 1;
 
@@ -104,12 +141,12 @@ void AProcMeshSculpt::Sculpt()
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 		{
 			// Continue loop if Vert doesn't exist
-			int32 CurrentIndex = CenterIndex + (Y * VertsPerSide) + X;
+			int32 CurrentIndex = CenterIndex + (Y * MapGenerator->ChunkWidth) + X;
 			if (!MapGenerator->GlobalVertices.IsValidIndex(CurrentIndex)) { continue; }
 
 			FVector CurrentVertCoords = FVector(
-				FMath::RoundToInt(MapGenerator->GlobalVertices[CurrentIndex].X / MapGenerator->ChunkGridSize),
 				FMath::RoundToInt(MapGenerator->GlobalVertices[CurrentIndex].Y / MapGenerator->ChunkGridSize),
+				FMath::RoundToInt(MapGenerator->GlobalVertices[CurrentIndex].X / MapGenerator->ChunkGridSize),
 				0);
 			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
@@ -124,23 +161,22 @@ void AProcMeshSculpt::Sculpt()
 	bNeedsUpdate = true;
 }
 
-
 void AProcMeshSculpt::CheckState(float DeltaTime)
 {
 	switch (SculptState) {
 
-	case SCULPTSTATE::IDLE:
-		break;
-	case SCULPTSTATE::ONGOING:
-		if (SculptAmmo > 0.0f) {
-			SculptAmmo -= AmmoCost * DeltaTime;
-			//UE_LOG(LogTemp, Warning, TEXT("Ammo: %f"), SculptAmmo)
-			Sculpt();
+		case SCULPTSTATE::IDLE:
+			break;
+		case SCULPTSTATE::ONGOING:
+			if (SculptAmmo > 0.0f) {
+				SculptAmmo -= AmmoCost * DeltaTime;
+				//UE_LOG(LogTemp, Warning, TEXT("Ammo: %f"), SculptAmmo)
+				Sculpt();
+			}
+			break;
+		case SCULPTSTATE::STOPPED:
+			SculptState = SCULPTSTATE::IDLE; //stub
 		}
-		break;
-	case SCULPTSTATE::STOPPED:
-		SculptState = SCULPTSTATE::IDLE; //stub
-	}
 }
 
 void AProcMeshSculpt::RegenAmmo(float DeltaTime)
@@ -214,7 +250,7 @@ void AProcMeshSculpt::VertexChangeHeight(float DistanceFraction, int32 VertexInd
 	//UE_LOG(LogTemp, Warning, TEXT("Cap: %f"), CappedHeight)
 	//UE_LOG(LogTemp, Warning, TEXT("Height: %f"), MapGenerator->GlobalVertices[VertexIndex].Z)
 
-	UE_LOG(LogTemp, Warning, TEXT("Vert Coord: %s"), *MapGenerator->GlobalVertices[VertexIndex].ToString())
+	UE_LOG(LogTemp, Warning, TEXT("Vert Coord: %s %s"), *MapGenerator->GlobalVertices[VertexIndex].ToString(), *Map->GetName())
 	
 	if (MapGenerator->GlobalVertices[VertexIndex].Z > CappedHeight && !CapHeight) {
 		CappedHeight = MapGenerator->GlobalVertices[VertexIndex].Z;

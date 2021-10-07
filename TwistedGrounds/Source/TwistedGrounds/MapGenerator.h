@@ -72,6 +72,8 @@ public:
 
 	TArray<FVector> GlobalVertices;
 
+	
+
 private:
 	TArray<APlayerCharacter*> Player;
 

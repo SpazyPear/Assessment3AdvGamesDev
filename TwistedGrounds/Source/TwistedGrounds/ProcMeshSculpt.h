@@ -89,6 +89,8 @@ public:
 
 	bool CapDistance;
 
+	bool ShouldRearrange;
+
 	FVector Origin;
 
 	FVector Direction;
