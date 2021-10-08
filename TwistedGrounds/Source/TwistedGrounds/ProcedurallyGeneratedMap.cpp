@@ -27,6 +27,9 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 void AProcedurallyGeneratedMap::BeginPlay()
 {
 	Super::BeginPlay();
+	for (int32 i = 0; i < 4; i++) {
+		Neighbours.Add(nullptr);
+	}
 }
 
 // Called every frame
@@ -61,6 +64,7 @@ void AProcedurallyGeneratedMap::GenerateMap() {
 	UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
 	MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
 
+	GetNeighbours();
 	for (TActorIterator<AProcedurallyGeneratedMap> AllMaps(GetWorld()); AllMaps; ++AllMaps) {
 		(*AllMaps)->GetNeighbours();
 	}
@@ -75,7 +79,10 @@ void AProcedurallyGeneratedMap::ClearMap() {
 
 void AProcedurallyGeneratedMap::UpdateEdges()
 {
-	for (int32 i = 0; i < Width; i++) {
+	if (!this) {
+		return;
+	}
+	for (int i = 0; i < Width; i++) {
 		if (Neighbours[0]) { //Sync top edge to map above
 			Vertices[Vertices.Num() - Width + i].Z = Neighbours[0]->Vertices[i].Z;
 		}
@@ -85,7 +92,7 @@ void AProcedurallyGeneratedMap::UpdateEdges()
 		}
 	}
 
-	for (int32 i = 0; i < Height; i++) {
+	for (int i = 0; i < Height; i++) {
 		if (Neighbours[2]) { //Sync left edge to map on the left
 			Vertices[Width * (i + 1) - 1].Z = Neighbours[2]->Vertices[Width * i].Z;
 		}
@@ -110,20 +117,13 @@ float AProcedurallyGeneratedMap::PerlinSample(float Axis, float Offset) {
 
 void AProcedurallyGeneratedMap::GetNeighbours()
 {
-	if (Neighbours.Num() == 0) { //Allows the map to be generated with no problems in the editor.
-		for (int32 i = 0; i < 4; i++) {
-			Neighbours.Add(nullptr);
-		}
-	}
-
-	bool bHasFullNeighbours = Neighbours[0] && Neighbours[1] && Neighbours[2] && Neighbours[3];
+	bool bHasFullNeighbours = Neighbours.Num() == 0 || Neighbours[0] && Neighbours[1] && Neighbours[2] && Neighbours[3];
 	if (bHasFullNeighbours) {
 		return;
 	}
 	
-	Neighbours.Empty();
 	for (int32 i = 0; i < 4; i++) {
-		Neighbours.Add(nullptr);
+		Neighbours[i] = nullptr;
 	}
 
 	FVector Pos = GetActorLocation();
