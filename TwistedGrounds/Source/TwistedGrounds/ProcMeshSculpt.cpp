@@ -86,115 +86,50 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 
 void AProcMeshSculpt::Sculpt()
 {
-	if (!Map || !&HitResult) {
-		return;
-	}
-	
-	if (ShouldRearrange) {
-		TArray<FVector> GlobalVerticesCopy;
-		int32 Y = 0;
-		int32 Width = 30;
-		int32 i = 0;
-		int32 Across = 0;
-		int32 Crossed = 0;
-		while (Y < 3 * Width) {
-
-			if (Across == (Width * 3 - 1)) {
-
-				Y++;
-				i = (Width)*Y;
-				Across = 0;
-				Crossed = 0;
-
-			}
-			else if (Across == Width - 1 || Across == 2*Width - 1) {
-				i += FMath::Square(Width) - Width + 1;
-				Across++;
-				
-			}
-			else {
-				Across++;
-			}
-			
-			GlobalVerticesCopy.Add(MapGenerator->GlobalVertices[i]);
-			
-			i++;
-		}
-
-		MapGenerator->GlobalVertices = GlobalVerticesCopy;
-		ShouldRearrange = false;
-	}
 
 	if (!Map || !&HitResult) {
 		return;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Strength: %f"), ScaledZStrength)
 	int32 CalledCounter = 0;
 	FVector RelativeHitLocation = GetActorLocation() - Map->GetActorLocation();
 	int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
-	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), 0);
-	int32 CenterIndex = MiddleLocation.X * Map->Width + MiddleLocation.Y;
+	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.X / Map->GridSize), FMath::RoundToInt(RelativeHitLocation.Y / Map->GridSize), 0);
+	int32 CenterIndex = MiddleLocation.Y * Map->Width + MiddleLocation.X;
 
 	int32 RadiusInVerts = 500 / Map->GridSize;
 	int32 RadiusExtended = RadiusInVerts + 1;
 
-	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
+	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++) //Loop through a section of the mesh within a radius
 	{
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 		{
-			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X;
+			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X; // Gets the index in the currently hit map's vertex array
 			AProcedurallyGeneratedMap* CurrentMap = Map;
 			if (!Map->Vertices.IsValidIndex(CurrentIndex)) {
-				bool bFound = false;
-				if (X < 0) {
-					
-					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-
-						FVector RelativeHitLocationCopy = GetActorLocation() - HitMap->GetActorLocation();
-						FVector MiddleLocationCopy = FVector(FMath::RoundToInt(RelativeHitLocationCopy.Y / HitMap->GridSize), FMath::RoundToInt(RelativeHitLocationCopy.X / HitMap->GridSize), 0);
-						int32 CenterIndexCopy = MiddleLocationCopy.X * HitMap->Width + MiddleLocationCopy.Y;
-						int32 CurrentIndexCopy = CenterIndexCopy + (Y * Map->Width) + X;
-						CurrentIndexCopy = (Y * Map->Width) + ((Map->Width - 1) - X);
-						if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy)) {
-							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
-								CurrentMap = HitMap;
-								RelativeHitLocation = RelativeHitLocationCopy;
-								MiddleLocation = MiddleLocationCopy;
-								CenterIndex = CenterIndexCopy;
-								CurrentIndex = CurrentIndexCopy;
-								//VertexChangeHeight(CurrentMap, DistanceFraction, CurrentIndex);
-								bFound = true;
-								break;
-								
-							}
-						}
-					}
-				}
-				if (!bFound) {
-					continue;
-				}
+				continue;
 				
 			}
 			FVector CurrentVertCoords = FVector(
-				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].X / Map->GridSize),
+				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
 				0);
-			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
+			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords); 
 
 
 			if (DistanceFromCenter > RadiusExtended) { continue; }
-			AffectedVertNormals.Add(CurrentIndex);
+			AffectedVertNormals.Add(CurrentIndex); //In future will update normals in real time too
 
-			if (DistanceFromCenter > RadiusInVerts) { continue; }
+			if (DistanceFromCenter > RadiusInVerts) { continue; } //Checks if the vertex is within the circle and not on the edges of the rectangle shape the loop creates
 
-			float DistanceFraction = DistanceFromCenter / RadiusInVerts;
+			float DistanceFraction = DistanceFromCenter / RadiusInVerts; //the closer to the middle of the circle the vertex is, the more it is affected.
 			CalledCounter++;
-			VertexChangeHeight(CurrentMap, DistanceFraction, CurrentIndex);
+			VertexChangeHeight(CurrentMap, DistanceFraction, CurrentIndex); //Change the height of the vertex
 
 		}
 	}
 	TangentsToBeUpdated++;
-	Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents); 
+	bNeedsUpdate = true;
+	//Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents); 
 }
 
 void AProcMeshSculpt::CheckState(float DeltaTime)
@@ -225,7 +160,7 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 
 void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Begin"))
+	UE_LOG(LogTemp, Warning, TEXT("Begin")) //Keeps track of maps currently in the circle, will be useful when making intersections between sections work.
 	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
 	if (HitMap)
 	HitMaps.Add(HitMap);
@@ -244,7 +179,7 @@ void AProcMeshSculpt::UpdateTangents()
 
 	for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 			UKismetProceduralMeshLibrary::CalculateTangentsForMesh(HitMap->Vertices, HitMap->Triangles, HitMap->UVCoords, HitMap->Normals, HitMap->Tangents);
-			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents);
+			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents); //updates the tangents a little bit later so the player doesn't freeze everytime you sculpt.
 	}
 		
 }
@@ -267,45 +202,43 @@ void AProcMeshSculpt::VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, 
 	UE_LOG(LogTemp, Warning, TEXT("Height: %f"), CurrentMap->Vertices[VertexIndex].Z)
 	if (CurrentMap->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
 		CappedHeight = CurrentMap->Vertices[VertexIndex].Z;
-		CappedHeightIndex = VertexIndex;
+		CappedHeightIndex = VertexIndex; //Keeps track of the max height vertex that has been sculpted since the sculpt began, so it can be capped if you hold E.
 
 	}
 
-	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
+	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1; //Applies the distance fraction to a curve, so that the outer edges of the circle are more curved up to the center.
 	float ZValue = FMath::Lerp(ScaledZStrength, 0.f, Alpha) * 10;
 
 	if (CurrentMap->Vertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
-		return;
+		return; //If holding Q, don't let the vertex exceed the capped height since you started holding.
 	}
 
 	CurrentMap->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
 
-	Origin.Z = CapDistance ? CappedHeight - 200 : Origin.Z; 
+	Origin.Z = CapDistance ? CappedHeight - 200 : Origin.Z; //For when holding F, the camera follows the point as it rises.
 
 }
 
-FVector AProcMeshSculpt::FindNearestPointOnCurve()
+FVector AProcMeshSculpt::FindNearestPointOnCurve() //Snaps the camera to the nearest point on a straight perpendicular line in front of the player while holding F.
 {
 	FVector2D HitLocation = FVector2D(GetActorLocation().X, GetActorLocation().Y);
 
 	FVector ClosestPoint;
 	FMath::PointDistToLine(GetActorLocation(), Direction, Origin, ClosestPoint);
-	//UE_LOG(LogTemp, Warning, TEXT("Closest Point: %s"), *ClosestPoint.ToString())
 	FVector Forward = ClosestPoint - Player->GetActorLocation();
 	FRotator Rot = UKismetMathLibrary::MakeRotFromZ(Forward);
 	Rot.Roll = 0.0f;
-	//UE_LOG(LogTemp, Warning, TEXT("Rotation: %s"), *Rot.ToString())
 
 	Player->FaceRotation(Rot);
 	FVector ForwardCamera = ClosestPoint - Player->GetActorLocation();
 	FRotator RotCamera = UKismetMathLibrary::MakeRotFromX(ForwardCamera);
 	RotCamera.Roll = 0.0f;
-	Camera->SetWorldRotation(RotCamera);
+	Camera->SetWorldRotation(RotCamera); 
 
 	return ClosestPoint;
 }
 
-void AProcMeshSculpt::CreateCurve()
+void AProcMeshSculpt::CreateCurve() //Creates the perpendicular line to be snapped to.
 {
 	PointsOnCurve.Empty();
 	FVector2D HitLocation = FVector2D(GetActorLocation().X, GetActorLocation().Y);

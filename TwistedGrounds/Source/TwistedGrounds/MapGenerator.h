@@ -14,8 +14,8 @@ UCLASS()
 class TWISTEDGROUNDS_API AMapGenerator : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AMapGenerator();
 
@@ -23,7 +23,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -48,15 +48,18 @@ public:
 	UPROPERTY(EditAnywhere)
 		UMaterialInterface* PGMaterial;
 
+	UPROPERTY(EditAnywhere)
+		int32 ChunkRadius; //The chunk radius that surrounds the player
+
 	//These variables control the parameters of the procedurally generated maps
 	UPROPERTY(EditAnywhere)
-		int32 ChunkWidth;
+		int32 ChunkWidth; //The width of each chunk
 
 	UPROPERTY(EditAnywhere)
-		int32 ChunkHeight;
+		int32 ChunkHeight; //The height of each chunk
 
 	UPROPERTY(EditAnywhere)
-		float ChunkGridSize;
+		float ChunkGridSize; //The size of each chunk
 
 	UPROPERTY(EditAnywhere)
 		float PerlinScale;
@@ -72,15 +75,14 @@ public:
 
 	TArray<FVector> GlobalVertices;
 
-	
-
 private:
-	TArray<APlayerCharacter*> Player;
+	TArray<APlayerCharacter*> Player; //An array to keep track of all players.
 
+	//Sets the generated map's variables to the MapGenerator's
 	void SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, int32 OffsetY);
 	void CheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
 	void ClearMaps(); //Generates the initial map according to the offset.
 
 	TArray<FVector> MapPoints; //The location of all the maps.
-	int32 RoundDownToNearest(int32 Value, int32 Nearest); //Rounds up to the nearest
+	int32 RoundDownToNearest(int32 Value, int32 Nearest); //Always rounds down to the nearest
 };
