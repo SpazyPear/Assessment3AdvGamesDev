@@ -120,8 +120,6 @@ public:
 
 	void Raycast();
 
-	void EndWall();
-
 	UCameraComponent* Camera;
 	USceneComponent* Muzzle;
 	class AMapGenerator* MapGenerator;

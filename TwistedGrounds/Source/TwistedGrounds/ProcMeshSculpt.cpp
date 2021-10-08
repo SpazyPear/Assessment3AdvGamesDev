@@ -64,7 +64,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	Raycast();
 	CheckState(DeltaTime);
 	RegenAmmo(DeltaTime);
-	//UpdateTangents();
 
 	if (CapDistance) {
 
@@ -74,8 +73,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 			CappedHeight = Origin.Z; //maybe why it jitters
 		}
 	}
-	
-	//UE_LOG(LogTemp, Warning, TEXT("Map: %f"), HitMaps.Num())
 	
 	if (bNeedsUpdate) {
 		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
@@ -128,37 +125,6 @@ void AProcMeshSculpt::Sculpt()
 		ShouldRearrange = false;
 	}
 
-	/*int32 CalledCounter = 0;
-	FVector RelativeHitLocation = GetActorLocation() - Map->GetActorLocation();
-	int32 VertsPerSide = ((MapGenerator->ChunkWidth * 3 - 1) * 1 + 1);
-	FVector MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.X / MapGenerator->ChunkGridSize), FMath::RoundToInt(RelativeHitLocation.Y / MapGenerator->ChunkGridSize), 0);
-	int32 CenterIndex = MiddleLocation.Y * Map->Width * 3 + MiddleLocation.X;
-	int32 RadiusInVerts = 500 / MapGenerator->ChunkGridSize;
-	int32 RadiusExtended = RadiusInVerts + 1;
-	UE_LOG(LogTemp, Warning, TEXT("Map: %s"), *Map->GetName())
-	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++)
-	{
-		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
-		{
-			// Continue loop if Vert doesn't exist
-			int32 CurrentIndex = CenterIndex + (Y * MapGenerator->ChunkWidth) + X;
-			if (!MapGenerator->GlobalVertices.IsValidIndex(CurrentIndex)) { continue; }
-
-			FVector CurrentVertCoords = FVector(
-				FMath::RoundToInt(MapGenerator->GlobalVertices[CurrentIndex].X / MapGenerator->ChunkGridSize),
-				FMath::RoundToInt(MapGenerator->GlobalVertices[CurrentIndex].Y / MapGenerator->ChunkGridSize),
-				0);
-			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
-
-			if (DistanceFromCenter > RadiusInVerts) { continue; }
-
-			float DistanceFraction = DistanceFromCenter / RadiusInVerts;
-			CalledCounter++;
-			VertexChangeHeight(DistanceFraction, CurrentIndex);
-		}
-	}
-	TangentsToBeUpdated++; */
-
 	if (!Map || !&HitResult) {
 		return;
 	}
@@ -176,7 +142,6 @@ void AProcMeshSculpt::Sculpt()
 	{
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 		{
-			// Continue loop if Vert doesn't exist
 			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X;
 			AProcedurallyGeneratedMap* CurrentMap = Map;
 			if (!Map->Vertices.IsValidIndex(CurrentIndex)) {
@@ -197,7 +162,10 @@ void AProcMeshSculpt::Sculpt()
 								MiddleLocation = MiddleLocationCopy;
 								CenterIndex = CenterIndexCopy;
 								CurrentIndex = CurrentIndexCopy;
+								//VertexChangeHeight(CurrentMap, DistanceFraction, CurrentIndex);
 								bFound = true;
+								break;
+								
 							}
 						}
 					}
@@ -205,6 +173,7 @@ void AProcMeshSculpt::Sculpt()
 				if (!bFound) {
 					continue;
 				}
+				
 			}
 			FVector CurrentVertCoords = FVector(
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
@@ -272,91 +241,27 @@ void AProcMeshSculpt::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AAc
 
 void AProcMeshSculpt::UpdateTangents()
 {
-	/*if (TangentsToBeUpdated > 0) {
-		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(, Map->Triangles, Map->UVCoords, Map->Normals, Map->Tangents);
-		TangentsToBeUpdated--;
-		Map->MeshComponent->UpdateMeshSection(0, MapGenerator->GlobalVertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents);
 
-		UE_LOG(LogTemp, Warning, TEXT("ReUpdated"))
-	}*/
-
-		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+	for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 			UKismetProceduralMeshLibrary::CalculateTangentsForMesh(HitMap->Vertices, HitMap->Triangles, HitMap->UVCoords, HitMap->Normals, HitMap->Tangents);
 			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents);
-			
-		}
+	}
 		
-	
 }
 
 void AProcMeshSculpt::Raycast()
 {
 	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
 
-	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor()); //
+	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor()); 
 	SetActorHiddenInGame(!Map);
 	if (Map) {
 		SetActorLocation(HitResult.ImpactPoint);
 	}
 }
 
-void AProcMeshSculpt::EndWall()
-{
-	FVector Forward = Player->GetActorForwardVector();
-	FRotator Rot = UKismetMathLibrary::MakeRotFromZ(Forward);
-	Rot = FRotator(0, 0, 0);
-	Player->SetActorRotation(Rot);
-	FVector ForwardCamera = Camera->GetOwner()->GetActorLocation();
-	FRotator RotCamera = UKismetMathLibrary::MakeRotFromY(ForwardCamera);
-	RotCamera = FRotator(0, 0, 0);
-	Camera->SetRelativeRotation(RotCamera);
-}
-
 void AProcMeshSculpt::VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, float DistanceFraction, int32 VertexIndex)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Cap: %f"), CappedHeight)
-	//UE_LOG(LogTemp, Warning, TEXT("Height: %f"), MapGenerator->GlobalVertices[VertexIndex].Z)
-
-	//UE_LOG(LogTemp, Warning, TEXT("Vert Coord: %s %s"), *MapGenerator->GlobalVertices[VertexIndex].ToString(), *Map->GetName())
-	
-	/*if (MapGenerator->GlobalVertices[VertexIndex].Z > CappedHeight && !CapHeight) {
-		CappedHeight = MapGenerator->GlobalVertices[VertexIndex].Z;
-		CappedHeightIndex = VertexIndex;
-	}
-
-	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1;
-	float ZValue = FMath::Lerp(ScaledZStrength, 0.f, Alpha) * 10;
-
-	if (MapGenerator->GlobalVertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
-		return;
-	}
-	int32 Index;
-	Map->Vertices.Find(MapGenerator->GlobalVertices[VertexIndex], Index);
-	if (Index == -1) {
-		/*for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-			HitMap->Vertices.Find(MapGenerator->GlobalVertices[VertexIndex], Index);
-			if (Index != -1) {
- 				Map->Vertices[Index] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue));
-				break;
-			}
-		}
-		for (TActorIterator<AProcedurallyGeneratedMap> It(GetWorld()); It; ++It) {
-			It->Vertices.Find(MapGenerator->GlobalVertices[VertexIndex], Index);
-			if (Index != -1) {
-				It->Vertices[Index] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue));
-				It->MeshComponent->UpdateMeshSection(0, It->Vertices, It->Normals, It->UVCoords, TArray<FColor>(), It->Tangents);
-			}
-		}
-	}
-	else {
- 		Map->Vertices[Index] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue));
-	}
-	
-	MapGenerator->GlobalVertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
-	
-	Origin.Z = CapDistance ? CappedHeight - 200 : Origin.Z; 
-
-	bNeedsUpdate = true; */
 
 	UE_LOG(LogTemp, Warning, TEXT("Cap: %f"), CappedHeight)
 	UE_LOG(LogTemp, Warning, TEXT("Height: %f"), CurrentMap->Vertices[VertexIndex].Z)
@@ -372,15 +277,6 @@ void AProcMeshSculpt::VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, 
 	if (CurrentMap->Vertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
 		return;
 	}
-
-	//int32 Index;
-	//for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-	//	HitMap->Vertices.Find(MapGenerator->GlobalVertices[VertexIndex], Index);
-	//	if (Index != -1) {
-	//		Map->Vertices[Index] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue));
-	//		break;
-	//	}
-	//}
 
 	CurrentMap->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
 
@@ -425,6 +321,5 @@ void AProcMeshSculpt::CreateCurve()
 	Origin = GetActorLocation() - Player->GetActorRightVector() * 1000;
 	OriginalOrigin = Origin;
 	Direction = Player->GetActorRightVector();
-	//DrawDebugLine(GetWorld(), GetActorLocation() - Player->GetActorRightVector() * 1000, Player->GetActorRightVector() * 1000 + GetActorLocation(), FColor(255, 0, 0), false, 5.0f);
 	CapDistance = true;
 }
