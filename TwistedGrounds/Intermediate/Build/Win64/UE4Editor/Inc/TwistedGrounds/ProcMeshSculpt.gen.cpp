@@ -13,8 +13,9 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 // Cross Module References
-	TWISTEDGROUNDS_API UEnum* Z_Construct_UEnum_TwistedGrounds_SCULPTSTATE();
+	TWISTEDGROUNDS_API UEnum* Z_Construct_UEnum_TwistedGrounds_DIRECTION();
 	UPackage* Z_Construct_UPackage__Script_TwistedGrounds();
+	TWISTEDGROUNDS_API UEnum* Z_Construct_UEnum_TwistedGrounds_SCULPTSTATE();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt_NoRegister();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt();
 	ENGINE_API UClass* Z_Construct_UClass_ADecalActor();
@@ -27,6 +28,62 @@ void EmptyLinkFunctionForGeneratedCodeProcMeshSculpt() {}
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UClass* Z_Construct_UClass_UCurveFloat_NoRegister();
 // End Cross Module References
+	static UEnum* DIRECTION_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_TwistedGrounds_DIRECTION, Z_Construct_UPackage__Script_TwistedGrounds(), TEXT("DIRECTION"));
+		}
+		return Singleton;
+	}
+	template<> TWISTEDGROUNDS_API UEnum* StaticEnum<DIRECTION>()
+	{
+		return DIRECTION_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_DIRECTION(DIRECTION_StaticEnum, TEXT("/Script/TwistedGrounds"), TEXT("DIRECTION"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_TwistedGrounds_DIRECTION_Hash() { return 422774267U; }
+	UEnum* Z_Construct_UEnum_TwistedGrounds_DIRECTION()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_TwistedGrounds();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("DIRECTION"), 0, Get_Z_Construct_UEnum_TwistedGrounds_DIRECTION_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UE4CodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "DIRECTION::LEFT", (int64)DIRECTION::LEFT },
+				{ "DIRECTION::RIGHT", (int64)DIRECTION::RIGHT },
+				{ "DIRECTION::UP", (int64)DIRECTION::UP },
+				{ "DIRECTION::DOWN", (int64)DIRECTION::DOWN },
+			};
+#if WITH_METADATA
+			const UE4CodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "DOWN.Name", "DIRECTION::DOWN" },
+				{ "LEFT.Name", "DIRECTION::LEFT" },
+				{ "ModuleRelativePath", "ProcMeshSculpt.h" },
+				{ "RIGHT.Name", "DIRECTION::RIGHT" },
+				{ "UP.Name", "DIRECTION::UP" },
+			};
+#endif
+			static const UE4CodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_TwistedGrounds,
+				nullptr,
+				"DIRECTION",
+				"DIRECTION",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				UE4CodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UE4CodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
 	static UEnum* SCULPTSTATE_StaticEnum()
 	{
 		static UEnum* Singleton = nullptr;

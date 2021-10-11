@@ -28,6 +28,10 @@ AProcMeshSculpt::AProcMeshSculpt()
 	CapDistance = false;
 	CappedHeightIndex = 0;
 	ShouldRearrange = true;
+	OverlappedVertices.Add(DIRECTION::LEFT, TArray<FVector>());
+	OverlappedVertices.Add(DIRECTION::RIGHT, TArray<FVector>());
+	OverlappedVertices.Add(DIRECTION::UP, TArray<FVector>());
+	OverlappedVertices.Add(DIRECTION::DOWN, TArray<FVector>());
 }
 
 // Called when the game starts or when spawned
@@ -98,17 +102,54 @@ void AProcMeshSculpt::Sculpt()
 
 	int32 RadiusInVerts = 500 / Map->GridSize;
 	int32 RadiusExtended = RadiusInVerts + 1;
+	int32 Left = 0;
 
 	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++) //Loop through a section of the mesh within a radius
 	{
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 		{
 			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X; // Gets the index in the currently hit map's vertex array
+			
 			AProcedurallyGeneratedMap* CurrentMap = Map;
 			if (!Map->Vertices.IsValidIndex(CurrentIndex)) {
+				if (Y < 0) {
+					int32 XIndex = CurrentIndex % Map->Width;
+					int32 YIndex = FMath::FloorToInt(CurrentIndex / Map->Width);
+
+					
+					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+						//CurrentIndex = CenterIndex - FMath::Square(Map->Width);
+						CurrentIndex = (((Map->Width - YIndex)) * Map->Width) + XIndex + 3;
+						
+						if (HitMap->Vertices.IsValidIndex(CurrentIndex)) {
+							UE_LOG(LogTemp, Warning, TEXT("Current Index: %i, %i"), XIndex, YIndex);
+							UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *Map->Vertices[CurrentIndex].ToString());
+							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
+								VertexChangeHeight(HitMap, 0.1, CurrentIndex);
+								UE_LOG(LogTemp, Warning, TEXT("Ye"));
+								break;
+							}
+						}
+					}
+				}
+				if (X > 0) {
+
+					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
+						CurrentIndex = (Y * Map->Width) + ((Map->Width - 1) - X);
+						if (HitMap->Vertices.IsValidIndex(CurrentIndex)) {
+							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
+								CurrentMap = HitMap;
+							}
+						}
+					}
+				}
+				
 				continue;
 				
 			}
+			
+
 			FVector CurrentVertCoords = FVector(
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].X / Map->GridSize),
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
@@ -129,7 +170,7 @@ void AProcMeshSculpt::Sculpt()
 	}
 	TangentsToBeUpdated++;
 	bNeedsUpdate = true;
-	//Map->MeshComponent->UpdateMeshSection(0, Map->Vertices, Map->Normals, Map->UVCoords, TArray<FColor>(), Map->Tangents); 
+	OverlappedVertices.Empty();
 }
 
 void AProcMeshSculpt::CheckState(float DeltaTime)
@@ -198,8 +239,6 @@ void AProcMeshSculpt::Raycast()
 void AProcMeshSculpt::VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, float DistanceFraction, int32 VertexIndex)
 {
 
-	UE_LOG(LogTemp, Warning, TEXT("Cap: %f"), CappedHeight)
-	UE_LOG(LogTemp, Warning, TEXT("Height: %f"), CurrentMap->Vertices[VertexIndex].Z)
 	if (CurrentMap->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
 		CappedHeight = CurrentMap->Vertices[VertexIndex].Z;
 		CappedHeightIndex = VertexIndex; //Keeps track of the max height vertex that has been sculpted since the sculpt began, so it can be capped if you hold E.

@@ -22,6 +22,14 @@ enum class SCULPTSTATE : uint8 {
 	STOPPED,
 };
 
+UENUM()
+enum class DIRECTION :uint8 {
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN,
+};
+
 UCLASS()
 class TWISTEDGROUNDS_API AProcMeshSculpt : public ADecalActor
 {
@@ -129,4 +137,6 @@ public:
 	TArray<AProcedurallyGeneratedMap*> HitMaps;
 
 	bool bNeedsUpdate;
+
+	TMap<DIRECTION, TArray<FVector>> OverlappedVertices;
 };
