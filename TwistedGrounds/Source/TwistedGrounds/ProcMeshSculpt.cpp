@@ -115,17 +115,20 @@ void AProcMeshSculpt::Sculpt()
 				if (Y < 0) {
 					int32 XIndex = CurrentIndex % Map->Width;
 					int32 YIndex = FMath::FloorToInt(CurrentIndex / Map->Width);
+					
 
 					
 					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
 						//CurrentIndex = CenterIndex - FMath::Square(Map->Width);
-						CurrentIndex = (((Map->Width - YIndex)) * Map->Width) + XIndex + 3;
+						CurrentIndex = (((Map->Width - 1 - YIndex)) * Map->Width) + FMath::Abs(XIndex);
 						
 						if (HitMap->Vertices.IsValidIndex(CurrentIndex)) {
 							UE_LOG(LogTemp, Warning, TEXT("Current Index: %i, %i"), XIndex, YIndex);
-							UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *Map->Vertices[CurrentIndex].ToString());
+							UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *HitMap->Vertices[CurrentIndex].ToString());
 							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
-								VertexChangeHeight(HitMap, 0.1, CurrentIndex);
+								Left++;
+								VertexChangeHeight(HitMap, 0.1, CurrentIndex - Left * Map->Width);
 								UE_LOG(LogTemp, Warning, TEXT("Ye"));
 								break;
 							}
@@ -149,7 +152,7 @@ void AProcMeshSculpt::Sculpt()
 				
 			}
 			
-
+			UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *Map->Vertices[CurrentIndex].ToString());
 			FVector CurrentVertCoords = FVector(
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].X / Map->GridSize),
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
