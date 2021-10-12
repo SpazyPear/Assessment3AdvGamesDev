@@ -102,63 +102,58 @@ void AProcMeshSculpt::Sculpt()
 
 	int32 RadiusInVerts = 500 / Map->GridSize;
 	int32 RadiusExtended = RadiusInVerts + 1;
-	int32 Left = 0;
-
+	bool bEdgeCase = false;
+	AProcedurallyGeneratedMap* CurrentMap = Map;
 	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++) //Loop through a section of the mesh within a radius
 	{
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 		{
 			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X; // Gets the index in the currently hit map's vertex array
 			
-			AProcedurallyGeneratedMap* CurrentMap = Map;
-			if (!Map->Vertices.IsValidIndex(CurrentIndex)) {
-				if (Y < 0) {
-					int32 XIndex = CurrentIndex % Map->Width;
-					int32 YIndex = FMath::FloorToInt(CurrentIndex / Map->Width);
-					
+			
+			int32 XIndex = CurrentIndex % Map->Width;
+			int32 YIndex = FMath::FloorToInt(CurrentIndex / Map->Width);
 
-					
+			if (!CurrentMap->Vertices.IsValidIndex(CurrentIndex)) {
+				if (YIndex < 0) {
+					UE_LOG(LogTemp, Warning, TEXT("Current Index: %i"), CurrentIndex);
+					YIndex = FMath::Abs(YIndex);
+					XIndex = FMath::Abs(XIndex);
+					int32 CurrentIndexCopy = ((Map->Width - 1 - YIndex) * Map->Width) + (Map->Width - 1 - XIndex);
+
 					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
-						//CurrentIndex = CenterIndex - FMath::Square(Map->Width);
-						CurrentIndex = (((Map->Width - 1 - YIndex)) * Map->Width) + FMath::Abs(XIndex);
-						
-						if (HitMap->Vertices.IsValidIndex(CurrentIndex)) {
-							UE_LOG(LogTemp, Warning, TEXT("Current Index: %i, %i"), XIndex, YIndex);
-							UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *HitMap->Vertices[CurrentIndex].ToString());
+						if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy)) {
+							/*UE_LOG(LogTemp, Warning, TEXT("Index's: %i, %i"), XIndex, YIndex);
+							UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *HitMap->Vertices[CurrentIndex].ToString());*/
 							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
-								Left++;
-								VertexChangeHeight(HitMap, 0.1, CurrentIndex - Left * Map->Width);
-								UE_LOG(LogTemp, Warning, TEXT("Ye"));
+
+								CurrentMap = HitMap;
+								CurrentIndex = CurrentIndexCopy;
+								bEdgeCase = true;
 								break;
 							}
 						}
 					}
+					
 				}
-				if (X > 0) {
-
-					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-
-						CurrentIndex = (Y * Map->Width) + ((Map->Width - 1) - X);
-						if (HitMap->Vertices.IsValidIndex(CurrentIndex)) {
-							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
-								CurrentMap = HitMap;
-							}
-						}
-					}
+				if (!bEdgeCase) {
+					continue;
 				}
-				
 				continue;
-				
 			}
-			
-			UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *Map->Vertices[CurrentIndex].ToString());
+			//UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *Map->Vertices[CurrentIndex].ToString());
 			FVector CurrentVertCoords = FVector(
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].X / Map->GridSize),
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
 				0);
-			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords); 
 
+			if (bEdgeCase) {
+				CurrentVertCoords.X += XIndex;
+				CurrentVertCoords.Y += YIndex;
+			}
+
+			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords); 
 
 			if (DistanceFromCenter > RadiusExtended) { continue; }
 			AffectedVertNormals.Add(CurrentIndex); //In future will update normals in real time too
@@ -204,7 +199,7 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 
 void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Begin")) //Keeps track of maps currently in the circle, will be useful when making intersections between sections work.
+	//UE_LOG(LogTemp, Warning, TEXT("Begin")) //Keeps track of maps currently in the circle, will be useful when making intersections between sections work.
 	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
 	if (HitMap)
 	HitMaps.Add(HitMap);
@@ -212,7 +207,7 @@ void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, A
 
 void AProcMeshSculpt::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("End"))
+	//UE_LOG(LogTemp, Warning, TEXT("End"))
 	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
 	if (HitMap)
 	HitMaps.Remove(HitMap);
