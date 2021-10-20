@@ -102,70 +102,44 @@ void AProcMeshSculpt::Sculpt()
 	int32 RadiusInVerts = 500 / Map->GridSize;
 	int32 RadiusExtended = RadiusInVerts + 1;
 	AProcedurallyGeneratedMap* CenterMap = Map;
-	
+	bool bEdgeCase = false;
+	TArray<DIRECTION> AffectedDirections;
 	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++) //Loop through a section of the mesh within a radius
 	{
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 		{
-			TArray<DIRECTION> AffectedDirections;
-			bool bEdgeCase = false;
+			
+			bEdgeCase = false;
 			AProcedurallyGeneratedMap* CurrentMap = Map;
+			DIRECTION LastDirection;
 			MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.X / CenterMap->GridSize), FMath::RoundToInt(RelativeHitLocation.Y / CenterMap->GridSize), 0);
 			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X; // Gets the index in the currently hit map's vertex array
-			
+
 			int32 XIndex = CurrentIndex % Map->Width;
 			int32 YIndex = FMath::FloorToInt(CurrentIndex / Map->Width);
-			UE_LOG(LogTemp, Warning, TEXT("Right %i"), CurrentIndex);
 			if (!CurrentMap->Vertices.IsValidIndex(CurrentIndex)) {
+					if (YIndex < 0) {
 
-				if (YIndex < 0) {
-					
-					YIndex = FMath::Abs(YIndex);
-					XIndex = FMath::Abs(XIndex);
-					int32 CurrentIndexCopy = ((Map->Width - YIndex) * Map->Width) + (Map->Width - 1 - XIndex);
+						YIndex = FMath::Abs(YIndex);
+						XIndex = FMath::Abs(XIndex);
+						int32 CurrentIndexCopy = ((Map->Width - YIndex) * Map->Width) + (Map->Width - 1 - XIndex);
 
-					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+						for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
-						if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
-							//UE_LOG(LogTemp, Warning, TEXT("Index's: %i, %i"), XIndex, YIndex);
-							//UE_LOG(LogTemp, Warning, TEXT("Map Index: %s"), *HitMap->Vertices[CurrentIndex].ToString());
-							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
-								
-								CurrentMap = HitMap;
-								CurrentIndex = CurrentIndexCopy;
-								bEdgeCase = true;
-								AffectedDirections.Add(DIRECTION::LEFT);
-								break;
+							if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
+								if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
 
+									CurrentMap = HitMap;
+									CurrentIndex = CurrentIndexCopy;
+									bEdgeCase = true;
+									AffectedDirections.Add(DIRECTION::LEFT);
+									LastDirection = DIRECTION::LEFT;
+									break;
+
+								}
 							}
 						}
 					}
-				}
-
-				if (YIndex >= Map->Width) {
-
-					YIndex = FMath::Abs(YIndex);
-					XIndex = FMath::Abs(XIndex);
-					int32 CurrentIndexCopy = CurrentIndex - FMath::Square(Map->Width);
-
-					
-
-					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-
-						if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
-
-							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y < 0) {
-
-								CurrentMap = HitMap;
-								CurrentIndex = CurrentIndexCopy;
-								bEdgeCase = true;
-								AffectedDirections.Add(DIRECTION::RIGHT);
-								break;
-
-							}
-						}
-					}
-				}
 
 				if (YIndex >= Map->Width) {
 
@@ -185,6 +159,7 @@ void AProcMeshSculpt::Sculpt()
 								CurrentIndex = CurrentIndexCopy;
 								bEdgeCase = true;
 								AffectedDirections.Add(DIRECTION::RIGHT);
+								LastDirection = DIRECTION::RIGHT;
 								break;
 
 							}
@@ -195,7 +170,59 @@ void AProcMeshSculpt::Sculpt()
 				if (!bEdgeCase) {
 					continue;
 				}
-			
+
+			}
+
+			if (X + MiddleLocation.X < 0) {
+
+				YIndex = FMath::Abs(YIndex);
+				XIndex = FMath::Abs(XIndex);
+				int32 CurrentIndexCopy = ((YIndex + 1) * Map->Width) + XIndex;
+
+
+
+				for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
+					if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
+
+						if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).X > 0) {
+
+							CurrentMap = HitMap;
+							CurrentIndex = CurrentIndexCopy;
+							bEdgeCase = true;
+							AffectedDirections.Add(DIRECTION::DOWN);
+							LastDirection = DIRECTION::DOWN;
+							break;
+
+						}
+					}
+				}
+			}
+
+			if (X + MiddleLocation.X >= Map->Width) {
+
+				YIndex = FMath::Abs(YIndex);
+				XIndex = FMath::Abs(XIndex);
+				int32 CurrentIndexCopy = ((YIndex - 1) * Map->Width) + XIndex;
+
+
+
+				for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
+					if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
+
+						if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).X < 0) {
+
+							CurrentMap = HitMap;
+							CurrentIndex = CurrentIndexCopy;
+							bEdgeCase = true;
+							AffectedDirections.Add(DIRECTION::UP);
+							LastDirection = DIRECTION::UP;
+							break;
+
+						}
+					}
+				}
 			}
 
 			FVector CurrentVertCoords = FVector(
@@ -203,18 +230,20 @@ void AProcMeshSculpt::Sculpt()
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
 				0);
 
-			if (bEdgeCase) {
-				if (AffectedDirections.Contains(DIRECTION::LEFT) || AffectedDirections.Contains(DIRECTION::RIGHT)) {
-					CurrentVertCoords.Y = Map->Width - CurrentVertCoords.Y;
-					UE_LOG(LogTemp, Warning, TEXT("Co Ords: %s %s"), *MiddleLocation.ToString(), *CurrentVertCoords.ToString());
+				if (bEdgeCase) {
+					if (LastDirection == DIRECTION::LEFT || LastDirection == DIRECTION::RIGHT) {
+						CurrentVertCoords.Y = Map->Width - 1 - CurrentVertCoords.Y; //fucked fraction sometimes perhaps here maybe not
+
+					}
+					if (LastDirection == DIRECTION::UP || LastDirection == DIRECTION::DOWN) {
+						CurrentVertCoords.X = Map->Width - 1 - CurrentVertCoords.X;
+					}
 				}
-				if (AffectedDirections.Contains(DIRECTION::UP) || AffectedDirections.Contains(DIRECTION::DOWN)) {
-
+				else {
+					//UE_LOG(LogTemp, Warning, TEXT("Index's:"));
 				}
-			}
 
-
-			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords); 
+			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
 			if (DistanceFromCenter > RadiusExtended) { continue; }
 			AffectedVertNormals.Add(CurrentIndex); //In future will update normals in real time too
@@ -223,12 +252,69 @@ void AProcMeshSculpt::Sculpt()
 
 			float DistanceFraction = DistanceFromCenter / RadiusInVerts; //the closer to the middle of the circle the vertex is, the more it is affected.
 			VertexChangeHeight(CurrentMap, DistanceFraction, CurrentIndex); //Change the height of the vertex
+			
 
 		}
 	}
+
+
+
+	if (AffectedDirections.Num() > 0) {
+
+		if (AffectedDirections.Contains(DIRECTION::LEFT)) {
+
+			for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
+					if ((Map->GetActorLocation() - HitMap->GetActorLocation()).Y > 0 && HitMap != Map) {
+						for (int i = 0; i < Map->Width; i++) {
+							HitMap->Vertices[Map->Width * (i + 1) - 1].Z = Map->Vertices[Map->Width * i].Z; //SWAP THE EQUALS AROUND
+						}
+					}
+			}
+		}
+
+		if (AffectedDirections.Contains(DIRECTION::RIGHT)) {
+
+			for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
+				if ((Map->GetActorLocation() - HitMap->GetActorLocation()).Y < 0 && HitMap != Map) {
+					for (int i = 0; i < Map->Width; i++) {
+						HitMap->Vertices[Map->Width * i].Z = Map->Vertices[Map->Width * (i + 1) - 1].Z;
+					}
+				}
+			}
+		}
+
+		if (AffectedDirections.Contains(DIRECTION::UP)) {
+
+			for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
+				if ((Map->GetActorLocation() - HitMap->GetActorLocation()).X < 0 && HitMap != Map) {
+					for (int i = 0; i < Map->Width; i++) {
+						HitMap->Vertices[Map->Vertices.Num() - Map->Width + i].Z = Map->Vertices[i].Z;
+					}
+				}
+			}
+		}
+
+		if (AffectedDirections.Contains(DIRECTION::DOWN)) {
+
+			for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+
+				if ((Map->GetActorLocation() - HitMap->GetActorLocation()).X > 0 && HitMap != Map) {
+					for (int i = 0; i < Map->Width; i++) {
+						HitMap->Vertices[i].Z = Map->Vertices[Map->Vertices.Num() - Map->Width + i].Z;
+					}
+				}
+			}
+		}
+	}
+
+	AffectedDirections.Empty();
 	TangentsToBeUpdated++;
 	bNeedsUpdate = true;
 	OverlappedVertices.Empty();
+
 }
 
 void AProcMeshSculpt::CheckState(float DeltaTime)
