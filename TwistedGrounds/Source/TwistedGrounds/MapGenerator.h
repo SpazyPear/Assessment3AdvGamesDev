@@ -27,9 +27,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere)
-		float PerlinOffset;
-
+	//These variables are set from the editor
+	////These variables spawn the needed actors and materials
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<AProcedurallyGeneratedMap> PGMap;
 
@@ -50,8 +49,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		int32 ChunkRadius; //The chunk radius that surrounds the player
+	////End
 
-	//These variables control the parameters of the procedurally generated maps
+	////These variables control the parameters of the procedurally generated maps
 	UPROPERTY(EditAnywhere)
 		int32 ChunkWidth; //The width of each chunk
 
@@ -63,17 +63,21 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		float PerlinScale;
+	
+	UPROPERTY(EditAnywhere)
+		float PerlinOffset;
 
 	UPROPERTY(EditAnywhere)
 		float PerlinRoughness;
-	//End
+	////End
 
+	////Allows the map to be generated in the editor
 	virtual bool ShouldTickIfViewportsOnly() const override;
 
 	UPROPERTY(EditAnywhere)
 		bool bRegenerateMap;
-
-	TArray<FVector> GlobalVertices;
+	////End
+	//End
 
 private:
 	TArray<APlayerCharacter*> Player; //An array to keep track of all players.
@@ -83,6 +87,8 @@ private:
 	void CheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
 	void ClearMaps(); //Generates the initial map according to the offset.
 
-	TArray<FVector> MapPoints; //The location of all the maps.
+	UPROPERTY()
+		TArray<FVector> MapPoints; //The location of all the maps.
+
 	int32 RoundDownToNearest(int32 Value, int32 Nearest); //Always rounds down to the nearest
 };
