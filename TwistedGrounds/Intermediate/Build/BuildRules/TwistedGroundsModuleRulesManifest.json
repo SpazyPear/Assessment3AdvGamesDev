@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGrounds\\TwistedGrounds.Build.cs",
-		"E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGrounds.Target.cs",
-		"E:\\Desktop\\Documents -HDD\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGroundsEditor.Target.cs"
+		"C:\\Users\\jsaad\\Documents\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGrounds\\TwistedGrounds.Build.cs",
+		"C:\\Users\\jsaad\\Documents\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGrounds.Target.cs",
+		"C:\\Users\\jsaad\\Documents\\Assessment3AdvGamesDev\\TwistedGrounds\\Source\\TwistedGroundsEditor.Target.cs"
 	],
 	"EngineVersion": "4.24.3"
 }

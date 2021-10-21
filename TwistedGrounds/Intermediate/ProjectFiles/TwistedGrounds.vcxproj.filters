@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\TwistedGrounds.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{76049F60-FC46-4DEB-94AC-C8E8E732DCD3}</UniqueIdentifier>
+      <UniqueIdentifier>{E32DF785-1543-4DA2-907C-75682E748C40}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TwistedGrounds.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{548E4074-2522-4853-9C23-9521B5D8940A}</UniqueIdentifier>
+      <UniqueIdentifier>{F0C251A0-2A7E-4940-8144-03E71734CC17}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\TwistedGrounds">
-      <UniqueIdentifier>{50B9E61C-F9D4-44D8-B083-8285537485C4}</UniqueIdentifier>
+      <UniqueIdentifier>{81D337AC-2477-4AEA-871A-A5F7DBABA54F}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\TwistedGrounds\DustClouds.cpp">
       <Filter>Source\TwistedGrounds</Filter>

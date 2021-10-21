@@ -231,12 +231,22 @@ void AProcMeshSculpt::Sculpt()
 				0);
 
 				if (bEdgeCase) {
-					if (LastDirection == DIRECTION::LEFT || LastDirection == DIRECTION::RIGHT) {
-						CurrentVertCoords.Y = Map->Width - 1 - CurrentVertCoords.Y; //fucked fraction sometimes perhaps here maybe not
 
-					}
-					if (LastDirection == DIRECTION::UP || LastDirection == DIRECTION::DOWN) {
-						CurrentVertCoords.X = Map->Width - 1 - CurrentVertCoords.X;
+					switch (LastDirection) {
+
+						case DIRECTION::LEFT:
+							CurrentVertCoords.Y -= Map->Width - 1;
+							break;
+
+						case DIRECTION::RIGHT:
+							CurrentVertCoords.Y += Map->Width - 1;
+							break;
+						case DIRECTION::UP:
+							CurrentVertCoords.X += Map->Width - 1;
+							break;
+						case DIRECTION::DOWN:
+							CurrentVertCoords.X -= Map->Width - 1;
+							break;
 					}
 				}
 				else {
@@ -259,61 +269,60 @@ void AProcMeshSculpt::Sculpt()
 
 
 
-	if (AffectedDirections.Num() > 0) {
+	//if (AffectedDirections.Num() > 0) {
 
-		if (AffectedDirections.Contains(DIRECTION::LEFT)) {
+	//	if (AffectedDirections.Contains(DIRECTION::LEFT)) {
 
-			for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+	//		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
-					if ((Map->GetActorLocation() - HitMap->GetActorLocation()).Y > 0 && HitMap != Map) {
-						for (int i = 0; i < Map->Width; i++) {
-							HitMap->Vertices[Map->Width * (i + 1) - 1].Z = Map->Vertices[Map->Width * i].Z; //SWAP THE EQUALS AROUND
-						}
-					}
-			}
-		}
+	//				if ((Map->GetActorLocation() - HitMap->GetActorLocation()).Y > 0 && HitMap != Map) {
+	//					for (int i = 0; i < Map->Width; i++) {
+	//						Map->Vertices[Map->Width * i].Z = HitMap->Vertices[Map->Width * (i + 1) - 1].Z;  //SWAP THE EQUALS AROUND
+	//					}
+	//				}
+	//		}
+	//	}
 
-		if (AffectedDirections.Contains(DIRECTION::RIGHT)) {
+	//	if (AffectedDirections.Contains(DIRECTION::RIGHT)) {
 
-			for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+	//		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
-				if ((Map->GetActorLocation() - HitMap->GetActorLocation()).Y < 0 && HitMap != Map) {
-					for (int i = 0; i < Map->Width; i++) {
-						HitMap->Vertices[Map->Width * i].Z = Map->Vertices[Map->Width * (i + 1) - 1].Z;
-					}
-				}
-			}
-		}
+	//			if ((Map->GetActorLocation() - HitMap->GetActorLocation()).Y < 0 && HitMap != Map) {
+	//				for (int i = 0; i < Map->Width; i++) {
+	//					Map->Vertices[Map->Width * (i + 1) - 1].Z = HitMap->Vertices[Map->Width * i].Z;
+	//				}
+	//			}
+	//		}
+	//	}
 
-		if (AffectedDirections.Contains(DIRECTION::UP)) {
+	//	if (AffectedDirections.Contains(DIRECTION::UP)) {
 
-			for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+	//		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
-				if ((Map->GetActorLocation() - HitMap->GetActorLocation()).X < 0 && HitMap != Map) {
-					for (int i = 0; i < Map->Width; i++) {
-						HitMap->Vertices[Map->Vertices.Num() - Map->Width + i].Z = Map->Vertices[i].Z;
-					}
-				}
-			}
-		}
+	//			if ((Map->GetActorLocation() - HitMap->GetActorLocation()).X < 0 && HitMap != Map) {
+	//				for (int i = 0; i < Map->Width; i++) {
+	//					Map->Vertices[i].Z = HitMap->Vertices[Map->Vertices.Num() - Map->Width + i].Z;
+	//				}
+	//			}
+	//		}
+	//	}
 
-		if (AffectedDirections.Contains(DIRECTION::DOWN)) {
+	//	if (AffectedDirections.Contains(DIRECTION::DOWN)) {
 
-			for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+	//		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
-				if ((Map->GetActorLocation() - HitMap->GetActorLocation()).X > 0 && HitMap != Map) {
-					for (int i = 0; i < Map->Width; i++) {
-						HitMap->Vertices[i].Z = Map->Vertices[Map->Vertices.Num() - Map->Width + i].Z;
-					}
-				}
-			}
-		}
-	}
+	//			if ((Map->GetActorLocation() - HitMap->GetActorLocation()).X > 0 && HitMap != Map) {
+	//				for (int i = 0; i < Map->Width; i++) {
+	//					Map->Vertices[Map->Vertices.Num() - Map->Width + i].Z = HitMap->Vertices[i].Z;
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 
 	AffectedDirections.Empty();
 	TangentsToBeUpdated++;
 	bNeedsUpdate = true;
-	OverlappedVertices.Empty();
 
 }
 
