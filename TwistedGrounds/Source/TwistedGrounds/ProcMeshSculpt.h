@@ -120,6 +120,8 @@ public:
 
 	TArray<int32> AffectedVertNormals;
 
+	TArray<AProcedurallyGeneratedMap*> AffectedTangents;
+
 	AProcedurallyGeneratedMap* Map; //This can now dynamically change to any chunk
 
 	int32 TangentsToBeUpdated;

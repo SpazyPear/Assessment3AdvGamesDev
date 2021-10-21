@@ -79,7 +79,7 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	}
 	
 	if (bNeedsUpdate) {
-		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+		for (AProcedurallyGeneratedMap* HitMap : AffectedTangents) {
 			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents);
 		}
 		bNeedsUpdate = false;
@@ -103,7 +103,6 @@ void AProcMeshSculpt::Sculpt()
 	int32 RadiusExtended = RadiusInVerts + 1;
 	AProcedurallyGeneratedMap* CenterMap = Map;
 	bool bEdgeCase = false;
-	TArray<DIRECTION> AffectedDirections;
 	for (int32 Y = -RadiusExtended; Y <= RadiusExtended; Y++) //Loop through a section of the mesh within a radius
 	{
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
@@ -132,7 +131,6 @@ void AProcMeshSculpt::Sculpt()
 									CurrentMap = HitMap;
 									CurrentIndex = CurrentIndexCopy;
 									bEdgeCase = true;
-									AffectedDirections.Add(DIRECTION::LEFT);
 									LastDirection = DIRECTION::LEFT;
 									break;
 
@@ -158,7 +156,6 @@ void AProcMeshSculpt::Sculpt()
 								CurrentMap = HitMap;
 								CurrentIndex = CurrentIndexCopy;
 								bEdgeCase = true;
-								AffectedDirections.Add(DIRECTION::RIGHT);
 								LastDirection = DIRECTION::RIGHT;
 								break;
 
@@ -190,7 +187,6 @@ void AProcMeshSculpt::Sculpt()
 							CurrentMap = HitMap;
 							CurrentIndex = CurrentIndexCopy;
 							bEdgeCase = true;
-							AffectedDirections.Add(DIRECTION::DOWN);
 							LastDirection = DIRECTION::DOWN;
 							break;
 
@@ -216,7 +212,6 @@ void AProcMeshSculpt::Sculpt()
 							CurrentMap = HitMap;
 							CurrentIndex = CurrentIndexCopy;
 							bEdgeCase = true;
-							AffectedDirections.Add(DIRECTION::UP);
 							LastDirection = DIRECTION::UP;
 							break;
 
@@ -237,7 +232,6 @@ void AProcMeshSculpt::Sculpt()
 						case DIRECTION::LEFT:
 							CurrentVertCoords.Y -= Map->Width - 1;
 							break;
-
 						case DIRECTION::RIGHT:
 							CurrentVertCoords.Y += Map->Width - 1;
 							break;
@@ -249,9 +243,6 @@ void AProcMeshSculpt::Sculpt()
 							break;
 					}
 				}
-				else {
-					//UE_LOG(LogTemp, Warning, TEXT("Index's:"));
-				}
 
 			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
@@ -260,6 +251,8 @@ void AProcMeshSculpt::Sculpt()
 
 			if (DistanceFromCenter > RadiusInVerts) { continue; } //Checks if the vertex is within the circle and not on the edges of the rectangle shape the loop creates
 
+			if (CurrentMap && !AffectedTangents.Contains(CurrentMap)) { AffectedTangents.Add(CurrentMap); }
+
 			float DistanceFraction = DistanceFromCenter / RadiusInVerts; //the closer to the middle of the circle the vertex is, the more it is affected.
 			VertexChangeHeight(CurrentMap, DistanceFraction, CurrentIndex); //Change the height of the vertex
 			
@@ -267,60 +260,6 @@ void AProcMeshSculpt::Sculpt()
 		}
 	}
 
-
-
-	//if (AffectedDirections.Num() > 0) {
-
-	//	if (AffectedDirections.Contains(DIRECTION::LEFT)) {
-
-	//		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-
-	//				if ((Map->GetActorLocation() - HitMap->GetActorLocation()).Y > 0 && HitMap != Map) {
-	//					for (int i = 0; i < Map->Width; i++) {
-	//						Map->Vertices[Map->Width * i].Z = HitMap->Vertices[Map->Width * (i + 1) - 1].Z;  //SWAP THE EQUALS AROUND
-	//					}
-	//				}
-	//		}
-	//	}
-
-	//	if (AffectedDirections.Contains(DIRECTION::RIGHT)) {
-
-	//		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-
-	//			if ((Map->GetActorLocation() - HitMap->GetActorLocation()).Y < 0 && HitMap != Map) {
-	//				for (int i = 0; i < Map->Width; i++) {
-	//					Map->Vertices[Map->Width * (i + 1) - 1].Z = HitMap->Vertices[Map->Width * i].Z;
-	//				}
-	//			}
-	//		}
-	//	}
-
-	//	if (AffectedDirections.Contains(DIRECTION::UP)) {
-
-	//		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-
-	//			if ((Map->GetActorLocation() - HitMap->GetActorLocation()).X < 0 && HitMap != Map) {
-	//				for (int i = 0; i < Map->Width; i++) {
-	//					Map->Vertices[i].Z = HitMap->Vertices[Map->Vertices.Num() - Map->Width + i].Z;
-	//				}
-	//			}
-	//		}
-	//	}
-
-	//	if (AffectedDirections.Contains(DIRECTION::DOWN)) {
-
-	//		for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
-
-	//			if ((Map->GetActorLocation() - HitMap->GetActorLocation()).X > 0 && HitMap != Map) {
-	//				for (int i = 0; i < Map->Width; i++) {
-	//					Map->Vertices[Map->Vertices.Num() - Map->Width + i].Z = HitMap->Vertices[i].Z;
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
-
-	AffectedDirections.Empty();
 	TangentsToBeUpdated++;
 	bNeedsUpdate = true;
 
@@ -371,10 +310,11 @@ void AProcMeshSculpt::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AAc
 void AProcMeshSculpt::UpdateTangents()
 {
 
-	for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+	for (AProcedurallyGeneratedMap* HitMap : AffectedTangents) {
 			UKismetProceduralMeshLibrary::CalculateTangentsForMesh(HitMap->Vertices, HitMap->Triangles, HitMap->UVCoords, HitMap->Normals, HitMap->Tangents);
 			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents); //updates the tangents a little bit later so the player doesn't freeze everytime you sculpt.
 	}
+	AffectedTangents.Empty();
 		
 }
 
