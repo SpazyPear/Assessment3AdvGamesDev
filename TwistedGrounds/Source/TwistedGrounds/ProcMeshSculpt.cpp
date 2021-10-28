@@ -28,10 +28,7 @@ AProcMeshSculpt::AProcMeshSculpt()
 	CapDistance = false;
 	CappedHeightIndex = 0;
 	ShouldRearrange = true;
-	OverlappedVertices.Add(DIRECTION::LEFT, TArray<FVector>());
-	OverlappedVertices.Add(DIRECTION::RIGHT, TArray<FVector>());
-	OverlappedVertices.Add(DIRECTION::UP, TArray<FVector>());
-	OverlappedVertices.Add(DIRECTION::DOWN, TArray<FVector>());
+
 }
 
 // Called when the game starts or when spawned
@@ -111,6 +108,7 @@ void AProcMeshSculpt::Sculpt()
 			bEdgeCase = false;
 			AProcedurallyGeneratedMap* CurrentMap = Map;
 			DIRECTION LastDirection;
+			TArray<DIRECTION> AffectedDirections;
 			MiddleLocation = FVector(FMath::RoundToInt(RelativeHitLocation.X / CenterMap->GridSize), FMath::RoundToInt(RelativeHitLocation.Y / CenterMap->GridSize), 0);
 			int32 CurrentIndex = CenterIndex + (Y * Map->Width) + X; // Gets the index in the currently hit map's vertex array
 
@@ -126,12 +124,13 @@ void AProcMeshSculpt::Sculpt()
 						for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
 							if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
-								if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y > 0) {
+								if ((CurrentMap->GetActorLocation().Y > HitMap->GetActorLocation().Y)) {
 
 									CurrentMap = HitMap;
 									CurrentIndex = CurrentIndexCopy;
 									bEdgeCase = true;
 									LastDirection = DIRECTION::LEFT;
+									AffectedDirections.Add(LastDirection);
 									break;
 
 								}
@@ -151,12 +150,13 @@ void AProcMeshSculpt::Sculpt()
 
 						if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
 
-							if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).Y < 0) {
+							if (CurrentMap->GetActorLocation().Y < HitMap->GetActorLocation().Y) {
 
 								CurrentMap = HitMap;
 								CurrentIndex = CurrentIndexCopy;
 								bEdgeCase = true;
 								LastDirection = DIRECTION::RIGHT;
+								AffectedDirections.Add(LastDirection);
 								break;
 
 							}
@@ -167,6 +167,7 @@ void AProcMeshSculpt::Sculpt()
 				if (!bEdgeCase) {
 					continue;
 				}
+				
 
 			}
 
@@ -182,12 +183,17 @@ void AProcMeshSculpt::Sculpt()
 
 					if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
 
-						if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).X > 0) {
+						if (CurrentMap->GetActorLocation().X > HitMap->GetActorLocation().X) {
+
+							if (&LastDirection) {
+								
+							}
 
 							CurrentMap = HitMap;
 							CurrentIndex = CurrentIndexCopy;
 							bEdgeCase = true;
 							LastDirection = DIRECTION::DOWN;
+							AffectedDirections.Add(LastDirection);
 							break;
 
 						}
@@ -207,12 +213,19 @@ void AProcMeshSculpt::Sculpt()
 
 					if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
 
-						if ((CurrentMap->GetActorLocation() - HitMap->GetActorLocation()).X < 0) {
+						if (CurrentMap->GetActorLocation().X < HitMap->GetActorLocation().X) {
+
+							if (bEdgeCase) {
+								if (!CheckDiagonal(LastDirection, DIRECTION::UP, Map, HitMap)) {
+									continue;
+								}
+							}
 
 							CurrentMap = HitMap;
 							CurrentIndex = CurrentIndexCopy;
 							bEdgeCase = true;
 							LastDirection = DIRECTION::UP;
+							AffectedDirections.Add(LastDirection);
 							break;
 
 						}
@@ -227,22 +240,30 @@ void AProcMeshSculpt::Sculpt()
 
 				if (bEdgeCase) {
 
-					switch (LastDirection) {
 
-						case DIRECTION::LEFT:
+
+						if (AffectedDirections.Contains(DIRECTION::LEFT))
 							CurrentVertCoords.Y -= Map->Width - 1;
-							break;
-						case DIRECTION::RIGHT:
+
+						if (AffectedDirections.Contains(DIRECTION::RIGHT))
 							CurrentVertCoords.Y += Map->Width - 1;
-							break;
-						case DIRECTION::UP:
+
+						if (AffectedDirections.Contains(DIRECTION::UP))
 							CurrentVertCoords.X += Map->Width - 1;
-							break;
-						case DIRECTION::DOWN:
+
+						if (AffectedDirections.Contains(DIRECTION::DOWN))
 							CurrentVertCoords.X -= Map->Width - 1;
-							break;
-					}
+
+						if (AffectedDirections.Num() > 1) {
+							VertexChangeHeight(CurrentMap, 0.1, CurrentIndex);
+							if (CurrentMap && !AffectedTangents.Contains(CurrentMap)) { AffectedTangents.Add(CurrentMap); }
+							continue;
+						}
+					
+					
 				}
+			//UE_LOG(LogTemp, Warning, TEXT("Size: %i"), AffectedDirections.Num())
+			AffectedDirections.Empty();
 
 			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
@@ -263,6 +284,22 @@ void AProcMeshSculpt::Sculpt()
 	TangentsToBeUpdated++;
 	bNeedsUpdate = true;
 
+}
+
+bool AProcMeshSculpt::CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap)
+{
+	TArray<DIRECTION> Directions;
+	Directions.Add(LastDirection);
+	Directions.Add(NewDirection);
+	if (Directions.Contains(DIRECTION::UP) && Directions.Contains(DIRECTION::LEFT)) {
+		if (CurrentMap->GetActorLocation().X < HitMap->GetActorLocation().X  && CurrentMap->GetActorLocation().Y > HitMap->GetActorLocation().Y) {
+			UE_LOG(LogTemp, Warning, TEXT("Location1 %s"), *CurrentMap->GetActorLocation().ToString())
+			UE_LOG(LogTemp, Warning, TEXT("Location2 %s"), *HitMap->GetActorLocation().ToString())
+			return true;
+		}
+		
+	}
+	return false;
 }
 
 void AProcMeshSculpt::CheckState(float DeltaTime)
@@ -293,7 +330,7 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 
 void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Begin")) //Keeps track of maps currently in the circle, will be useful when making intersections between sections work.
+	UE_LOG(LogTemp, Warning, TEXT("Size: %i"), HitMaps.Num()) //Keeps track of maps currently in the circle, will be useful when making intersections between sections work.
 	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
 	if (HitMap)
 	HitMaps.Add(HitMap);
@@ -301,7 +338,7 @@ void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, A
 
 void AProcMeshSculpt::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("End"))
+	UE_LOG(LogTemp, Warning, TEXT("Size: %i"), HitMaps.Num())
 	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
 	if (HitMap)
 	HitMaps.Remove(HitMap);
