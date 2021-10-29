@@ -14,28 +14,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define TWISTEDGROUNDS_ProcedurallyGeneratedMap_generated_h
 
 #define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_17_SPARSE_DATA
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_17_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execGenerateMap) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->GenerateMap(); \
-		P_NATIVE_END; \
-	}
-
-
-#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execGenerateMap) \
-	{ \
-		P_FINISH; \
-		P_NATIVE_BEGIN; \
-		P_THIS->GenerateMap(); \
-		P_NATIVE_END; \
-	}
-
-
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_17_RPC_WRAPPERS
+#define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_17_RPC_WRAPPERS_NO_PURE_DECLS
 #define TwistedGrounds_Source_TwistedGrounds_ProcedurallyGeneratedMap_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAProcedurallyGeneratedMap(); \

@@ -28,37 +28,42 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	//Controlled by MapGenerator
+	UPROPERTY()
+		int32 Width;
+
+	UPROPERTY()
+		int32 Height;
+
+	UPROPERTY()
+		float GridSize;
+
 	UPROPERTY(VisibleAnywhere)
 		UProceduralMeshComponent* MeshComponent;
-
-	//Controlled by MapGenerator
-	int32 Width;
-	int32 Height;
-	float GridSize;
-	int32 OffsetX;
-	int32 OffsetY;
 	//End
 
-	TArray<FVector> Vertices;
-	TArray<int32> Triangles;
-	TArray<FVector2D> UVCoords;
+	void InitiateMap(int32 W, int32 H, float GS, float PS, float PR, float PO, int32 OX, int32 OY);
 
-	UFUNCTION(BlueprintCallable)
-		void GenerateMap();
-
-	void ClearMap();
-
-	//Controlled by MapGenerator
-	float PerlinScale;
-	float PerlinRoughness;
-	float PerlinOffset;
-	//End
+	UPROPERTY()
+		TArray<FVector> Vertices;
+	UPROPERTY()
+		TArray<int32> Triangles;
+	UPROPERTY()
+		TArray<FVector2D> UVCoords;
 
 	TArray<FVector> Normals;
 	TArray<FProcMeshTangent> Tangents;
 
-	class AMapGenerator* MapGenerator;
-
 private:
 	float PerlinSample(float Axis, float Offset);
+	void ClearMap();
+	void GenerateMap();
+	
+	//Controlled by MapGenerator
+	float PerlinScale;
+	float PerlinRoughness;
+	float PerlinOffset;
+	int32 OffsetX;
+	int32 OffsetY;
+	//End
 };
