@@ -114,17 +114,21 @@ void AProcMeshSculpt::Sculpt()
 
 			int32 XIndex = CurrentIndex % Map->Width;
 			int32 YIndex = FMath::FloorToInt(CurrentIndex / Map->Width);
+
+			
 			if (!CurrentMap->Vertices.IsValidIndex(CurrentIndex)) {
-					if (YIndex < 0) {
+
+					if (Y + MiddleLocation.Y < 0) {
 
 						YIndex = FMath::Abs(YIndex);
 						XIndex = FMath::Abs(XIndex);
-						int32 CurrentIndexCopy = ((Map->Width - YIndex) * Map->Width) + (Map->Width - 1 - XIndex);
+						int32 CurrentIndexCopy = ((Map->Width - YIndex) * Map->Width) + (Map->Width - XIndex); 
 
 						for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
 							if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
-								if ((CurrentMap->GetActorLocation().Y > HitMap->GetActorLocation().Y)) {
+
+								if (CurrentMap->GetActorLocation().Y > HitMap->GetActorLocation().Y && CurrentMap->GetActorLocation().X == HitMap->GetActorLocation().X) {
 
 									CurrentMap = HitMap;
 									CurrentIndex = CurrentIndexCopy;
@@ -138,56 +142,59 @@ void AProcMeshSculpt::Sculpt()
 						}
 					}
 
-				if (YIndex >= Map->Width) {
+					if (Y + MiddleLocation.Y >= Map->Width) {
 
-					YIndex = FMath::Abs(YIndex);
-					XIndex = FMath::Abs(XIndex);
-					int32 CurrentIndexCopy = CurrentIndex - FMath::Square(Map->Width);
+						YIndex = FMath::Abs(YIndex);
+						XIndex = FMath::Abs(XIndex);
+						int32 CurrentIndexCopy = ((YIndex - Map->Width - 1) * Map->Width) + (XIndex);
 
+						for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
+							if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
 
-					for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
+								if (CurrentMap->GetActorLocation().Y < HitMap->GetActorLocation().Y && CurrentMap->GetActorLocation().X == HitMap->GetActorLocation().X) {
 
-						if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
+									CurrentMap = HitMap;
+									CurrentIndex = CurrentIndexCopy;
+									bEdgeCase = true;
+									LastDirection = DIRECTION::RIGHT;
+									AffectedDirections.Add(LastDirection);
+									break;
 
-							if (CurrentMap->GetActorLocation().Y < HitMap->GetActorLocation().Y) {
-
-								CurrentMap = HitMap;
-								CurrentIndex = CurrentIndexCopy;
-								bEdgeCase = true;
-								LastDirection = DIRECTION::RIGHT;
-								AffectedDirections.Add(LastDirection);
-								break;
-
+								}
 							}
 						}
 					}
-				}
 
-				if (!bEdgeCase) {
-					continue;
-				}
-				
-
+					if (!bEdgeCase) {
+						continue;
+					}
 			}
 
 			if (X + MiddleLocation.X < 0) {
 
 				YIndex = FMath::Abs(YIndex);
 				XIndex = FMath::Abs(XIndex);
-				int32 CurrentIndexCopy = ((YIndex + 1) * Map->Width) + XIndex;
+				int32 CurrentIndexCopy = ((YIndex) * Map->Width) + XIndex;
 
-
+				if (bEdgeCase && LastDirection == DIRECTION::RIGHT) {
+					CurrentIndexCopy -= FMath::Square(Map->Width);
+					UE_LOG(LogTemp, Warning, TEXT("Both %i"), CurrentIndexCopy)
+				}
 
 				for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
 					if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
 
-						if (CurrentMap->GetActorLocation().X > HitMap->GetActorLocation().X) {
-
-							if (&LastDirection) {
-								
+						if (bEdgeCase) {
+							if (!CheckDiagonal(LastDirection, DIRECTION::DOWN, CenterMap, HitMap, CurrentIndexCopy, CurrentIndex)) {
+								continue;
 							}
+						}
+
+						else if (!(CurrentMap->GetActorLocation().X > HitMap->GetActorLocation().X && CurrentMap->GetActorLocation().Y == HitMap->GetActorLocation().Y)) {
+							continue;
+						}
 
 							CurrentMap = HitMap;
 							CurrentIndex = CurrentIndexCopy;
@@ -196,29 +203,36 @@ void AProcMeshSculpt::Sculpt()
 							AffectedDirections.Add(LastDirection);
 							break;
 
-						}
+						
 					}
 				}
 			}
 
-			if (X + MiddleLocation.X >= Map->Width) {
+			else if (X + MiddleLocation.X >= Map->Width) {
 
 				YIndex = FMath::Abs(YIndex);
 				XIndex = FMath::Abs(XIndex);
-				int32 CurrentIndexCopy = ((YIndex - 1) * Map->Width) + XIndex;
-
-
-
+				int32 CurrentIndexCopy = ((YIndex) * Map->Width) + XIndex;
+				if (bEdgeCase && LastDirection == DIRECTION::RIGHT) {
+					CurrentIndexCopy -= FMath::Square(Map->Width);
+					UE_LOG(LogTemp, Warning, TEXT("Both %i"), CurrentIndexCopy)
+				}
+				
 				for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
-					if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
+					
 
-						if (CurrentMap->GetActorLocation().X < HitMap->GetActorLocation().X) {
+					if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
+						
 
 							if (bEdgeCase) {
-								if (!CheckDiagonal(LastDirection, DIRECTION::UP, Map, HitMap)) {
+								if (!CheckDiagonal(LastDirection, DIRECTION::UP, CenterMap, HitMap, CurrentIndexCopy, CurrentIndex)) {
 									continue;
 								}
+							}
+
+							else if (!(CurrentMap->GetActorLocation().X < HitMap->GetActorLocation().X && CurrentMap->GetActorLocation().Y == HitMap->GetActorLocation().Y)) {
+								continue;
 							}
 
 							CurrentMap = HitMap;
@@ -228,7 +242,6 @@ void AProcMeshSculpt::Sculpt()
 							AffectedDirections.Add(LastDirection);
 							break;
 
-						}
 					}
 				}
 			}
@@ -238,32 +251,32 @@ void AProcMeshSculpt::Sculpt()
 				FMath::RoundToInt(CurrentMap->Vertices[CurrentIndex].Y / Map->GridSize),
 				0);
 
-				if (bEdgeCase) {
+			if (bEdgeCase) {
 
 
 
-						if (AffectedDirections.Contains(DIRECTION::LEFT))
-							CurrentVertCoords.Y -= Map->Width - 1;
+					if (AffectedDirections.Contains(DIRECTION::LEFT))
+						CurrentVertCoords.Y -= Map->Width - 1;
 
-						if (AffectedDirections.Contains(DIRECTION::RIGHT))
-							CurrentVertCoords.Y += Map->Width - 1;
+					if (AffectedDirections.Contains(DIRECTION::RIGHT))
+						CurrentVertCoords.Y += Map->Width - 1;
 
-						if (AffectedDirections.Contains(DIRECTION::UP))
-							CurrentVertCoords.X += Map->Width - 1;
+					if (AffectedDirections.Contains(DIRECTION::UP))
+						CurrentVertCoords.X += Map->Width - 1;
 
-						if (AffectedDirections.Contains(DIRECTION::DOWN))
-							CurrentVertCoords.X -= Map->Width - 1;
+					if (AffectedDirections.Contains(DIRECTION::DOWN))
+						CurrentVertCoords.X -= Map->Width - 1;
 
-						if (AffectedDirections.Num() > 1) {
-							VertexChangeHeight(CurrentMap, 0.1, CurrentIndex);
-							if (CurrentMap && !AffectedTangents.Contains(CurrentMap)) { AffectedTangents.Add(CurrentMap); }
-							continue;
-						}
+					if (AffectedDirections.Num() > 1) {
+						/*VertexChangeHeight(CurrentMap, 0.1, CurrentIndex);
+						if (CurrentMap && !AffectedTangents.Contains(CurrentMap)) { AffectedTangents.Add(CurrentMap); }
+						continue;*/
+					}
 					
 					
-				}
-			//UE_LOG(LogTemp, Warning, TEXT("Size: %i"), AffectedDirections.Num())
-			AffectedDirections.Empty();
+			}
+
+			
 
 			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
@@ -276,7 +289,6 @@ void AProcMeshSculpt::Sculpt()
 
 			float DistanceFraction = DistanceFromCenter / RadiusInVerts; //the closer to the middle of the circle the vertex is, the more it is affected.
 			VertexChangeHeight(CurrentMap, DistanceFraction, CurrentIndex); //Change the height of the vertex
-			
 
 		}
 	}
@@ -286,18 +298,48 @@ void AProcMeshSculpt::Sculpt()
 
 }
 
-bool AProcMeshSculpt::CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap)
+bool AProcMeshSculpt::CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap, int32& CurrentIndexCopy, int32 CurrentIndex)
 {
 	TArray<DIRECTION> Directions;
 	Directions.Add(LastDirection);
 	Directions.Add(NewDirection);
+	int32 XIndex = FMath::Abs(CurrentIndex % Map->Width);
+	int32 YIndex = FMath::Abs(FMath::FloorToInt(CurrentIndex / Map->Width));
+
 	if (Directions.Contains(DIRECTION::UP) && Directions.Contains(DIRECTION::LEFT)) {
-		if (CurrentMap->GetActorLocation().X < HitMap->GetActorLocation().X  && CurrentMap->GetActorLocation().Y > HitMap->GetActorLocation().Y) {
-			UE_LOG(LogTemp, Warning, TEXT("Location1 %s"), *CurrentMap->GetActorLocation().ToString())
-			UE_LOG(LogTemp, Warning, TEXT("Location2 %s"), *HitMap->GetActorLocation().ToString())
+		if (CurrentMap->GetActorLocation().X < HitMap->GetActorLocation().X && CurrentMap->GetActorLocation().Y > HitMap->GetActorLocation().Y) {
+			//UE_LOG(LogTemp, Warning, TEXT("Up and Left"))
+			CurrentIndexCopy = CurrentIndex;
 			return true;
+
 		}
 		
+	}
+	else if (Directions.Contains(DIRECTION::DOWN) && Directions.Contains(DIRECTION::LEFT)) {
+		 if (CurrentMap->GetActorLocation().X > HitMap->GetActorLocation().X && CurrentMap->GetActorLocation().Y > HitMap->GetActorLocation().Y) {
+
+			 CurrentIndexCopy = CurrentIndex;
+			// UE_LOG(LogTemp, Warning, TEXT("Down And Left"))
+			 return true;
+		 }
+
+	}
+	else if (Directions.Contains(DIRECTION::UP) && Directions.Contains(DIRECTION::RIGHT)) {
+		 if (CurrentMap->GetActorLocation().X < HitMap->GetActorLocation().X && CurrentMap->GetActorLocation().Y < HitMap->GetActorLocation().Y) {
+	
+			 CurrentIndexCopy = CurrentIndex;
+
+			// UE_LOG(LogTemp, Warning, TEXT("Up and Right"))
+			 return true;
+		 }
+
+	}
+	else if (Directions.Contains(DIRECTION::DOWN) && Directions.Contains(DIRECTION::RIGHT)) {
+		 if (CurrentMap->GetActorLocation().X > HitMap->GetActorLocation().X && CurrentMap->GetActorLocation().Y < HitMap->GetActorLocation().Y) {
+			// UE_LOG(LogTemp, Warning, TEXT("Down and Right"))
+			 CurrentIndexCopy = CurrentIndex;
+			 return true;
+		 }
 	}
 	return false;
 }
@@ -330,7 +372,7 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 
 void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Size: %i"), HitMaps.Num()) //Keeps track of maps currently in the circle, will be useful when making intersections between sections work.
+	//UE_LOG(LogTemp, Warning, TEXT("Size: %i"), HitMaps.Num()) //Keeps track of maps currently in the circle, will be useful when making intersections between sections work.
 	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
 	if (HitMap)
 	HitMaps.Add(HitMap);
@@ -338,7 +380,7 @@ void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, A
 
 void AProcMeshSculpt::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Size: %i"), HitMaps.Num())
+	//UE_LOG(LogTemp, Warning, TEXT("Size: %i"), HitMaps.Num())
 	AProcedurallyGeneratedMap* HitMap = Cast<AProcedurallyGeneratedMap>(OtherActor);
 	if (HitMap)
 	HitMaps.Remove(HitMap);
