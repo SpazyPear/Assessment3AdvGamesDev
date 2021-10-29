@@ -58,7 +58,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AMapGenerator); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AMapGenerator)
 
 
-#define TwistedGrounds_Source_TwistedGrounds_MapGenerator_h_16_PRIVATE_PROPERTY_OFFSET
+#define TwistedGrounds_Source_TwistedGrounds_MapGenerator_h_16_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__MapPoints() { return STRUCT_OFFSET(AMapGenerator, MapPoints); }
+
+
 #define TwistedGrounds_Source_TwistedGrounds_MapGenerator_h_13_PROLOG
 #define TwistedGrounds_Source_TwistedGrounds_MapGenerator_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

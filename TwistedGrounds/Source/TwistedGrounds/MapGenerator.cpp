@@ -28,7 +28,6 @@ AMapGenerator::AMapGenerator()
 void AMapGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-	ClearMaps(); //Clears all the maps that were already generated first.
 
 	//For now there is only one player.
 	Player.Add(GetWorld()->SpawnActor<APlayerCharacter>(PlayerToSpawn, FVector(0, 0, 2000), FRotator::ZeroRotator));
@@ -67,15 +66,7 @@ void AMapGenerator::SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, 
 		return;
 	}
 
-	Map->Width = ChunkWidth;
-	Map->Height = ChunkHeight;
-	Map->GridSize = ChunkGridSize;
-	Map->PerlinScale = PerlinScale;
-	Map->PerlinRoughness = PerlinRoughness;
-	Map->PerlinOffset = PerlinOffset;
-	Map->OffsetX = OffsetX;
-	Map->OffsetY = OffsetY;
-	Map->GenerateMap();
+	Map->InitiateMap(ChunkWidth, ChunkHeight, ChunkGridSize, PerlinScale, PerlinRoughness, PerlinOffset, OffsetX, OffsetY);
 	Map->MeshComponent->SetMaterial(0, PGMaterial);
 }
 

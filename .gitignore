@@ -76,3 +76,12 @@ DerivedDataCache/*
 *.ini
 *.log
 *.bin
+*.pdb
+
+Intermediate/*
+
+Saved/*
+
+.vs/*
+
+Binaries/*

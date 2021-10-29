@@ -28,9 +28,6 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 void AProcedurallyGeneratedMap::BeginPlay()
 {
 	Super::BeginPlay();
-	for (TActorIterator<AMapGenerator> It(GetWorld()); It; ++It) {
-		MapGenerator = *It;
-	}
 }
 
 // Called every frame
@@ -45,7 +42,6 @@ void AProcedurallyGeneratedMap::GenerateMap() {
 		int Y = i / Width;
 		float Z = FMath::PerlinNoise2D(FVector2D(PerlinSample(X + OffsetX, PerlinOffset), PerlinSample(Y + OffsetY, PerlinOffset))) * PerlinScale;
 		Vertices.Add(FVector(GridSize * X, GridSize * Y, Z));
-		MapGenerator->GlobalVertices.Add(FVector(GridSize * X, GridSize * Y, Z));
 
 		//If not at the top and left of the grid
 		if (X < Width - 1 && Y < Height - 1) {
@@ -73,6 +69,19 @@ void AProcedurallyGeneratedMap::ClearMap() {
 	Vertices.Empty();
 	Triangles.Empty();
 	UVCoords.Empty();
+}
+
+void AProcedurallyGeneratedMap::InitiateMap(int32 W, int32 H, float GS, float PS, float PR, float PO, int32 OX, int32 OY)
+{
+	Width = W;
+	Height = H;
+	GridSize = GS;
+	PerlinScale = PS;
+	PerlinRoughness = PR;
+	PerlinOffset = PO;
+	OffsetX = OX;
+	OffsetY = OY;
+	GenerateMap();
 }
 
 float AProcedurallyGeneratedMap::PerlinSample(float Axis, float Offset) {

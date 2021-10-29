@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AMapGenerator();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_TwistedGrounds();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt_NoRegister();
@@ -38,6 +39,11 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_MapPoints_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_MapPoints;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_MapPoints_Inner;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_bRegenerateMap_MetaData[];
 #endif
 		static void NewProp_bRegenerateMap_SetBit(void* Obj);
@@ -46,6 +52,10 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerlinRoughness_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerlinRoughness;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerlinOffset_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerlinOffset;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerlinScale_MetaData[];
 #endif
@@ -90,10 +100,6 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PGMap_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_PGMap;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PerlinOffset_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_PerlinOffset;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -108,6 +114,15 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		{ "ModuleRelativePath", "MapGenerator.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_MapPoints_MetaData[] = {
+		{ "Comment", "//Generates the initial map according to the offset.\n" },
+		{ "ModuleRelativePath", "MapGenerator.h" },
+		{ "ToolTip", "Generates the initial map according to the offset." },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_MapPoints = { "MapPoints", nullptr, (EPropertyFlags)0x0040000000000000, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, MapPoints), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_MapPoints_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_MapPoints_MetaData)) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_MapPoints_Inner = { "MapPoints", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_bRegenerateMap_MetaData[] = {
 		{ "Category", "MapGenerator" },
@@ -126,6 +141,13 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinRoughness = { "PerlinRoughness", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, PerlinRoughness), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinRoughness_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinRoughness_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset_MetaData[] = {
+		{ "Category", "MapGenerator" },
+		{ "ModuleRelativePath", "MapGenerator.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset = { "PerlinOffset", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, PerlinOffset), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinScale_MetaData[] = {
 		{ "Category", "MapGenerator" },
@@ -156,9 +178,9 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth_MetaData[] = {
 		{ "Category", "MapGenerator" },
-		{ "Comment", "//These variables control the parameters of the procedurally generated maps\n" },
+		{ "Comment", "////These variables control the parameters of the procedurally generated maps\n" },
 		{ "ModuleRelativePath", "MapGenerator.h" },
-		{ "ToolTip", "These variables control the parameters of the procedurally generated maps" },
+		{ "ToolTip", "/These variables control the parameters of the procedurally generated maps" },
 	};
 #endif
 	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth = { "ChunkWidth", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, ChunkWidth), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth_MetaData)) };
@@ -207,20 +229,18 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMap_MetaData[] = {
 		{ "Category", "MapGenerator" },
+		{ "Comment", "//These variables are set from the editor\n////These variables spawn the needed actors and materials\n" },
 		{ "ModuleRelativePath", "MapGenerator.h" },
+		{ "ToolTip", "These variables are set from the editor\n/These variables spawn the needed actors and materials" },
 	};
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMap = { "PGMap", nullptr, (EPropertyFlags)0x0014000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, PGMap), Z_Construct_UClass_AProcedurallyGeneratedMap_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMap_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMap_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset_MetaData[] = {
-		{ "Category", "MapGenerator" },
-		{ "ModuleRelativePath", "MapGenerator.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset = { "PerlinOffset", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, PerlinOffset), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMapGenerator_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_MapPoints,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_MapPoints_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_bRegenerateMap,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinRoughness,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinScale,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkGridSize,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkHeight,
@@ -232,7 +252,6 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_BigDustEmitter,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PlayerToSpawn,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMap,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PerlinOffset,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMapGenerator_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AMapGenerator>::IsAbstract,
@@ -261,7 +280,7 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMapGenerator, 399673471);
+	IMPLEMENT_CLASS(AMapGenerator, 1888790084);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AMapGenerator>()
 	{
 		return AMapGenerator::StaticClass();
