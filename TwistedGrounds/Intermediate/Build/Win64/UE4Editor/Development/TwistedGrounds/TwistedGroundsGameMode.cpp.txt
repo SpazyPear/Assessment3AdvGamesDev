@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\Definitions.TwistedGrounds.h
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds\TwistedGroundsGameMode.h
 C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
@@ -13,19 +12,3 @@ C:\Program Files\UE_4.24\Engine\Source\Runtime\Engine\Classes\GameFramework/Debu
 C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DebugTextInfo.generated.h
 C:\Program Files\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\HUD.generated.h
 E:\Desktop\Documents -HDD\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\TwistedGroundsHUD.generated.h
-=======
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\Definitions.TwistedGrounds.h
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds\TwistedGroundsGameMode.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\TwistedGroundsGameMode.generated.h
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds\TwistedGroundsHUD.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Source\Runtime\Engine\Classes\GameFramework/HUDHitBox.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Source\Runtime\Engine\Classes\GameFramework/DebugTextInfo.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DebugTextInfo.generated.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\HUD.generated.h
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\TwistedGroundsHUD.generated.h
->>>>>>> 838ee3c56b20e15d3493ebc29f11fa4ec09fa880

@@ -1,11 +1,7 @@
 {
 	"BuildId": "10570792",
-	"Modules":
+	"Modules": 
 	{
-<<<<<<< HEAD
-		"TwistedGrounds": "UE4Editor-TwistedGrounds-2712.dll"
-=======
-		"TwistedGrounds": "UE4Editor-TwistedGrounds-7500.dll"
->>>>>>> 838ee3c56b20e15d3493ebc29f11fa4ec09fa880
+		"TwistedGrounds": "UE4Editor-TwistedGrounds-4567.dll"
 	}
 }
