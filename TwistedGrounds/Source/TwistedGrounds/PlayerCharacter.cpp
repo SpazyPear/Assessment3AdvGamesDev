@@ -10,8 +10,6 @@ APlayerCharacter::APlayerCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	AutoPossessPlayer = EAutoReceiveInput::Player0;
-
 	//Set default member variable values
 	LookSensitivity = 1.0f;
 }
@@ -23,9 +21,6 @@ void APlayerCharacter::BeginPlay()
 
 	//Initialise the camera variable
 	Camera = FindComponentByClass<UCameraComponent>();
-}
-
-void APlayerCharacter::SetSculptor() {
 	Sculptor = GetWorld()->SpawnActor<AProcMeshSculpt>(MeshSculptor, FVector::ZeroVector, FRotator::ZeroRotator);
 	Sculptor->Player = this;
 	Sculptor->Camera = Camera;

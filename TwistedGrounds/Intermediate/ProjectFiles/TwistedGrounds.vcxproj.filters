@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\TwistedGrounds.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{9BF77D23-56C4-4ECE-B3B1-7BF1D8BA8D6F}</UniqueIdentifier>
+      <UniqueIdentifier>{F3EF2C00-2383-4EE7-8590-4D5703503890}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\TwistedGrounds.Target.cs">
       <Filter>Source</Filter>
@@ -12,25 +12,13 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{D696C707-C81B-4E72-BBE1-407170AD7968}</UniqueIdentifier>
+      <UniqueIdentifier>{379C7842-E9C8-4ADB-9FBA-E928C88EC779}</UniqueIdentifier>
     </Filter>
-    <None Include="..\..\Config\DefaultEditor.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
-      <Filter>Config</Filter>
-    </None>
     <None Include="..\..\Config\DefaultEngine.ini">
       <Filter>Config</Filter>
     </None>
-    <None Include="..\..\Config\DefaultGame.ini">
-      <Filter>Config</Filter>
-    </None>
-    <None Include="..\..\Config\DefaultInput.ini">
-      <Filter>Config</Filter>
-    </None>
     <Filter Include="Source\TwistedGrounds">
-      <UniqueIdentifier>{BBC8420E-7A4C-4800-A551-7040C3FA0D06}</UniqueIdentifier>
+      <UniqueIdentifier>{B557EC62-8070-40BE-A953-7F9CC4AC06E3}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\TwistedGrounds\DustClouds.cpp">
       <Filter>Source\TwistedGrounds</Filter>

@@ -22,6 +22,8 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 	PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
 	OffsetX = 0;
 	OffsetY = 0;
+
+	bGenerateMeshSection = false;
 }
 
 // Called when the game starts or when spawned
@@ -34,6 +36,11 @@ void AProcedurallyGeneratedMap::BeginPlay()
 void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (bGenerateMeshSection) {
+		bGenerateMeshSection = false;
+		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
+		MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
+	}
 }
 
 void AProcedurallyGeneratedMap::GenerateMap() {
@@ -59,7 +66,6 @@ void AProcedurallyGeneratedMap::GenerateMap() {
 
 		UVCoords.Add(FVector2D(X, Y));
 	}
-	
 	UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
 	MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
 }

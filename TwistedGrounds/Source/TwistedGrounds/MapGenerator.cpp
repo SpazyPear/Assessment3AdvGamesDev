@@ -3,6 +3,7 @@
 
 #include "MapGenerator.h"
 #include "EngineUtils.h"
+#include "Async/AsyncWork.h"
 
 // Sets default values
 AMapGenerator::AMapGenerator()
@@ -28,16 +29,7 @@ AMapGenerator::AMapGenerator()
 void AMapGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-
-	//For now there is only one player.
-	Player.Add(GetWorld()->SpawnActor<APlayerCharacter>(PlayerToSpawn, FVector(0, 0, 2000), FRotator::ZeroRotator));
-
-	for (APlayerCharacter* EachPlayer : Player) {
-		EachPlayer->MeshSculptor = Sculptor;
-		EachPlayer->BigDustEmitterToSpawn = BigDustEmitter;
-		EachPlayer->SmallDustEmitterToSpawn = SmallDustEmitter;
-		EachPlayer->SetSculptor();
-	}
+	
 }
 
 // Called every frame
@@ -50,8 +42,14 @@ void AMapGenerator::Tick(float DeltaTime)
 		CheckSurrounding(FVector(0, 0, 0));
 	}
 
-	for (APlayerCharacter* EachPlayer : Player) {
-		CheckSurrounding(EachPlayer->GetActorLocation());
+	for (int32 i = 0; i < Players.Num(); i++) {
+		FVector PlayerPos = Players[i]->GetActorLocation();
+		PlayerPos.X = RoundDownToNearest(PlayerPos.X, W);
+		PlayerPos.Y = RoundDownToNearest(PlayerPos.Y, H);
+		if (PlayerPos.X != PlayerPrevPos[i].X || PlayerPos.Y != PlayerPrevPos[i].Y) {
+			PlayerPrevPos[i] = PlayerPos;
+			CheckSurrounding(Players[i]->GetActorLocation());
+		}
 	}
 }
 
@@ -67,22 +65,20 @@ void AMapGenerator::SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, 
 	}
 
 	Map->InitiateMap(ChunkWidth, ChunkHeight, ChunkGridSize, PerlinScale, PerlinRoughness, PerlinOffset, OffsetX, OffsetY);
-	Map->MeshComponent->SetMaterial(0, PGMaterial);
 }
 
 void AMapGenerator::CheckSurrounding(FVector Position)
 {
 	//Remember the actual width of the generated map is one less due to edge cases.
-	int ActualW = ChunkWidth - 1;
-	int ActualH = ChunkHeight - 1;
-
-	int W = ActualW * ChunkGridSize; //Width of the chunk
-	int H = ActualH * ChunkGridSize; //Height of the chunk
+	ActualW = ChunkWidth - 1;
+	ActualH = ChunkHeight - 1;
+	W = ActualW * ChunkGridSize; //Width of the chunk
+	H = ActualH * ChunkGridSize; //Height of the chunk
 
 	float HalfRadius = ChunkRadius / 2; //Half of the radius
 	float StartX = RoundDownToNearest(Position.X, W) - W * HalfRadius;
 	float StartY = RoundDownToNearest(Position.Y, H) - H * HalfRadius;
-
+	
 	for (int i = 0; i < ChunkRadius * ChunkRadius; i++) {
 		int XMult = (i % ChunkRadius);
 		int YMult = (i / ChunkRadius);
@@ -98,6 +94,7 @@ void AMapGenerator::CheckSurrounding(FVector Position)
 		AProcedurallyGeneratedMap* Map = GetWorld()->SpawnActor<AProcedurallyGeneratedMap>(PGMap, Loc, FRotator::ZeroRotator);
 		int32 OffsetX = ActualW * (X / W); //X offset for perlin noise
 		int32 OffsetY = ActualH * (Y / H); //Y offset for perlin noise
+		//(new FAutoDeleteAsyncTask<GenerateChunk>(this, Map, OffsetX, OffsetY))->StartBackgroundTask();
 		SetMapParams(Map, OffsetX, OffsetY);
 		MapPoints.Add(Loc); //Save the location of the map
 	}

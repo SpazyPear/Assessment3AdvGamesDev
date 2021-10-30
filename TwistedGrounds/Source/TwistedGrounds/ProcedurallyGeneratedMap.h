@@ -66,4 +66,6 @@ private:
 	int32 OffsetX;
 	int32 OffsetY;
 	//End
+
+	bool bGenerateMeshSection;
 };

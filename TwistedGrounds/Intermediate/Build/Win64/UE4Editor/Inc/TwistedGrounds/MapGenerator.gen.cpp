@@ -18,11 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_TwistedGrounds();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
-	ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcMeshSculpt_NoRegister();
-	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_ADustClouds_NoRegister();
-	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_APlayerCharacter_NoRegister();
 	TWISTEDGROUNDS_API UClass* Z_Construct_UClass_AProcedurallyGeneratedMap_NoRegister();
 // End Cross Module References
 	void AMapGenerator::StaticRegisterNativesAMapGenerator()
@@ -76,26 +72,6 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ChunkRadius_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FIntPropertyParams NewProp_ChunkRadius;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PGMaterial_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_PGMaterial;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Sculptor_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FClassPropertyParams NewProp_Sculptor;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_SmallDustEmitter_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FClassPropertyParams NewProp_SmallDustEmitter;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BigDustEmitter_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FClassPropertyParams NewProp_BigDustEmitter;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PlayerToSpawn_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FClassPropertyParams NewProp_PlayerToSpawn;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PGMap_MetaData[];
 #endif
@@ -192,41 +168,6 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 #endif
 	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius = { "ChunkRadius", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, ChunkRadius), METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMaterial_MetaData[] = {
-		{ "Category", "MapGenerator" },
-		{ "ModuleRelativePath", "MapGenerator.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMaterial = { "PGMaterial", nullptr, (EPropertyFlags)0x0010000000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, PGMaterial), Z_Construct_UClass_UMaterialInterface_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMaterial_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMaterial_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_Sculptor_MetaData[] = {
-		{ "Category", "MapGenerator" },
-		{ "ModuleRelativePath", "MapGenerator.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_Sculptor = { "Sculptor", nullptr, (EPropertyFlags)0x0014000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, Sculptor), Z_Construct_UClass_AProcMeshSculpt_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_Sculptor_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_Sculptor_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_SmallDustEmitter_MetaData[] = {
-		{ "Category", "MapGenerator" },
-		{ "ModuleRelativePath", "MapGenerator.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_SmallDustEmitter = { "SmallDustEmitter", nullptr, (EPropertyFlags)0x0014000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, SmallDustEmitter), Z_Construct_UClass_ADustClouds_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_SmallDustEmitter_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_SmallDustEmitter_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_BigDustEmitter_MetaData[] = {
-		{ "Category", "MapGenerator" },
-		{ "ModuleRelativePath", "MapGenerator.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_BigDustEmitter = { "BigDustEmitter", nullptr, (EPropertyFlags)0x0014000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, BigDustEmitter), Z_Construct_UClass_ADustClouds_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_BigDustEmitter_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_BigDustEmitter_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PlayerToSpawn_MetaData[] = {
-		{ "Category", "MapGenerator" },
-		{ "ModuleRelativePath", "MapGenerator.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMapGenerator_Statics::NewProp_PlayerToSpawn = { "PlayerToSpawn", nullptr, (EPropertyFlags)0x0014000000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AMapGenerator, PlayerToSpawn), Z_Construct_UClass_APlayerCharacter_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PlayerToSpawn_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMapGenerator_Statics::NewProp_PlayerToSpawn_MetaData)) };
-#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMap_MetaData[] = {
 		{ "Category", "MapGenerator" },
 		{ "Comment", "//These variables are set from the editor\n////These variables spawn the needed actors and materials\n" },
@@ -246,11 +187,6 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkHeight,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkWidth,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_ChunkRadius,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMaterial,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_Sculptor,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_SmallDustEmitter,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_BigDustEmitter,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PlayerToSpawn,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMapGenerator_Statics::NewProp_PGMap,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMapGenerator_Statics::StaticCppClassTypeInfo = {
@@ -280,7 +216,7 @@ void EmptyLinkFunctionForGeneratedCodeMapGenerator() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AMapGenerator, 1888790084);
+	IMPLEMENT_CLASS(AMapGenerator, 4029661120);
 	template<> TWISTEDGROUNDS_API UClass* StaticClass<AMapGenerator>()
 	{
 		return AMapGenerator::StaticClass();
