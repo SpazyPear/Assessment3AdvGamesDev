@@ -4,13 +4,11 @@
 
 #include "CoreMinimal.h"
 
+
 /**
  * As the name of the class implies, this is a simple class
  * where all the functions/procedures are static and public for use.
  * Meant to makes things easier to use.
- * 
- * It should never have an include file except the coreminimal
- * (UE4 placed it there).
  */
 class TWISTEDGROUNDS_API DoStatic
 {
@@ -30,3 +28,4 @@ public:
 	/// <param name="S">String of what to print.</param>
 	static void PrintWarning(FString S);
 };
+

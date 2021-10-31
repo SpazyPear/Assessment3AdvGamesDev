@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "KismetProceduralMeshLibrary.h"
 #include "ProceduralMeshComponent.h"
+#include "DoStatic.h"
 
 #include "ProcedurallyGeneratedMap.generated.h"
 
@@ -53,12 +54,8 @@ public:
 
 	TArray<FVector> Normals;
 	TArray<FProcMeshTangent> Tangents;
-
-private:
 	float PerlinSample(float Axis, float Offset);
-	void ClearMap();
-	void GenerateMap();
-	
+
 	//Controlled by MapGenerator
 	float PerlinScale;
 	float PerlinRoughness;
@@ -68,4 +65,57 @@ private:
 	//End
 
 	bool bGenerateMeshSection;
+	virtual bool ShouldTickIfViewportsOnly() const override;
+
+private:
+	void ClearMap();
+};
+
+class GenerateChunk : public FNonAbandonableTask {
+public:
+
+	AProcedurallyGeneratedMap* MapRef;
+	GenerateChunk(AProcedurallyGeneratedMap* Map)
+	{
+		MapRef = Map;
+	}
+
+	~GenerateChunk() {}
+
+	FORCEINLINE TStatId GetStatId() const {
+		RETURN_QUICK_DECLARE_CYCLE_STAT(GenerateChunk, STATGROUP_ThreadPoolAsyncTasks);
+	}
+
+	void DoWork() {
+		for (int i = 0; i < MapRef->Width * MapRef->Height; i++) {
+			int X = i % MapRef->Width;
+			int Y = i / MapRef->Width;
+			float Z = FMath::PerlinNoise2D(
+				FVector2D(
+					MapRef->PerlinSample(X + MapRef->OffsetX, MapRef->PerlinOffset),
+					MapRef->PerlinSample(Y + MapRef->OffsetY, MapRef->PerlinOffset)
+				)
+			) * MapRef->PerlinScale;
+
+			MapRef->Vertices.Add(FVector(MapRef->GridSize * X, MapRef->GridSize * Y, Z));
+
+			//If not at the top and left of the grid
+			if (X < MapRef->Width - 1 && Y < MapRef->Height - 1) {
+				MapRef->Triangles.Add(i);
+				MapRef->Triangles.Add(i + MapRef->Width);
+				MapRef->Triangles.Add(i + 1);
+			}
+
+			//If not at the bottom and right of the grid
+			if (X != 0 && Y < MapRef->Height - 1) {
+				MapRef->Triangles.Add(i);
+				MapRef->Triangles.Add(i + MapRef->Width - 1);
+				MapRef->Triangles.Add(i + MapRef->Width);
+			}
+
+			MapRef->UVCoords.Add(FVector2D(X, Y));
+		}
+		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(MapRef->Vertices, MapRef->Triangles, MapRef->UVCoords, MapRef->Normals, MapRef->Tangents);
+		MapRef->bGenerateMeshSection = true;
+	}
 };
