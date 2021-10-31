@@ -1,7 +1,0 @@
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\Definitions.TwistedGrounds.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds/DustClouds.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Source\Runtime\Engine\Classes\Particles/Emitter.h
-C:\Program Files\Epic Games\UE_4.24\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Emitter.generated.h
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Inc\TwistedGrounds\DustClouds.generated.h

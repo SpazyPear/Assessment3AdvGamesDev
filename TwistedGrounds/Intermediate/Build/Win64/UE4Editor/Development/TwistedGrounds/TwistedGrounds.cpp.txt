@@ -1,2 +1,0 @@
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Intermediate\Build\Win64\UE4Editor\Development\TwistedGrounds\Definitions.TwistedGrounds.h
-C:\Users\zelno\Downloads\Stuff\Coding Stuff\Unreal Engine\Assessment3AdvGamesDev\TwistedGrounds\Source\TwistedGrounds\TwistedGrounds.h
