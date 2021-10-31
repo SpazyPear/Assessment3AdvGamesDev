@@ -11,6 +11,7 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "ProcMeshSculpt.h"
 #include "DustClouds.h"
+#include "MapGenerator.h"
 
 #include "GameFramework/CharacterMovementComponent.h"
 #include "PlayerCharacter.generated.h"
@@ -70,4 +71,6 @@ private:
 	ADustClouds* BigEmitter;
 	ADustClouds* SmallEmitter;
 	AProcMeshSculpt* Sculptor;
+	AMapGenerator* MapGen;
+	FVector PrevPos;
 };

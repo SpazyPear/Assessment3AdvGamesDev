@@ -2,7 +2,8 @@
 
 
 #include "PlayerCharacter.h"
-
+#include "EngineUtils.h"
+#include "DoStatic.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -25,6 +26,15 @@ void APlayerCharacter::BeginPlay()
 	Sculptor->Player = this;
 	Sculptor->Camera = Camera;
 	Sculptor->Muzzle = Cast<USceneComponent>(GetDefaultSubobjectByName(TEXT("MuzzlePosition")));
+	
+	for (TActorIterator<AMapGenerator> Map(GetWorld()); Map; ++Map) {
+		MapGen = *Map; //There should only be one map generator in the level.
+	}
+
+	FVector Pos = GetActorLocation();
+	int32 X = DoStatic::RoundDownToNearest(Pos.X, MapGen->W);
+	int32 Y = DoStatic::RoundDownToNearest(Pos.Y, MapGen->H);
+	PrevPos = FVector(X - 1, Y - 1, 0); //Offset to force check surrounding.
 }
 
 // Called every frame
@@ -33,6 +43,14 @@ void APlayerCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (SmallEmitter) {
 		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
+	}
+
+	FVector Pos = GetActorLocation();
+	int32 X = DoStatic::RoundDownToNearest(Pos.X, MapGen->W);
+	int32 Y = DoStatic::RoundDownToNearest(Pos.Y, MapGen->H);
+	if (X != PrevPos.X || Y != PrevPos.Y) {
+		PrevPos = FVector(X, Y, 0);
+		MapGen->CheckSurrounding(Pos);
 	}
 }
 

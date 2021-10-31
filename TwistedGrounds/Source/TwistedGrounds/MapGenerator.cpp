@@ -4,6 +4,7 @@
 #include "MapGenerator.h"
 #include "EngineUtils.h"
 #include "Async/AsyncWork.h"
+#include "DoStatic.h"
 
 // Sets default values
 AMapGenerator::AMapGenerator()
@@ -29,7 +30,12 @@ AMapGenerator::AMapGenerator()
 void AMapGenerator::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	//Remember the actual width of the generated map is one less due to edge cases.
+	ActualW = ChunkWidth - 1;
+	ActualH = ChunkHeight - 1;
+	W = ActualW * ChunkGridSize; //Width of the chunk
+	H = ActualH * ChunkGridSize; //Height of the chunk
 }
 
 // Called every frame
@@ -39,18 +45,16 @@ void AMapGenerator::Tick(float DeltaTime)
 	if (bRegenerateMap) {
 		bRegenerateMap = false;
 		ClearMaps();
+		
+		//This is for the editor, redundant code, should be in a function...
+		ActualW = ChunkWidth - 1;
+		ActualH = ChunkHeight - 1;
+		W = ActualW * ChunkGridSize;
+		H = ActualH * ChunkGridSize;
+
 		CheckSurrounding(FVector(0, 0, 0));
 	}
 
-	for (int32 i = 0; i < Players.Num(); i++) {
-		FVector PlayerPos = Players[i]->GetActorLocation();
-		PlayerPos.X = RoundDownToNearest(PlayerPos.X, W);
-		PlayerPos.Y = RoundDownToNearest(PlayerPos.Y, H);
-		if (PlayerPos.X != PlayerPrevPos[i].X || PlayerPos.Y != PlayerPrevPos[i].Y) {
-			PlayerPrevPos[i] = PlayerPos;
-			CheckSurrounding(Players[i]->GetActorLocation());
-		}
-	}
 }
 
 bool AMapGenerator::ShouldTickIfViewportsOnly() const
@@ -69,15 +73,9 @@ void AMapGenerator::SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, 
 
 void AMapGenerator::CheckSurrounding(FVector Position)
 {
-	//Remember the actual width of the generated map is one less due to edge cases.
-	ActualW = ChunkWidth - 1;
-	ActualH = ChunkHeight - 1;
-	W = ActualW * ChunkGridSize; //Width of the chunk
-	H = ActualH * ChunkGridSize; //Height of the chunk
-
 	float HalfRadius = ChunkRadius / 2; //Half of the radius
-	float StartX = RoundDownToNearest(Position.X, W) - W * HalfRadius;
-	float StartY = RoundDownToNearest(Position.Y, H) - H * HalfRadius;
+	float StartX = DoStatic::RoundDownToNearest(Position.X, W) - W * HalfRadius;
+	float StartY = DoStatic::RoundDownToNearest(Position.Y, H) - H * HalfRadius;
 	
 	for (int i = 0; i < ChunkRadius * ChunkRadius; i++) {
 		int XMult = (i % ChunkRadius);
@@ -106,11 +104,4 @@ void AMapGenerator::ClearMaps()
 		(*EveryMap)->Destroy();
 	}
 	MapPoints.Empty(); //Emptied so that a new map can be generated there.
-}
-
-int32 AMapGenerator::RoundDownToNearest(int32 Value, int32 Nearest)
-{
-	int32 PosValue = FMath::Abs(Value); //Mod goes towards 0, thus all values given to mod must be positive.
-	int32 Result = PosValue - FMath::Fmod(PosValue, Nearest) + (Value < 0 ? Nearest : 0);
-	return Value < 0 ? -Result : Result;
 }

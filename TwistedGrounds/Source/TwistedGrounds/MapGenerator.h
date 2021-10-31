@@ -6,7 +6,6 @@
 #include "GameFramework/Actor.h"
 
 #include "ProcedurallyGeneratedMap.h"
-#include "PlayerCharacter.h"
 
 #include "MapGenerator.generated.h"
 
@@ -64,24 +63,20 @@ public:
 	////End
 	//End
 
+	int W; //Width of the chunk
+	int H; //Height of the chunk
+	void CheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
+
 private:
 	int ActualW;
 	int ActualH;
-	int W; //Width of the chunk
-	int H; //Height of the chunk
-
-	TArray<APlayerCharacter*> Players; //An array to keep track of all players.
-	TArray<FVector> PlayerPrevPos; //An array the the player's previous position. Helps skip checksurrounding procedure.
 
 	//Sets the generated map's variables to the MapGenerator's
 	void SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, int32 OffsetY);
-	void CheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
 	void ClearMaps(); //Generates the initial map according to the offset.
 
 	UPROPERTY()
 		TArray<FVector> MapPoints; //The location of all the maps.
-
-	int32 RoundDownToNearest(int32 Value, int32 Nearest); //Always rounds down to the nearest
 };
 
 class GenerateChunk : public FNonAbandonableTask {
