@@ -31,10 +31,8 @@ void APlayerCharacter::BeginPlay()
 		MapGen = *Map; //There should only be one map generator in the level.
 	}
 
-	FVector Pos = GetActorLocation();
-	int32 X = DoStatic::RoundDownToNearest(Pos.X, MapGen->W);
-	int32 Y = DoStatic::RoundDownToNearest(Pos.Y, MapGen->H);
-	PrevPos = FVector(X - 1, Y - 1, 0); //Offset to force check surrounding.
+	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
+	PrevPos = FVector(0, 0, 1); //Offset to force check surrounding.
 }
 
 // Called every frame
@@ -45,12 +43,10 @@ void APlayerCharacter::Tick(float DeltaTime)
 		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
 	}
 
-	FVector Pos = GetActorLocation();
-	int32 X = DoStatic::RoundDownToNearest(Pos.X, MapGen->W);
-	int32 Y = DoStatic::RoundDownToNearest(Pos.Y, MapGen->H);
-	if (X != PrevPos.X || Y != PrevPos.Y) {
-		PrevPos = FVector(X, Y, 0);
-		MapGen->CheckSurrounding(Pos);
+	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
+	if (Pos != PrevPos) {
+		PrevPos = Pos;
+		MapGen->CheckSurrounding(GetActorLocation());
 	}
 }
 

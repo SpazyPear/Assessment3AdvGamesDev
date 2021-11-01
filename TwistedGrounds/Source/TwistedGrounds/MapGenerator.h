@@ -65,6 +65,7 @@ public:
 
 	int W; //Width of the chunk
 	int H; //Height of the chunk
+	FVector RoundDownPosition(FVector Position); //Gets a position and rounds it down.
 	void CheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
 
 private:
@@ -74,43 +75,8 @@ private:
 	//Sets the generated map's variables to the MapGenerator's
 	void SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, int32 OffsetY);
 	void ClearMaps(); //Generates the initial map according to the offset.
+	void UpdateValues();
 
 	UPROPERTY()
 		TArray<FVector> MapPoints; //The location of all the maps.
-};
-
-class GenerateChunk : public FNonAbandonableTask {
-public:
-	AMapGenerator* MapGenerator;
-	AProcedurallyGeneratedMap* Map;
-	int32 OffsetX;
-	int32 OffsetY;
-
-	GenerateChunk(AMapGenerator* MapGen, AProcedurallyGeneratedMap* SpawnedMap, int32 OX, int32 OY) {
-		UE_LOG(LogTemp, Warning, TEXT("Generating Thread"))
-		MapGenerator = MapGen;
-		Map = SpawnedMap;
-		OffsetX = OX;
-		OffsetY = OY;
-	}
-
-	~GenerateChunk() {
-		UE_LOG(LogTemp, Warning, TEXT("Destorying Thread"))
-	}
-
-	FORCEINLINE TStatId GetStatId() const
-	{
-		RETURN_QUICK_DECLARE_CYCLE_STAT(GenerateChunk, STATGROUP_ThreadPoolAsyncTasks);
-	}
-
-	void DoWork() {
-		UE_LOG(LogTemp, Warning, TEXT("Generating the chunk??"))
-		if (Map) {
-			Map->InitiateMap(
-				MapGenerator->ChunkWidth, MapGenerator->ChunkHeight, MapGenerator->ChunkGridSize,
-				MapGenerator->PerlinScale, MapGenerator->PerlinRoughness, MapGenerator->PerlinOffset,
-				OffsetX, OffsetY
-			);
-		}
-	}
 };
