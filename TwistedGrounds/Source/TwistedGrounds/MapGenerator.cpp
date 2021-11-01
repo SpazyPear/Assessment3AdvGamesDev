@@ -78,7 +78,7 @@ void AMapGenerator::CheckSurrounding(FVector Position)
 	FVector Pos = RoundDownPosition(Position);
 	float StartX = Pos.X - W * HalfRadius;
 	float StartY = Pos.Y - H * HalfRadius;
-	
+
 	for (int i = 0; i < ChunkRadius * ChunkRadius; i++) {
 		int XMult = (i % ChunkRadius);
 		int YMult = (i / ChunkRadius);

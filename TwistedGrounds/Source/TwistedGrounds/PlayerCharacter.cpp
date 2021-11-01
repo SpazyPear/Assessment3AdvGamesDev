@@ -45,8 +45,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	if (Pos != PrevPos) {
 		PrevPos = Pos;
-		DoStatic::PrintWarning("Entered new chunk.");
-		MapGen->CheckSurrounding(Pos);
+		MapGen->CheckSurrounding(GetActorLocation());
 	}
 }
 

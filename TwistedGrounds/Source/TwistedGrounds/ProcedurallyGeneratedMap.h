@@ -8,6 +8,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "KismetProceduralMeshLibrary.h"
 #include "ProceduralMeshComponent.h"
+#include "EngineUtils.h"
 #include "DoStatic.h"
 
 #include "ProcedurallyGeneratedMap.generated.h"
@@ -65,19 +66,25 @@ public:
 	//End
 
 	bool bGenerateMeshSection;
+
 	virtual bool ShouldTickIfViewportsOnly() const override;
 
 private:
 	void ClearMap();
+
+	TArray<AProcedurallyGeneratedMap*> GetNeighbours();
 };
 
 class GenerateChunk : public FNonAbandonableTask {
 public:
 
+	TArray<AProcedurallyGeneratedMap*> Neighbours;
+
 	AProcedurallyGeneratedMap* MapRef;
-	GenerateChunk(AProcedurallyGeneratedMap* Map)
+	GenerateChunk(AProcedurallyGeneratedMap* Map, TArray<AProcedurallyGeneratedMap*> Neighbours)
 	{
 		MapRef = Map;
+		this->Neighbours = Neighbours;
 	}
 
 	~GenerateChunk() {}
@@ -87,6 +94,13 @@ public:
 	}
 
 	void DoWork() {
+		GenerateInitialChunk();
+		UpdateChunkEdge();
+		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(MapRef->Vertices, MapRef->Triangles, MapRef->UVCoords, MapRef->Normals, MapRef->Tangents);
+		MapRef->bGenerateMeshSection = true;
+	}
+
+	void GenerateInitialChunk() {
 		for (int i = 0; i < MapRef->Width * MapRef->Height; i++) {
 			int X = i % MapRef->Width;
 			int Y = i / MapRef->Width;
@@ -115,7 +129,33 @@ public:
 
 			MapRef->UVCoords.Add(FVector2D(X, Y));
 		}
-		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(MapRef->Vertices, MapRef->Triangles, MapRef->UVCoords, MapRef->Normals, MapRef->Tangents);
-		MapRef->bGenerateMeshSection = true;
+		
+	}
+
+	void UpdateChunkEdge() {
+		int32 W = MapRef->Width;
+		int32 largestSide = W > MapRef->Height ? W : MapRef->Height;
+		
+		for (int i = 0; i < largestSide; i++) {
+			if (i < W) {
+				int32 TopIndex = MapRef->Vertices.Num() - W + i;
+				int32 BottomIndex = i;
+				//Bottom of current map, top of bottom map.
+				MapRef->Vertices[BottomIndex].Z = Neighbours[2] ? Neighbours[2]->Vertices[TopIndex].Z : MapRef->Vertices[BottomIndex].Z;
+
+				//Top of current map, bottom of top map.
+				MapRef->Vertices[TopIndex].Z = Neighbours[0] ? Neighbours[0]->Vertices[BottomIndex].Z : MapRef->Vertices[TopIndex].Z;
+			}
+
+			if (i < MapRef->Height) {
+				int32 RightIndex = W * i;
+				int32 LeftIndex = RightIndex + W - 1;
+				//Right of current map, left of right map.
+				MapRef->Vertices[RightIndex].Z = Neighbours[1] ? Neighbours[1]->Vertices[LeftIndex].Z : MapRef->Vertices[RightIndex].Z;
+
+				//Left of current map, right of left map.
+				MapRef->Vertices[LeftIndex].Z = Neighbours[3] ? Neighbours[3]->Vertices[RightIndex].Z : MapRef->Vertices[LeftIndex].Z;
+			}
+		}
 	}
 };
