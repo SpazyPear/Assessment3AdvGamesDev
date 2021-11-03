@@ -3,6 +3,7 @@
 #include "ProcedurallyGeneratedMap.h"
 #include "MapGenerator.h"
 #include "EngineUtils.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
@@ -10,6 +11,7 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 
 	PrimaryActorTick.bCanEverTick = false; //THIS IS SET TO FALSE, SET TO TRUE IF TICK IS NEEDED.
+	bReplicates = true;
 
 	MeshComponent = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("Mesh Component"));
 	SetRootComponent(MeshComponent);
@@ -22,8 +24,6 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 	PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
 	OffsetX = 0;
 	OffsetY = 0;
-
-	bGenerateMeshSection = false;
 }
 
 // Called when the game starts or when spawned
@@ -36,11 +36,6 @@ void AProcedurallyGeneratedMap::BeginPlay()
 void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (bGenerateMeshSection) {
-		bGenerateMeshSection = false;
-		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
-		MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
-	}
 }
 
 void AProcedurallyGeneratedMap::GenerateMap() {
@@ -87,6 +82,7 @@ void AProcedurallyGeneratedMap::InitiateMap(int32 W, int32 H, float GS, float PS
 	PerlinOffset = PO;
 	OffsetX = OX;
 	OffsetY = OY;
+
 	GenerateMap();
 }
 

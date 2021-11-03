@@ -63,20 +63,22 @@ public:
 	////End
 	//End
 
-	int W; //Width of the chunk
-	int H; //Height of the chunk
 	FVector RoundDownPosition(FVector Position); //Gets a position and rounds it down.
-	void CheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
+
+	UFUNCTION(Server, Reliable)
+		void ServerCheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
 
 private:
+	int W; //Width of the chunk
+	int H; //Height of the chunk
 	int ActualW;
 	int ActualH;
 
-	//Sets the generated map's variables to the MapGenerator's
 	void SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, int32 OffsetY);
 	void ClearMaps(); //Generates the initial map according to the offset.
 	void UpdateValues();
 
 	UPROPERTY()
 		TArray<FVector> MapPoints; //The location of all the maps.
+
 };

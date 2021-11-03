@@ -38,7 +38,7 @@ public:
 	UPROPERTY()
 		float GridSize;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY()
 		UProceduralMeshComponent* MeshComponent;
 	//End
 
@@ -66,6 +66,4 @@ private:
 	int32 OffsetX;
 	int32 OffsetY;
 	//End
-
-	bool bGenerateMeshSection;
 };

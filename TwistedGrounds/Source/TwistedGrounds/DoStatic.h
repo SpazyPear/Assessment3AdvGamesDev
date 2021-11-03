@@ -27,6 +27,14 @@ public:
 	/// <summary>
 	/// A UE_LOG at warning level.
 	/// </summary>
-	/// <param name="S">String of what to print.</param>
+	/// <param name="S">String of what to print. Its format: FString::Printf("", *Args)</param>
 	static void PrintWarning(FString S);
+
+	/// <summary>
+	/// Prints a message in a random colour onto the screen.
+	/// </summary>
+	/// <param name="Duration">How long it will last, defaults to 5 seconds</param>
+	/// <param name="S">What should be displayed. Its format: FString::Printf("", *Args)</param>
+	static void PrintOnScreenDebugMessage(float Duration, FString S);
+	static void PrintOnScreenDebugMessage(FString S);
 };

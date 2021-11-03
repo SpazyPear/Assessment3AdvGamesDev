@@ -12,6 +12,18 @@ ATwistedGroundsHUD::ATwistedGroundsHUD()
 	// Set the crosshair texture
 	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshairTexObj(TEXT("/Game/Textures/HUD/FirstPersonCrosshair"));
 	CrosshairTex = CrosshairTexObj.Object;
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> PlayerHUDObject(TEXT("/Game/UI/HUD"));
+	PlayerHUDClass = PlayerHUDObject.Class;
+	if (!PlayerHUDClass) {
+		return;
+	}
+	CurrentPlayerHUDWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerHUDClass);
+	if (!CurrentPlayerHUDWidget) {
+		return;
+	}
+	CurrentPlayerHUDWidget->AddToViewport();
+	AmmoBar = Cast<UProgressBar>(CurrentPlayerHUDWidget->GetWidgetFromName(TEXT("AmmoBar")));
 }
 
 
@@ -32,4 +44,12 @@ void ATwistedGroundsHUD::DrawHUD()
 	FCanvasTileItem TileItem( CrosshairDrawPosition, CrosshairTex->Resource, FLinearColor::White);
 	TileItem.BlendMode = SE_BLEND_Translucent;
 	Canvas->DrawItem( TileItem );
+}
+
+void ATwistedGroundsHUD::UpdateAmmoBar(float Percent)
+{
+	if (!AmmoBar) {
+		return;
+	}
+	AmmoBar->SetPercent(Percent);
 }

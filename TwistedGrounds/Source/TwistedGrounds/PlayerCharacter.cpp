@@ -46,7 +46,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	if (Pos != PrevPos) {
 		PrevPos = Pos;
-		MapGen->CheckSurrounding(GetActorLocation());
+		MapGen->ServerCheckSurrounding(GetActorLocation());
 	}
 }
 
@@ -86,6 +86,10 @@ void APlayerCharacter::Strafe(float Value)
 
 void APlayerCharacter::LookUp(float Value)
 {
+	if (!Camera) {
+		return;
+	}
+
 	float NewPitch = Camera->GetRelativeRotation().Pitch + Value * LookSensitivity;
 	NewPitch = NewPitch > 90 ? 90 : NewPitch;
 	NewPitch = NewPitch < -90 ? -90 : NewPitch;
@@ -113,7 +117,6 @@ void APlayerCharacter::SculptStart()
 void APlayerCharacter::SculptEnd()
 {
 	if (!Sculptor) {
-		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
 		return;
 	}
 
@@ -136,7 +139,6 @@ void APlayerCharacter::SculptEnd()
 void APlayerCharacter::Invert()
 {
 	if (!Sculptor) {
-		UE_LOG(LogTemp, Warning, TEXT("There is no reference for the MeshSculpt variable."))
 		return;
 	}
 	Sculptor->bInvert = !Sculptor->bInvert;

@@ -8,9 +8,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "MapGenerator.h"
 #include "EngineUtils.h"
-
-
-
+#include "TwistedGroundsHUD.h"
 
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
@@ -48,8 +46,11 @@ void AProcMeshSculpt::BeginPlay()
 	Collider->OnComponentBeginOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapBegin);
 	Collider->OnComponentEndOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapEnd);
 
-	
-
+	ATwistedGroundsHUD* HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+	if (!HUD) {
+		return;
+	}
+	HUD->UpdateAmmoBar(1);
 }
 
 // Called every frame

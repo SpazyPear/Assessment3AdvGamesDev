@@ -67,10 +67,12 @@ public:
 
 	void CapDistance();
 
+	UPROPERTY(BlueprintReadOnly)
+	AProcMeshSculpt* Sculptor;
+
 private:
 	ADustClouds* BigEmitter;
 	ADustClouds* SmallEmitter;
-	AProcMeshSculpt* Sculptor;
 	AMapGenerator* MapGen;
 	FVector PrevPos;
 };

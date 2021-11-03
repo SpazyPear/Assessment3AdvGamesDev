@@ -40,7 +40,7 @@ void AMapGenerator::Tick(float DeltaTime)
 		bRegenerateMap = false;
 		ClearMaps();
 		UpdateValues();
-		CheckSurrounding(FVector(0, 0, 0));
+		ServerCheckSurrounding(FVector(0, 0, 0));
 	}
 }
 
@@ -63,7 +63,7 @@ FVector AMapGenerator::RoundDownPosition(FVector Position)
 	return FVector(DoStatic::RoundDownToNearest(Position.X, W), DoStatic::RoundDownToNearest(Position.Y, H), 0);
 }
 
-void AMapGenerator::CheckSurrounding(FVector Position)
+void AMapGenerator::ServerCheckSurrounding_Implementation(FVector Position)
 {
 	float HalfRadius = ChunkRadius / 2; //Half of the radius
 	FVector Pos = RoundDownPosition(Position);
@@ -82,11 +82,11 @@ void AMapGenerator::CheckSurrounding(FVector Position)
 		}
 
 		//Else Generate the map.
-		AProcedurallyGeneratedMap* Map = GetWorld()->SpawnActor<AProcedurallyGeneratedMap>(PGMap, Loc, FRotator::ZeroRotator);
 		int32 OffsetX = ActualW * (X / W); //X offset for perlin noise
 		int32 OffsetY = ActualH * (Y / H); //Y offset for perlin noise
-		SetMapParams(Map, OffsetX, OffsetY);
 		MapPoints.Add(Loc); //Save the location of the map
+		AProcedurallyGeneratedMap* Map = GetWorld()->SpawnActor<AProcedurallyGeneratedMap>(PGMap, Loc, FRotator::ZeroRotator);
+		SetMapParams(Map, OffsetX, OffsetY);
 	}
 }
 
