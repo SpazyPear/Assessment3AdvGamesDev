@@ -40,7 +40,7 @@ void AMapGenerator::Tick(float DeltaTime)
 		bRegenerateMap = false;
 		ClearMaps();
 		UpdateValues();
-		NetMulticastCheckSurrounding(FVector(0, 0, 0));
+		CheckSurrounding(FVector(0, 0, 0));
 	}
 }
 
@@ -63,7 +63,7 @@ FVector AMapGenerator::RoundDownPosition(FVector Position)
 	return FVector(DoStatic::RoundDownToNearest(Position.X, W), DoStatic::RoundDownToNearest(Position.Y, H), 0);
 }
 
-void AMapGenerator::NetMulticastCheckSurrounding_Implementation(FVector Position)
+void AMapGenerator::CheckSurrounding(FVector Position)
 {
 	float HalfRadius = ChunkRadius / 2; //Half of the radius
 	FVector Pos = RoundDownPosition(Position);

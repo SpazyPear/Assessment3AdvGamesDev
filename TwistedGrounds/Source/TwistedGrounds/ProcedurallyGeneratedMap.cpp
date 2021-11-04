@@ -11,7 +11,6 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 
 	PrimaryActorTick.bCanEverTick = false; //THIS IS SET TO FALSE, SET TO TRUE IF TICK IS NEEDED.
-	bReplicates = true;
 
 	MeshComponent = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("Mesh Component"));
 	SetRootComponent(MeshComponent);

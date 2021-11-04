@@ -12,6 +12,7 @@
 #include "ProcMeshSculpt.h"
 #include "DustClouds.h"
 #include "MapGenerator.h"
+#include "TwistedGroundsHUD.h"
 
 #include "GameFramework/CharacterMovementComponent.h"
 #include "PlayerCharacter.generated.h"
@@ -54,7 +55,7 @@ public:
 	TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<AProcMeshSculpt> MeshSculptor;
+	TSubclassOf<class AProcMeshSculpt> MeshSculptor;
 	//End
 
 	void SculptStart();
@@ -67,12 +68,13 @@ public:
 
 	void CapDistance();
 
-	UPROPERTY(BlueprintReadOnly)
-	AProcMeshSculpt* Sculptor;
+	void UpdateAmmoBar(float Percent); //Updates the player's HUD
 
 private:
 	ADustClouds* BigEmitter;
 	ADustClouds* SmallEmitter;
 	AMapGenerator* MapGen;
 	FVector PrevPos;
+	AProcMeshSculpt* Sculptor;
+	ATwistedGroundsHUD* HUD;
 };

@@ -8,13 +8,15 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "MapGenerator.h"
 #include "EngineUtils.h"
-#include "TwistedGroundsHUD.h"
+#include "DoStatic.h"
 
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
 {
 	// Set this actor to call Tick() every frame. You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	bReplicateMovement = true;
+
 	SculptState = SCULPTSTATE::IDLE;
 	ScaledZStrength = 70;
 	bInvert = false;
@@ -45,12 +47,6 @@ void AProcMeshSculpt::BeginPlay()
 	Collider->SetGenerateOverlapEvents(true);
 	Collider->OnComponentBeginOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapBegin);
 	Collider->OnComponentEndOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapEnd);
-
-	ATwistedGroundsHUD* HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
-	if (!HUD) {
-		return;
-	}
-	HUD->UpdateAmmoBar(1);
 }
 
 // Called every frame
@@ -59,7 +55,7 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	if (!Muzzle || !Camera) {
-		UE_LOG(LogTemp, Warning, TEXT("No Muzzle or Camera"))
+		DoStatic::Print("No Muzzle or Camera");
 		return;
 	}
 
@@ -389,6 +385,13 @@ void AProcMeshSculpt::Raycast()
 	SetActorHiddenInGame(!Map);
 	if (Map) {
 		SetActorLocation(HitResult.ImpactPoint);
+	}
+}
+
+void AProcMeshSculpt::UpdateAmmoBar()
+{
+	if (Player) {
+		Player->UpdateAmmoBar(SculptAmmo / MaxAmmo);
 	}
 }
 

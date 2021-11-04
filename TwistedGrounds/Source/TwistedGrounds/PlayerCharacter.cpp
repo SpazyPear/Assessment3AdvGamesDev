@@ -33,6 +33,12 @@ void APlayerCharacter::BeginPlay()
 
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	PrevPos = FVector(0, 0, 1); //Offset to force check surrounding.
+
+	HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+	if (!HUD) {
+		return;
+	}
+	UpdateAmmoBar(1);
 }
 
 // Called every frame
@@ -46,7 +52,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	if (Pos != PrevPos) {
 		PrevPos = Pos;
-		MapGen->NetMulticastCheckSurrounding(GetActorLocation());
+		MapGen->CheckSurrounding(GetActorLocation());
 	}
 }
 
@@ -109,7 +115,7 @@ void APlayerCharacter::SculptStart()
 	if (!Sculptor || !Sculptor->Map) {
 		return;
 	}
-
+	
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
 	Sculptor->SculptState = SCULPTSTATE::ONGOING;
 }
@@ -133,7 +139,6 @@ void APlayerCharacter::SculptEnd()
 	if (!Sculptor->CapHeight) {
 		Sculptor->CappedHeight = -INFINITY;
 	}
-	
 }
 
 void APlayerCharacter::Invert()
@@ -151,11 +156,15 @@ void APlayerCharacter::CapHeight()
 
 void APlayerCharacter::CapDistance()
 {
-	if (Sculptor->CapDistance == false) {
+	if (!Sculptor->CapDistance) {
 		Sculptor->CreateCurve();
 	}
+	Sculptor->CapDistance = false;
+}
 
-	else {
-		Sculptor->CapDistance = false;
+void APlayerCharacter::UpdateAmmoBar(float Percent)
+{
+	if (HUD) {
+		HUD->UpdateAmmoBar(Percent);
 	}
 }

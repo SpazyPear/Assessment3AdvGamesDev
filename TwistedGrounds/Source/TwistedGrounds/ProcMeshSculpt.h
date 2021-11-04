@@ -9,6 +9,7 @@
 #include "HAL/Runnable.h"
 #include "UpdateMeshThread.h"
 
+#include "PlayerCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
 #include "Components/BoxComponent.h"
@@ -51,6 +52,7 @@ public:
 		FHitResult HitResult;
 
 	void VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, float DistanceFraction, int32 VertexIndex);
+
 	void Sculpt();
 
 	UPROPERTY(EditAnywhere)
@@ -61,7 +63,7 @@ public:
 
 	SCULPTSTATE SculptState;
 
-	APawn* Player;
+	class APlayerCharacter* Player;
 
 	bool bInvert;
 
@@ -105,17 +107,10 @@ public:
 
 	FVector Direction;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		float SculptAmmo;
-
-	UPROPERTY(BlueprintReadWrite)
-		float MaxAmmo;
-
-	UPROPERTY(EditAnywhere)
-		float AmmoCost;
-
-	UPROPERTY(EditAnywhere)
-		float AmmoRegen;
+	float SculptAmmo;
+	float MaxAmmo;
+	float AmmoCost;
+	float AmmoRegen;
 
 	UPROPERTY(EditAnywhere)
 		UCurveFloat* Curve;
@@ -143,4 +138,7 @@ public:
 	bool bNeedsUpdate;
 
 	TMap<DIRECTION, TArray<FVector>> OverlappedVertices;
+
+private:
+	void UpdateAmmoBar();
 };

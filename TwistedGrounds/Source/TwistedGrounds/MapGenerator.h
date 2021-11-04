@@ -65,8 +65,10 @@ public:
 
 	FVector RoundDownPosition(FVector Position); //Gets a position and rounds it down.
 
-	UFUNCTION(NetMulticast, Reliable)
-		void NetMulticastCheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
+	//Since Procedural mesh component cannot be replicated, both client and server need to use this.
+	//This is highly inefficient but it is the only viable option. No replication needed as all clients need
+	//to do this to stay synced up.
+	void CheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
 
 private:
 	int W; //Width of the chunk
