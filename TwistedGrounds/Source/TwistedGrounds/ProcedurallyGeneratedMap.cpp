@@ -36,6 +36,7 @@ void AProcedurallyGeneratedMap::BeginPlay()
 void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	//PrimaryActorTick.bCanEverTick is set to False!
 }
 
 void AProcedurallyGeneratedMap::GenerateMap() {
@@ -82,7 +83,6 @@ void AProcedurallyGeneratedMap::InitiateMap(int32 W, int32 H, float GS, float PS
 	PerlinOffset = PO;
 	OffsetX = OX;
 	OffsetY = OY;
-
 	GenerateMap();
 }
 

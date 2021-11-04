@@ -46,7 +46,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	if (Pos != PrevPos) {
 		PrevPos = Pos;
-		MapGen->ServerCheckSurrounding(GetActorLocation());
+		MapGen->NetMulticastCheckSurrounding(GetActorLocation());
 	}
 }
 

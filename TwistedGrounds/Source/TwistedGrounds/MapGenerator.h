@@ -65,8 +65,8 @@ public:
 
 	FVector RoundDownPosition(FVector Position); //Gets a position and rounds it down.
 
-	UFUNCTION(Server, Reliable)
-		void ServerCheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
+	UFUNCTION(NetMulticast, Reliable)
+		void NetMulticastCheckSurrounding(FVector Position); //Given a position, check the surrounding chunks
 
 private:
 	int W; //Width of the chunk
