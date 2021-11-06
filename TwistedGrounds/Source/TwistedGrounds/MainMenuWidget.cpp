@@ -2,27 +2,27 @@
 
 
 #include "MainMenuWidget.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "DoStatic.h"
 
 bool UMainMenuWidget::Initialize() {
 	Super::Initialize();
+
+	bTutorialHidden = true;
 	bool bSuccess = ButtonStart && ButtonTutorial && ButtonQuit;
+	bSuccess = bSuccess && TutorialText && ButtonTutorialText;
 	if (bSuccess) {
-		ButtonStart->OnHovered.AddDynamic(this, &UMainMenuWidget::ButtonStartHover);
 		ButtonStart->OnClicked.AddDynamic(this, &UMainMenuWidget::ButtonStartAction);
-
-		ButtonTutorial->OnHovered.AddDynamic(this, &UMainMenuWidget::ButtonTutorialHover);
 		ButtonTutorial->OnClicked.AddDynamic(this, &UMainMenuWidget::ButtonTutorialAction);
-
-		ButtonQuit->OnHovered.AddDynamic(this, &UMainMenuWidget::QuitButtonHover);
 		ButtonQuit->OnClicked.AddDynamic(this, &UMainMenuWidget::QuitButtonAction);
+
+		TutorialText->SetText(DoStatic::CreateFText("WASD or Arrow keys to move.\nHold shift to sprint.\nSpace to jump.\nControl to slide.\n\nLeft click to shoot.\nRight click to sculpt the terrain.\nWhile sculpting, hold:\n\t- E to dig.\n\t- Q to lock the height of the sculpting."));
+	}
+	else {
+		//Will crash the editor.
+		DoStatic::Print(1, "The main menu widget failed to initialise, one of the widgets does not work.");
 	}
 	return bSuccess;
-}
-
-void UMainMenuWidget::ButtonStartHover()
-{
-	DoStatic::Print(4, "Start Button Hover");
 }
 
 void UMainMenuWidget::ButtonStartAction()
@@ -30,22 +30,26 @@ void UMainMenuWidget::ButtonStartAction()
 	DoStatic::Print("Start Button Pressed");
 }
 
-void UMainMenuWidget::ButtonTutorialHover()
-{
-	DoStatic::Print(4, "Tutorial Button Hover");
-}
-
 void UMainMenuWidget::ButtonTutorialAction()
 {
-	DoStatic::Print("Tutorial Button Pressed");
-}
-
-void UMainMenuWidget::QuitButtonHover()
-{
-	DoStatic::Print(4, "Quit Button Hover");
+	FlipToTutorial();
 }
 
 void UMainMenuWidget::QuitButtonAction()
 {
-	DoStatic::Print("Quit Button Pressed");
+	UKismetSystemLibrary::QuitGame(GetWorld(), 0, EQuitPreference::Quit, false);
+}
+
+void UMainMenuWidget::FlipToTutorial()
+{
+	bTutorialHidden = !bTutorialHidden;
+	ButtonTutorialText->SetText(DoStatic::CreateFText(bTutorialHidden ? "How To Play" : "Go Back"));
+	ButtonStart->SetVisibility(GetSlateVisibility(!bTutorialHidden));
+	ButtonQuit->SetVisibility(GetSlateVisibility(!bTutorialHidden));
+	TutorialText->SetVisibility(GetSlateVisibility(bTutorialHidden));
+}
+
+ESlateVisibility UMainMenuWidget::GetSlateVisibility(bool bHidden)
+{
+	return bHidden ? ESlateVisibility::Hidden : ESlateVisibility::Visible;
 }

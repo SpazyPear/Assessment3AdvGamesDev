@@ -6,6 +6,9 @@
 #include "Blueprint/UserWidget.h"
 
 #include "Components/Button.h"
+#include "Components/Image.h"
+#include "Components/TextBlock.h"
+#include "MainGameInstance.h"
 
 #include "MainMenuWidget.generated.h"
 
@@ -24,23 +27,25 @@ private:
 		UButton* ButtonTutorial;
 
 	UPROPERTY(meta = (BindWidget))
+		UTextBlock* ButtonTutorialText;
+
+	UPROPERTY(meta = (BindWidget))
 		UButton* ButtonQuit;
 
-	UFUNCTION()
-		void ButtonStartHover();
+	UPROPERTY(meta = (BindWidget))
+		UTextBlock* TutorialText;
 
 	UFUNCTION()
 		void ButtonStartAction();
 
 	UFUNCTION()
-		void ButtonTutorialHover();
-
-	UFUNCTION()
 		void ButtonTutorialAction();
 
 	UFUNCTION()
-		void QuitButtonHover();
-
-	UFUNCTION()
 		void QuitButtonAction();
+
+	void FlipToTutorial();
+	bool bTutorialHidden;
+
+	ESlateVisibility GetSlateVisibility(bool bHidden);
 };

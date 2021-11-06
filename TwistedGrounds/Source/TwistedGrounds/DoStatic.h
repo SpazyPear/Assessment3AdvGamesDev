@@ -26,7 +26,7 @@ public:
 	/// Use either ELogVerbosity::Type or the correct number.
 	/// </summary>
 	/// <param name="Verbosity">Allowed verbosity: Display (4), Warning (3), Error (2), Fatal (1)</param>
-	/// <param name="String"> What should be displayed. A ordinary string works, if arguments are needed use: FString::Printf(TEXT(""), *Args)</param>
+	/// <param name="String"> What should be displayed. Ordinary strings works, if arguments are needed use: FString::Printf(TEXT(""), *Args)</param>
 	static void Print(int32 Verbosity, FString String);
 	static void Print(FString String);
 
@@ -35,9 +35,16 @@ public:
 	/// </summary>
 	/// <param name="Duration">How long it will last, defaults to 5 seconds</param>
 	/// <param name="Colour">The colour of the text</param>
-	/// <param name="String"> What should be displayed. A ordinary string works, if arguments are needed use: FString::Printf(TEXT(""), *Args)</param>
+	/// <param name="String"> What should be displayed. Ordinary strings works, if arguments are needed use: FString::Printf(TEXT(""), *Args)</param>
 	static void PrintOnScreenDebugMessage(float Duration, FColor Colour, FString String);
 	static void PrintOnScreenDebugMessage(FColor Colour, FString String);
 	static void PrintOnScreenDebugMessage(float Duration, FString String);
 	static void PrintOnScreenDebugMessage(FString String);
+
+	/// <summary>
+	/// For widget use. Returns an FText from a given string.
+	/// </summary>
+	/// <param name="String">Ordinary strings works, if arguments are needed use: FString::Printf(TEXT(""), *Args)</param>
+	/// <returns>An FText of the given string</returns>
+	static FText CreateFText(FString String);
 };

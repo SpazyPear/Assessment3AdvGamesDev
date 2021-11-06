@@ -18,20 +18,29 @@ void UMainGameInstance::LoadMenu()
 		return;
 	}
 
-	UMainMenuWidget* MainMenu = CreateWidget<UMainMenuWidget>(GetWorld(), MainMenuWidgetClass);
-	if (!MainMenu) {
+	UMainMenuWidget* Menu = CreateWidget<UMainMenuWidget>(GetWorld(), MainMenuWidgetClass);
+	if (!Menu) {
 		return;
 	}
 
-	MainMenu->AddToViewport();
+	Menu->AddToViewport();
 
 	FInputModeUIOnly InputMode;
 	InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-	InputMode.SetWidgetToFocus(MainMenu->TakeWidget());
 
 	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	if (PlayerController) {
 		PlayerController->SetInputMode(InputMode);
 		PlayerController->bShowMouseCursor = true;
+	}
+}
+
+void UMainGameInstance::ChangeToNormalInput()
+{
+	FInputModeGameOnly InputMode;
+	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+	if (PlayerController) {
+		PlayerController->SetInputMode(InputMode);
+		PlayerController->bShowMouseCursor = false;
 	}
 }

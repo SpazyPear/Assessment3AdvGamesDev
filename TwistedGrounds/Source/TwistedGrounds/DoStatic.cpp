@@ -27,14 +27,14 @@ void DoStatic::Print(int32 Verbosity, FString String)
 		UE_LOG(LogTemp, Fatal, TEXT("%s"), *String)
 		return;
 	default:
-		UE_LOG(LogTemp, Error, TEXT("#############################"))
+		UE_LOG(LogTemp, Error, TEXT("#"))
 		UE_LOG(LogTemp, Warning, TEXT("Unknown verbosity, use ELogVerbosity::Type or a number"))
 		UE_LOG(LogTemp, Display, TEXT("ELogVerbosity::Display or 4 for normal colour"))
 		UE_LOG(LogTemp, Warning, TEXT("ELogVerbosity::Warning or 3 for this colour"))
 		UE_LOG(LogTemp, Error, TEXT("ELogVerbosity::Error or 2 for this colour"))
 		UE_LOG(LogTemp, Error, TEXT("ELogVerbosity::Fatal or 1, THIS WILL CRASH THE GAME, USE WITH CAUTION!"))
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *String)
-		UE_LOG(LogTemp, Error, TEXT("#############################"))
+		UE_LOG(LogTemp, Error, TEXT("#"))
 	}
 }
 
@@ -64,4 +64,9 @@ void DoStatic::PrintOnScreenDebugMessage(float Duration, FString String)
 void DoStatic::PrintOnScreenDebugMessage(FString String)
 {
 	PrintOnScreenDebugMessage(5, String);
+}
+
+FText DoStatic::CreateFText(FString String)
+{
+	return FText::FromString(FString::Printf(TEXT("%s"), *String));
 }

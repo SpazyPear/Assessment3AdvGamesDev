@@ -10,9 +10,6 @@
 
 #include "MainGameInstance.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class TWISTEDGROUNDS_API UMainGameInstance : public UGameInstance
 {
@@ -24,7 +21,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void LoadMenu();
 
+	UFUNCTION(BlueprintCallable)
+		void ChangeToNormalInput();
+
 private:
 	TSubclassOf<UUserWidget> MainMenuWidgetClass;
-	UMainMenuWidget* Menu;
 };

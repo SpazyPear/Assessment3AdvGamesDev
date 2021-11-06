@@ -69,6 +69,13 @@ public:
 	void CapDistance();
 
 	void UpdateAmmoBar(float Percent); //Updates the player's HUD
+	void Fire();
+
+	void OnDeath();
+
+	void Sprint();
+
+	void GetUp();
 
 private:
 	ADustClouds* BigEmitter;
