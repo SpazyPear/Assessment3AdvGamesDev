@@ -11,9 +11,6 @@
 #include "DoStatic.h"
 #include "TwistedGroundsHUD.h"
 
-
-
-
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
 {
@@ -356,7 +353,7 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 	}
 	ATwistedGroundsHUD* HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
 	if (HUD) {
-		HUD->SetsSculptAmmo(SculptAmmo / MaxAmmo);
+		HUD->UpdateAmmoBar(SculptAmmo / MaxAmmo);
 	}
 }
 

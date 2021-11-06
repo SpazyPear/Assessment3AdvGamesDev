@@ -12,9 +12,9 @@
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
 {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
+	// Set this component to be initialized when the game starts, and to be ticked every frame. You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 	MaxHealth = 100.0f;
 	// ...
 }
@@ -26,21 +26,6 @@ void UHealthComponent::BeginPlay()
 	Super::BeginPlay();
 
 	CurrentHealth = MaxHealth;
-	
-}
-
-
-// Called every frame
-void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	/*
-	if (GEngine && GetOwner()->GetLocalRole() == ROLE_AutonomousProxy)
-	{
-		GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("Current Health: %f"), CurrentHealth));
-	}
-	*/
 }
 
 void UHealthComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -78,7 +63,7 @@ void UHealthComponent::UpdateHealthBar()
 		ATwistedGroundsHUD* PlayerHUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 		if (PlayerHUD)
 		{
-			PlayerHUD->SetPlayerHealthBarPercent(CurrentHealth / MaxHealth);
+			PlayerHUD->UpdateHPBar(CurrentHealth / MaxHealth);
 		}
 	}
 }

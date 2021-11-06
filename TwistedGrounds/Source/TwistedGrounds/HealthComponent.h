@@ -31,15 +31,13 @@ public:
 	UPROPERTY(ReplicatedUsing = UpdateHealthBar, BlueprintReadOnly)
 	float CurrentHealth;
 
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UFUNCTION(BlueprintCallable)
 	void OnTakeDamage(float Damage);
+
 	UFUNCTION(BlueprintCallable)
 	void OnDeath();
 
 	float HealthPercentageRemaining();
-		
 };

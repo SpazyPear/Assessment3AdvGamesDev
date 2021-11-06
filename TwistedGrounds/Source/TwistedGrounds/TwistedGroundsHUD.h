@@ -18,15 +18,10 @@ class ATwistedGroundsHUD : public AHUD
 public:
 	ATwistedGroundsHUD();
 
-	virtual void BeginPlay() override;
-
 	/** Primary draw call for the HUD */
 	virtual void DrawHUD() override;
 	void UpdateAmmoBar(float Percent);
-
-	void SetPlayerHealthBarPercent(float Percent);
-
-	void SetsSculptAmmo(float Percent);
+	void UpdateHPBar(float Percent);
 
 private:
 	/** Crosshair asset pointer */
@@ -35,9 +30,5 @@ private:
 	TSubclassOf<UUserWidget> PlayerHUDClass;
 	UUserWidget* CurrentPlayerHUDWidget;
 	UProgressBar* AmmoBar;
-
-	UProgressBar* HealthProgressBar;
-
-	UProgressBar* SculptAmmoBar;
-
+	UProgressBar* HPBar;
 };

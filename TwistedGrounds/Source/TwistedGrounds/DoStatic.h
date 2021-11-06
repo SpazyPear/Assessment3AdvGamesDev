@@ -22,6 +22,12 @@ public:
 	static int32 RoundDownToNearest(int32 Value, int32 Nearest);
 
 	/// <summary>
+	/// Generates a random colour.
+	/// </summary>
+	/// <returns>Returns a random colour</returns>
+	static FColor RandomColour();
+
+	/// <summary>
 	/// A UE_LOG at given verbosity level. Defaults to Warning.
 	/// Use either ELogVerbosity::Type or the correct number.
 	/// </summary>
