@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 
 #include "Components/Button.h"
+#include "MainGameInstance.h"
 
 #include "MainMenuWidget.generated.h"
 
@@ -27,19 +28,10 @@ private:
 		UButton* ButtonQuit;
 
 	UFUNCTION()
-		void ButtonStartHover();
-
-	UFUNCTION()
 		void ButtonStartAction();
 
 	UFUNCTION()
-		void ButtonTutorialHover();
-
-	UFUNCTION()
 		void ButtonTutorialAction();
-
-	UFUNCTION()
-		void QuitButtonHover();
 
 	UFUNCTION()
 		void QuitButtonAction();
