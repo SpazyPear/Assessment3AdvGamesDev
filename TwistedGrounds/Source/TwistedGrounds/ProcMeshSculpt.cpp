@@ -9,6 +9,7 @@
 #include "MapGenerator.h"
 #include "EngineUtils.h"
 #include "DoStatic.h"
+#include "TwistedGroundsHUD.h"
 
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
@@ -71,15 +72,15 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 			CappedHeight = Origin.Z; //maybe why it jitters
 		}
 	}
-	
+
 	if (bNeedsUpdate) {
 		for (AProcedurallyGeneratedMap* HitMap : AffectedTangents) {
 			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents);
 		}
 		bNeedsUpdate = false;
 		UpdateTangents();
-	} 
-	
+	}
+
 }
 
 void AProcMeshSculpt::Sculpt()
@@ -101,7 +102,7 @@ void AProcMeshSculpt::Sculpt()
 	{
 		for (int32 X = -RadiusExtended; X <= RadiusExtended; X++)
 		{
-			
+
 			bEdgeCase = false;
 			AProcedurallyGeneratedMap* CurrentMap = Map;
 			DIRECTION LastDirection;
@@ -112,14 +113,14 @@ void AProcMeshSculpt::Sculpt()
 			int32 XIndex = CurrentIndex % Map->Width;
 			int32 YIndex = FMath::FloorToInt(CurrentIndex / Map->Width);
 
-			
+
 			if (!CurrentMap->Vertices.IsValidIndex(CurrentIndex)) {
 
 					if (Y + MiddleLocation.Y < 0) {
 
 						YIndex = FMath::Abs(YIndex);
 						XIndex = FMath::Abs(XIndex);
-						int32 CurrentIndexCopy = ((Map->Width - YIndex) * Map->Width) + (Map->Width - XIndex); 
+						int32 CurrentIndexCopy = ((Map->Width - YIndex) * Map->Width) + (Map->Width - XIndex);
 
 						for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
@@ -199,7 +200,7 @@ void AProcMeshSculpt::Sculpt()
 							AffectedDirections.Add(LastDirection);
 							break;
 
-						
+
 					}
 				}
 			}
@@ -212,13 +213,13 @@ void AProcMeshSculpt::Sculpt()
 				if (bEdgeCase && LastDirection == DIRECTION::RIGHT) {
 					CurrentIndexCopy -= FMath::Square(Map->Width);
 				}
-				
+
 				for (AProcedurallyGeneratedMap* HitMap : HitMaps) {
 
-					
+
 
 					if (HitMap->Vertices.IsValidIndex(CurrentIndexCopy) && HitMap != CenterMap) {
-						
+
 
 							if (bEdgeCase) {
 								if (!CheckDiagonal(LastDirection, DIRECTION::UP, CenterMap, HitMap, CurrentIndexCopy, CurrentIndex)) {
@@ -259,10 +260,10 @@ void AProcMeshSculpt::Sculpt()
 
 					if (AffectedDirections.Contains(DIRECTION::DOWN))
 						CurrentVertCoords.X -= Map->Width - 1;
-	
+
 			}
 
-			
+
 
 			float DistanceFromCenter = FVector::Dist(MiddleLocation, CurrentVertCoords);
 
@@ -299,7 +300,7 @@ bool AProcMeshSculpt::CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirect
 			return true;
 
 		}
-		
+
 	}
 	else if (Directions.Contains(DIRECTION::DOWN) && Directions.Contains(DIRECTION::LEFT)) {
 		 if (CurrentMap->GetActorLocation().X > HitMap->GetActorLocation().X && CurrentMap->GetActorLocation().Y > HitMap->GetActorLocation().Y) {
@@ -311,7 +312,7 @@ bool AProcMeshSculpt::CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirect
 	}
 	else if (Directions.Contains(DIRECTION::UP) && Directions.Contains(DIRECTION::RIGHT)) {
 		 if (CurrentMap->GetActorLocation().X < HitMap->GetActorLocation().X && CurrentMap->GetActorLocation().Y < HitMap->GetActorLocation().Y) {
-	
+
 			 CurrentIndexCopy = CurrentIndex;
 			 return true;
 		 }
@@ -350,6 +351,10 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 		SculptAmmo += AmmoRegen * DeltaTime;
 		SculptAmmo = FMath::Clamp(SculptAmmo, 0.0f, MaxAmmo);
 	}
+	ATwistedGroundsHUD* HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
+	if (HUD) {
+		HUD->UpdateAmmoBar(SculptAmmo / MaxAmmo);
+	}
 }
 
 void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -374,14 +379,14 @@ void AProcMeshSculpt::UpdateTangents()
 			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents); //updates the tangents a little bit later so the player doesn't freeze everytime you sculpt.
 	}
 	AffectedTangents.Empty();
-		
+
 }
 
 void AProcMeshSculpt::Raycast()
 {
 	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
 
-	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor()); 
+	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor());
 	SetActorHiddenInGame(!Map);
 	if (Map) {
 		SetActorLocation(HitResult.ImpactPoint);
@@ -431,7 +436,7 @@ FVector AProcMeshSculpt::FindNearestPointOnCurve() //Snaps the camera to the nea
 	FVector ForwardCamera = ClosestPoint - Player->GetActorLocation();
 	FRotator RotCamera = UKismetMathLibrary::MakeRotFromX(ForwardCamera);
 	RotCamera.Roll = 0.0f;
-	Camera->SetWorldRotation(RotCamera); 
+	Camera->SetWorldRotation(RotCamera);
 
 	return ClosestPoint;
 }

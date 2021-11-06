@@ -21,6 +21,7 @@ public:
 	/** Primary draw call for the HUD */
 	virtual void DrawHUD() override;
 	void UpdateAmmoBar(float Percent);
+	void UpdateHPBar(float Percent);
 
 private:
 	/** Crosshair asset pointer */
@@ -29,4 +30,5 @@ private:
 	TSubclassOf<UUserWidget> PlayerHUDClass;
 	UUserWidget* CurrentPlayerHUDWidget;
 	UProgressBar* AmmoBar;
+	UProgressBar* HPBar;
 };

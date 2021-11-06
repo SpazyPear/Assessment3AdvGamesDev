@@ -15,6 +15,7 @@
 #include "TwistedGroundsHUD.h"
 
 #include "GameFramework/CharacterMovementComponent.h"
+#include "HealthComponent.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
@@ -58,6 +59,8 @@ public:
 	TSubclassOf<class AProcMeshSculpt> MeshSculptor;
 	//End
 
+	bool bIsSprinting;
+
 	void SculptStart();
 
 	void SculptEnd();
@@ -84,4 +87,5 @@ private:
 	FVector PrevPos;
 	AProcMeshSculpt* Sculptor;
 	ATwistedGroundsHUD* HUD;
+	UHealthComponent* HealthComponent;
 };

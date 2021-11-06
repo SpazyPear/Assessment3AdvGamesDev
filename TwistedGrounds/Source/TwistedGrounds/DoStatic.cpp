@@ -11,6 +11,14 @@ int32 DoStatic::RoundDownToNearest(int32 Value, int32 Nearest)
 	return Value < 0 ? -Result : Result;
 }
 
+FColor DoStatic::RandomColour()
+{
+	int32 R = FMath::RandRange(0, 255);
+	int32 G = FMath::RandRange(0, 255);
+	int32 B = FMath::RandRange(0, 255);
+	return FColor(R, G, B, 255);
+}
+
 void DoStatic::Print(int32 Verbosity, FString String)
 {
 	switch (Verbosity) {
@@ -27,14 +35,14 @@ void DoStatic::Print(int32 Verbosity, FString String)
 		UE_LOG(LogTemp, Fatal, TEXT("%s"), *String)
 		return;
 	default:
-		UE_LOG(LogTemp, Error, TEXT("#"))
-		UE_LOG(LogTemp, Warning, TEXT("Unknown verbosity, use ELogVerbosity::Type or a number"))
-		UE_LOG(LogTemp, Display, TEXT("ELogVerbosity::Display or 4 for normal colour"))
-		UE_LOG(LogTemp, Warning, TEXT("ELogVerbosity::Warning or 3 for this colour"))
-		UE_LOG(LogTemp, Error, TEXT("ELogVerbosity::Error or 2 for this colour"))
-		UE_LOG(LogTemp, Error, TEXT("ELogVerbosity::Fatal or 1, THIS WILL CRASH THE GAME, USE WITH CAUTION!"))
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *String)
-		UE_LOG(LogTemp, Error, TEXT("#"))
+		Print("#");
+		Print("Unknown verbosity, use ELogVerbosity::Type or a number");
+		Print("ELogVerbosity::Display or 4");
+		Print("ELogVerbosity::Warning or 3 (Default)");
+		Print("ELogVerbosity::Error or 2");
+		Print("ELogVerbosity::Fatal or 1, THIS WILL CRASH THE ENGINE, USE WITH CAUTION!");
+		Print(String);
+		Print("#");
 	}
 }
 
@@ -55,10 +63,7 @@ void DoStatic::PrintOnScreenDebugMessage(FColor Colour, FString String)
 
 void DoStatic::PrintOnScreenDebugMessage(float Duration, FString String)
 {
-	int32 R = FMath::RandRange(0, 255);
-	int32 G = FMath::RandRange(0, 255);
-	int32 B = FMath::RandRange(0, 255);
-	PrintOnScreenDebugMessage(Duration, FColor(R, G, B, 255), String);
+	PrintOnScreenDebugMessage(Duration, RandomColour(), String);
 }
 
 void DoStatic::PrintOnScreenDebugMessage(FString String)
