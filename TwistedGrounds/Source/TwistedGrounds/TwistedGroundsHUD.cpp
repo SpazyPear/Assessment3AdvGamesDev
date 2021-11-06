@@ -6,14 +6,44 @@
 #include "TextureResource.h"
 #include "CanvasItem.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Engine/World.h"
 
 ATwistedGroundsHUD::ATwistedGroundsHUD()
 {
 	// Set the crosshair texture
-	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshairTexObj(TEXT("/Game/Textures/HUD/FirstPersonCrosshair"));
+	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshairTexObj(TEXT("/Game/Widgets/FirstPersonCrosshair"));
 	CrosshairTex = CrosshairTexObj.Object;
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> PlayerHUDObject(TEXT("/Game/Widgets/PlayerWidget"));
+
+
+	PlayerHUDClass = PlayerHUDObject.Class;
 }
 
+void ATwistedGroundsHUD::BeginPlay()
+{
+	Super::BeginPlay();
+	if (&PlayerHUDClass) {
+		CurrentPlayerHUDWidget = CreateWidget<UUserWidget>(GetWorld(), PlayerHUDClass);
+		CurrentPlayerHUDWidget->AddToViewport();
+		HealthProgressBar = Cast<UProgressBar>(CurrentPlayerHUDWidget->GetWidgetFromName(TEXT("HealthBar")));
+		SculptAmmoBar = Cast<UProgressBar>(CurrentPlayerHUDWidget->GetWidgetFromName(TEXT("AmmoBar")));
+	}
+}
+
+void ATwistedGroundsHUD::SetPlayerHealthBarPercent(float Percent)
+{
+	if (HealthProgressBar) {
+		HealthProgressBar->SetPercent(Percent);
+	}
+}
+
+void ATwistedGroundsHUD::SetsSculptAmmo(float Percent)
+{
+	if (SculptAmmoBar) {
+		SculptAmmoBar->SetPercent(Percent);
+	}
+}
 
 void ATwistedGroundsHUD::DrawHUD()
 {

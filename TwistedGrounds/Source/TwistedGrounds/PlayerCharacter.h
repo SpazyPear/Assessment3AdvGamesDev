@@ -14,6 +14,7 @@
 #include "MapGenerator.h"
 
 #include "GameFramework/CharacterMovementComponent.h"
+#include "HealthComponent.h"
 #include "PlayerCharacter.generated.h"
 
 UCLASS()
@@ -57,6 +58,8 @@ public:
 	TSubclassOf<AProcMeshSculpt> MeshSculptor;
 	//End
 
+	bool bIsSprinting;
+
 	void SculptStart();
 
 	void SculptEnd();
@@ -67,10 +70,20 @@ public:
 
 	void CapDistance();
 
+	void Fire();
+
+	void OnDeath();
+
+	void Sprint();
+
+	void GetUp();
+
+
 private:
 	ADustClouds* BigEmitter;
 	ADustClouds* SmallEmitter;
 	AProcMeshSculpt* Sculptor;
 	AMapGenerator* MapGen;
 	FVector PrevPos;
+	UHealthComponent* HealthComponent;
 };

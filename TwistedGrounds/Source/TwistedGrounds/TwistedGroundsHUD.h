@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "Blueprint/UserWidget.h"
+#include <Runtime/UMG/Public/Components/ProgressBar.h>
 #include "TwistedGroundsHUD.generated.h"
 
 UCLASS()
@@ -14,12 +16,25 @@ class ATwistedGroundsHUD : public AHUD
 public:
 	ATwistedGroundsHUD();
 
+	virtual void BeginPlay() override;
+
 	/** Primary draw call for the HUD */
 	virtual void DrawHUD() override;
+
+	void SetPlayerHealthBarPercent(float Percent);
+
+	void SetsSculptAmmo(float Percent);
 
 private:
 	/** Crosshair asset pointer */
 	class UTexture2D* CrosshairTex;
+
+	TSubclassOf<UUserWidget> PlayerHUDClass;
+	UUserWidget* CurrentPlayerHUDWidget;
+
+	UProgressBar* HealthProgressBar;
+
+	UProgressBar* SculptAmmoBar;
 
 };
 

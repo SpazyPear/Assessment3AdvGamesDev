@@ -4,6 +4,8 @@
 #include "PlayerCharacter.h"
 #include "EngineUtils.h"
 #include "DoStatic.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -13,6 +15,7 @@ APlayerCharacter::APlayerCharacter()
 
 	//Set default member variable values
 	LookSensitivity = 1.0f;
+	bIsSprinting = false;
 }
 
 // Called when the game starts or when spawned
@@ -22,6 +25,7 @@ void APlayerCharacter::BeginPlay()
 
 	//Initialise the camera variable
 	Camera = FindComponentByClass<UCameraComponent>();
+	HealthComponent = FindComponentByClass<UHealthComponent>();
 	Sculptor = GetWorld()->SpawnActor<AProcMeshSculpt>(MeshSculptor, FVector::ZeroVector, FRotator::ZeroRotator);
 	Sculptor->Player = this;
 	Sculptor->Camera = Camera;
@@ -73,6 +77,9 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
 	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapDistance);
 	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Released, this, &APlayerCharacter::CapDistance);
+	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Sprint);
+	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Released, this, &APlayerCharacter::Sprint);
+	PlayerInputComponent->BindAction(TEXT("Fire"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Fire);
 }
 
 void APlayerCharacter::MoveForward(float Value)
@@ -137,6 +144,21 @@ void APlayerCharacter::SculptEnd()
 	
 }
 
+void APlayerCharacter::Sprint() {
+	
+	bIsSprinting = !bIsSprinting;
+	GetCharacterMovement()->MaxWalkSpeed = bIsSprinting ? 900.0f : 500.0f;
+	
+}
+
+void APlayerCharacter::GetUp()
+{
+	USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(GetMesh());
+	SkeletalMesh->SetSimulatePhysics(false);
+	SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly); //unchanged
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics); //??
+}
+
 void APlayerCharacter::Invert()
 {
 	if (!Sculptor) {
@@ -159,5 +181,23 @@ void APlayerCharacter::CapDistance()
 
 	else {
 		Sculptor->CapDistance = false;
+	}
+}
+
+void APlayerCharacter::Fire()
+{
+	FHitResult HitResult = Sculptor->HitResult;
+	AActor* HitActor = Cast<AActor>(HitResult.Actor);
+	APlayerCharacter* HitCharacter = Cast<APlayerCharacter>(HitActor);
+	if (HitCharacter) {
+		HitCharacter->HealthComponent->OnTakeDamage(30.0f);
+		if (HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f) {
+			USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(HitCharacter->GetMesh());
+			SkeletalMesh->SetSimulatePhysics(true);
+			SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			SkeletalMesh->AddImpulse(Camera->GetForwardVector() * 10000, HitResult.BoneName, true);
+			HitCharacter->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			
+		}
 	}
 }

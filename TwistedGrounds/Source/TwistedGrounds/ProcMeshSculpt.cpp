@@ -8,6 +8,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "MapGenerator.h"
 #include "EngineUtils.h"
+#include "TwistedGroundsHUD.h"
 
 
 
@@ -352,6 +353,10 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 	if (SculptState == SCULPTSTATE::IDLE && SculptAmmo < MaxAmmo) {
 		SculptAmmo += AmmoRegen * DeltaTime;
 		SculptAmmo = FMath::Clamp(SculptAmmo, 0.0f, MaxAmmo);
+	}
+	ATwistedGroundsHUD* HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
+	if (HUD) {
+		HUD->SetsSculptAmmo(SculptAmmo / MaxAmmo);
 	}
 }
 
