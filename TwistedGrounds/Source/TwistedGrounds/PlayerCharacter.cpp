@@ -16,6 +16,8 @@ APlayerCharacter::APlayerCharacter()
 	//Set default member variable values
 	LookSensitivity = 1.0f;
 	bIsSprinting = false;
+
+	WalkableAngle = 45;
 }
 
 // Called when the game starts or when spawned
@@ -43,6 +45,7 @@ void APlayerCharacter::BeginPlay()
 		return;
 	}
 	UpdateAmmoBar(1);
+	GetCharacterMovement()->SetWalkableFloorAngle(WalkableAngle);
 }
 
 // Called every frame
@@ -71,17 +74,26 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &APlayerCharacter::Turn);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
+	
 	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::SculptStart);
 	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::SculptEnd);
+	
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Invert);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
+	
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapHeight);
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
+	
 	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapDistance);
 	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Released, this, &APlayerCharacter::CapDistance);
+	
 	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Sprint);
 	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Released, this, &APlayerCharacter::Sprint);
+	
 	PlayerInputComponent->BindAction(TEXT("Fire"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Fire);
+
+	PlayerInputComponent->BindAction(TEXT("Slide"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Slide);
+	PlayerInputComponent->BindAction(TEXT("Slide"), EInputEvent::IE_Released, this, &APlayerCharacter::Slide);
 }
 
 void APlayerCharacter::MoveForward(float Value)
@@ -152,7 +164,6 @@ void APlayerCharacter::Sprint() {
 	
 	bIsSprinting = !bIsSprinting;
 	GetCharacterMovement()->MaxWalkSpeed = bIsSprinting ? 900.0f : 500.0f;
-	
 }
 
 void APlayerCharacter::GetUp()
@@ -161,6 +172,19 @@ void APlayerCharacter::GetUp()
 	SkeletalMesh->SetSimulatePhysics(false);
 	SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly); //unchanged
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics); //??
+}
+
+void APlayerCharacter::Slide()
+{
+	UCharacterMovementComponent* Movement = GetCharacterMovement();
+	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
+	ServerSlide();
+}
+
+void APlayerCharacter::ServerSlide_Implementation()
+{
+	UCharacterMovementComponent* Movement = GetCharacterMovement();
+	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
 }
 
 void APlayerCharacter::Invert()

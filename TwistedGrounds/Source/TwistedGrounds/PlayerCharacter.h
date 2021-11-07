@@ -88,4 +88,12 @@ private:
 	AProcMeshSculpt* Sculptor;
 	ATwistedGroundsHUD* HUD;
 	UHealthComponent* HealthComponent;
+	
+	void Slide();
+
+	UPROPERTY(EditAnywhere)
+		float WalkableAngle;
+
+	UFUNCTION(Server, Reliable)
+		void ServerSlide();
 };
