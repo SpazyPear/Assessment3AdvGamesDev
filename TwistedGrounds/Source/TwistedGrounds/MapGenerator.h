@@ -27,15 +27,15 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	//These variables are set from the editor
-	////These variables spawn the needed actors and materials
+	//	//These variables spawn the needed actors and materials
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<AProcedurallyGeneratedMap> PGMap;
 
 	UPROPERTY(EditAnywhere)
 		int32 ChunkRadius; //The chunk radius that surrounds the player
-	////End
+	//	//End
 
-	////These variables control the parameters of the procedurally generated maps
+	//	//These variables control the parameters of the procedurally generated maps
 	UPROPERTY(EditAnywhere)
 		int32 ChunkWidth; //The width of each chunk
 
@@ -48,20 +48,28 @@ public:
 	UPROPERTY(EditAnywhere)
 		float PerlinScale;
 	
+	//	//	//For every chunk generated, how much perlin scale deviation is there?
+	UPROPERTY(EditAnywhere)
+		int32 PerlinScaleOffsetMin;
+
+	UPROPERTY(EditAnywhere)
+		int32 PerlinScaleOffsetMax;
+	//	//	// End
+
 	UPROPERTY(EditAnywhere)
 		float PerlinOffset;
 
 	UPROPERTY(EditAnywhere)
 		float PerlinRoughness;
-	////End
+	//	//End
 
-	////Allows the map to be generated in the editor
-	virtual bool ShouldTickIfViewportsOnly() const override;
-
+	//	//Allows the map to be generated in the editor
 	UPROPERTY(EditAnywhere)
 		bool bRegenerateMap;
-	////End
+	//	//End
 	//End
+
+	virtual bool ShouldTickIfViewportsOnly() const override;
 
 	FVector RoundDownPosition(FVector Position); //Gets a position and rounds it down.
 
@@ -82,5 +90,4 @@ private:
 
 	UPROPERTY()
 		TArray<FVector> MapPoints; //The location of all the maps.
-
 };

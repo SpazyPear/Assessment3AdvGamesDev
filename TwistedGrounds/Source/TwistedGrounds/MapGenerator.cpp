@@ -8,7 +8,7 @@
 // Sets default values
 AMapGenerator::AMapGenerator()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame. You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	//Parameters to control the ProcedurallyGeneratedMap
@@ -20,6 +20,9 @@ AMapGenerator::AMapGenerator()
 	PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
 	PerlinScale = 1000;
 	PerlinRoughness = 0.1;
+
+	PerlinScaleOffsetMin = 10;
+	PerlinScaleOffsetMax = 100;
 	//End
 
 	bRegenerateMap = false;
@@ -54,8 +57,8 @@ void AMapGenerator::SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, 
 	if (!Map) {
 		return;
 	}
-
-	Map->InitiateMap(ChunkWidth, ChunkHeight, ChunkGridSize, PerlinScale, PerlinRoughness, PerlinOffset, OffsetX, OffsetY);
+	float PerlinScaleOffset = FMath::RandBool() ? FMath::FRandRange(PerlinScaleOffsetMin, PerlinScaleOffsetMax) : 0;
+	Map->InitiateMap(ChunkWidth, ChunkHeight, ChunkGridSize, PerlinScale, PerlinRoughness, PerlinOffset, OffsetX, OffsetY, PerlinScaleOffset);
 }
 
 FVector AMapGenerator::RoundDownPosition(FVector Position)
@@ -105,4 +108,11 @@ void AMapGenerator::UpdateValues()
 	ActualH = ChunkHeight - 1;
 	W = ActualW * ChunkGridSize; //Width of the chunk
 	H = ActualH * ChunkGridSize; //Height of the chunk
+
+	if (PerlinScaleOffsetMin > PerlinScaleOffsetMax) {
+		DoStatic::Print("Perlin Scale Deviation Min >= Max... Their values will be swapped.");
+		int32 temp = PerlinScaleOffsetMax;
+		PerlinScaleOffsetMax = PerlinScaleOffsetMin;
+		PerlinScaleOffsetMin = temp;
+	}
 }

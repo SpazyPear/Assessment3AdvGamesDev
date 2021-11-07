@@ -42,7 +42,19 @@ public:
 		UProceduralMeshComponent* MeshComponent;
 	//End
 
-	void InitiateMap(int32 W, int32 H, float GS, float PS, float PR, float PO, int32 OX, int32 OY);
+	/// <summary>
+	/// Initialise the map by passing in the essential variables.
+	/// </summary>
+	/// <param name="W">Width</param>
+	/// <param name="H">Height</param>
+	/// <param name="GS">GridSize</param>
+	/// <param name="PS">PerlinScale</param>
+	/// <param name="PR">PerlinRoughness</param>
+	/// <param name="PO">PerlinOffset</param>
+	/// <param name="OX">OffsetX</param>
+	/// <param name="OY">OffsetY</param>
+	/// <param name="PSO">PerlinScaleOffset</param>
+	void InitiateMap(int32 W, int32 H, float GS, float PS, float PR, float PO, int32 OX, int32 OY, float PSO);
 
 	UPROPERTY()
 		TArray<FVector> Vertices;
@@ -54,13 +66,23 @@ public:
 	TArray<FVector> Normals;
 	TArray<FProcMeshTangent> Tangents;
 
+	float PerlinScale;
+
+	UPROPERTY(EditDefaultsOnly)
+		TArray<UMaterialInterface*> Biomes;
+
+	int32 BiomeIndex;
+
 private:
 	float PerlinSample(float Axis, float Offset);
 	void ClearMap();
 	void GenerateMap();
-	
+
+	TArray<AProcedurallyGeneratedMap*> Neighbours;
+	void UpdateNeighbours();
+	void UpdateChunkEdge();
+
 	//Controlled by MapGenerator
-	float PerlinScale;
 	float PerlinRoughness;
 	float PerlinOffset;
 	int32 OffsetX;
