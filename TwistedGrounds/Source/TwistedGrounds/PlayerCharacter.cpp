@@ -56,10 +56,14 @@ void APlayerCharacter::Tick(float DeltaTime)
 		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
 	}
 
+	if (!HasAuthority()) {
+		return;
+	}
+	
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	if (Pos != PrevPos) {
 		PrevPos = Pos;
-		MapGen->CheckSurrounding(GetActorLocation());
+		MapGen->ServerCheckSurrounding(GetActorLocation());
 	}
 }
 

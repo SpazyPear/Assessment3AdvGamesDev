@@ -4,13 +4,15 @@
 #include "MapGenerator.h"
 #include "EngineUtils.h"
 #include "DoStatic.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-
-	PrimaryActorTick.bCanEverTick = false; //THIS IS SET TO FALSE, SET TO TRUE IF TICK IS NEEDED.
+	PrimaryActorTick.bCanEverTick = false;
+	bReplicates = true;
+	bAlwaysRelevant = true;
 
 	MeshComponent = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("Mesh Component"));
 	SetRootComponent(MeshComponent);
@@ -19,11 +21,17 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 	Height = 30;
 	GridSize = 200;
 	PerlinScale = 1000;
+	PerlinScaleOffset = 0;
 	PerlinRoughness = 0.1;
 	PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
 	OffsetX = 0;
 	OffsetY = 0;
+
 	BiomeIndex = 0;
+	Top = nullptr;
+	Right = nullptr;
+	Bottom = nullptr;
+	Left = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -36,10 +44,9 @@ void AProcedurallyGeneratedMap::BeginPlay()
 void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//PrimaryActorTick.bCanEverTick is set to False!
 }
 
-void AProcedurallyGeneratedMap::GenerateMap() {
+void AProcedurallyGeneratedMap::NetMulticastGenerateMap_Implementation() {
 	for (int i = 0; i < Width * Height; i++) {
 		int X = i % Width;
 		int Y = i / Width;
@@ -65,11 +72,15 @@ void AProcedurallyGeneratedMap::GenerateMap() {
 	UpdateChunkEdge();
 	UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
 	MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
+	MeshComponent->SetMaterial(0, Biomes[BiomeIndex]);
 }
 
 void AProcedurallyGeneratedMap::UpdateNeighbours()
 {
-	Neighbours.Empty();
+	if (Top && Right && Bottom && Left) {
+		return;
+	}
+
 	FVector Pos = GetActorLocation();
 	float W = (Width - 1) * GridSize;
 	float H = (Height - 1) * GridSize;
@@ -79,33 +90,22 @@ void AProcedurallyGeneratedMap::UpdateNeighbours()
 	NeighbourPositions.Add(FVector(Pos.X, Pos.Y - H, 0)); //Bottom
 	NeighbourPositions.Add(FVector(Pos.X + W, Pos.Y, 0)); //Left
 
-	for (int i = 0; i < 4; i++) {
-		Neighbours.Add(nullptr);
-	}
-
 	for (TActorIterator<AProcedurallyGeneratedMap> EachMap(GetWorld()); EachMap; ++EachMap) {
 		FVector MapPos = (*EachMap)->GetActorLocation();
 		if (!NeighbourPositions.Contains(MapPos)) {
 			continue;
 		}
 
-		if (MapPos.Y > Pos.Y) { //Top
-			Neighbours[0] = *EachMap;
-		}
-		else if (MapPos.X < Pos.X) { //Right
-			Neighbours[1] = *EachMap;
-		}
-		else if (MapPos.Y < Pos.Y) { //Bottom
-			Neighbours[2] = *EachMap;
-		}
-		else if (MapPos.X > Pos.X) {
-			Neighbours[3] = *EachMap; //Left
-		}
+		Top = MapPos.Y > Pos.Y ? *EachMap : Top;
+		Right = MapPos.X < Pos.X ? *EachMap : Right;
+		Bottom = MapPos.Y < Pos.Y ? *EachMap : Bottom;
+		Left = MapPos.X > Pos.X ? *EachMap : Left;
 
-		if (Neighbours[0] && Neighbours[1] && Neighbours[2] && Neighbours[3]) {
+		if (Top && Right && Bottom && Left) {
 			break;
 		}
 	}
+	UpdateMapValues();
 }
 
 void AProcedurallyGeneratedMap::UpdateChunkEdge()
@@ -116,20 +116,20 @@ void AProcedurallyGeneratedMap::UpdateChunkEdge()
 			int32 TopIndex = Vertices.Num() - Width + i;
 			int32 BottomIndex = i;
 			//Bottom of current map, top of bottom map.
-			Vertices[BottomIndex].Z = Neighbours[2] ? Neighbours[2]->Vertices[TopIndex].Z : Vertices[BottomIndex].Z;
+			Vertices[BottomIndex].Z = Bottom ? Bottom->Vertices[TopIndex].Z : Vertices[BottomIndex].Z;
 
 			//Top of current map, bottom of top map.
-			Vertices[TopIndex].Z = Neighbours[0] ? Neighbours[0]->Vertices[BottomIndex].Z : Vertices[TopIndex].Z;
+			Vertices[TopIndex].Z = Top? Top->Vertices[BottomIndex].Z : Vertices[TopIndex].Z;
 		}
 
 		if (i < Height) {
 			int32 RightIndex = Width * i;
 			int32 LeftIndex = RightIndex + Width - 1;
 			//Right of current map, left of right map.
-			Vertices[RightIndex].Z = Neighbours[1] ? Neighbours[1]->Vertices[LeftIndex].Z : Vertices[RightIndex].Z;
+			Vertices[RightIndex].Z = Right ? Right->Vertices[LeftIndex].Z : Vertices[RightIndex].Z;
 
 			//Left of current map, right of left map.
-			Vertices[LeftIndex].Z = Neighbours[3] ? Neighbours[3]->Vertices[RightIndex].Z : Vertices[LeftIndex].Z;
+			Vertices[LeftIndex].Z = Left ? Left->Vertices[RightIndex].Z : Vertices[LeftIndex].Z;
 		}
 	}
 }
@@ -141,16 +141,17 @@ void AProcedurallyGeneratedMap::ClearMap() {
 	UVCoords.Empty();
 }
 
-void AProcedurallyGeneratedMap::InitiateMap(int32 W, int32 H, float GS, float PS, float PR, float PO, int32 OX, int32 OY, float PSO)
+void AProcedurallyGeneratedMap::UpdateMapValues()
 {
-	Width = W;
-	Height = H;
-	GridSize = GS;
-
-	UpdateNeighbours();
 	float Scale = 0;
 	int32 NeighbourCount = 0;
 	TArray<int32> SurroundingBiomes;
+	TArray<AProcedurallyGeneratedMap*> Neighbours;
+	Neighbours.Add(Top);
+	Neighbours.Add(Left);
+	Neighbours.Add(Bottom);
+	Neighbours.Add(Right);
+
 	for (AProcedurallyGeneratedMap* Neighbour : Neighbours) {
 		if (!Neighbour) {
 			SurroundingBiomes.Add(0); //Default biome
@@ -160,15 +161,9 @@ void AProcedurallyGeneratedMap::InitiateMap(int32 W, int32 H, float GS, float PS
 		SurroundingBiomes.Add(Neighbour->BiomeIndex);
 		NeighbourCount++;
 	}
-	Scale += PS;
+	Scale += PerlinScale;
 	Scale /= ++NeighbourCount;
-	PerlinScale = Scale + (FMath::RandBool() ? PSO : -PSO);
-
-	PerlinRoughness = PR;
-	PerlinOffset = PO;
-	OffsetX = OX;
-	OffsetY = OY;
-	GenerateMap();
+	PerlinScale = Scale + (FMath::RandBool() ? PerlinScaleOffset : -PerlinScaleOffset);
 
 	BiomeIndex = 0;
 	if (SurroundingBiomes.Contains(1) && SurroundingBiomes.Contains(2)) {} //Do nothing
@@ -181,8 +176,25 @@ void AProcedurallyGeneratedMap::InitiateMap(int32 W, int32 H, float GS, float PS
 	else {
 		BiomeIndex = FMath::Rand() % 3;
 	}
+}
 
-	MeshComponent->SetMaterial(0, Biomes[BiomeIndex]);
+void AProcedurallyGeneratedMap::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, Width);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, Height);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, GridSize);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, PerlinScale);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, PerlinScaleOffset);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, PerlinRoughness);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, PerlinOffset);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, OffsetX);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, OffsetY);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, BiomeIndex);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, Top);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, Right);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, Bottom);
+	DOREPLIFETIME(AProcedurallyGeneratedMap, Left);
 }
 
 float AProcedurallyGeneratedMap::PerlinSample(float Axis, float Offset) {

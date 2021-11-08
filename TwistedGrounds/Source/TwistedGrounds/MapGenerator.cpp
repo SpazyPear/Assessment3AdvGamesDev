@@ -43,7 +43,7 @@ void AMapGenerator::Tick(float DeltaTime)
 		bRegenerateMap = false;
 		ClearMaps();
 		UpdateValues();
-		CheckSurrounding(FVector(0, 0, 0));
+		ServerCheckSurrounding(FVector(0, 0, 0));
 	}
 }
 
@@ -52,21 +52,12 @@ bool AMapGenerator::ShouldTickIfViewportsOnly() const
 	return true;
 }
 
-void AMapGenerator::SetMapParams(AProcedurallyGeneratedMap* Map, int32 OffsetX, int32 OffsetY)
-{
-	if (!Map) {
-		return;
-	}
-	float PerlinScaleOffset = FMath::RandBool() ? FMath::FRandRange(PerlinScaleOffsetMin, PerlinScaleOffsetMax) : 0;
-	Map->InitiateMap(ChunkWidth, ChunkHeight, ChunkGridSize, PerlinScale, PerlinRoughness, PerlinOffset, OffsetX, OffsetY, PerlinScaleOffset);
-}
-
 FVector AMapGenerator::RoundDownPosition(FVector Position)
 {
 	return FVector(DoStatic::RoundDownToNearest(Position.X, W), DoStatic::RoundDownToNearest(Position.Y, H), 0);
 }
 
-void AMapGenerator::CheckSurrounding(FVector Position)
+void AMapGenerator::ServerCheckSurrounding_Implementation(FVector Position)
 {
 	float HalfRadius = ChunkRadius / 2; //Half of the radius
 	FVector Pos = RoundDownPosition(Position);
@@ -85,11 +76,25 @@ void AMapGenerator::CheckSurrounding(FVector Position)
 		}
 
 		//Else Generate the map.
+		MapPoints.Add(Loc); //Save the location of the map
 		int32 OffsetX = ActualW * (X / W); //X offset for perlin noise
 		int32 OffsetY = ActualH * (Y / H); //Y offset for perlin noise
-		MapPoints.Add(Loc); //Save the location of the map
+
+		//Spawn the map and set its values. They should be replicated.
 		AProcedurallyGeneratedMap* Map = GetWorld()->SpawnActor<AProcedurallyGeneratedMap>(PGMap, Loc, FRotator::ZeroRotator);
-		SetMapParams(Map, OffsetX, OffsetY);
+		Map->Width = ChunkWidth;
+		Map->Height = ChunkHeight;
+		Map->GridSize = ChunkGridSize;
+
+		Map->PerlinScale = PerlinScale;
+		float PerlinScaleOffset = FMath::RandBool() ? FMath::FRandRange(PerlinScaleOffsetMin, PerlinScaleOffsetMax) : 0;
+		Map->PerlinScaleOffset = FMath::RandBool() ? -PerlinScaleOffset : PerlinScaleOffset;
+
+		Map->PerlinRoughness = PerlinRoughness;
+		Map->OffsetX = OffsetX;
+		Map->OffsetY = OffsetY;
+		Map->UpdateNeighbours();
+		Map->NetMulticastGenerateMap();
 	}
 }
 

@@ -27,65 +27,43 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	void UpdateNeighbours();
 
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	//Controlled by MapGenerator
-	UPROPERTY()
-		int32 Width;
-
-	UPROPERTY()
-		int32 Height;
-
-	UPROPERTY()
-		float GridSize;
-
-	UPROPERTY()
-		UProceduralMeshComponent* MeshComponent;
+	UPROPERTY(Replicated) int32 Width;
+	UPROPERTY(Replicated) int32 Height;
+	UPROPERTY(Replicated) float GridSize;
+	UPROPERTY(Replicated) float PerlinScale;
+	UPROPERTY(Replicated) float PerlinScaleOffset;
+	UPROPERTY(Replicated) float PerlinRoughness;
+	UPROPERTY(Replicated) float PerlinOffset;
+	UPROPERTY(Replicated) int32 OffsetX;
+	UPROPERTY(Replicated) int32 OffsetY;
+	UPROPERTY(Replicated) int32 BiomeIndex;
+	UPROPERTY(Replicated) AProcedurallyGeneratedMap* Top; //Could be a TArray but not sure if TArray can be replicated
+	UPROPERTY(Replicated) AProcedurallyGeneratedMap* Right;
+	UPROPERTY(Replicated) AProcedurallyGeneratedMap* Bottom;
+	UPROPERTY(Replicated) AProcedurallyGeneratedMap* Left;
 	//End
 
-	/// <summary>
-	/// Initialise the map by passing in the essential variables.
-	/// </summary>
-	/// <param name="W">Width</param>
-	/// <param name="H">Height</param>
-	/// <param name="GS">GridSize</param>
-	/// <param name="PS">PerlinScale</param>
-	/// <param name="PR">PerlinRoughness</param>
-	/// <param name="PO">PerlinOffset</param>
-	/// <param name="OX">OffsetX</param>
-	/// <param name="OY">OffsetY</param>
-	/// <param name="PSO">PerlinScaleOffset</param>
-	void InitiateMap(int32 W, int32 H, float GS, float PS, float PR, float PO, int32 OX, int32 OY, float PSO);
-
-	UPROPERTY()
-		TArray<FVector> Vertices;
-	UPROPERTY()
-		TArray<int32> Triangles;
-	UPROPERTY()
-		TArray<FVector2D> UVCoords;
+	UPROPERTY() UProceduralMeshComponent* MeshComponent;
+	UPROPERTY() TArray<FVector> Vertices;
+	UPROPERTY() TArray<int32> Triangles;
+	UPROPERTY() TArray<FVector2D> UVCoords;
 
 	TArray<FVector> Normals;
 	TArray<FProcMeshTangent> Tangents;
 
-	float PerlinScale;
+	UPROPERTY(EditDefaultsOnly) TArray<UMaterialInterface*> Biomes;
 
-	UPROPERTY(EditDefaultsOnly)
-		TArray<UMaterialInterface*> Biomes;
-
-	int32 BiomeIndex;
+	UFUNCTION(NetMulticast, Reliable)
+		void NetMulticastGenerateMap();
 
 private:
 	float PerlinSample(float Axis, float Offset);
 	void ClearMap();
-	void GenerateMap();
-
-	TArray<AProcedurallyGeneratedMap*> Neighbours;
-	void UpdateNeighbours();
+	void UpdateMapValues();
 	void UpdateChunkEdge();
 
-	//Controlled by MapGenerator
-	float PerlinRoughness;
-	float PerlinOffset;
-	int32 OffsetX;
-	int32 OffsetY;
-	//End
 };
