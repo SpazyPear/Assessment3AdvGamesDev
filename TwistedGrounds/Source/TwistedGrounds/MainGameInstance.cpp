@@ -6,6 +6,7 @@
 #include "UObject/ConstructorHelpers.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerController.h"
+#include "DoStatic.h"
 
 UMainGameInstance::UMainGameInstance(const FObjectInitializer& ObjectInitialize) {
 	static ConstructorHelpers::FClassFinder<UUserWidget> HUDObject(TEXT("/Game/UI/MainMenu"));

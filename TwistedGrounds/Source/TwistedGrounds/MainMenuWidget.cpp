@@ -3,6 +3,7 @@
 
 #include "MainMenuWidget.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "Kismet/GameplayStatics.h"
 #include "DoStatic.h"
 
 bool UMainMenuWidget::Initialize() {
@@ -27,7 +28,8 @@ bool UMainMenuWidget::Initialize() {
 
 void UMainMenuWidget::ButtonStartAction()
 {
-	DoStatic::Print("Start Button Pressed");
+	Cast<UMainGameInstance>(GetGameInstance())->ChangeToNormalInput();
+	this->ConditionalBeginDestroy();
 }
 
 void UMainMenuWidget::ButtonTutorialAction()

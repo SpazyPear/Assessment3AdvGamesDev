@@ -96,4 +96,7 @@ private:
 
 	UFUNCTION(Server, Reliable)
 		void ServerSlide();
+
+	UFUNCTION(Server, Reliable)
+		void ServerSprint();
 };

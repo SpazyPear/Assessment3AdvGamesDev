@@ -16,33 +16,19 @@ UCLASS()
 class TWISTEDGROUNDS_API UMainMenuWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 private:
 	virtual bool Initialize() override;
 
-	UPROPERTY(meta = (BindWidget))
-		UButton* ButtonStart;
+	UPROPERTY(meta = (BindWidget)) UButton* ButtonStart;
+	UPROPERTY(meta = (BindWidget)) UButton* ButtonTutorial;
+	UPROPERTY(meta = (BindWidget)) UTextBlock* ButtonTutorialText;
+	UPROPERTY(meta = (BindWidget)) UButton* ButtonQuit;
+	UPROPERTY(meta = (BindWidget)) UTextBlock* TutorialText;
 
-	UPROPERTY(meta = (BindWidget))
-		UButton* ButtonTutorial;
-
-	UPROPERTY(meta = (BindWidget))
-		UTextBlock* ButtonTutorialText;
-
-	UPROPERTY(meta = (BindWidget))
-		UButton* ButtonQuit;
-
-	UPROPERTY(meta = (BindWidget))
-		UTextBlock* TutorialText;
-
-	UFUNCTION()
-		void ButtonStartAction();
-
-	UFUNCTION()
-		void ButtonTutorialAction();
-
-	UFUNCTION()
-		void QuitButtonAction();
+	UFUNCTION() void ButtonStartAction();
+	UFUNCTION() void ButtonTutorialAction();
+	UFUNCTION() void QuitButtonAction();
 
 	void FlipToTutorial();
 	bool bTutorialHidden;

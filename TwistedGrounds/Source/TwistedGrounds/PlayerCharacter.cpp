@@ -168,6 +168,13 @@ void APlayerCharacter::Sprint() {
 	
 	bIsSprinting = !bIsSprinting;
 	GetCharacterMovement()->MaxWalkSpeed = bIsSprinting ? 900.0f : 500.0f;
+	if (!HasAuthority()) { //Makes sprinting work on single and multiplayer.
+		ServerSprint();
+	}
+}
+
+void APlayerCharacter::ServerSprint_Implementation() {
+	Sprint();
 }
 
 void APlayerCharacter::GetUp()
