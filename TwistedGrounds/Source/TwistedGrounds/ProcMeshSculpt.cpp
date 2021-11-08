@@ -9,7 +9,6 @@
 #include "MapGenerator.h"
 #include "EngineUtils.h"
 #include "DoStatic.h"
-#include "TwistedGroundsHUD.h"
 
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
@@ -21,29 +20,29 @@ AProcMeshSculpt::AProcMeshSculpt()
 	SculptState = SCULPTSTATE::IDLE;
 	ScaledZStrength = 70;
 	bInvert = false;
-	SculptAmmo = 10.0f;
-	AmmoCost = 3.0f;
-	AmmoRegen = 2.0f;
+
 	TangentsToBeUpdated = 0;
+
+	//Rename your variables! - Ryan
 	CapHeight = false;
 	CapDistance = false;
 	CappedHeightIndex = 0;
 	ShouldRearrange = true;
-
 }
 
 // Called when the game starts or when spawned
 void AProcMeshSculpt::BeginPlay()
 {
 	Super::BeginPlay();
-	MaxAmmo = SculptAmmo;
 	Map = nullptr;
+
 	FRotator Rot = GetActorRotation();
 	Rot.Pitch = 90;
 	SetActorRelativeRotation(Rot);
 	for (TActorIterator<AMapGenerator> It(GetWorld()); It; ++It) {
 		MapGenerator = *It;
 	}
+
 	Collider = FindComponentByClass<UBoxComponent>();
 	Collider->SetGenerateOverlapEvents(true);
 	Collider->OnComponentBeginOverlap.AddDynamic(this, &AProcMeshSculpt::OnOverlapBegin);
@@ -62,7 +61,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 
 	Raycast();
 	CheckState(DeltaTime);
-	RegenAmmo(DeltaTime);
 
 	if (CapDistance) {
 
@@ -85,7 +83,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 
 void AProcMeshSculpt::Sculpt()
 {
-
 	if (!Map || !&HitResult) {
 		return;
 	}
@@ -335,26 +332,11 @@ void AProcMeshSculpt::CheckState(float DeltaTime)
 		case SCULPTSTATE::IDLE:
 			break;
 		case SCULPTSTATE::ONGOING:
-			if (SculptAmmo > 0.0f) {
-				SculptAmmo -= AmmoCost * DeltaTime;
-				Sculpt();
-			}
+			Sculpt();
 			break;
 		case SCULPTSTATE::STOPPED:
 			SculptState = SCULPTSTATE::IDLE; //stub
 		}
-}
-
-void AProcMeshSculpt::RegenAmmo(float DeltaTime)
-{
-	if (SculptState == SCULPTSTATE::IDLE && SculptAmmo < MaxAmmo) {
-		SculptAmmo += AmmoRegen * DeltaTime;
-		SculptAmmo = FMath::Clamp(SculptAmmo, 0.0f, MaxAmmo);
-	}
-	ATwistedGroundsHUD* HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
-	if (HUD) {
-		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(SculptAmmo / MaxAmmo);
-	}
 }
 
 void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -390,13 +372,6 @@ void AProcMeshSculpt::Raycast()
 	SetActorHiddenInGame(!Map);
 	if (Map) {
 		SetActorLocation(HitResult.ImpactPoint);
-	}
-}
-
-void AProcMeshSculpt::UpdateAmmoBar()
-{
-	if (Player) {
-		Player->UpdateAmmoBar(SculptAmmo / MaxAmmo);
 	}
 }
 

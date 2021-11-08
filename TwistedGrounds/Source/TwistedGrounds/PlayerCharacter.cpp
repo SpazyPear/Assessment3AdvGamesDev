@@ -17,6 +17,9 @@ APlayerCharacter::APlayerCharacter()
 	LookSensitivity = 1.0f;
 	bIsSprinting = false;
 
+	SculptDepletionSpeed = 1.5; // example: 3 seconds to go from full to empty.
+	SculptCooldownSpeed = 2; //example: 2 seconds cooldown from empty to full.
+
 	WalkableAngle = 45;
 }
 
@@ -25,7 +28,6 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//Initialise the camera variable
 	Camera = FindComponentByClass<UCameraComponent>();
 	HealthComponent = FindComponentByClass<UHealthComponent>();
 	Sculptor = GetWorld()->SpawnActor<AProcMeshSculpt>(MeshSculptor, FVector::ZeroVector, FRotator::ZeroRotator);
@@ -40,10 +42,10 @@ void APlayerCharacter::BeginPlay()
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	PrevPos = FVector(0, 0, 1); //Offset to force check surrounding.
 
+	SculptDepletionSpeed = 1.0f / SculptDepletionSpeed;
+	SculptCooldownSpeed = 1.0f / SculptCooldownSpeed;
+
 	HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
-	if (!HUD) {
-		return;
-	}
 	GetCharacterMovement()->SetWalkableFloorAngle(WalkableAngle);
 }
 
@@ -54,6 +56,8 @@ void APlayerCharacter::Tick(float DeltaTime)
 	if (SmallEmitter) {
 		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
 	}
+
+	UpdateSculptAmmo(DeltaTime);
 
 	if (!HasAuthority()) {
 		return;
@@ -151,12 +155,13 @@ void APlayerCharacter::SculptEnd()
 	if (SmallEmitter) {
 		SmallEmitter->Destroy();
 		SmallEmitter = nullptr;
-		
 	}
-	if (Sculptor->SculptState == SCULPTSTATE::ONGOING) {
-		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
-		Sculptor->SculptState = SCULPTSTATE::STOPPED;
+	else {
+		return;
 	}
+
+	BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
+	Sculptor->SculptState = SCULPTSTATE::STOPPED;
 
 	if (!Sculptor->CapHeight) {
 		Sculptor->CappedHeight = -INFINITY;
@@ -191,6 +196,25 @@ void APlayerCharacter::Slide()
 	ServerSlide();
 }
 
+void APlayerCharacter::UpdateSculptAmmo(float DeltaTime)
+{
+	if (!IsLocallyControlled() || !HUD) {
+		return;
+	}
+
+	switch (Sculptor->SculptState) {
+	case SCULPTSTATE::ONGOING:
+		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(-SculptDepletionSpeed * DeltaTime);
+		if (HUD->PlayerHUDWidget->bLowSculptAmmo) {
+			SculptEnd();
+		}
+		return;
+		
+	default:
+		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(SculptCooldownSpeed * DeltaTime);
+	}
+}
+
 void APlayerCharacter::ServerSlide_Implementation()
 {
 	UCharacterMovementComponent* Movement = GetCharacterMovement();
@@ -218,27 +242,26 @@ void APlayerCharacter::CapDistance()
 	Sculptor->CapDistance = false;
 }
 
-void APlayerCharacter::UpdateAmmoBar(float Percent)
-{
-	if (HUD) {
-		HUD->PlayerHUDWidget->UpdateAmmoBar(Percent);
-	}
-}
-
 void APlayerCharacter::Fire()
 {
+	if (HUD->PlayerHUDWidget->bRecharging) {
+		return;
+	}
+	HUD->PlayerHUDWidget->UpdateAmmoBar(-0.2);
+
 	FHitResult HitResult = Sculptor->HitResult;
 	AActor* HitActor = Cast<AActor>(HitResult.Actor);
 	APlayerCharacter* HitCharacter = Cast<APlayerCharacter>(HitActor);
-	if (HitCharacter) {
-		HitCharacter->HealthComponent->OnTakeDamage(30.0f);
-		if (HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f) {
-			USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(HitCharacter->GetMesh());
-			SkeletalMesh->SetSimulatePhysics(true);
-			SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-			SkeletalMesh->AddImpulse(Camera->GetForwardVector() * 10000, HitResult.BoneName, true);
-			HitCharacter->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-			
-		}
+	if (!HitCharacter) {
+		return;
+	}
+
+	HitCharacter->HealthComponent->OnTakeDamage(30.0f);
+	if (HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f) {
+		USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(HitCharacter->GetMesh());
+		SkeletalMesh->SetSimulatePhysics(true);
+		SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		SkeletalMesh->AddImpulse(Camera->GetForwardVector() * 10000, HitResult.BoneName, true);
+		HitCharacter->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 }

@@ -16,11 +16,15 @@ class TWISTEDGROUNDS_API UPlayerWidget : public UUserWidget
 	
 public:
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
-	void UpdateAmmoBar(float Percent);
-	void UpdateSculptAmmoBar(float Percent);
-	void UpdateHPBar(float Percent);
-
+	void UpdateAmmoBar(float Amount);
+	void SetAmmoBar(float Percent);
+	void UpdateSculptAmmoBar(float Amount);
+	void SetSculptAmmoBar(float Percent);
+	void UpdateHPBar(float Amount);
+	void SetHPBar(float Percent);
+	
 	bool bRecharging;
+	bool bLowSculptAmmo;
 
 private:
 	virtual bool Initialize() override;

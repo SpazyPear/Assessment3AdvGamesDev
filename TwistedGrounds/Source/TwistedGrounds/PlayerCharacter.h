@@ -32,8 +32,7 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	UPROPERTY(EditAnywhere)
-		float LookSensitivity;
+	UPROPERTY(EditAnywhere) float LookSensitivity;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -49,14 +48,9 @@ public:
 	UCameraComponent* Camera;
 
 	//Controlled by MapGenerator
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
-
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
-
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<class AProcMeshSculpt> MeshSculptor;
+	UPROPERTY(EditDefaultsOnly) TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
+	UPROPERTY(EditDefaultsOnly) TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
+	UPROPERTY(EditDefaultsOnly) TSubclassOf<class AProcMeshSculpt> MeshSculptor;
 	//End
 
 	bool bIsSprinting;
@@ -71,7 +65,6 @@ public:
 
 	void CapDistance();
 
-	void UpdateAmmoBar(float Percent); //Updates the player's HUD
 	void Fire();
 
 	void OnDeath();
@@ -88,15 +81,15 @@ private:
 	AProcMeshSculpt* Sculptor;
 	ATwistedGroundsHUD* HUD;
 	UHealthComponent* HealthComponent;
+
+	UPROPERTY(EditDefaultsOnly) float SculptDepletionSpeed; //Measured in seconds.
+	UPROPERTY(EditDefaultsOnly) float SculptCooldownSpeed; //Measured in seconds.
 	
 	void Slide();
+	void UpdateSculptAmmo(float DeltaTime);
 
-	UPROPERTY(EditAnywhere)
-		float WalkableAngle;
+	UPROPERTY(EditAnywhere) float WalkableAngle;
 
-	UFUNCTION(Server, Reliable)
-		void ServerSlide();
-
-	UFUNCTION(Server, Reliable)
-		void ServerSprint();
+	UFUNCTION(Server, Reliable) void ServerSlide();
+	UFUNCTION(Server, Reliable) void ServerSprint();
 };
