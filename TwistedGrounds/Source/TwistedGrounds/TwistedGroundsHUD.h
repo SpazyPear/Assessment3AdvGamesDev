@@ -7,6 +7,7 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Components/ProgressBar.h"
+#include "PlayerWidget.h"
 
 #include "TwistedGroundsHUD.generated.h"
 
@@ -17,18 +18,10 @@ class ATwistedGroundsHUD : public AHUD
 
 public:
 	ATwistedGroundsHUD();
-
-	/** Primary draw call for the HUD */
-	virtual void DrawHUD() override;
-	void UpdateAmmoBar(float Percent);
-	void UpdateHPBar(float Percent);
+	UPlayerWidget* PlayerHUDWidget;
 
 private:
-	/** Crosshair asset pointer */
-	class UTexture2D* CrosshairTex;
-
 	TSubclassOf<UUserWidget> PlayerHUDClass;
-	UUserWidget* CurrentPlayerHUDWidget;
 	UProgressBar* AmmoBar;
 	UProgressBar* HPBar;
 };

@@ -353,7 +353,7 @@ void AProcMeshSculpt::RegenAmmo(float DeltaTime)
 	}
 	ATwistedGroundsHUD* HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
 	if (HUD) {
-		HUD->UpdateAmmoBar(SculptAmmo / MaxAmmo);
+		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(SculptAmmo / MaxAmmo);
 	}
 }
 

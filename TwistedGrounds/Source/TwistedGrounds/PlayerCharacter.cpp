@@ -44,7 +44,6 @@ void APlayerCharacter::BeginPlay()
 	if (!HUD) {
 		return;
 	}
-	UpdateAmmoBar(1);
 	GetCharacterMovement()->SetWalkableFloorAngle(WalkableAngle);
 }
 
@@ -222,7 +221,7 @@ void APlayerCharacter::CapDistance()
 void APlayerCharacter::UpdateAmmoBar(float Percent)
 {
 	if (HUD) {
-		HUD->UpdateAmmoBar(Percent);
+		HUD->PlayerHUDWidget->UpdateAmmoBar(Percent);
 	}
 }
 

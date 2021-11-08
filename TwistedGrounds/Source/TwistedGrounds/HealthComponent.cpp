@@ -16,16 +16,13 @@ UHealthComponent::UHealthComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = false;
 	MaxHealth = 100.0f;
-	// ...
+	CurrentHealth = MaxHealth;
 }
-
 
 // Called when the game starts
 void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	CurrentHealth = MaxHealth;
 }
 
 void UHealthComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -63,7 +60,7 @@ void UHealthComponent::UpdateHealthBar()
 		ATwistedGroundsHUD* PlayerHUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 		if (PlayerHUD)
 		{
-			PlayerHUD->UpdateHPBar(CurrentHealth / MaxHealth);
+			PlayerHUD->PlayerHUDWidget->UpdateHPBar(CurrentHealth / MaxHealth);
 		}
 	}
 }

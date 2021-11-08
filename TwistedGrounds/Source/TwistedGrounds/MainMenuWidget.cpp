@@ -3,7 +3,6 @@
 
 #include "MainMenuWidget.h"
 #include "Kismet/KismetSystemLibrary.h"
-#include "Kismet/GameplayStatics.h"
 #include "DoStatic.h"
 
 bool UMainMenuWidget::Initialize() {
