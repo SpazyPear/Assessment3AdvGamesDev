@@ -9,7 +9,6 @@
 #include "Camera/CameraComponent.h"
 #include "Components/SceneComponent.h"
 #include "Particles/ParticleSystemComponent.h"
-#include "ProcMeshSculpt.h"
 #include "DustClouds.h"
 #include "MapGenerator.h"
 #include "TwistedGroundsHUD.h"
@@ -17,6 +16,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "HealthComponent.h"
 #include "PlayerCharacter.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSculptStart);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSculptEnd);
 
 UCLASS()
 class TWISTEDGROUNDS_API APlayerCharacter : public ACharacter
@@ -46,7 +48,11 @@ public:
 	void LookUp(float Value);
 	void Turn(float Value);
 
+	//UPROPERTY(Replicated)
 	UCameraComponent* Camera;
+
+	UPROPERTY(Replicated)
+	FRotator CameraPos;
 
 	//Controlled by MapGenerator
 	UPROPERTY(EditDefaultsOnly)
@@ -56,10 +62,14 @@ public:
 	TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<class AProcMeshSculpt> MeshSculptor;
+	TSubclassOf<class AProcMeshSculptActor> MeshSculptor;
 	//End
 
 	bool bIsSprinting;
+
+	void CallSculptStart();
+
+	void CallSculptEnd();
 
 	void SculptStart();
 
@@ -69,9 +79,8 @@ public:
 
 	void CapHeight();
 
-	void CapDistance();
-
 	void UpdateAmmoBar(float Percent); //Updates the player's HUD
+
 	void Fire();
 
 	void OnDeath();
@@ -80,13 +89,33 @@ public:
 
 	void GetUp();
 
+	UFUNCTION(Server, Reliable)
+		void ServerSculptStart();
+
+	UFUNCTION(NetMulticast, Reliable)
+		void MulticastSculptStart();
+
+	UFUNCTION(Server, Reliable)
+		void ServerSculptEnd();
+
+	UFUNCTION(NetMulticast, Reliable)
+		void MulticastSculptEnd();
+
+	UFUNCTION(NetMulticast, Unreliable)
+		void SetClientRotation(FRotator Rot, APlayerCharacter* Player);
+
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+
+	FOnSculptStart SculptStartEvent;
+	FOnSculptEnd SculptEndEvent;
 
 private:
 	ADustClouds* BigEmitter;
 	ADustClouds* SmallEmitter;
 	AMapGenerator* MapGen;
 	FVector PrevPos;
-	AProcMeshSculpt* Sculptor;
+	AProcMeshSculptActor* Sculptor;
 	ATwistedGroundsHUD* HUD;
 	UHealthComponent* HealthComponent;
 };

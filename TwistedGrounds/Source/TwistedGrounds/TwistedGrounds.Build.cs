@@ -13,7 +13,7 @@ public class TwistedGrounds : ModuleRules
         PublicDependencyModuleNames.AddRange(new string[] { "RenderCore", "RHI" });
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 
-		MinFilesUsingPrecompiledHeaderOverride = 1;
-		bFasterWithoutUnity = true;
+		MinFilesUsingPrecompiledHeaderOverride = 6;
+		bUseUnity = false;
 	}
 }

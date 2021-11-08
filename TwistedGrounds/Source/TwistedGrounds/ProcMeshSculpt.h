@@ -61,6 +61,8 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		FHitResult TracePath(FVector StartPos, FVector LaunchVelocity, AActor* IgnoreActors);
 
+
+	UPROPERTY(Replicated)
 	SCULPTSTATE SculptState;
 
 	class APlayerCharacter* Player;
@@ -80,6 +82,15 @@ public:
 
 	UFUNCTION()
 		virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UFUNCTION(Server, Reliable)
+		void ServerSculpt();
+
+	UFUNCTION(NetMulticast, Reliable)
+		void MulticastSculpt();
+
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
 
 	bool CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap, int32& CurrentIndexCopy, int32 CurrentIndex);
 

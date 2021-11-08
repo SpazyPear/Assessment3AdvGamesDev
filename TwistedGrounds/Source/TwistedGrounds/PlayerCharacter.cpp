@@ -6,6 +6,8 @@
 #include "DoStatic.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "ProcMeshSculptActor.h"
+#include <Runtime/Engine/Public/Net/UnrealNetwork.h>
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -16,6 +18,12 @@ APlayerCharacter::APlayerCharacter()
 	//Set default member variable values
 	LookSensitivity = 1.0f;
 	bIsSprinting = false;
+	/*SculptStartEvent.AddDynamic(this, &APlayerCharacter::SculptStart);
+	SculptStartEvent.AddDynamic(this, & APlayerCharacter::ServerSculptStart);
+	SculptStartEvent.AddDynamic(this, &APlayerCharacter::MulticastSculptStart);
+	SculptEndEvent.AddDynamic(this, &APlayerCharacter::SculptEnd);
+	SculptEndEvent.AddDynamic(this, &APlayerCharacter::ServerSculptEnd);
+	SculptEndEvent.AddDynamic(this, &APlayerCharacter::MulticastSculptEnd);*/
 }
 
 // Called when the game starts or when spawned
@@ -26,10 +34,14 @@ void APlayerCharacter::BeginPlay()
 	//Initialise the camera variable
 	Camera = FindComponentByClass<UCameraComponent>();
 	HealthComponent = FindComponentByClass<UHealthComponent>();
-	Sculptor = GetWorld()->SpawnActor<AProcMeshSculpt>(MeshSculptor, FVector::ZeroVector, FRotator::ZeroRotator);
+	FActorSpawnParameters SpawnParams = FActorSpawnParameters();
+	SpawnParams.bNoFail = true;
+	//Sculptor = Cast<UProcMeshSculptActor>(GetDefaultSubobjectByName(TEXT("Sculptor")));
+	Sculptor = GetWorld()->SpawnActor<AProcMeshSculptActor>(MeshSculptor, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
 	Sculptor->Player = this;
 	Sculptor->Camera = Camera;
 	Sculptor->Muzzle = Cast<USceneComponent>(GetDefaultSubobjectByName(TEXT("MuzzlePosition")));
+	//Sculptor->SetOwner(this);
 	
 	for (TActorIterator<AMapGenerator> Map(GetWorld()); Map; ++Map) {
 		MapGen = *Map; //There should only be one map generator in the level.
@@ -43,6 +55,22 @@ void APlayerCharacter::BeginPlay()
 		return;
 	}
 	UpdateAmmoBar(1);
+
+	if (GetLocalRole() == ENetRole::ROLE_SimulatedProxy) {
+		USkeletalMeshComponent* BodyMesh = GetMesh();
+		USkeletalMeshComponent* BodyGunMesh = Cast<USkeletalMeshComponent>(GetDefaultSubobjectByName(TEXT("MeshGun")));
+		USkeletalMeshComponent* ArmsMesh = Cast<USkeletalMeshComponent>(GetDefaultSubobjectByName(TEXT("Arms")));
+		USkeletalMeshComponent* ArmsGun = Cast<USkeletalMeshComponent>(GetDefaultSubobjectByName(TEXT("Gun")));
+		if (BodyMesh && BodyGunMesh && ArmsMesh && ArmsGun) {
+			BodyMesh->SetVisibility(true);
+			BodyGunMesh->SetVisibility(true);
+			ArmsMesh->SetVisibility(false);
+			ArmsGun->SetVisibility(false);
+		}
+		else {
+			return;
+		}
+	}
 }
 
 // Called every frame
@@ -58,6 +86,12 @@ void APlayerCharacter::Tick(float DeltaTime)
 		PrevPos = Pos;
 		MapGen->CheckSurrounding(GetActorLocation());
 	}
+
+	if (Camera->GetRelativeRotation().Pitch == 0 && ROLE_Authority) {
+		Camera->SetRelativeRotation(CameraPos);
+	}
+
+	
 }
 
 // Called to bind functionality to input
@@ -71,14 +105,13 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &APlayerCharacter::Turn);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::SculptStart);
-	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::SculptEnd);
+	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CallSculptStart);
+	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::CallSculptEnd);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Invert);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapHeight);
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
-	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapDistance);
-	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Released, this, &APlayerCharacter::CapDistance);
+
 	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Sprint);
 	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Released, this, &APlayerCharacter::Sprint);
 	PlayerInputComponent->BindAction(TEXT("Fire"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Fire);
@@ -109,12 +142,31 @@ void APlayerCharacter::LookUp(float Value)
 
 	FRotator CamRot = FRotator().ZeroRotator;
 	CamRot.Pitch = NewPitch;
+
 	Camera->SetRelativeRotation(CamRot);
+	CameraPos = CamRot;
+
+
+	
 }
 
 void APlayerCharacter::Turn(float Value)
 {
 	AddControllerYawInput(Value * LookSensitivity);
+}
+
+void APlayerCharacter::CallSculptStart()
+{
+	//SculptStartEvent.Broadcast();
+	SculptStart();
+	ServerSculptStart();
+	
+}
+
+void APlayerCharacter::CallSculptEnd()
+{
+	SculptEnd();
+	ServerSculptEnd();
 }
 
 void APlayerCharacter::SculptStart()
@@ -124,7 +176,8 @@ void APlayerCharacter::SculptStart()
 	}
 	
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
-	Sculptor->SculptState = SCULPTSTATE::ONGOING;
+	Sculptor->SculptState = SCULPTSTATEACTOR::ONGOING;
+
 }
 
 void APlayerCharacter::SculptEnd()
@@ -138,14 +191,15 @@ void APlayerCharacter::SculptEnd()
 		SmallEmitter = nullptr;
 		
 	}
-	if (Sculptor->SculptState == SCULPTSTATE::ONGOING) {
+	if (Sculptor->SculptState == SCULPTSTATEACTOR::ONGOING) {
 		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
-		Sculptor->SculptState = SCULPTSTATE::STOPPED;
+		Sculptor->SculptState = SCULPTSTATEACTOR::STOPPED;
 	}
 
 	if (!Sculptor->CapHeight) {
 		Sculptor->CappedHeight = -INFINITY;
 	}
+
 }
 
 void APlayerCharacter::Sprint() {
@@ -163,6 +217,47 @@ void APlayerCharacter::GetUp()
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics); //??
 }
 
+void APlayerCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	//DOREPLIFETIME(APlayerCharacter, Camera);
+	DOREPLIFETIME(APlayerCharacter, CameraPos);
+}
+
+void APlayerCharacter::SetClientRotation_Implementation(FRotator Rot, APlayerCharacter* Player)
+{
+	if (this == Player)
+	Camera->SetRelativeRotation(Rot);
+	
+}
+
+void APlayerCharacter::ServerSculptEnd_Implementation()
+{
+	SculptEnd();
+	MulticastSculptEnd();
+}
+
+void APlayerCharacter::MulticastSculptEnd_Implementation()
+{
+	if (GetLocalRole() == ROLE_SimulatedProxy) {
+		SculptEnd();
+	}
+}
+
+void APlayerCharacter::MulticastSculptStart_Implementation()
+{
+	if (GetLocalRole() == ROLE_SimulatedProxy) {
+		SculptStart();
+	}
+}
+
+void APlayerCharacter::ServerSculptStart_Implementation()
+{
+	SculptStart();
+	MulticastSculptStart();
+}
+
 void APlayerCharacter::Invert()
 {
 	if (!Sculptor) {
@@ -176,14 +271,6 @@ void APlayerCharacter::CapHeight()
 	Sculptor->CapHeight = !Sculptor->CapHeight;
 }
 
-void APlayerCharacter::CapDistance()
-{
-	if (!Sculptor->CapDistance) {
-		Sculptor->CreateCurve();
-	}
-	Sculptor->CapDistance = false;
-}
-
 void APlayerCharacter::UpdateAmmoBar(float Percent)
 {
 	if (HUD) {
@@ -193,18 +280,24 @@ void APlayerCharacter::UpdateAmmoBar(float Percent)
 
 void APlayerCharacter::Fire()
 {
-	FHitResult HitResult = Sculptor->HitResult;
-	AActor* HitActor = Cast<AActor>(HitResult.Actor);
-	APlayerCharacter* HitCharacter = Cast<APlayerCharacter>(HitActor);
-	if (HitCharacter) {
-		HitCharacter->HealthComponent->OnTakeDamage(30.0f);
-		if (HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f) {
+	if (&Sculptor->HitResult) {
+		FHitResult HitResult = Sculptor->HitResult;
+		AActor* HitActor = Cast<AActor>(HitResult.Actor);
+		APlayerCharacter* HitCharacter = Cast<APlayerCharacter>(HitActor);
+		if (HitCharacter) {
+
 			USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(HitCharacter->GetMesh());
-			SkeletalMesh->SetSimulatePhysics(true);
-			SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-			SkeletalMesh->AddImpulse(Camera->GetForwardVector() * 10000, HitResult.BoneName, true);
-			HitCharacter->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-			
+
+			if (HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f && SkeletalMesh) {
+
+				SkeletalMesh->SetSimulatePhysics(true);
+				SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+				SkeletalMesh->AddImpulse(Camera->GetForwardVector() * 10000, HitResult.BoneName, true);
+				HitCharacter->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			}
+			else {
+				HitCharacter->HealthComponent->OnTakeDamage(30.0f);
+			}
 		}
 	}
 }
