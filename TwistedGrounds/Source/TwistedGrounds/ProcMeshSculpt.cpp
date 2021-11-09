@@ -9,6 +9,13 @@
 #include "MapGenerator.h"
 #include "EngineUtils.h"
 #include "DoStatic.h"
+#include "TwistedGroundsHUD.h"
+#include "Net/UnrealNetwork.h"
+#include "Kismet/GameplayStatics.h"
+#include "Engine/GameEngine.h"
+
+
+
 
 // Sets default values
 AProcMeshSculpt::AProcMeshSculpt()
@@ -85,6 +92,9 @@ void AProcMeshSculpt::Sculpt()
 {
 	if (!Map || !&HitResult) {
 		return;
+	}
+	if (GetLocalRole() == ENetRole::ROLE_Authority) {
+		GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("SculptState: %i"), SculptState));
 	}
 	FVector RelativeHitLocation = GetActorLocation() - Map->GetActorLocation();
 	int32 VertsPerSide = ((Map->Width - 1) * 1 + 1);
@@ -282,6 +292,28 @@ void AProcMeshSculpt::Sculpt()
 
 }
 
+void AProcMeshSculpt::ServerSculpt_Implementation()
+{
+	Sculpt();
+	MulticastSculpt();
+}
+
+void AProcMeshSculpt::MulticastSculpt_Implementation()
+{
+	if (GetLocalRole() == ENetRole::ROLE_Authority) {
+		GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("authority")));
+
+	}
+	Sculpt();
+}
+
+void AProcMeshSculpt::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AProcMeshSculpt, SculptState);
+}
+
 bool AProcMeshSculpt::CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap, int32& CurrentIndexCopy, int32 CurrentIndex)
 {
 	TArray<DIRECTION> Directions;
@@ -332,7 +364,7 @@ void AProcMeshSculpt::CheckState(float DeltaTime)
 		case SCULPTSTATE::IDLE:
 			break;
 		case SCULPTSTATE::ONGOING:
-			Sculpt();
+			ServerSculpt();
 			break;
 		case SCULPTSTATE::STOPPED:
 			SculptState = SCULPTSTATE::IDLE; //stub

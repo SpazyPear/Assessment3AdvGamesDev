@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DecalActor.h"
+#include "Components/ActorComponent.h"
 
 #include "Curves/CurveFloat.h"
 #include "HAL/Runnable.h"
@@ -14,41 +15,41 @@
 #include "Components/SceneComponent.h"
 #include "Components/BoxComponent.h"
 #include "ProcedurallyGeneratedMap.h"
-#include "TwistedGroundsHUD.h"
+#include "ProcMeshSculptComponent.generated.h"
 
-#include "ProcMeshSculpt.generated.h"
+enum class DIRECTIONCOMPONENT : uint8;
 
 UENUM()
-enum class SCULPTSTATE : uint8 {
+enum class SCULPTSTATECOMPONENT : uint8 {
 	IDLE,
 	ONGOING,
 	STOPPED,
 };
 
 UENUM()
-enum class DIRECTION :uint8 {
+enum class DIRECTIONCOMPONENT : uint8 {
 	LEFT,
 	RIGHT,
 	UP,
 	DOWN,
 };
 
-UCLASS()
-class TWISTEDGROUNDS_API AProcMeshSculpt : public ADecalActor
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+class TWISTEDGROUNDS_API UProcMeshSculptComponent : public UActorComponent
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
-	AProcMeshSculpt();
+	UProcMeshSculptComponent();
 
 protected:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	virtual void Tick(float DeltaTime) override;
+public:
+	void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(BlueprintReadWrite)
 		FHitResult HitResult;
@@ -65,7 +66,7 @@ public:
 
 
 	UPROPERTY(Replicated)
-	SCULPTSTATE SculptState;
+		SCULPTSTATECOMPONENT SculptState;
 
 	class APlayerCharacter* Player;
 
@@ -76,6 +77,8 @@ public:
 	bool CapHeight;
 
 	void CheckState(float DeltaTime);
+
+	void RegenAmmo(float DeltaTime);
 
 	UFUNCTION()
 		virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
@@ -92,17 +95,8 @@ public:
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
-	bool CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap, int32& CurrentIndexCopy, int32 CurrentIndex);
+	bool CheckDiagonal(DIRECTIONCOMPONENT NewDirection, DIRECTIONCOMPONENT LastDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap, int32& CurrentIndexCopy, int32 CurrentIndex);
 
-	FVector FindNearestPointOnCurve();
-
-	void CreateCurve();
-
-	TArray<FVector2D> PointsOnCurve;
-
-	FVector2D Center;
-
-	FVector OriginalOrigin;
 
 	bool ResetCappedHeight;
 
@@ -117,8 +111,14 @@ public:
 	FVector Origin;
 
 	FVector Direction;
-	
-	UPROPERTY(EditAnywhere) UCurveFloat* Curve;
+
+	float SculptAmmo;
+	float MaxAmmo;
+	float AmmoCost;
+	float AmmoRegen;
+
+	UPROPERTY(EditAnywhere)
+		UCurveFloat* Curve;
 
 	TArray<int32> AffectedVertNormals;
 
@@ -142,5 +142,8 @@ public:
 
 	bool bNeedsUpdate;
 
-	TMap<DIRECTION, TArray<FVector>> OverlappedVertices;
+	TMap<DIRECTIONCOMPONENT, TArray<FVector>> OverlappedVertices;
+
+private:
+	void UpdateAmmoBar();
 };

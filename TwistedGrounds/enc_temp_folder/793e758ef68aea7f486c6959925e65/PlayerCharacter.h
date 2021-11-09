@@ -34,7 +34,8 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
-	UPROPERTY(EditAnywhere) float LookSensitivity;
+	UPROPERTY(EditAnywhere)
+		float LookSensitivity;
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -51,9 +52,14 @@ public:
 	UCameraComponent* Camera;
 
 	//Controlled by MapGenerator
-	UPROPERTY(EditDefaultsOnly) TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
-	UPROPERTY(EditDefaultsOnly) TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
-	UPROPERTY(EditDefaultsOnly) TSubclassOf<class AProcMeshSculpt> MeshSculptor;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class AProcMeshSculptActor> MeshSculptor;
 	//End
 
 	bool bIsSprinting;
@@ -98,8 +104,10 @@ public:
 	UFUNCTION(NetMulticast, Unreliable)
 		void SetClientRotation(FRotator Rot, APlayerCharacter* Player);
 
-	UFUNCTION(Server, Reliable)
-		void SetServerSculptorLocation(FVector Pos, APlayerCharacter* Character);
+	UFUNCTION(Server, Unreliable)
+		void SetServerSculptorLocation(FVector Pos);
+
+
 
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
@@ -115,16 +123,4 @@ private:
 	AProcMeshSculptActor* Sculptor;
 	ATwistedGroundsHUD* HUD;
 	UHealthComponent* HealthComponent;
-
-	UPROPERTY(EditDefaultsOnly) float SculptDepletionSpeed; //Measured in seconds.
-	UPROPERTY(EditDefaultsOnly) float SculptCooldownSpeed; //Measured in seconds.
-	
-	void Slide();
-	void UpdateSculptAmmo(float DeltaTime);
-
-	UPROPERTY(EditDefaultsOnly, meta = (ClampMin = "0", ClampMax = "90"))
-		float WalkableAngle;
-
-	UFUNCTION(Server, Reliable) void ServerSlide();
-	UFUNCTION(Server, Reliable) void ServerSprint();
 };

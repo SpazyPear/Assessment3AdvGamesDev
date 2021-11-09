@@ -14,19 +14,17 @@
 #include "Components/SceneComponent.h"
 #include "Components/BoxComponent.h"
 #include "ProcedurallyGeneratedMap.h"
-#include "TwistedGroundsHUD.h"
-
-#include "ProcMeshSculpt.generated.h"
+#include "ProcMeshSculptActor.generated.h"
 
 UENUM()
-enum class SCULPTSTATE : uint8 {
+enum class SCULPTSTATEACTOR : uint8 {
 	IDLE,
 	ONGOING,
 	STOPPED,
 };
 
 UENUM()
-enum class DIRECTION :uint8 {
+enum class DIRECTIONACTOR :uint8 {
 	LEFT,
 	RIGHT,
 	UP,
@@ -34,24 +32,23 @@ enum class DIRECTION :uint8 {
 };
 
 UCLASS()
-class TWISTEDGROUNDS_API AProcMeshSculpt : public ADecalActor
+class TWISTEDGROUNDS_API AProcMeshSculptActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
-	AProcMeshSculpt();
+	AProcMeshSculptActor();
 
 protected:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(BlueprintReadWrite)
-		FHitResult HitResult;
+	FHitResult HitResult;
 
 	void VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, float DistanceFraction, int32 VertexIndex);
 
@@ -65,7 +62,7 @@ public:
 
 
 	UPROPERTY(Replicated)
-	SCULPTSTATE SculptState;
+		SCULPTSTATEACTOR SculptState;
 
 	class APlayerCharacter* Player;
 
@@ -76,6 +73,10 @@ public:
 	bool CapHeight;
 
 	void CheckState(float DeltaTime);
+
+	void SetOwnerPlayer();
+
+	void RegenAmmo(float DeltaTime);
 
 	UFUNCTION()
 		virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
@@ -89,41 +90,36 @@ public:
 	UFUNCTION(NetMulticast, Reliable)
 		void MulticastSculpt();
 
+	UFUNCTION(Server, Reliable)
+		void SetServerOwner();
+
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-
-	bool CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap, int32& CurrentIndexCopy, int32 CurrentIndex);
-
-	FVector FindNearestPointOnCurve();
+	bool CheckDiagonal(DIRECTIONACTOR LastDirection, DIRECTIONACTOR NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap, int32& CurrentIndexCopy, int32 CurrentIndex);
 
 	void CreateCurve();
 
-	TArray<FVector2D> PointsOnCurve;
-
-	FVector2D Center;
-
-	FVector OriginalOrigin;
-
 	bool ResetCappedHeight;
-
-	float CappedDistance;
 
 	int32 CappedHeightIndex;
 
-	bool CapDistance;
-
-	bool ShouldRearrange;
-
-	FVector Origin;
-
 	FVector Direction;
-	
-	UPROPERTY(EditAnywhere) UCurveFloat* Curve;
+
+
+	float SculptAmmo;
+	float MaxAmmo;
+	float AmmoCost;
+	float AmmoRegen;
+
+	UPROPERTY(EditAnywhere)
+		UCurveFloat* Curve;
 
 	TArray<int32> AffectedVertNormals;
 
+	UPROPERTY(Replicated)
 	TArray<AProcedurallyGeneratedMap*> AffectedTangents;
 
+	UPROPERTY(Replicated)
 	AProcedurallyGeneratedMap* Map; //This can now dynamically change to any chunk
 
 	int32 TangentsToBeUpdated;
@@ -132,15 +128,22 @@ public:
 
 	void Raycast();
 
+	UFUNCTION(Server, Unreliable)
+	void ServerSetPosition(FVector Pos);
+
 	UCameraComponent* Camera;
+
 	USceneComponent* Muzzle;
 	class AMapGenerator* MapGenerator;
 
 	UBoxComponent* Collider;
 
+	UPROPERTY(Replicated)
 	TArray<AProcedurallyGeneratedMap*> HitMaps;
 
+	UPROPERTY(Replicated)
 	bool bNeedsUpdate;
 
-	TMap<DIRECTION, TArray<FVector>> OverlappedVertices;
+private:
+	void UpdateAmmoBar();
 };

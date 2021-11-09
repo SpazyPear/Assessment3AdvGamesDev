@@ -18,11 +18,12 @@ APlayerCharacter::APlayerCharacter()
 	//Set default member variable values
 	LookSensitivity = 1.0f;
 	bIsSprinting = false;
-
-	SculptDepletionSpeed = 1.5; // example: 3 seconds to go from full to empty.
-	SculptCooldownSpeed = 2; //example: 2 seconds cooldown from empty to full.
-
-	WalkableAngle = 45;
+	/*SculptStartEvent.AddDynamic(this, &APlayerCharacter::SculptStart);
+	SculptStartEvent.AddDynamic(this, & APlayerCharacter::ServerSculptStart);
+	SculptStartEvent.AddDynamic(this, &APlayerCharacter::MulticastSculptStart);
+	SculptEndEvent.AddDynamic(this, &APlayerCharacter::SculptEnd);
+	SculptEndEvent.AddDynamic(this, &APlayerCharacter::ServerSculptEnd);
+	SculptEndEvent.AddDynamic(this, &APlayerCharacter::MulticastSculptEnd);*/
 }
 
 // Called when the game starts or when spawned
@@ -30,6 +31,7 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//Initialise the camera variable
 	Camera = FindComponentByClass<UCameraComponent>();
 	HealthComponent = FindComponentByClass<UHealthComponent>();
 	FActorSpawnParameters SpawnParams = FActorSpawnParameters();
@@ -50,11 +52,7 @@ void APlayerCharacter::BeginPlay()
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	PrevPos = FVector(0, 0, 1); //Offset to force check surrounding.
 
-	SculptDepletionSpeed = 1.0f / SculptDepletionSpeed;
-	SculptCooldownSpeed = 1.0f / SculptCooldownSpeed;
-
 	HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
-	GetCharacterMovement()->SetWalkableFloorAngle(WalkableAngle);
 	if (!HUD) {
 		return;
 	}
@@ -80,22 +78,15 @@ void APlayerCharacter::BeginPlay()
 // Called every frame
 void APlayerCharacter::Tick(float DeltaTime)
 {
-
 	Super::Tick(DeltaTime);
 	if (SmallEmitter) {
 		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
 	}
 
-	UpdateSculptAmmo(DeltaTime);
-
-	if (!HasAuthority()) {
-		return;
-	}
-	
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	if (Pos != PrevPos) {
 		PrevPos = Pos;
-		MapGen->ServerCheckSurrounding(GetActorLocation());
+		MapGen->CheckSurrounding(GetActorLocation());
 	}
 
 	if (GetLocalRole() == ROLE_Authority) {
@@ -103,8 +94,9 @@ void APlayerCharacter::Tick(float DeltaTime)
 	}
 
 	if (GetLocalRole() == ROLE_AutonomousProxy) {
-		SetServerSculptorLocation(Sculptor->GetActorLocation(), this);
+		SetServerSculptorLocation(Sculptor->GetActorLocation());
 	}
+
 	
 }
 
@@ -123,16 +115,12 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::CallSculptEnd);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Invert);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
-	
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapHeight);
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
+
 	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Sprint);
 	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Released, this, &APlayerCharacter::Sprint);
-	
 	PlayerInputComponent->BindAction(TEXT("Fire"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Fire);
-
-	PlayerInputComponent->BindAction(TEXT("Slide"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Slide);
-	PlayerInputComponent->BindAction(TEXT("Slide"), EInputEvent::IE_Released, this, &APlayerCharacter::Slide);
 }
 
 void APlayerCharacter::MoveForward(float Value)
@@ -207,13 +195,12 @@ void APlayerCharacter::SculptEnd()
 	if (SmallEmitter) {
 		SmallEmitter->Destroy();
 		SmallEmitter = nullptr;
+		
 	}
-	else {
-		return;
+	if (Sculptor->SculptState == SCULPTSTATEACTOR::ONGOING) {
+		BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
+		Sculptor->SculptState = SCULPTSTATEACTOR::STOPPED;
 	}
-
-	BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
-	Sculptor->SculptState = SCULPTSTATE::STOPPED;
 
 	if (!Sculptor->CapHeight) {
 		Sculptor->CappedHeight = -INFINITY;
@@ -225,13 +212,7 @@ void APlayerCharacter::Sprint() {
 	
 	bIsSprinting = !bIsSprinting;
 	GetCharacterMovement()->MaxWalkSpeed = bIsSprinting ? 900.0f : 500.0f;
-	if (!HasAuthority()) { //Makes sprinting work on single and multiplayer.
-		ServerSprint();
-	}
-}
-
-void APlayerCharacter::ServerSprint_Implementation() {
-	Sprint();
+	
 }
 
 void APlayerCharacter::GetUp()
@@ -242,46 +223,13 @@ void APlayerCharacter::GetUp()
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics); //??
 }
 
-void APlayerCharacter::Slide()
-{
-	UCharacterMovementComponent* Movement = GetCharacterMovement();
-	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
-	if (GetLocalRole() == ROLE_AutonomousProxy) {
-		ServerSlide();
-	}
-}
-
-void APlayerCharacter::UpdateSculptAmmo(float DeltaTime)
-{
-	if (!IsLocallyControlled() || !HUD) {
-		return;
-	}
-
-	switch (Sculptor->SculptState) {
-	case SCULPTSTATE::ONGOING:
-		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(-SculptDepletionSpeed * DeltaTime);
-		if (HUD->PlayerHUDWidget->bLowSculptAmmo) {
-			SculptEnd();
-		}
-		return;
-		
-	default:
-		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(SculptCooldownSpeed * DeltaTime);
-	}
-}
-
-void APlayerCharacter::ServerSlide_Implementation()
-{
-	UCharacterMovementComponent* Movement = GetCharacterMovement();
-	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
 void APlayerCharacter::SetServerRotation_Implementation(FRotator Rot)
 {
 	Camera->SetRelativeRotation(Rot);
 }
 
-void APlayerCharacter::SetServerSculptorLocation_Implementation(FVector Pos, APlayerCharacter* Character)
+void APlayerCharacter::SetServerSculptorLocation_Implementation(FVector Pos)
 {
-	if (this == Character) //coaeke
 	Sculptor->SetActorLocation(Pos);
 }
 
@@ -341,10 +289,9 @@ void APlayerCharacter::CapHeight()
 
 void APlayerCharacter::UpdateAmmoBar(float Percent)
 {
-	if (HUD->PlayerHUDWidget->bRecharging) {
-		return;
+	if (HUD) {
+		HUD->UpdateAmmoBar(Percent);
 	}
-	HUD->PlayerHUDWidget->UpdateAmmoBar(-0.2);
 }
 
 void APlayerCharacter::Fire()
