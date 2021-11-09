@@ -88,6 +88,15 @@ void APlayerCharacter::Tick(float DeltaTime)
 
 	UpdateSculptAmmo(DeltaTime);
 
+	if (GetLocalRole() == ROLE_AutonomousProxy) {
+		SetServerSculptorLocation(Sculptor->GetActorLocation(), this);
+	}
+
+	if (GetLocalRole() == ROLE_SimulatedProxy) {
+		UE_LOG(LogTemp, Warning, TEXT("Simulated Pos: %s"), *Sculptor->GetActorLocation().ToString())
+
+	}
+
 	if (!HasAuthority()) {
 		return;
 	}
@@ -96,14 +105,6 @@ void APlayerCharacter::Tick(float DeltaTime)
 	if (Pos != PrevPos) {
 		PrevPos = Pos;
 		MapGen->ServerCheckSurrounding(GetActorLocation());
-	}
-
-	if (GetLocalRole() == ROLE_Authority) {
-		UE_LOG(LogTemp, Warning, TEXT("Camera: %s"), *Camera->GetRelativeRotation().ToString())
-	}
-
-	if (GetLocalRole() == ROLE_AutonomousProxy) {
-		SetServerSculptorLocation(Sculptor->GetActorLocation(), this);
 	}
 	
 }
@@ -163,7 +164,6 @@ void APlayerCharacter::LookUp(float Value)
 
 	//if (GetLocalRole() == ROLE_AutonomousProxy) {
 		Camera->SetRelativeRotation(CamRot);
-		//SetServerRotation(CamRot);
 	//}
 	
 }
@@ -276,15 +276,20 @@ void APlayerCharacter::ServerSlide_Implementation()
 	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
 }
 
-void APlayerCharacter::SetServerRotation_Implementation(FRotator Rot)
-{
-	Camera->SetRelativeRotation(Rot);
-}
-
 void APlayerCharacter::SetServerSculptorLocation_Implementation(FVector Pos, APlayerCharacter* Character)
 {
-	if (this == Character) //coaeke
-	Sculptor->SetActorLocation(Pos);
+	if (this == Character) {//coaeke
+		Sculptor->SetActorLocation(Pos);
+		SetMulticastSculptorLocation(Pos, Character);
+	}
+	
+}
+
+void APlayerCharacter::SetMulticastSculptorLocation_Implementation(FVector Pos, APlayerCharacter* Character)
+{
+	if (GetLocalRole() == ROLE_SimulatedProxy && Sculptor) {
+		Sculptor->SetActorLocation(Pos);
+	}
 }
 
 void APlayerCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -292,14 +297,7 @@ void APlayerCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	//DOREPLIFETIME(APlayerCharacter, Camera);
-	//DOREPLIFETIME(APlayerCharacter, CameraPos);
-}
-
-void APlayerCharacter::SetClientRotation_Implementation(FRotator Rot, APlayerCharacter* Player)
-{
-	if (this != Player)
-	Camera->SetRelativeRotation(Rot);
-	
+	DOREPLIFETIME(APlayerCharacter, SculptorLocation);
 }
 
 void APlayerCharacter::ServerSculptEnd_Implementation()

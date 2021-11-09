@@ -76,18 +76,16 @@ void AProcMeshSculptActor::Tick(float DeltaTime)
 
 	if (bNeedsUpdate) {
 
-		if (GetLocalRole() == ENetRole::ROLE_Authority) {
-			GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("SCULPTSTATE: %i"), SculptState));
-		}
 		for (AProcedurallyGeneratedMap* HitMap : AffectedTangents) {
 			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents);
 		}
 		bNeedsUpdate = false;
 		UpdateTangents();
+
 	}
 
 	if (Player->GetLocalRole() == ROLE_Authority) {
-		UE_LOG(LogTemp, Warning, TEXT("Authority Pos: %s"), *GetActorLocation().ToString())
+		//UE_LOG(LogTemp, Warning, TEXT("Authority Pos: %s"), *GetActorLocation().ToString())
 	}
 
 }
@@ -311,12 +309,6 @@ void AProcMeshSculptActor::MulticastSculpt_Implementation()
 	
 }
 
-void AProcMeshSculptActor::SetServerOwner_Implementation()
-{
-	SetOwner(Player->GetController());
-
-}
-
 void AProcMeshSculptActor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
@@ -379,19 +371,13 @@ void AProcMeshSculptActor::CheckState(float DeltaTime)
 	case SCULPTSTATE::ONGOING:
 		if (SculptAmmo > 0.0f) {
 			SculptAmmo -= AmmoCost * DeltaTime;
-			Sculpt();
+			ServerSculpt();
 		}
 		break;
 	case SCULPTSTATE::STOPPED:
 		SculptState = SCULPTSTATE::IDLE; //stub
 	}
 }
-
-void AProcMeshSculptActor::SetOwnerPlayer()
-{
-	SetServerOwner();
-}
-
 
 void AProcMeshSculptActor::RegenAmmo(float DeltaTime)
 {

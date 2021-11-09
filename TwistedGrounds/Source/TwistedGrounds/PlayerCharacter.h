@@ -92,17 +92,15 @@ public:
 	UFUNCTION(NetMulticast, Reliable)
 		void MulticastSculptEnd();
 
-	UFUNCTION(Server, Reliable)
-		void SetServerRotation(FRotator Rot);
+	UFUNCTION(Server, Unreliable)
+		void SetServerSculptorLocation(FVector Pos, APlayerCharacter* Character);
 
 	UFUNCTION(NetMulticast, Unreliable)
-		void SetClientRotation(FRotator Rot, APlayerCharacter* Player);
-
-	UFUNCTION(Server, Reliable)
-		void SetServerSculptorLocation(FVector Pos, APlayerCharacter* Character);
+		void SetMulticastSculptorLocation(FVector Pos, APlayerCharacter* Character);
 
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+	FVector SculptorLocation;
 
 	FOnSculptStart SculptStartEvent;
 	FOnSculptEnd SculptEndEvent;

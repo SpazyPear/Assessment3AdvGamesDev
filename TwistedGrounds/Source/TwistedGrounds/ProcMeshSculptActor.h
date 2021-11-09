@@ -74,8 +74,6 @@ public:
 
 	void CheckState(float DeltaTime);
 
-	void SetOwnerPlayer();
-
 	void RegenAmmo(float DeltaTime);
 
 	UFUNCTION()
@@ -90,9 +88,6 @@ public:
 	UFUNCTION(NetMulticast, Reliable)
 		void MulticastSculpt();
 
-	UFUNCTION(Server, Reliable)
-		void SetServerOwner();
-
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	bool CheckDiagonal(DIRECTIONACTOR LastDirection, DIRECTIONACTOR NewDirection, AProcedurallyGeneratedMap* CurrentMap, AProcedurallyGeneratedMap* HitMap, int32& CurrentIndexCopy, int32 CurrentIndex);
@@ -104,7 +99,6 @@ public:
 	int32 CappedHeightIndex;
 
 	FVector Direction;
-
 
 	float SculptAmmo;
 	float MaxAmmo;
