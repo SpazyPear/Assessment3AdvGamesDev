@@ -92,11 +92,6 @@ void APlayerCharacter::Tick(float DeltaTime)
 		SetServerSculptorLocation(Sculptor->GetActorLocation(), this);
 	}
 
-	if (GetLocalRole() == ROLE_SimulatedProxy) {
-		UE_LOG(LogTemp, Warning, TEXT("Simulated Pos: %s"), *Sculptor->GetActorLocation().ToString())
-
-	}
-
 	if (!HasAuthority()) {
 		return;
 	}
@@ -120,8 +115,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &APlayerCharacter::Turn);
 
 	PlayerInputComponent->BindAction(TEXT("Jump"), EInputEvent::IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CallSculptStart);
-	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::CallSculptEnd);
+	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Pressed, this, &APlayerCharacter::SculptStart);
+	PlayerInputComponent->BindAction(TEXT("Sculpt"), EInputEvent::IE_Released, this, &APlayerCharacter::SculptEnd);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Invert);
 	PlayerInputComponent->BindAction(TEXT("Invert"), EInputEvent::IE_Released, this, &APlayerCharacter::Invert);
 	
@@ -192,7 +187,10 @@ void APlayerCharacter::SculptStart()
 	if (!Sculptor || !Sculptor->Map) {
 		return;
 	}
-	
+	if (GetLocalRole() == ROLE_AutonomousProxy) {
+		bSculpting = true;
+		SetSculptingServer(true);
+	}
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
 	Sculptor->SculptState = SCULPTSTATE::ONGOING;
 
@@ -292,12 +290,17 @@ void APlayerCharacter::SetMulticastSculptorLocation_Implementation(FVector Pos, 
 	}
 }
 
+void APlayerCharacter::SetSculptingServer_Implementation(bool boolean)
+{
+	bSculpting = boolean;
+}
+
 void APlayerCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	//DOREPLIFETIME(APlayerCharacter, Camera);
-	DOREPLIFETIME(APlayerCharacter, SculptorLocation);
+	DOREPLIFETIME(APlayerCharacter, bSculpting);
 }
 
 void APlayerCharacter::ServerSculptEnd_Implementation()

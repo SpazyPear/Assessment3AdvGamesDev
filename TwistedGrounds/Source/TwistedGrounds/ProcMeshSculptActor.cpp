@@ -84,6 +84,9 @@ void AProcMeshSculptActor::Tick(float DeltaTime)
 
 	}
 
+	if (Player->bSculpting) {
+		Sculpt();
+	}
 	if (Player->GetLocalRole() == ROLE_Authority) {
 		//UE_LOG(LogTemp, Warning, TEXT("Authority Pos: %s"), *GetActorLocation().ToString())
 	}
@@ -371,7 +374,7 @@ void AProcMeshSculptActor::CheckState(float DeltaTime)
 	case SCULPTSTATE::ONGOING:
 		if (SculptAmmo > 0.0f) {
 			SculptAmmo -= AmmoCost * DeltaTime;
-			ServerSculpt();
+			Sculpt();
 		}
 		break;
 	case SCULPTSTATE::STOPPED:
