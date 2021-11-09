@@ -25,7 +25,7 @@ AProcMeshSculptActor::AProcMeshSculptActor()
 	PrimaryActorTick.bCanEverTick = true;
 	//bReplicateMovement = true;
 
-	SculptState = SCULPTSTATEACTOR::IDLE;
+	SculptState = SCULPTSTATE::IDLE;
 	ScaledZStrength = 70;
 	bInvert = false;
 	SculptAmmo = 10.0f;
@@ -77,7 +77,7 @@ void AProcMeshSculptActor::Tick(float DeltaTime)
 	if (bNeedsUpdate) {
 
 		if (GetLocalRole() == ENetRole::ROLE_Authority) {
-			GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("SCULPTSTATEACTOR: %i"), SculptState));
+			GEngine->AddOnScreenDebugMessage(-1, 1.0f, FColor::Red, FString::Printf(TEXT("SCULPTSTATE: %i"), SculptState));
 		}
 		for (AProcedurallyGeneratedMap* HitMap : AffectedTangents) {
 			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents);
@@ -374,16 +374,16 @@ void AProcMeshSculptActor::CheckState(float DeltaTime)
 {
 	switch (SculptState) {
 
-	case SCULPTSTATEACTOR::IDLE:
+	case SCULPTSTATE::IDLE:
 		break;
-	case SCULPTSTATEACTOR::ONGOING:
+	case SCULPTSTATE::ONGOING:
 		if (SculptAmmo > 0.0f) {
 			SculptAmmo -= AmmoCost * DeltaTime;
 			Sculpt();
 		}
 		break;
-	case SCULPTSTATEACTOR::STOPPED:
-		SculptState = SCULPTSTATEACTOR::IDLE; //stub
+	case SCULPTSTATE::STOPPED:
+		SculptState = SCULPTSTATE::IDLE; //stub
 	}
 }
 
@@ -395,13 +395,13 @@ void AProcMeshSculptActor::SetOwnerPlayer()
 
 void AProcMeshSculptActor::RegenAmmo(float DeltaTime)
 {
-	if (SculptState == SCULPTSTATEACTOR::IDLE && SculptAmmo < MaxAmmo) {
+	if (SculptState == SCULPTSTATE::IDLE && SculptAmmo < MaxAmmo) {
 		SculptAmmo += AmmoRegen * DeltaTime;
 		SculptAmmo = FMath::Clamp(SculptAmmo, 0.0f, MaxAmmo);
 	}
 	ATwistedGroundsHUD* HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
 	if (HUD) {
-		HUD->UpdateAmmoBar(SculptAmmo / MaxAmmo);
+		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(SculptAmmo / MaxAmmo);
 	}
 }
 

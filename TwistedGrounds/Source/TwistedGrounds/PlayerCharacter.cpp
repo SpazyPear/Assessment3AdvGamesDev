@@ -194,7 +194,7 @@ void APlayerCharacter::SculptStart()
 	}
 	
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
-	Sculptor->SculptState = SCULPTSTATEACTOR::ONGOING;
+	Sculptor->SculptState = SCULPTSTATE::ONGOING;
 
 }
 
@@ -274,6 +274,8 @@ void APlayerCharacter::ServerSlide_Implementation()
 {
 	UCharacterMovementComponent* Movement = GetCharacterMovement();
 	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
+}
+
 void APlayerCharacter::SetServerRotation_Implementation(FRotator Rot)
 {
 	Camera->SetRelativeRotation(Rot);

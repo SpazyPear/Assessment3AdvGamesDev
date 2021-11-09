@@ -53,7 +53,7 @@ public:
 	//Controlled by MapGenerator
 	UPROPERTY(EditDefaultsOnly) TSubclassOf<ADustClouds> BigDustEmitterToSpawn;
 	UPROPERTY(EditDefaultsOnly) TSubclassOf<ADustClouds> SmallDustEmitterToSpawn;
-	UPROPERTY(EditDefaultsOnly) TSubclassOf<class AProcMeshSculpt> MeshSculptor;
+	UPROPERTY(EditDefaultsOnly) TSubclassOf<class AProcMeshSculptActor> MeshSculptor;
 	//End
 
 	bool bIsSprinting;

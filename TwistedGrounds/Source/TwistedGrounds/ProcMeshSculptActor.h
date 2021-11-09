@@ -17,7 +17,7 @@
 #include "ProcMeshSculptActor.generated.h"
 
 UENUM()
-enum class SCULPTSTATEACTOR : uint8 {
+enum class SCULPTSTATE : uint8 {
 	IDLE,
 	ONGOING,
 	STOPPED,
@@ -62,7 +62,7 @@ public:
 
 
 	UPROPERTY(Replicated)
-		SCULPTSTATEACTOR SculptState;
+		SCULPTSTATE SculptState;
 
 	class APlayerCharacter* Player;
 
