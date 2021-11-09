@@ -41,7 +41,9 @@ void APlayerCharacter::BeginPlay()
 	Sculptor->Player = this;
 	Sculptor->Camera = Camera;
 	Sculptor->Muzzle = Cast<USceneComponent>(GetDefaultSubobjectByName(TEXT("MuzzlePosition")));
-	//Sculptor->SetOwner(this);
+
+	if (GetLocalRole() == ROLE_Authority)
+	Sculptor->SetOwner(this);
 	
 	for (TActorIterator<AMapGenerator> Map(GetWorld()); Map; ++Map) {
 		MapGen = *Map; //There should only be one map generator in the level.
@@ -87,8 +89,12 @@ void APlayerCharacter::Tick(float DeltaTime)
 		MapGen->CheckSurrounding(GetActorLocation());
 	}
 
-	if (Camera->GetRelativeRotation().Pitch == 0 && ROLE_Authority) {
-		Camera->SetRelativeRotation(CameraPos);
+	if (GetLocalRole() == ROLE_Authority) {
+		UE_LOG(LogTemp, Warning, TEXT("Camera: %s"), *Camera->GetRelativeRotation().ToString())
+	}
+
+	if (GetLocalRole() == ROLE_AutonomousProxy) {
+		SetServerSculptorLocation(Sculptor->GetActorLocation());
 	}
 
 	
@@ -143,8 +149,12 @@ void APlayerCharacter::LookUp(float Value)
 	FRotator CamRot = FRotator().ZeroRotator;
 	CamRot.Pitch = NewPitch;
 
-	Camera->SetRelativeRotation(CamRot);
-	CameraPos = CamRot;
+	//if (GetLocalRole() == ROLE_AutonomousProxy) {
+		Camera->SetRelativeRotation(CamRot);
+		//SetServerRotation(CamRot);
+	//}
+
+
 
 
 	
@@ -217,17 +227,27 @@ void APlayerCharacter::GetUp()
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics); //??
 }
 
+void APlayerCharacter::SetServerRotation_Implementation(FRotator Rot)
+{
+	Camera->SetRelativeRotation(Rot);
+}
+
+void APlayerCharacter::SetServerSculptorLocation_Implementation(FVector Pos)
+{
+	Sculptor->SetActorLocation(Pos);
+}
+
 void APlayerCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	//DOREPLIFETIME(APlayerCharacter, Camera);
-	DOREPLIFETIME(APlayerCharacter, CameraPos);
+	//DOREPLIFETIME(APlayerCharacter, CameraPos);
 }
 
 void APlayerCharacter::SetClientRotation_Implementation(FRotator Rot, APlayerCharacter* Player)
 {
-	if (this == Player)
+	if (this != Player)
 	Camera->SetRelativeRotation(Rot);
 	
 }

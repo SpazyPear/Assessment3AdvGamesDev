@@ -105,6 +105,7 @@ public:
 
 	FVector Direction;
 
+
 	float SculptAmmo;
 	float MaxAmmo;
 	float AmmoCost;
@@ -127,10 +128,11 @@ public:
 
 	void Raycast();
 
-	UFUNCTION(Server, Reliable)
+	UFUNCTION(Server, Unreliable)
 	void ServerSetPosition(FVector Pos);
 
 	UCameraComponent* Camera;
+
 	USceneComponent* Muzzle;
 	class AMapGenerator* MapGenerator;
 

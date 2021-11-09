@@ -438,7 +438,10 @@ void AProcMeshSculptActor::Raycast()
 	SetActorHiddenInGame(!Map);
 	if (Map) {
 		
+		if (Player->GetLocalRole() == ROLE_AutonomousProxy) {
 			SetActorLocation(HitResult.ImpactPoint);
+			//ServerSetPosition(GetActorLocation());
+		}
 		
 	}
 }
