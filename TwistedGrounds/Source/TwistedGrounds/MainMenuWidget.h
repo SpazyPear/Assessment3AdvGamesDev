@@ -22,15 +22,14 @@ private:
 
 	UPROPERTY(meta = (BindWidget)) UButton* ButtonStart;
 	UPROPERTY(meta = (BindWidget)) UButton* ButtonTutorial;
-	UPROPERTY(meta = (BindWidget)) UTextBlock* ButtonTutorialText;
+	UPROPERTY(meta = (BindWidget)) UButton* ButtonGoBack;
 	UPROPERTY(meta = (BindWidget)) UButton* ButtonQuit;
 	UPROPERTY(meta = (BindWidget)) UTextBlock* TutorialText;
 
 	UFUNCTION() void ButtonStartAction();
-	UFUNCTION() void ButtonTutorialAction();
+	UFUNCTION() void ButtonTutorialAction(); //ButtonGoBack uses this as well.
 	UFUNCTION() void QuitButtonAction();
 
-	void FlipToTutorial();
 	bool bTutorialHidden;
 
 	ESlateVisibility GetSlateVisibility(bool bHidden);

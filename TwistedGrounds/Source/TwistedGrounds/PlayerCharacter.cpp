@@ -193,7 +193,9 @@ void APlayerCharacter::Slide()
 {
 	UCharacterMovementComponent* Movement = GetCharacterMovement();
 	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
-	ServerSlide();
+	if (GetLocalRole() == ROLE_AutonomousProxy) {
+		ServerSlide();
+	}
 }
 
 void APlayerCharacter::UpdateSculptAmmo(float DeltaTime)

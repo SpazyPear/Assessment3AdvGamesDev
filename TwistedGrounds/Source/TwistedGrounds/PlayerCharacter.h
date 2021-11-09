@@ -88,7 +88,8 @@ private:
 	void Slide();
 	void UpdateSculptAmmo(float DeltaTime);
 
-	UPROPERTY(EditAnywhere) float WalkableAngle;
+	UPROPERTY(EditDefaultsOnly, meta = (ClampMin = "0", ClampMax = "90"))
+		float WalkableAngle;
 
 	UFUNCTION(Server, Reliable) void ServerSlide();
 	UFUNCTION(Server, Reliable) void ServerSprint();
