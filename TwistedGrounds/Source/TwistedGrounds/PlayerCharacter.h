@@ -101,7 +101,7 @@ public:
 	UFUNCTION(NetMulticast, Unreliable)
 		void SetMulticastSculptorLocation(FVector Pos, APlayerCharacter* Character);
 
-	UFUNCTION(Server Reliable)
+	UFUNCTION(Server, Reliable)
 		void SetSculptingServer(bool boolean);
 
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;

@@ -202,6 +202,9 @@ void APlayerCharacter::SculptEnd()
 		return;
 	}
 
+	bSculpting = false;
+	SetSculptingServer(false);
+
 	if (SmallEmitter) {
 		SmallEmitter->Destroy();
 		SmallEmitter = nullptr;
