@@ -27,7 +27,24 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	void UpdateNeighbours();
+
+	/// <summary>
+	/// Set the intial values for generation of the map.
+	/// </summary>
+	/// <param name="W">Width</param>
+	/// <param name="H">Height</param>
+	/// <param name="GS">GridSize</param>
+	/// <param name="PS">PerlinScale</param>
+	/// <param name="PSO">PerlinScaleOffset</param>
+	/// <param name="PR">PerlinRoughness</param>
+	/// <param name="PO">PerlinOffset</param>
+	/// <param name="OX">OffsetX</param>
+	/// <param name="OY">OffsetY</param>
+	void SetMapValues(int32 W, int32 H, float GS, float PS, float PSO, float PR, float PO, int32 OX, int32 OY);
+	void GenerateMap();
+	
+	UFUNCTION(NetMulticast, Reliable)
+		void NetMulticastGenerateMap();
 
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	//Controlled by MapGenerator
@@ -35,17 +52,17 @@ public:
 	UPROPERTY(Replicated) int32 Height;
 	UPROPERTY(Replicated) float GridSize;
 	UPROPERTY(Replicated) float PerlinScale;
-	UPROPERTY(Replicated) float PerlinScaleOffset;
 	UPROPERTY(Replicated) float PerlinRoughness;
 	UPROPERTY(Replicated) float PerlinOffset;
 	UPROPERTY(Replicated) int32 OffsetX;
 	UPROPERTY(Replicated) int32 OffsetY;
+	//End
+
 	UPROPERTY(Replicated) int32 BiomeIndex;
 	UPROPERTY(Replicated) AProcedurallyGeneratedMap* Top; //Could be a TArray but not sure if TArray can be replicated
 	UPROPERTY(Replicated) AProcedurallyGeneratedMap* Right;
 	UPROPERTY(Replicated) AProcedurallyGeneratedMap* Bottom;
 	UPROPERTY(Replicated) AProcedurallyGeneratedMap* Left;
-	//End
 
 	UPROPERTY() UProceduralMeshComponent* MeshComponent;
 	UPROPERTY() TArray<FVector> Vertices;
@@ -57,13 +74,31 @@ public:
 
 	UPROPERTY(EditDefaultsOnly) TArray<UMaterialInterface*> Biomes;
 
-	UFUNCTION(NetMulticast, Reliable)
-		void NetMulticastGenerateMap();
-
 private:
 	float PerlinSample(float Axis, float Offset);
 	void ClearMap();
-	void UpdateMapValues();
+	void UpdateNeighbours();
+	void UpdateMapValues(float PSO);
 	void UpdateChunkEdge();
 
+	bool bUpdateMap;
+};
+
+class GenerateChunk : public FNonAbandonableTask {
+public:
+	AProcedurallyGeneratedMap* MapRef;
+
+	GenerateChunk(AProcedurallyGeneratedMap* Map) {
+		MapRef = Map;
+	}
+
+	~GenerateChunk() {}
+
+	FORCEINLINE TStatId GetStatId() const {
+		RETURN_QUICK_DECLARE_CYCLE_STAT(GenerateChunk, STATGROUP_ThreadPoolAsyncTasks);
+	}
+
+	void DoWork() {
+		MapRef->GenerateMap();
+	}
 };

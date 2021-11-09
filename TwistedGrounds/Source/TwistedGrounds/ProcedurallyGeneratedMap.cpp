@@ -10,7 +10,7 @@
 AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 	bReplicates = true;
 	bAlwaysRelevant = true;
 
@@ -21,7 +21,6 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 	Height = 30;
 	GridSize = 200;
 	PerlinScale = 1000;
-	PerlinScaleOffset = 0;
 	PerlinRoughness = 0.1;
 	PerlinOffset = FMath::RandRange(-10000.0f, 10000.0f);
 	OffsetX = 0;
@@ -32,6 +31,8 @@ AProcedurallyGeneratedMap::AProcedurallyGeneratedMap()
 	Right = nullptr;
 	Bottom = nullptr;
 	Left = nullptr;
+
+	bUpdateMap = false;
 }
 
 // Called when the game starts or when spawned
@@ -44,35 +45,28 @@ void AProcedurallyGeneratedMap::BeginPlay()
 void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (bUpdateMap) {
+		bUpdateMap = false;
+		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
+		MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
+		//PrimaryActorTick.bCanEverTick = false;
+	}
 }
 
-void AProcedurallyGeneratedMap::NetMulticastGenerateMap_Implementation() {
-	for (int i = 0; i < Width * Height; i++) {
-		int X = i % Width;
-		int Y = i / Width;
-		float Z = FMath::PerlinNoise2D(FVector2D(PerlinSample(X + OffsetX, PerlinOffset), PerlinSample(Y + OffsetY, PerlinOffset))) * PerlinScale;
-		Vertices.Add(FVector(GridSize * X, GridSize * Y, Z));
+void AProcedurallyGeneratedMap::SetMapValues(int32 W, int32 H, float GS, float PS, float PSO, float PR, float PO, int32 OX, int32 OY)
+{
+	Width = W;
+	Height = H;
+	GridSize = GS;
 
-		//If not at the top and left of the grid
-		if (X < Width - 1 && Y < Height - 1) {
-			Triangles.Add(i);
-			Triangles.Add(i + Width);
-			Triangles.Add(i + 1);
-		}
+	PerlinScale = PS;
+	UpdateNeighbours(); //factor the neighbours
+	UpdateMapValues(PSO);
 
-		//If not at the bottom and right of the grid
-		if (X != 0 && Y < Height - 1) {
-			Triangles.Add(i);
-			Triangles.Add(i + Width - 1);
-			Triangles.Add(i + Width);
-		}
-
-		UVCoords.Add(FVector2D(X, Y));
-	}
-	UpdateChunkEdge();
-	UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
-	MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
-	MeshComponent->SetMaterial(0, Biomes[BiomeIndex]);
+	PerlinRoughness = PR;
+	PerlinOffset = PO;
+	OffsetX = OX;
+	OffsetY = OY;
 }
 
 void AProcedurallyGeneratedMap::UpdateNeighbours()
@@ -102,10 +96,46 @@ void AProcedurallyGeneratedMap::UpdateNeighbours()
 		Left = MapPos.X > Pos.X ? *EachMap : Left;
 
 		if (Top && Right && Bottom && Left) {
-			break;
+			return;
 		}
 	}
-	UpdateMapValues();
+}
+
+void AProcedurallyGeneratedMap::UpdateMapValues(float PSO)
+{
+	float Scale = 0;
+	int32 NeighbourCount = 0;
+	TArray<int32> SurroundingBiomes;
+	TArray<AProcedurallyGeneratedMap*> Neighbours;
+	Neighbours.Add(Top);
+	Neighbours.Add(Left);
+	Neighbours.Add(Bottom);
+	Neighbours.Add(Right);
+
+	for (AProcedurallyGeneratedMap* Neighbour : Neighbours) {
+		if (!Neighbour) {
+			SurroundingBiomes.Add(0); //Default biome
+			continue;
+		}
+		Scale += Neighbour->PerlinScale;
+		SurroundingBiomes.Add(Neighbour->BiomeIndex);
+		NeighbourCount++;
+	}
+	Scale += PerlinScale;
+	Scale /= ++NeighbourCount;
+	PerlinScale = Scale + (FMath::RandBool() ? PSO : -PSO);
+
+	BiomeIndex = 0;
+	if (SurroundingBiomes.Contains(1) && SurroundingBiomes.Contains(2)) {} //Do nothing
+	else if (SurroundingBiomes.Contains(1)) {
+		BiomeIndex = FMath::RandBool() ? 1 : BiomeIndex;
+	}
+	else if (SurroundingBiomes.Contains(2)) {
+		BiomeIndex = FMath::RandBool() ? 2 : BiomeIndex;
+	}
+	else {
+		BiomeIndex = FMath::Rand() % 3;
+	}
 }
 
 void AProcedurallyGeneratedMap::UpdateChunkEdge()
@@ -134,48 +164,49 @@ void AProcedurallyGeneratedMap::UpdateChunkEdge()
 	}
 }
 
+void AProcedurallyGeneratedMap::NetMulticastGenerateMap_Implementation() {
+	(new FAutoDeleteAsyncTask<GenerateChunk>(this))->StartBackgroundTask();
+}
+
+void AProcedurallyGeneratedMap::GenerateMap()
+{
+	for (int i = 0; i < Width * Height; i++) {
+		int X = i % Width;
+		int Y = i / Width;
+		float Z = FMath::PerlinNoise2D(FVector2D(PerlinSample(X + OffsetX, PerlinOffset), PerlinSample(Y + OffsetY, PerlinOffset))) * PerlinScale;
+		Vertices.Add(FVector(GridSize * X, GridSize * Y, Z));
+
+		//If not at the top and left of the grid
+		if (X < Width - 1 && Y < Height - 1) {
+			Triangles.Add(i);
+			Triangles.Add(i + Width);
+			Triangles.Add(i + 1);
+		}
+
+		//If not at the bottom and right of the grid
+		if (X != 0 && Y < Height - 1) {
+			Triangles.Add(i);
+			Triangles.Add(i + Width - 1);
+			Triangles.Add(i + Width);
+		}
+
+		UVCoords.Add(FVector2D(X, Y));
+	}
+	UpdateChunkEdge();
+	UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
+	MeshComponent->SetMaterial(0, Biomes[BiomeIndex]);
+	bUpdateMap = true;
+}
+
+float AProcedurallyGeneratedMap::PerlinSample(float Axis, float Offset) {
+	return (Axis + Offset) * PerlinRoughness;
+}
+
 void AProcedurallyGeneratedMap::ClearMap() {
 	MeshComponent->ClearAllMeshSections();
 	Vertices.Empty();
 	Triangles.Empty();
 	UVCoords.Empty();
-}
-
-void AProcedurallyGeneratedMap::UpdateMapValues()
-{
-	float Scale = 0;
-	int32 NeighbourCount = 0;
-	TArray<int32> SurroundingBiomes;
-	TArray<AProcedurallyGeneratedMap*> Neighbours;
-	Neighbours.Add(Top);
-	Neighbours.Add(Left);
-	Neighbours.Add(Bottom);
-	Neighbours.Add(Right);
-
-	for (AProcedurallyGeneratedMap* Neighbour : Neighbours) {
-		if (!Neighbour) {
-			SurroundingBiomes.Add(0); //Default biome
-			continue;
-		}
-		Scale += Neighbour->PerlinScale;
-		SurroundingBiomes.Add(Neighbour->BiomeIndex);
-		NeighbourCount++;
-	}
-	Scale += PerlinScale;
-	Scale /= ++NeighbourCount;
-	PerlinScale = Scale + (FMath::RandBool() ? PerlinScaleOffset : -PerlinScaleOffset);
-
-	BiomeIndex = 0;
-	if (SurroundingBiomes.Contains(1) && SurroundingBiomes.Contains(2)) {} //Do nothing
-	else if (SurroundingBiomes.Contains(1)) {
-		BiomeIndex = FMath::RandBool() ? 1 : BiomeIndex;
-	}
-	else if (SurroundingBiomes.Contains(2)) {
-		BiomeIndex = FMath::RandBool() ? 2 : BiomeIndex;
-	}
-	else {
-		BiomeIndex = FMath::Rand() % 3;
-	}
 }
 
 void AProcedurallyGeneratedMap::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -185,7 +216,6 @@ void AProcedurallyGeneratedMap::GetLifetimeReplicatedProps(TArray<FLifetimePrope
 	DOREPLIFETIME(AProcedurallyGeneratedMap, Height);
 	DOREPLIFETIME(AProcedurallyGeneratedMap, GridSize);
 	DOREPLIFETIME(AProcedurallyGeneratedMap, PerlinScale);
-	DOREPLIFETIME(AProcedurallyGeneratedMap, PerlinScaleOffset);
 	DOREPLIFETIME(AProcedurallyGeneratedMap, PerlinRoughness);
 	DOREPLIFETIME(AProcedurallyGeneratedMap, PerlinOffset);
 	DOREPLIFETIME(AProcedurallyGeneratedMap, OffsetX);
@@ -195,8 +225,4 @@ void AProcedurallyGeneratedMap::GetLifetimeReplicatedProps(TArray<FLifetimePrope
 	DOREPLIFETIME(AProcedurallyGeneratedMap, Right);
 	DOREPLIFETIME(AProcedurallyGeneratedMap, Bottom);
 	DOREPLIFETIME(AProcedurallyGeneratedMap, Left);
-}
-
-float AProcedurallyGeneratedMap::PerlinSample(float Axis, float Offset) {
-	return (Axis + Offset) * PerlinRoughness;
 }

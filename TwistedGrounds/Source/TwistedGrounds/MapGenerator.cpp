@@ -79,21 +79,12 @@ void AMapGenerator::ServerCheckSurrounding_Implementation(FVector Position)
 		MapPoints.Add(Loc); //Save the location of the map
 		int32 OffsetX = ActualW * (X / W); //X offset for perlin noise
 		int32 OffsetY = ActualH * (Y / H); //Y offset for perlin noise
+		float PerlinScaleOffset = FMath::RandBool() ? FMath::FRandRange(PerlinScaleOffsetMin, PerlinScaleOffsetMax) : 0;
+		PerlinScaleOffset = FMath::RandBool() ? -PerlinScaleOffset : PerlinScaleOffset;
 
 		//Spawn the map and set its values. They should be replicated.
 		AProcedurallyGeneratedMap* Map = GetWorld()->SpawnActor<AProcedurallyGeneratedMap>(PGMap, Loc, FRotator::ZeroRotator);
-		Map->Width = ChunkWidth;
-		Map->Height = ChunkHeight;
-		Map->GridSize = ChunkGridSize;
-
-		Map->PerlinScale = PerlinScale;
-		float PerlinScaleOffset = FMath::RandBool() ? FMath::FRandRange(PerlinScaleOffsetMin, PerlinScaleOffsetMax) : 0;
-		Map->PerlinScaleOffset = FMath::RandBool() ? -PerlinScaleOffset : PerlinScaleOffset;
-
-		Map->PerlinRoughness = PerlinRoughness;
-		Map->OffsetX = OffsetX;
-		Map->OffsetY = OffsetY;
-		Map->UpdateNeighbours();
+		Map->SetMapValues(ChunkWidth, ChunkHeight, ChunkGridSize, PerlinScale, PerlinScaleOffset, PerlinRoughness, PerlinOffset, OffsetX, OffsetY);
 		Map->NetMulticastGenerateMap();
 	}
 }
