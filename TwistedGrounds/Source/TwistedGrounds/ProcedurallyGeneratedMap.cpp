@@ -47,9 +47,8 @@ void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (bUpdateMap) {
 		bUpdateMap = false;
-		UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
 		MeshComponent->CreateMeshSection(0, Vertices, Triangles, Normals, UVCoords, TArray<FColor>(), Tangents, true);
-		//PrimaryActorTick.bCanEverTick = false;
+		PrimaryActorTick.bCanEverTick = false;
 	}
 }
 

@@ -15,9 +15,7 @@ AProcMeshSculpt::AProcMeshSculpt()
 {
 	// Set this actor to call Tick() every frame. You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	bReplicateMovement = true;
 
-	SculptState = SCULPTSTATE::IDLE;
 	ScaledZStrength = 70;
 	bInvert = false;
 
@@ -322,20 +320,6 @@ bool AProcMeshSculpt::CheckDiagonal(DIRECTION LastDirection, DIRECTION NewDirect
 		 }
 	}
 	return false;
-}
-
-void AProcMeshSculpt::CheckState(float DeltaTime)
-{
-	switch (SculptState) {
-
-		case SCULPTSTATE::IDLE:
-			break;
-		case SCULPTSTATE::ONGOING:
-			Sculpt();
-			break;
-		case SCULPTSTATE::STOPPED:
-			SculptState = SCULPTSTATE::IDLE; //stub
-		}
 }
 
 void AProcMeshSculpt::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

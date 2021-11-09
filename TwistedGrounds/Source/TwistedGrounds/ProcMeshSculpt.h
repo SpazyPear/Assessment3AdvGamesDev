@@ -19,13 +19,6 @@
 #include "ProcMeshSculpt.generated.h"
 
 UENUM()
-enum class SCULPTSTATE : uint8 {
-	IDLE,
-	ONGOING,
-	STOPPED,
-};
-
-UENUM()
 enum class DIRECTION :uint8 {
 	LEFT,
 	RIGHT,
@@ -63,8 +56,6 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		FHitResult TracePath(FVector StartPos, FVector LaunchVelocity, AActor* IgnoreActors);
 
-	SCULPTSTATE SculptState;
-
 	class APlayerCharacter* Player;
 
 	bool bInvert;
@@ -72,8 +63,6 @@ public:
 	float CappedHeight;
 
 	bool CapHeight;
-
-	void CheckState(float DeltaTime);
 
 	UFUNCTION()
 		virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

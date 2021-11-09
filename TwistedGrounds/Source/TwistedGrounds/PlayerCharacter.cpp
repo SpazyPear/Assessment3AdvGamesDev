@@ -151,7 +151,6 @@ void APlayerCharacter::SculptStart()
 	}
 	
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
-	Sculptor->SculptState = SCULPTSTATE::ONGOING;
 	bIsSculpting = true;
 	ServerToggleSculpting(bIsSculpting);
 }
@@ -171,7 +170,6 @@ void APlayerCharacter::SculptEnd()
 	}
 
 	BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
-	Sculptor->SculptState = SCULPTSTATE::STOPPED;
 	bIsSculpting = false;
 	ServerToggleSculpting(bIsSculpting);
 
@@ -216,15 +214,13 @@ void APlayerCharacter::UpdateSculptAmmo(float DeltaTime)
 		return;
 	}
 
-	switch (Sculptor->SculptState) {
-	case SCULPTSTATE::ONGOING:
+	if (bIsSculpting) {
 		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(-SculptDepletionSpeed * DeltaTime);
 		if (HUD->PlayerHUDWidget->bLowSculptAmmo) {
 			SculptEnd();
 		}
-		return;
-		
-	default:
+	}
+	else {
 		HUD->PlayerHUDWidget->UpdateSculptAmmoBar(SculptCooldownSpeed * DeltaTime);
 	}
 }
