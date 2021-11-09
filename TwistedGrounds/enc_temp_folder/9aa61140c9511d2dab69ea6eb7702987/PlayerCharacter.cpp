@@ -78,7 +78,6 @@ void APlayerCharacter::BeginPlay()
 // Called every frame
 void APlayerCharacter::Tick(float DeltaTime)
 {
-
 	Super::Tick(DeltaTime);
 	if (SmallEmitter) {
 		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
@@ -95,8 +94,9 @@ void APlayerCharacter::Tick(float DeltaTime)
 	}
 
 	if (GetLocalRole() == ROLE_AutonomousProxy) {
-		SetServerSculptorLocation(Sculptor->GetActorLocation(), this);
+		SetServerSculptorLocation(Sculptor->GetActorLocation());
 	}
+
 	
 }
 
@@ -228,9 +228,8 @@ void APlayerCharacter::SetServerRotation_Implementation(FRotator Rot)
 	Camera->SetRelativeRotation(Rot);
 }
 
-void APlayerCharacter::SetServerSculptorLocation_Implementation(FVector Pos, APlayerCharacter* Character)
+void APlayerCharacter::SetServerSculptorLocation_Implementation(FVector Pos)
 {
-	if (this == Character) //coaeke
 	Sculptor->SetActorLocation(Pos);
 }
 

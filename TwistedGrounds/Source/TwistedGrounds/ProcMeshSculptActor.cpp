@@ -86,6 +86,10 @@ void AProcMeshSculptActor::Tick(float DeltaTime)
 		UpdateTangents();
 	}
 
+	if (Player->GetLocalRole() == ROLE_Authority) {
+		UE_LOG(LogTemp, Warning, TEXT("Authority Pos: %s"), *GetActorLocation().ToString())
+	}
+
 }
 
 void AProcMeshSculptActor::Sculpt()

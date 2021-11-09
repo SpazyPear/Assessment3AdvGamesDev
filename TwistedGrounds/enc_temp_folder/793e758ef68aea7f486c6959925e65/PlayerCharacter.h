@@ -104,8 +104,10 @@ public:
 	UFUNCTION(NetMulticast, Unreliable)
 		void SetClientRotation(FRotator Rot, APlayerCharacter* Player);
 
-	UFUNCTION(Server, Reliable)
-		void SetServerSculptorLocation(FVector Pos, APlayerCharacter* Character);
+	UFUNCTION(Server, Unreliable)
+		void SetServerSculptorLocation(FVector Pos);
+
+
 
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
