@@ -60,7 +60,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 	}
 
 	Raycast();
-	CheckState(DeltaTime);
 
 	if (CapDistance) {
 
@@ -366,7 +365,7 @@ void AProcMeshSculpt::UpdateTangents()
 
 void AProcMeshSculpt::Raycast()
 {
-	HitResult = TracePath(Muzzle->GetComponentLocation(), Camera->GetForwardVector() * 60000, Camera->GetOwner());
+	HitResult = TracePath(Muzzle->GetComponentLocation(), Player->CameraFacingDirection * 60000, Camera->GetOwner());
 
 	Map = Cast<AProcedurallyGeneratedMap>(HitResult.GetActor());
 	SetActorHiddenInGame(!Map);

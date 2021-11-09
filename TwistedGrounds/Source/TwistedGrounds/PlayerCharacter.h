@@ -73,6 +73,10 @@ public:
 
 	void GetUp();
 
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	
+	UPROPERTY(Replicated) FVector CameraFacingDirection;
+
 private:
 	ADustClouds* BigEmitter;
 	ADustClouds* SmallEmitter;
@@ -91,6 +95,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, meta = (ClampMin = "0", ClampMax = "90"))
 		float WalkableAngle;
 
+	UPROPERTY(Replicated) bool bIsSculpting;
+
 	UFUNCTION(Server, Reliable) void ServerSlide();
 	UFUNCTION(Server, Reliable) void ServerSprint();
+	UFUNCTION(Server, Reliable) void ServerToggleSculpting(bool Boolean);
+	UFUNCTION(Server, Reliable) void ServerSyncCam(FVector Pos);
 };

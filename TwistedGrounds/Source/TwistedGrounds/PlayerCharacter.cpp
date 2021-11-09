@@ -6,6 +6,7 @@
 #include "DoStatic.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -57,7 +58,14 @@ void APlayerCharacter::Tick(float DeltaTime)
 		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
 	}
 
+	if (GetLocalRole() == ROLE_AutonomousProxy) {
+		ServerSyncCam(Camera->GetForwardVector());
+	}
+
 	UpdateSculptAmmo(DeltaTime);
+	if (bIsSculpting) {
+		Sculptor->Sculpt();
+	}
 
 	if (!HasAuthority()) {
 		return;
@@ -144,6 +152,8 @@ void APlayerCharacter::SculptStart()
 	
 	SmallEmitter = GetWorld()->SpawnActor<ADustClouds>(SmallDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
 	Sculptor->SculptState = SCULPTSTATE::ONGOING;
+	bIsSculpting = true;
+	ServerToggleSculpting(bIsSculpting);
 }
 
 void APlayerCharacter::SculptEnd()
@@ -162,6 +172,8 @@ void APlayerCharacter::SculptEnd()
 
 	BigEmitter = GetWorld()->SpawnActor<ADustClouds>(BigDustEmitterToSpawn, Sculptor->GetActorLocation(), FRotator::ZeroRotator);
 	Sculptor->SculptState = SCULPTSTATE::STOPPED;
+	bIsSculpting = false;
+	ServerToggleSculpting(bIsSculpting);
 
 	if (!Sculptor->CapHeight) {
 		Sculptor->CappedHeight = -INFINITY;
@@ -217,6 +229,16 @@ void APlayerCharacter::UpdateSculptAmmo(float DeltaTime)
 	}
 }
 
+void APlayerCharacter::ServerSyncCam_Implementation(FVector Pos)
+{
+	CameraFacingDirection = Pos;
+}
+
+void APlayerCharacter::ServerToggleSculpting_Implementation(bool Boolean)
+{
+	bIsSculpting = Boolean;
+}
+
 void APlayerCharacter::ServerSlide_Implementation()
 {
 	UCharacterMovementComponent* Movement = GetCharacterMovement();
@@ -266,4 +288,11 @@ void APlayerCharacter::Fire()
 		SkeletalMesh->AddImpulse(Camera->GetForwardVector() * 10000, HitResult.BoneName, true);
 		HitCharacter->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
+}
+
+void APlayerCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(APlayerCharacter, bIsSculpting);
+	DOREPLIFETIME(APlayerCharacter, CameraFacingDirection);
 }
