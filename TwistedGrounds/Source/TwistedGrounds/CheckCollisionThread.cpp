@@ -32,7 +32,7 @@ bool CheckCollisionThread::Init()
 uint32 CheckCollisionThread::Run()
 {
     while (Character->GetVelocity().Size() != 0) {
-
+        bIsRunningThread = true;
     }
     return 0;
 }

@@ -7,6 +7,8 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Net/UnrealNetwork.h"
+#include <Runtime/NavigationSystem/Public/NavigationSystem.h>
+
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -123,8 +125,6 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapHeight);
 	PlayerInputComponent->BindAction(TEXT("CapHeight"), EInputEvent::IE_Released, this, &APlayerCharacter::CapHeight);
 	
-	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Pressed, this, &APlayerCharacter::CapDistance);
-	PlayerInputComponent->BindAction(TEXT("CapDistance"), EInputEvent::IE_Released, this, &APlayerCharacter::CapDistance);
 	
 	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Pressed, this, &APlayerCharacter::Sprint);
 	PlayerInputComponent->BindAction(TEXT("Sprint"), EInputEvent::IE_Released, this, &APlayerCharacter::Sprint);
@@ -269,21 +269,18 @@ void APlayerCharacter::Invert()
 	if (!Sculptor) {
 		return;
 	}
-	Sculptor->bInvert = !Sculptor->bInvert;
+	//Sculptor->bInvert = !Sculptor->bInvert;
+	bInvertR = !bInvertR;
+	ServerSetInvert(bInvertR);
 }
 
 void APlayerCharacter::CapHeight()
 {
-	Sculptor->CapHeight = !Sculptor->CapHeight;
+	//Sculptor->CapHeight = !Sculptor->CapHeight;
+	bCapHeightR = !bCapHeightR;
+	ServerSetCapHeight(bCapHeightR);
 }
 
-void APlayerCharacter::CapDistance()
-{
-	if (!Sculptor->CapDistance) {
-		Sculptor->CreateCurve();
-	}
-	Sculptor->CapDistance = false;
-}
 
 void APlayerCharacter::Fire()
 {
@@ -299,14 +296,13 @@ void APlayerCharacter::Fire()
 		return;
 	}
 
-	USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(HitCharacter->GetMesh());
-	HitCharacter->HealthComponent->OnTakeDamage(30.0f);
-	if (SkeletalMesh && HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f) {
-		SkeletalMesh->SetSimulatePhysics(true);
-		SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-		SkeletalMesh->AddImpulse(Camera->GetForwardVector() * 10000, HitResult.BoneName, true);
-		HitCharacter->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	}
+	
+		HitCharacter->HealthComponent->OnTakeDamage(30.0f);
+		if (HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f) {
+
+			Respawn();
+		}
+	
 }
 
 void APlayerCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -314,4 +310,27 @@ void APlayerCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(APlayerCharacter, bIsSculpting);
 	DOREPLIFETIME(APlayerCharacter, CameraFacingDirection);
+	DOREPLIFETIME(APlayerCharacter, bInvertR);
+	DOREPLIFETIME(APlayerCharacter, bCapHeightR);
+}
+
+
+void APlayerCharacter::ServerSetCapHeight_Implementation(bool boolean)
+{
+	bCapHeightR = boolean;
+}
+
+void APlayerCharacter::ServerSetInvert_Implementation(bool boolean)
+{
+	bInvertR = boolean;
+
+}
+
+
+void APlayerCharacter::Respawn_Implementation()
+{
+	
+	FVector RespawnPoint = UNavigationSystemV1::GetRandomPointInNavigableRadius(GetWorld(), GetActorLocation(), 1000.0f);
+	SetActorLocation(RespawnPoint);
+
 }

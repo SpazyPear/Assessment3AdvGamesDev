@@ -8,6 +8,8 @@
 #include "TwistedGroundsHUD.h"
 #include "PlayerCharacter.h"
 #include "CheckCollisionThread.h"
+#include "NavigationSystem.h"
+
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
@@ -40,6 +42,9 @@ void UHealthComponent::OnTakeDamage(float Damage)
 		CurrentHealth = 0;
 		OnDeath();
 	}
+	//if (GetOwner()->GetLocalRole() == ROLE_AutonomousProxy) {
+		//UpdateHealthBar();
+	//}
 }
 
 void UHealthComponent::OnDeath()
@@ -51,15 +56,22 @@ float UHealthComponent::HealthPercentageRemaining()
 	return CurrentHealth/MaxHealth * 100.0f;
 }
 
+void UHealthComponent::Respawn()
+{
+	//Cast<APlayerCharacter>(GetOwner())->Respawn();
+}
+
+
+
 void UHealthComponent::UpdateHealthBar()
 {
-	if (GetOwner()->GetLocalRole() == ROLE_AutonomousProxy)
-	{
+//	if (GetOwner()->GetLocalRole() == ROLE_Authority)
+	//{
 		ATwistedGroundsHUD* PlayerHUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 		if (PlayerHUD)
 		{
 			PlayerHUD->PlayerHUDWidget->SetHPBar(CurrentHealth / MaxHealth);
 		}
-	}
+	//}
 }
 
