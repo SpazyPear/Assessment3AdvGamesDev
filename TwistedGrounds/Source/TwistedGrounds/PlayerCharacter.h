@@ -92,8 +92,14 @@ private:
 	void Slide();
 	void UpdateSculptAmmo(float DeltaTime);
 
+	//These variables affect the sliding.
 	UPROPERTY(EditDefaultsOnly, meta = (ClampMin = "0", ClampMax = "90"))
 		float WalkableAngle;
+
+	UPROPERTY(EditDefaultsOnly) float GroundFriction;
+	UPROPERTY(EditDefaultsOnly) float NormalGravityScale;
+	UPROPERTY(EditDefaultsOnly) float SlidingGravityScale;
+	//End
 
 	UPROPERTY(Replicated) bool bIsSculpting;
 

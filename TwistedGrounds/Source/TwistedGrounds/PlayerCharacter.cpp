@@ -22,6 +22,13 @@ APlayerCharacter::APlayerCharacter()
 	SculptCooldownSpeed = 2; //example: 2 seconds cooldown from empty to full.
 
 	WalkableAngle = 45;
+	GetCharacterMovement()->SetWalkableFloorAngle(WalkableAngle);
+
+	GroundFriction = 8;
+	GetCharacterMovement()->GroundFriction = GroundFriction;
+
+	NormalGravityScale = 1;
+	SlidingGravityScale = 5;
 }
 
 // Called when the game starts or when spawned
@@ -47,7 +54,24 @@ void APlayerCharacter::BeginPlay()
 	SculptCooldownSpeed = 1.0f / SculptCooldownSpeed;
 
 	HUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
+	
 	GetCharacterMovement()->SetWalkableFloorAngle(WalkableAngle);
+	GetCharacterMovement()->GroundFriction = GroundFriction;
+
+	if (GetLocalRole() != ROLE_SimulatedProxy) {
+		return;
+	}
+
+	USkeletalMeshComponent* BodyMesh = GetMesh();
+	USkeletalMeshComponent* BodyGunMesh = Cast<USkeletalMeshComponent>(GetDefaultSubobjectByName(TEXT("MeshGun")));
+	USkeletalMeshComponent* ArmsMesh = Cast<USkeletalMeshComponent>(GetDefaultSubobjectByName(TEXT("Arms")));
+	USkeletalMeshComponent* ArmsGun = Cast<USkeletalMeshComponent>(GetDefaultSubobjectByName(TEXT("Gun")));
+	if (BodyMesh && BodyGunMesh && ArmsMesh && ArmsGun) {
+		BodyMesh->SetVisibility(true);
+		BodyGunMesh->SetVisibility(true);
+		ArmsMesh->SetVisibility(false);
+		ArmsGun->SetVisibility(false);
+	}
 }
 
 // Called every frame
@@ -58,7 +82,7 @@ void APlayerCharacter::Tick(float DeltaTime)
 		SmallEmitter->SetActorLocation(Sculptor->GetActorLocation());
 	}
 
-	if (GetLocalRole() == ROLE_AutonomousProxy) {
+	if (IsLocallyControlled()) {
 		ServerSyncCam(Camera->GetForwardVector());
 	}
 
@@ -66,15 +90,11 @@ void APlayerCharacter::Tick(float DeltaTime)
 	if (bIsSculpting) {
 		Sculptor->Sculpt();
 	}
-
-	if (!HasAuthority()) {
-		return;
-	}
 	
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	if (Pos != PrevPos) {
 		PrevPos = Pos;
-		MapGen->ServerCheckSurrounding(GetActorLocation());
+		MapGen->ServerCheckSurrounding(GetActorLocation()); //Shouldn't be Pos, messes it up.
 	}
 }
 
@@ -130,10 +150,7 @@ void APlayerCharacter::LookUp(float Value)
 		return;
 	}
 
-	float NewPitch = Camera->GetRelativeRotation().Pitch + Value * LookSensitivity;
-	NewPitch = NewPitch > 90 ? 90 : NewPitch;
-	NewPitch = NewPitch < -90 ? -90 : NewPitch;
-
+	float NewPitch = FMath::Clamp(Camera->GetRelativeRotation().Pitch + Value * LookSensitivity, -90.0f, 90.0f);
 	FRotator CamRot = FRotator().ZeroRotator;
 	CamRot.Pitch = NewPitch;
 	Camera->SetRelativeRotation(CamRot);
@@ -203,9 +220,17 @@ void APlayerCharacter::Slide()
 {
 	UCharacterMovementComponent* Movement = GetCharacterMovement();
 	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
+	Movement->GroundFriction = GroundFriction - Movement->GroundFriction;
+	Movement->GravityScale = Movement->GravityScale == NormalGravityScale ? SlidingGravityScale : NormalGravityScale;
+
 	if (GetLocalRole() == ROLE_AutonomousProxy) {
 		ServerSlide();
 	}
+}
+
+void APlayerCharacter::ServerSlide_Implementation()
+{
+	Slide();
 }
 
 void APlayerCharacter::UpdateSculptAmmo(float DeltaTime)
@@ -233,12 +258,6 @@ void APlayerCharacter::ServerSyncCam_Implementation(FVector Pos)
 void APlayerCharacter::ServerToggleSculpting_Implementation(bool Boolean)
 {
 	bIsSculpting = Boolean;
-}
-
-void APlayerCharacter::ServerSlide_Implementation()
-{
-	UCharacterMovementComponent* Movement = GetCharacterMovement();
-	Movement->SetWalkableFloorAngle(WalkableAngle - Movement->GetWalkableFloorAngle());
 }
 
 void APlayerCharacter::Invert()
