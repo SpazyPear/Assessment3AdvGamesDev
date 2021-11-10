@@ -90,6 +90,10 @@ void APlayerCharacter::Tick(float DeltaTime)
 	if (bIsSculpting) {
 		Sculptor->Sculpt();
 	}
+
+	if (!HasAuthority()) {
+		return;
+	}
 	
 	FVector Pos = MapGen->RoundDownPosition(GetActorLocation());
 	if (Pos != PrevPos) {
