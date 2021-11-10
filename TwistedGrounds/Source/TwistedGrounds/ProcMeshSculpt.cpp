@@ -59,15 +59,6 @@ void AProcMeshSculpt::Tick(float DeltaTime)
 
 	Raycast();
 
-	if (CapDistance) {
-
-		FindNearestPointOnCurve();
-		if (!&HitResult && CapDistance) {
-			Origin.Z = OriginalOrigin.Z;
-			CappedHeight = Origin.Z; //maybe why it jitters
-		}
-	}
-
 	if (bNeedsUpdate) {
 		for (AProcedurallyGeneratedMap* HitMap : AffectedTangents) {
 			HitMap->MeshComponent->UpdateMeshSection(0, HitMap->Vertices, HitMap->Normals, HitMap->UVCoords, TArray<FColor>(), HitMap->Tangents);
