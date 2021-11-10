@@ -299,9 +299,9 @@ void APlayerCharacter::Fire()
 		return;
 	}
 
+	USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(HitCharacter->GetMesh());
 	HitCharacter->HealthComponent->OnTakeDamage(30.0f);
-	if (HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f) {
-		USkeletalMeshComponent* SkeletalMesh = Cast<USkeletalMeshComponent>(HitCharacter->GetMesh());
+	if (SkeletalMesh && HitCharacter->HealthComponent->HealthPercentageRemaining() == 0.0f) {
 		SkeletalMesh->SetSimulatePhysics(true);
 		SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 		SkeletalMesh->AddImpulse(Camera->GetForwardVector() * 10000, HitResult.BoneName, true);

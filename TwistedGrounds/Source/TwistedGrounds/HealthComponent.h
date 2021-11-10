@@ -26,9 +26,9 @@ protected:
 
 public:	
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+	UPROPERTY(EditAnywhere)
 	float MaxHealth;
-	UPROPERTY(ReplicatedUsing = UpdateHealthBar, BlueprintReadOnly)
+	UPROPERTY(ReplicatedUsing = UpdateHealthBar)
 	float CurrentHealth;
 
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;

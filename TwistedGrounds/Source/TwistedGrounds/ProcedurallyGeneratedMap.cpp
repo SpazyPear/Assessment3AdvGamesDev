@@ -52,7 +52,12 @@ void AProcedurallyGeneratedMap::Tick(float DeltaTime)
 	}
 }
 
-void AProcedurallyGeneratedMap::SetMapValues(int32 W, int32 H, float GS, float PS, float PSO, float PR, float PO, int32 OX, int32 OY)
+bool AProcedurallyGeneratedMap::ShouldTickIfViewportsOnly() const
+{
+	return true;
+}
+
+void AProcedurallyGeneratedMap::SetMapValues(int32 W, int32 H, float GS, float PS, float PR, float PO, int32 OX, int32 OY)
 {
 	Width = W;
 	Height = H;
@@ -60,12 +65,17 @@ void AProcedurallyGeneratedMap::SetMapValues(int32 W, int32 H, float GS, float P
 
 	PerlinScale = PS;
 	UpdateNeighbours(); //factor the neighbours
-	UpdateMapValues(PSO);
+	UpdateMapValues();
 
 	PerlinRoughness = PR;
 	PerlinOffset = PO;
 	OffsetX = OX;
 	OffsetY = OY;
+}
+
+void AProcedurallyGeneratedMap::ThreadedGenerateMap()
+{
+	(new FAutoDeleteAsyncTask<GenerateChunk>(this))->StartBackgroundTask();
 }
 
 void AProcedurallyGeneratedMap::UpdateNeighbours()
@@ -100,29 +110,17 @@ void AProcedurallyGeneratedMap::UpdateNeighbours()
 	}
 }
 
-void AProcedurallyGeneratedMap::UpdateMapValues(float PSO)
+void AProcedurallyGeneratedMap::UpdateMapValues()
 {
-	float Scale = 0;
-	int32 NeighbourCount = 0;
 	TArray<int32> SurroundingBiomes;
 	TArray<AProcedurallyGeneratedMap*> Neighbours;
 	Neighbours.Add(Top);
 	Neighbours.Add(Left);
 	Neighbours.Add(Bottom);
 	Neighbours.Add(Right);
-
-	for (AProcedurallyGeneratedMap* Neighbour : Neighbours) {
-		if (!Neighbour) {
-			SurroundingBiomes.Add(0); //Default biome
-			continue;
-		}
-		Scale += Neighbour->PerlinScale;
-		SurroundingBiomes.Add(Neighbour->BiomeIndex);
-		NeighbourCount++;
+	for (AProcedurallyGeneratedMap* Neighbour : Neighbours) {		
+		SurroundingBiomes.Add(!Neighbour ? 0 : Neighbour->BiomeIndex);
 	}
-	Scale += PerlinScale;
-	Scale /= ++NeighbourCount;
-	PerlinScale = Scale + (FMath::RandBool() ? PSO : -PSO);
 
 	BiomeIndex = 0;
 	if (SurroundingBiomes.Contains(1) && SurroundingBiomes.Contains(2)) {} //Do nothing
@@ -137,34 +135,8 @@ void AProcedurallyGeneratedMap::UpdateMapValues(float PSO)
 	}
 }
 
-void AProcedurallyGeneratedMap::UpdateChunkEdge()
-{
-	int32 largestSide = Width > Height ? Width : Height;
-	for (int i = 0; i < largestSide; i++) {
-		if (i < Width) {
-			int32 TopIndex = Vertices.Num() - Width + i;
-			int32 BottomIndex = i;
-			//Bottom of current map, top of bottom map.
-			Vertices[BottomIndex].Z = Bottom ? Bottom->Vertices[TopIndex].Z : Vertices[BottomIndex].Z;
-
-			//Top of current map, bottom of top map.
-			Vertices[TopIndex].Z = Top? Top->Vertices[BottomIndex].Z : Vertices[TopIndex].Z;
-		}
-
-		if (i < Height) {
-			int32 RightIndex = Width * i;
-			int32 LeftIndex = RightIndex + Width - 1;
-			//Right of current map, left of right map.
-			Vertices[RightIndex].Z = Right ? Right->Vertices[LeftIndex].Z : Vertices[RightIndex].Z;
-
-			//Left of current map, right of left map.
-			Vertices[LeftIndex].Z = Left ? Left->Vertices[RightIndex].Z : Vertices[LeftIndex].Z;
-		}
-	}
-}
-
 void AProcedurallyGeneratedMap::NetMulticastGenerateMap_Implementation() {
-	(new FAutoDeleteAsyncTask<GenerateChunk>(this))->StartBackgroundTask();
+	ThreadedGenerateMap();
 }
 
 void AProcedurallyGeneratedMap::GenerateMap()
@@ -191,7 +163,6 @@ void AProcedurallyGeneratedMap::GenerateMap()
 
 		UVCoords.Add(FVector2D(X, Y));
 	}
-	UpdateChunkEdge();
 	UKismetProceduralMeshLibrary::CalculateTangentsForMesh(Vertices, Triangles, UVCoords, Normals, Tangents);
 	MeshComponent->SetMaterial(0, Biomes[BiomeIndex]);
 	bUpdateMap = true;

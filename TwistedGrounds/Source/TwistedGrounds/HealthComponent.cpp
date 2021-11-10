@@ -44,8 +44,6 @@ void UHealthComponent::OnTakeDamage(float Damage)
 
 void UHealthComponent::OnDeath()
 {
-	CheckCollisionThread* ThreadHandler = new CheckCollisionThread();
-	ThreadHandler->CreateThread(Cast<APlayerCharacter>(GetOwner()));
 }
 
 float UHealthComponent::HealthPercentageRemaining()
@@ -60,7 +58,7 @@ void UHealthComponent::UpdateHealthBar()
 		ATwistedGroundsHUD* PlayerHUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 		if (PlayerHUD)
 		{
-			PlayerHUD->PlayerHUDWidget->UpdateHPBar(CurrentHealth / MaxHealth);
+			PlayerHUD->PlayerHUDWidget->SetHPBar(CurrentHealth / MaxHealth);
 		}
 	}
 }

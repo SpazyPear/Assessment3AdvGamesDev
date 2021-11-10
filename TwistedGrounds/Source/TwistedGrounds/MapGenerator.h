@@ -37,12 +37,6 @@ public:
 	UPROPERTY(EditAnywhere) int32 ChunkHeight; //The height of each chunk
 	UPROPERTY(EditAnywhere) float ChunkGridSize; //The size of each chunk
 	UPROPERTY(EditAnywhere) float PerlinScale;
-	
-	//////For every chunk generated, how much perlin scale deviation is there?
-	UPROPERTY(EditAnywhere) int32 PerlinScaleOffsetMin;
-	UPROPERTY(EditAnywhere) int32 PerlinScaleOffsetMax;
-	////// End
-
 	UPROPERTY(EditAnywhere) float PerlinOffset;
 	UPROPERTY(EditAnywhere) float PerlinRoughness;
 	////End
@@ -68,6 +62,7 @@ private:
 
 	void ClearMaps(); //Generates the initial map according to the offset.
 	void UpdateValues();
+	void CheckSurrounding(FVector Position, bool bOnServer);
 
 	UPROPERTY() TArray<FVector> MapPoints; //The location of all the maps.
 };

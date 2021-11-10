@@ -27,6 +27,7 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual bool ShouldTickIfViewportsOnly() const override;
 
 	/// <summary>
 	/// Set the intial values for generation of the map.
@@ -40,7 +41,8 @@ public:
 	/// <param name="PO">PerlinOffset</param>
 	/// <param name="OX">OffsetX</param>
 	/// <param name="OY">OffsetY</param>
-	void SetMapValues(int32 W, int32 H, float GS, float PS, float PSO, float PR, float PO, int32 OX, int32 OY);
+	void SetMapValues(int32 W, int32 H, float GS, float PS, float PR, float PO, int32 OX, int32 OY);
+	void ThreadedGenerateMap();
 	void GenerateMap();
 	
 	UFUNCTION(NetMulticast, Reliable)
@@ -78,8 +80,7 @@ private:
 	float PerlinSample(float Axis, float Offset);
 	void ClearMap();
 	void UpdateNeighbours();
-	void UpdateMapValues(float PSO);
-	void UpdateChunkEdge();
+	void UpdateMapValues();
 
 	bool bUpdateMap;
 };

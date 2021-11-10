@@ -64,7 +64,7 @@ public:
 	void CapHeight();
 
 	void CapDistance();
-
+	
 	void Fire();
 
 	void OnDeath();
