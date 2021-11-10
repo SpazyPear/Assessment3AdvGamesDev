@@ -40,4 +40,6 @@ public:
 	void OnDeath();
 
 	float HealthPercentageRemaining();
+
+	void Respawn();
 };

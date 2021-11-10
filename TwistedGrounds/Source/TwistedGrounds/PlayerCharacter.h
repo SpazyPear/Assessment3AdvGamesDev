@@ -63,8 +63,6 @@ public:
 
 	void CapHeight();
 
-	void CapDistance();
-
 	void Fire();
 
 	void OnDeath();
@@ -76,6 +74,18 @@ public:
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
 	UPROPERTY(Replicated) FVector CameraFacingDirection;
+
+	UPROPERTY(Replicated) bool bInvertR;
+
+	UPROPERTY(Replicated) bool bCapHeightR;
+
+	UFUNCTION(Server, Reliable) void ServerSetInvert(bool boolean);
+
+	UFUNCTION(Server, Reliable) void ServerSetCapHeight(bool boolean);
+
+	UFUNCTION(Server, Reliable)
+		void Respawn();
+
 
 private:
 	ADustClouds* BigEmitter;
@@ -107,4 +117,6 @@ private:
 	UFUNCTION(Server, Reliable) void ServerSprint();
 	UFUNCTION(Server, Reliable) void ServerToggleSculpting(bool Boolean);
 	UFUNCTION(Server, Reliable) void ServerSyncCam(FVector Pos);
+
+
 };

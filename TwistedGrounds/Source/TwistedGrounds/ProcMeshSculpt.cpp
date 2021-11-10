@@ -22,7 +22,7 @@ AProcMeshSculpt::AProcMeshSculpt()
 	TangentsToBeUpdated = 0;
 
 	//Rename your variables! - Ryan
-	CapHeight = false;
+	//Player->bCapHeightR = false;
 	CapDistance = false;
 	CappedHeightIndex = 0;
 	ShouldRearrange = true;
@@ -361,7 +361,7 @@ void AProcMeshSculpt::Raycast()
 void AProcMeshSculpt::VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, float DistanceFraction, int32 VertexIndex)
 {
 
-	if (CurrentMap->Vertices[VertexIndex].Z > CappedHeight && !CapHeight) {
+	if (CurrentMap->Vertices[VertexIndex].Z > CappedHeight && !Player->bCapHeightR) {
 		CappedHeight = CurrentMap->Vertices[VertexIndex].Z;
 		CappedHeightIndex = VertexIndex; //Keeps track of the max height vertex that has been sculpted since the sculpt began, so it can be capped if you hold E.
 
@@ -370,11 +370,11 @@ void AProcMeshSculpt::VertexChangeHeight(AProcedurallyGeneratedMap* CurrentMap, 
 	float Alpha = Curve->GetFloatValue(DistanceFraction) * 1; //Applies the distance fraction to a curve, so that the outer edges of the circle are more curved up to the center.
 	float ZValue = FMath::Lerp(ScaledZStrength, 0.f, Alpha) * 10;
 
-	if (CurrentMap->Vertices[VertexIndex].Z + ZValue > CappedHeight && CapHeight) {
+	if (CurrentMap->Vertices[VertexIndex].Z + ZValue > CappedHeight && Player->bCapHeightR) {
 		return; //If holding Q, don't let the vertex exceed the capped height since you started holding.
 	}
 
-	CurrentMap->Vertices[VertexIndex] += (bInvert) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
+	CurrentMap->Vertices[VertexIndex] += (Player->bInvertR) ? (FVector(0.f, 0.f, -ZValue)) : (FVector(0.f, 0.f, ZValue)); // invert
 
 	Origin.Z = CapDistance ? CappedHeight - 200 : Origin.Z; //For when holding F, the camera follows the point as it rises.
 

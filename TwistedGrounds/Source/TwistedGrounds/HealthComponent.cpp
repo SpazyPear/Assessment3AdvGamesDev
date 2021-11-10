@@ -8,6 +8,8 @@
 #include "TwistedGroundsHUD.h"
 #include "PlayerCharacter.h"
 #include "CheckCollisionThread.h"
+#include "NavigationSystem.h"
+
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
@@ -40,12 +42,19 @@ void UHealthComponent::OnTakeDamage(float Damage)
 		CurrentHealth = 0;
 		OnDeath();
 	}
+	//if (GetOwner()->GetLocalRole() == ROLE_AutonomousProxy) {
+		//UpdateHealthBar();
+	//}
 }
 
 void UHealthComponent::OnDeath()
 {
-	CheckCollisionThread* ThreadHandler = new CheckCollisionThread();
-	ThreadHandler->CreateThread(Cast<APlayerCharacter>(GetOwner()));
+	//if (GetOwner()->GetLocalRole() == ROLE_Authority) {
+
+		FTimerHandle TimerHandle;
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UHealthComponent::Respawn, 3.0f, false, 3.0f);
+
+	//}
 }
 
 float UHealthComponent::HealthPercentageRemaining()
@@ -53,15 +62,22 @@ float UHealthComponent::HealthPercentageRemaining()
 	return CurrentHealth/MaxHealth * 100.0f;
 }
 
+void UHealthComponent::Respawn()
+{
+	//Cast<APlayerCharacter>(GetOwner())->Respawn();
+}
+
+
+
 void UHealthComponent::UpdateHealthBar()
 {
-	if (GetOwner()->GetLocalRole() == ROLE_AutonomousProxy)
-	{
+//	if (GetOwner()->GetLocalRole() == ROLE_Authority)
+	//{
 		ATwistedGroundsHUD* PlayerHUD = Cast<ATwistedGroundsHUD>(UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetHUD());
 		if (PlayerHUD)
 		{
 			PlayerHUD->PlayerHUDWidget->UpdateHPBar(CurrentHealth / MaxHealth);
 		}
-	}
+	//}
 }
 
